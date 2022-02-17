@@ -26,7 +26,7 @@
   width: 100%;
   min-width: 500px;
   max-width: 900px;
-  min-height: 700px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,6 +66,7 @@
   border: 1px solid #25318d;
   border-radius: 10px / 10px;
   align-self: center;
+  background-color: #eff1fc;
 }
 
 .loginBtnWrapper {
