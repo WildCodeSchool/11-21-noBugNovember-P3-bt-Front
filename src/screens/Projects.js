@@ -1,6 +1,12 @@
+import Header from "../components/Header";
+
 const Projects = () => {
-    return <div> Projects </div>
+  return (
+    <div>
+      <Header />
+      <div>Clients</div>
+    </div>
+  );
+};
 
-}
-
-export default Projects
+export default Projects;
