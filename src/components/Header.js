@@ -10,14 +10,14 @@ const Header = () => {
       <div className="headerStatsContainer">
         <img src={GraphLogo} alt="graph_logo" id="headerGraphLogo" />
         <div className="headerStats">
-          <p className="statItem">2 Projets en cours</p>
-          <p className="statItem">60 Experts inscrits</p>
+          <p className="statItem">2 Current Projects</p>
+          <p className="statItem">5000€ Current $</p>
+          <p className="statItem">25000€ Done $</p>
+          <p className="statItem">31 Done Projects</p>
+          <p className="statItem">60 Experts</p>
           <p className="statItem">5 Clients</p>
-          <p className="statItem">5000€ CA projets en cours</p>
-          <p className="statItem">25000€ CA projets terminés</p>
-          <p className="statItem">Coût Expert</p>
-          <p className="statItem">31 Projets terminés</p>
-          <p className="statItem">47 Experts ayant participé</p>
+          <p className="statItem">Experts Cost</p>
+          <p className="statItem">47 Attended experts</p>
         </div>
       </div>
     </div>
