@@ -1,0 +1,34 @@
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 8vh;
+}
+
+#headerLogo {
+  height: 7vh;
+  margin: 0 1vh;
+}
+
+.headerStatsContainer,
+.headerStats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.headerStats {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#headerGraphLogo {
+  height: 3vh;
+  margin: 0 2vh;
+}
+
+.statItem {
+  margin: 0 1vh;
+  color: #25318d;
+  font-family: "Roboto", sans-serif;
+}

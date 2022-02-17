@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import react from "react";
 import Clients from "./screens/Clients";
 import Experts from "./screens/Experts";
 import Login from "./screens/Login";

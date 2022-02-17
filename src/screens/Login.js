@@ -7,7 +7,7 @@ const Login = () => {
     <div className="loginPage">
       <div className="loginBackground"></div>
       <div className="loginContainer">
-        <img src={BTHTLogo} alt="btht-logo" id="loginLogo" />
+        <img src={BTHTLogo} alt="logo_BTHT" id="loginLogo" />
         <div className="loginWrapper">
           <div className="loginInput">
             <label htmlFor="userName" className="loginLabel">
