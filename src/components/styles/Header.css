@@ -1,7 +1,7 @@
 .headerContainer {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   height: 8vh;
 }
 
@@ -14,12 +14,14 @@
 .headerStats {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .headerStats {
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
+  text-align: left;
+  align-content: stretch;
 }
 
 #headerGraphLogo {
@@ -31,4 +33,5 @@
   margin: 0 1vh;
   color: #25318d;
   font-family: "Roboto", sans-serif;
+  width: 18ch;
 }
