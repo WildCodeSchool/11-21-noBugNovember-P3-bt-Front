@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: space-between;
   height: 8vh;
+  background-color : white; 
+  width: 100%;
 }
 
 #headerLogo {
@@ -31,7 +33,7 @@
 
 .statItem {
   margin: 0 1vh;
-  color: #25318d;
-  font-family: "Roboto", sans-serif;
+  color: var(--firstColor); 
+  font-family: var(--fontBody); 
   width: 18ch;
 }
