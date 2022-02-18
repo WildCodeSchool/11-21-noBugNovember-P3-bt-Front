@@ -1,34 +1,38 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap");
+
+:root {
+  --firstColor: #373472;
+  --secondColor: #fff;
+  --scrollColor: #e5e5e5;
+  --inputColor: #b5bcf0;
+  --fontBody: "Montserrat" 300, sans-serif;
+  --fontTitle: "Montserrat" 600, sans-serif;
+  --fontWeight: "Montserrat" 400, sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: var(--fontBody);
+  color: var(--firstColor);
+  background: rgb(150, 183, 213);
+  background: linear-gradient(
+    90deg,
+    rgba(150, 183, 213, 1) 25%,
+    rgba(114, 127, 199, 1) 70%
+  );
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-family: var(--fontTitle);
+  font-size: 30px;
 }
