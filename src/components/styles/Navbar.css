@@ -1,0 +1,48 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 92vh;
+  width: 50px;
+  background-color: #a9cae2;
+}
+
+.navbarOpener {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 10vh;
+  left: 50px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  height: 1.5vh;
+  width: 1.5vh;
+  padding: 0.5vh 0.4vh 0.5vh 0.6vh;
+}
+
+.navbarLinksContainer {
+  height: 66vh;
+}
+
+.navbarLinksWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.navbarLink {
+  list-style-type: none;
+}
+
+.navbarLinkLogo {
+  height: 3vh;
+}
+
+.navbarLinkName {
+  display: none;
+}
