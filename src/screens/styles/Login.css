@@ -3,6 +3,7 @@
   flex-direction: row;
   min-width: 400px;
   min-height: 100vh;
+  background-color: white;
 }
 
 .loginBackground {
@@ -24,8 +25,8 @@
 
 .loginContainer {
   width: 100%;
-  min-width: 500px;
-  max-width: 900px;
+  min-width: 700px;
+  max-width: 1100px;
   min-height: 500px;
   display: flex;
   flex-direction: column;

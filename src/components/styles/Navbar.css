@@ -1,11 +1,18 @@
 .navbar {
+  z-index: 2;
   display: flex;
-  justify-content: center;
+  padding-left: 15px;
   align-items: center;
-  position: relative;
+  position: fixed;
   height: 92vh;
-  width: 50px;
+  width: 70px;
   background-color: #a9cae2;
+  transition: all 0.5s;
+}
+
+.navbar.opened {
+  width: 200px;
+  transition: all 0.5s;
 }
 
 .navbarOpener {
@@ -13,14 +20,33 @@
   justify-content: center;
   position: absolute;
   top: 10vh;
-  left: 50px;
+  left: 70px;
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 50%;
   border: 1px solid black;
-  height: 1.5vh;
-  width: 1.5vh;
-  padding: 0.5vh 0.4vh 0.5vh 0.6vh;
+  height: 30px;
+  width: 30px;
+  padding-top: 5.5px;
+  padding-left: 2px;
+  transition: all 0.5s;
+}
+
+.navbarOpener.opened {
+  left: 200px;
+  padding-left: 0px;
+  padding-right: 1px;
+  transition: all 0.5s;
+}
+
+#chevronLogo {
+  height: 17px;
+  transition: all 0.5s;
+}
+
+#chevronLogo.opened {
+  transform: rotate(-180deg);
+  transition: all 0.5s;
 }
 
 .navbarLinksContainer {
@@ -36,13 +62,33 @@
 }
 
 .navbarLink {
+  position: relative;
+  display: flex;
+  align-items: center;
   list-style-type: none;
 }
 
 .navbarLinkLogo {
-  height: 3vh;
+  height: 40px;
 }
 
 .navbarLinkName {
   display: none;
+}
+
+.namesDisplayed {
+  position: absolute;
+  left: 70px;
+  animation: appear 0.5s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

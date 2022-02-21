@@ -1,10 +1,9 @@
-import Header from "../components/Header";
+import "./styles/Experts.css";
 
 const Experts = () => {
   return (
-    <div>
-      <Header />
-      <div>Clients</div>
+    <div className="expertsContainer">
+      <div>Experts</div>
     </div>
   );
 };
