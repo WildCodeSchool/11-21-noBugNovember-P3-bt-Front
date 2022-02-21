@@ -1,9 +1,8 @@
-import Header from "../components/Header";
+import "./styles/Clients.css";
 
 const Clients = () => {
   return (
-    <div>
-      <Header />
+    <div className="clientsContainer">
       <div>Clients</div>
     </div>
   );

@@ -1,0 +1,104 @@
+.navbar {
+  z-index: 2;
+  display: flex;
+  padding-left: 15px;
+  align-items: center;
+  position: fixed;
+  height: 92vh;
+  width: 70px;
+  background-color: #a9cae2;
+  transition: all 0.5s;
+}
+
+.navbar.opened {
+  width: 200px;
+  transition: all 0.5s;
+}
+
+.navbarOpener {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 10vh;
+  left: 70px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  height: 30px;
+  width: 30px;
+  padding-top: 5.5px;
+  padding-left: 2px;
+  transition: all 0.5s;
+}
+
+.navbarOpener.opened {
+  left: 200px;
+  padding-left: 0px;
+  padding-right: 1px;
+  transition: all 0.5s;
+}
+
+#chevronLogo {
+  height: 17px;
+  transition: all 0.5s;
+}
+
+#chevronLogo.opened {
+  transform: rotate(-180deg);
+  transition: all 0.5s;
+}
+
+.navbarLinksContainer {
+  height: 66vh;
+}
+
+.navbarLinksWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.navbarLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  color: black;
+}
+.activeLink {
+  font-weight: bold;
+  transform: scale(1.2);
+  transition: all 0.2s;
+}
+
+.navbarLinkLogo {
+  height: 40px;
+}
+
+.navbarLinkName {
+  display: none;
+}
+
+.namesDisplayed {
+  position: absolute;
+  left: 70px;
+  animation: appear 0.5s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
