@@ -1,4 +1,6 @@
-.clientsContainer {
+.tabContainer {
   display: flex;
-  padding-left: 100px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
