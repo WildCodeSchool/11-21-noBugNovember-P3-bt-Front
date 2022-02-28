@@ -1,0 +1,54 @@
+.pageExpert {
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+  position: relative;
+  padding: 10px;
+}
+
+.pageExpertForm {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: space-around;
+  overflow-wrap: normal;
+}
+
+.pageExpertForm * {
+  width: 400px;
+  margin: 10px;
+}
+
+.pageExpertForm input,
+.pageExpertForm textarea {
+  background-color: rgba(181, 188, 240, 0.3);
+  border: none;
+}
+
+#idWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#idWrapper input {
+  width: 50px;
+}
+
+.circle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+button {
+  background-color: var(--firstColor);
+  color: white;
+  border: none;
+  border-radius: 20px;
+}
