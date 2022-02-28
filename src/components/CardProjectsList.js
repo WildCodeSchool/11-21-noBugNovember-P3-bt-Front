@@ -1,17 +1,19 @@
-import CardsProjects from './CardsProjects';
-import { useState, useEffect } from 'react';
-import './styles/CardProjectsList.css';
+import CardsProjects from './CardsProjects'
+import { useState, useEffect } from 'react'
+import './styles/CardProjectsList.css'
+import axios from 'axios'
 
 const CardProjectsList = () => {
-  const [project, setProject] = useState([]);
+  const [project, setProject] = useState([])
   // const [lessProject, setLessProject] = useState(6);
 
   useEffect(() => {
-    console.log('poulet');
-    fetch('https://wild-games.herokuapp.com/api/v1')
-      .then((res) => res.json())
-      .then((res) => setProject(res) || console.log(project));
-  }, []);
+    axios.get('http://localhost:4242/projects/').then((response) => {
+      setProject(response.data)
+    })
+  }, [])
+
+  console.log(project)
 
   // let seeLessProject = () => setLessProject(lessProject - 6);
   // useEffect(() => {
@@ -38,6 +40,6 @@ const CardProjectsList = () => {
         <div className='trait'></div>
       </div>
     </div>
-  );
-};
-export default CardProjectsList;
+  )
+}
+export default CardProjectsList

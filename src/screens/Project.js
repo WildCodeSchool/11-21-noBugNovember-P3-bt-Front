@@ -1,5 +1,5 @@
-import ButtonAddProject from './ButtonAddProject';
-import Loader from '../components/Loader';
+import ButtonAddProject from '../components/ButtonAddProject'
+import Loader from '../components/Loader'
 
 const Project = () => {
   return (
@@ -7,7 +7,7 @@ const Project = () => {
       <ButtonAddProject />
       <Loader />
     </>
-  );
-};
+  )
+}
 
-export default Project;
+export default Project
