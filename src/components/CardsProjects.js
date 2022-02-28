@@ -1,26 +1,20 @@
 import './styles/CardsProjects.css';
 
-const CardsProjects = ({
-  id,
-  named,
-  released,
-  rating,
-  satured_color,
-  dominant_color,
-}) => {
+const CardsProjects = ( props ) => {
+  console.log(props)
   return (
     <>
       <div className='cardProjectContainer'>
-        <h4 className='nameProject'>{named}</h4>
+        <h4 className='nameProject'>{props.name}</h4>
         <p className='pProject'>
           <ul>
-            <li>Expert type: {released}</li>
-            <li>Industry: {rating}</li>
-            <li>Function: {id}</li>
-            <li>Compagny: {released}</li>
-            <li>Past Compagny: {satured_color}</li>
-            <li>Languages: {dominant_color}</li>
-            <li>Keywords: {named}</li>
+            <li>Expert type: {props.blabla}</li>
+            <li>Industry: {props.blabla}</li>
+            <li>Function: {props.id}</li>
+            <li>Compagny: {props.blabla}</li>
+            <li>Past Compagny: {props.blabla}</li>
+            <li>Languages: {props.blabla}</li>
+            <li>Keywords: {props.blabla}</li>
           </ul>
         </p>
       </div>
