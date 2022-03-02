@@ -1,29 +1,13 @@
 import CardsProjects from './CardsProjects'
-import { useState, useEffect } from 'react'
 import './styles/CardProjectsList.css'
-import axios from 'axios'
 
-const CardProjectsList = () => {
-  const [project, setProject] = useState([])
-  // const [lessProject, setLessProject] = useState(6);
+const CardProjectsList = (props) => {
 
-  useEffect(() => {
-    axios.get('http://localhost:4242/projects/').then((response) => {
-      setProject(response.data)
-    })
-  }, [])
-
-  console.log(project)
-
-  // let seeLessProject = () => setLessProject(lessProject - 6);
-  // useEffect(() => {
-  //   seeLessProject();
-  // }, [project.poScroll]);
 
   return (
     <div className='containerGallery'>
       <div className='cardsDisplay'>
-        {project.map((project) => (
+        {props.project.map((project) => (
           <CardsProjects
             // id={project.id}
             numProjects={project.numProjects}
