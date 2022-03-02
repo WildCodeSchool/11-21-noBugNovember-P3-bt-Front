@@ -4,7 +4,7 @@
   --firstColor: #373472;
   --secondColor: #fff;
   --scrollColor: #e5e5e5;
-  --inputColor: #b5bcf0;
+  --inputColor: rgba(181, 188, 240, 0.3);
   --fontBody: "Montserrat" 300, sans-serif;
   --fontTitle: "Montserrat" 600, sans-serif;
   --fontWeight: "Montserrat" 400, sans-serif;
@@ -34,5 +34,5 @@ body {
 
 h1 {
   font-family: var(--fontTitle);
-  font-size: 20px;
+  font-size: 2rem;
 }

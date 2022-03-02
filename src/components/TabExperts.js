@@ -8,7 +8,6 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import "./styles/TabExperts.css";
 
 const TabExperts = () => {
-  // const [rowData, setRowData] = useState([]);
   // const gridRef = useRef(null);
   const [experts, setExperts] = useState([]);
 
@@ -22,12 +21,6 @@ const TabExperts = () => {
       .then((res) => res.data)
       .then((res) => console.log("experts", res) || setExperts(res));
   }, []);
-
-  // useEffect(() => {
-  //       fetch('')
-  //       .then(result => result.json())
-  //       .then(rowData => setRowData(rowData))
-  //       }, []);
 
   // const onButtonClick = e => {
   //       const selectedNodes = gridRef.current.api.getSelectedNodes()

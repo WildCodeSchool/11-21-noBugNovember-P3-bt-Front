@@ -1,31 +1,74 @@
-.pageExpert {
-  border-radius: 20px;
-  background-color: white;
+.tabContainerExpert {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px;
+  height: calc(92vh);
+  padding-left: 70px;
+}
+
+.pageExpert {
+  border-radius: 20px;
+  background-color: var(--secondColor);
+  display: flex;
+  justify-content: center;
+  align-items: space-around;
+  flex-direction: column;
   position: relative;
-  padding: 10px;
+  height: 84vh;
+  width: 90vw;
 }
 
 .pageExpertForm {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: space-around;
   overflow-wrap: normal;
+  height: 80%;
 }
 
-.pageExpertForm * {
-  width: 400px;
-  margin: 10px;
+.columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.columnsDiv {
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.columnsDiv input {
+  width: 25vw;
+  height: 2rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.columnsSelect {
+  width: 25vw;
+}
+
+.basic-multi-select {
+  margin-top: 0.5rem;
+}
+
+.css-1s2u09g-control {
+  background-color: var(--inputColor) !important;
+}
+
+.columns textarea {
+  width: 25vw;
+  height: 9rem;
+  margin-top: 0.5rem;
 }
 
 .pageExpertForm input,
-.pageExpertForm textarea {
-  background-color: rgba(181, 188, 240, 0.3);
+.pageExpertForm textarea,
+.pageExpertForm select {
+  background-color: var(--inputColor);
   border: none;
 }
 
@@ -33,22 +76,63 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 #idWrapper input {
-  width: 50px;
+  width: 3rem;
+  height: 1.4rem;
+  text-align: center;
+  margin: 0;
+  margin-left: 0.5rem;
+}
+
+#idWrapper div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin-left: 1rem;
 }
 
 .circle {
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
+}
+
+.circle:hover {
+  transform: scale(1.1);
 }
 
 button {
   background-color: var(--firstColor);
-  color: white;
+  color: var(--secondColor);
   border: none;
-  border-radius: 20px;
+  width: 3rem;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  margin-right: 1rem;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.trashCan:hover {
+  transform: scale(1.2);
+}
+
+.checkOrTrash {
+  position: absolute;
+  right: 4vw;
+  bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+#number {
+  padding: 0;
 }
