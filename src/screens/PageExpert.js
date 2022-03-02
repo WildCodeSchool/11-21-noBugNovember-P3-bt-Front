@@ -18,6 +18,8 @@ const PageExpert = () => {
   const [yearsOfExperienceOptions, setYearsOfExperienceOptions] = useState([]);
   const [practiceOptions, setPracticeOptions] = useState([]);
   const [jobTitleOptions, setJobTitleOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [geoSelected, setGeoSelected] = useState([]);
 
   useEffect(() => {
     const getOptions = () => {
@@ -37,8 +39,15 @@ const PageExpert = () => {
     setJobTitleOptions(options.jobTitle);
   }, [options]);
 
-  const onSubmit = (data) => console.log(data);
-  // console.log(errors);
+  const onSubmit = (data) => {
+    let geoDatas = [];
+    geoSelected.forEach((geo) => geoDatas.push(geo.value));
+    let geoExpertise = { geoExpertise: [...geoDatas] };
+    let datas = { ...data, ...geoExpertise };
+    console.log("datas", datas);
+    axios.post("http://localhost:4040/experts/test", datas);
+    // console.log(errors);
+  };
 
   return (
     <div className="tabContainerExpert ">
@@ -161,8 +170,15 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
+                defaultValue={selectedOptions}
+                onChange={(e) => setGeoSelected(e)}
+
+                // {...register("geoExpertise", {
+                //   setValueAS: (e) => parseInt(e),
+                // })}
               />
             </div>
+            {console.log(geoSelected)}
             <div className="columnsSelect">
               <label for="practice">Practice</label>
               <Select
@@ -245,6 +261,8 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
+                // onChange={(e) => (e)}
+                // {...register(e)}
               />
             </div>
             <div className="columnsSelect">
