@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { AgGridReact } from 'ag-grid-react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import { AgGridReact } from 'ag-grid-react';
+import axios from 'axios';
 
-import 'ag-grid-community/dist/styles/ag-grid.css'
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-import './styles/TabClients.css'
+import './styles/TabClients.css';
 
 const TabClients = () => {
-  const [clients, setClients] = useState([])
+  const [clients, setClients] = useState([]);
   // const gridRef = useRef(null);
 
   useEffect(() => {
     axios.get('http://localhost:4242/clients/').then((response) => {
-      setClients(response.data)
-    })
-  }, [])
+      setClients(response.data);
+    });
+  }, []);
 
-  console.log(clients)
+  console.log(clients);
 
   const defaultColDef = {
     resizable: true,
-  }
+  };
 
   // const onButtonClick = e => {
   //       const selectedNodes = gridRef.current.api.getSelectedNodes()
@@ -51,16 +51,15 @@ const TabClients = () => {
 
   const [columnDefs] = useState([
     {
-      field: 'Num',
+      field: 'numClient',
       sortable: true,
       filter: true,
-      checkboxSelection: true,
       pinned: 'left',
       lockPinned: true,
       width: '120px',
     },
     {
-      field: 'Firstname',
+      field: 'firstname',
       sortable: true,
       filter: true,
       pinned: 'left',
@@ -68,25 +67,23 @@ const TabClients = () => {
       width: '160px',
     },
     {
-      field: 'Lastname',
+      field: 'lastname',
       sortable: true,
       filter: true,
       pinned: 'left',
       lockPinned: true,
       width: '160px',
     },
-    { field: 'Phone' },
-    { field: 'Email' },
-    { field: 'ContactPref', sortable: true, filter: true },
-    { field: 'Company', sortable: true, filter: true },
-    { field: 'CompanyType', sortable: true, filter: true },
-    { field: 'City', sortable: true, filter: true },
-    { field: 'Languages', sortable: true, filter: true },
-    { field: 'Service', sortable: true, filter: true },
-    { field: 'Feedback' },
-    { field: 'Projects', sortable: true, filter: true },
-    { field: 'Keywords', sortable: true, filter: true },
-  ])
+    { field: 'phone' },
+    { field: 'email' },
+    { field: 'contactType', sortable: true, filter: true },
+    { field: 'companyName', sortable: true, filter: true },
+    { field: 'city', sortable: true, filter: true },
+    { field: 'languages', sortable: true, filter: true },
+    { field: 'service', sortable: true, filter: true },
+    { field: 'feedbackClient' },
+    { field: 'numProject', sortable: true, filter: true },
+  ]);
 
   return (
     <div className='ag-theme-alpine' style={{ height: 600, width: '87%' }}>
@@ -99,7 +96,7 @@ const TabClients = () => {
         rowSelection='multiple'
       ></AgGridReact>
     </div>
-  )
-}
+  );
+};
 
-export default TabClients
+export default TabClients;
