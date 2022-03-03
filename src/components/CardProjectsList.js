@@ -1,6 +1,6 @@
 import CardsProjects from './CardsProjects';
 import './styles/CardProjectsList.css';
-import OutlinedCard from './OutlinedCard';
+import Box from '@mui/material/Box';
 
 const CardProjectsList = (props) => {
   console.log(props);
