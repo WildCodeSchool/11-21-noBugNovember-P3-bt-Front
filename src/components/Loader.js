@@ -1,24 +1,24 @@
-import axios from 'axios'
-import CardProjectsList from './CardProjectsList'
-import { useState, useEffect } from 'react'
-import './styles/Loader.css'
+import axios from 'axios';
+import CardProjectsList from './CardProjectsList';
+import { useState, useEffect } from 'react';
+import './styles/Loader.css';
 
 function Loader() {
-  const [project, setProject] = useState([])
-  const [projectU, setProjectU] = useState([])
-  const [projectA, setProjectA] = useState([])
-  const [projectC, setProjectC] = useState([])
-  const [projectTBC, setProjectTBC] = useState([])
-  const [projectNO, setProjectNO] = useState([])
+  const [project, setProject] = useState([]);
+  const [projectU, setProjectU] = useState([]);
+  const [projectA, setProjectA] = useState([]);
+  const [projectC, setProjectC] = useState([]);
+  const [projectTBC, setProjectTBC] = useState([]);
+  const [projectNO, setProjectNO] = useState([]);
   // const [lessProject, setLessProject] = useState(6);
 
   useEffect(() => {
     axios.get('http://localhost:4242/projects/').then((response) => {
-      setProject(response.data)
-    })
-  }, [])
+      setProject(response.data);
+    });
+  }, []);
 
-  console.log(project)
+  console.log(project);
 
   // let seeLessProject = () => setLessProject(lessProject - 6);
   // useEffect(() => {
@@ -27,41 +27,41 @@ function Loader() {
 
   return (
     <div className='loader'>
-      <div className='urgentcontainer'>
+      <div className='statusContainer'>
         <details>
           <summary>URGENT</summary>
-          <CardProjectsList project={project} />
+          {project && <CardProjectsList project={project} />}
         </details>
       </div>
-      <div className='urgentcontainer'>
+      <div className='statusContainer'>
         <details>
           <summary>ACTIVE</summary>
-          <CardProjectsList />
+          {project && <CardProjectsList project={project} />}
         </details>
       </div>
 
-      <div className='completed'>
+      <div className='statusContainer'>
         <details>
           <summary>COMPLETED</summary>
-          <CardProjectsList />
+          {project && <CardProjectsList project={project} />}
         </details>
       </div>
 
-      <div className='tbeConfirmed'>
+      <div className='statusContainer'>
         <details>
           <summary>TO BE CONFIRMED BY OUR CLIENT</summary>
-          <CardProjectsList />
+          {project && <CardProjectsList project={project} />}
         </details>
       </div>
 
-      <div className='completed'>
+      <div className='statusContainer'>
         <details>
           <summary>NO</summary>
-          <CardProjectsList />
+          {project && <CardProjectsList project={project} />}
         </details>
       </div>
     </div>
-  )
+  );
 }
 
-export default Loader
+export default Loader;

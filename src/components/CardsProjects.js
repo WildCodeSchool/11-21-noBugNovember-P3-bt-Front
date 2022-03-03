@@ -1,7 +1,8 @@
-import './styles/CardsProjects.css'
+import './styles/CardsProjects.css';
 
 const CardsProjects = (props) => {
-  console.log(props)
+  console.log(props);
+
   return (
     <>
       <div className='cardProjectContainer'>
@@ -15,6 +16,6 @@ const CardsProjects = (props) => {
         </p>
       </div>
     </>
-  )
-}
-export default CardsProjects
+  );
+};
+export default CardsProjects;
