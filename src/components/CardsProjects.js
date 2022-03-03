@@ -1,24 +1,20 @@
-import './styles/CardsProjects.css';
+import './styles/CardsProjects.css'
 
-const CardsProjects = ( props ) => {
+const CardsProjects = (props) => {
   console.log(props)
   return (
     <>
       <div className='cardProjectContainer'>
-        <h4 className='nameProject'>{props.name}</h4>
-        <p className='pProject'>
+        <h4 className='nameProject'>{props.numProjects}</h4>
+        <p className='Project'>
           <ul>
-            <li>Expert type: {props.blabla}</li>
-            <li>Industry: {props.blabla}</li>
-            <li>Function: {props.id}</li>
-            <li>Compagny: {props.blabla}</li>
-            <li>Past Compagny: {props.blabla}</li>
-            <li>Languages: {props.blabla}</li>
-            <li>Keywords: {props.blabla}</li>
+            <li>Expert type: {props.projectTitle}</li>
+            <li>Industry: {props.totalPrice}</li>
+            <li>Function: {props.status}</li>
           </ul>
         </p>
       </div>
     </>
-  );
-};
-export default CardsProjects;
+  )
+}
+export default CardsProjects

@@ -2,7 +2,7 @@ import CardsProjects from './CardsProjects'
 import './styles/CardProjectsList.css'
 
 const CardProjectsList = (props) => {
-
+  console.log(props)
 
   return (
     <div className='containerGallery'>

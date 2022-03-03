@@ -1,7 +1,7 @@
-import CardProjectsList from './CardProjectsList'
-import './styles/Loader.css'
 import axios from 'axios'
+import CardProjectsList from './CardProjectsList'
 import { useState, useEffect } from 'react'
+import './styles/Loader.css'
 
 function Loader() {
   const [project, setProject] = useState([])
@@ -30,7 +30,7 @@ function Loader() {
       <div className='urgentcontainer'>
         <details>
           <summary>URGENT</summary>
-          <CardProjectsList />
+          <CardProjectsList project={project} />
         </details>
       </div>
       <div className='urgentcontainer'>
