@@ -23,32 +23,6 @@ const TabClients = () => {
     resizable: true,
   };
 
-  // const onButtonClick = e => {
-  //       const selectedNodes = gridRef.current.api.getSelectedNodes()
-  //       const selectedData = selectedNodes.map( node => node.data )
-  //       const selectedDataStringPresentation = selectedData.map( node => `${node.make} ${node.model}`).join(', ')
-  //       alert(`Selected nodes: ${selectedDataStringPresentation}`)
-  //   }
-
-  // const [rowData] = useState([clients.map(client) => (
-  //   {
-  //     Num: 1,
-  //     Firstname: 'BOB',
-  //     Lastname: 'bob',
-  //     Phone: 1111,
-  //     Email: 'bob@gmail.com',
-  //     ContactPref: 'phone',
-  //     Company: 'hosto',
-  //     CompanyType: 'corporate',
-  //     City: 'paris',
-  //     Languages: 'french',
-  //     Service: 'call',
-  //     Feedback: 'blabla',
-  //     Projects: '1',
-  //     Keywords: 'key',
-  //   })
-  // ]
-
   const [columnDefs] = useState([
     {
       field: 'numClient',
@@ -86,7 +60,10 @@ const TabClients = () => {
   ]);
 
   return (
-    <div className='ag-theme-alpine' style={{ height: 600, width: '87%' }}>
+    <div
+      className='ag-theme-alpine tableau'
+      style={{ height: 600, width: '87%' }}
+    >
       {/* <button onClick={onButtonClick}>Get selected rows</button> */}
       <AgGridReact
         // ref={gridRef}

@@ -1,6 +1,15 @@
-.tabContainer {
+.tabContainerOpen {
+  margin-top: 50px;
+  margin-left: 220px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+}
+
+.tabContainerClose {
+  margin-top: 50px;
+  margin-left: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

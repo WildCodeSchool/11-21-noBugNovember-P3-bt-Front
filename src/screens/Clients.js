@@ -1,10 +1,10 @@
-import TabClients from "../components/TabClients";
-import "./styles/Clients.css";
+import TabClients from '../components/TabClients';
+import './styles/Clients.css';
 
-const Clients = () => {
+const Clients = (props) => {
   return (
-    <div className="tabContainer">
-      <h1>Clients</h1>
+    <div className={props.isOpened ? 'tabContainerOpen' : 'tabContainerClose'}>
+      <h1 className='pageTitle'>Clients</h1>
       <TabClients />
     </div>
   );

@@ -2,9 +2,9 @@ import ButtonAddProject from '../components/ButtonAddProject';
 import Loader from '../components/Loader';
 import './styles/Project.css';
 
-const Project = () => {
+const Project = (props) => {
   return (
-    <div className='projectContainer'>
+    <div className='projectContainerOpen'>
       <ButtonAddProject />
       <Loader />
     </div>

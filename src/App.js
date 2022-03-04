@@ -8,17 +8,19 @@ import Login from './screens/Login';
 import Project from './screens/Project';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
+import { useState } from 'react';
 
 function App() {
+  const [isOpened, setIsOpened] = useState(false);
   return (
     <div className='App'>
       <Header />
-      <Navbar />
+      <Navbar isOpened={isOpened} setIsOpened={setIsOpened} />
       <Routes>
-        <Route path='/clients' element={<Clients />} />
+        <Route path='/clients' element={<Clients isOpened={isOpened} />} />
         <Route path='/experts' element={<Experts />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/projects' element={<Project />} />
+        <Route path='/projects' element={<Project isOpened={isOpened} />} />
       </Routes>
     </div>
   );

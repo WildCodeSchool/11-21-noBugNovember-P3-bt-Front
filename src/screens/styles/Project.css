@@ -1,5 +1,13 @@
-.projectContainer {
+.projectContainerOpen {
+  margin-top: 50px;
+  margin-left: 220px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.projectContainerClose {
+  margin-top: 50px;
+  margin-left: 150px;
+  display: flex;
+  flex-direction: column;
 }

@@ -18,9 +18,37 @@ const CardsProjects = (props) => {
         <Typography sx={{ mb: 1.5 }} color='text.secondary'>
           <p className='Project'>
             <ul>
-              <li>Expert type: {props.projectTitle}</li>
-              <li>Industry: {props.totalPrice}</li>
-              <li>Function: {props.status}</li>
+              <li>
+                <div className='projectTitle'>Project Type:</div>{' '}
+                <div className='projectTitle2'>{props.projectType}</div>
+              </li>
+              <li>
+                <div className='projectTitle'>Function:</div>{' '}
+                <div className='projectTitle2'>{props.fonction}</div>
+              </li>
+              <li>
+                <div className='projectTitle'>Kind of Expert:</div>
+                <div className='projectTitle2'> {props.kindOfExpert}</div>
+              </li>
+              <li>
+                <div className='projectTitle'>Number of Expert:</div> {}
+              </li>
+              <li>
+                <div className='projectTitle'>First Interview:</div>{' '}
+                <div className='projectTitle2'>{props.itwStart}</div>
+              </li>
+              <li>
+                <div className='projectTitle'>Deadline Interview:</div>{' '}
+                <div className='projectTitle2'>{props.itwDeadline}</div>
+              </li>
+              <li>
+                <div className='projectTitle'>Price:</div>{' '}
+                <div className='projectTitle2'>{props.totalPrice}</div>
+              </li>
+              <li>
+                <div className='projectTitle'>Keywords:</div>
+                <div className='projectTitle2'> {}</div>
+              </li>
             </ul>
           </p>
         </Typography>
@@ -28,13 +56,11 @@ const CardsProjects = (props) => {
     </React.Fragment>
   );
   return (
-    <>
-      <div className='cardProjectContainer'>
-        <Box sx={{ minWidth: 275 }}>
-          <Card variant='outlined'>{card}</Card>
-        </Box>
-      </div>
-    </>
+    <Box sx={{ maxWidth: 800 }} className='cardProjectContainer'>
+      <Card variant='outlined' className='cardProject'>
+        {card}
+      </Card>
+    </Box>
   );
 };
 export default CardsProjects;

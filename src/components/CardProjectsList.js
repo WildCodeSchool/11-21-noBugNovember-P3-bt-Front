@@ -1,14 +1,20 @@
 import CardsProjects from './CardsProjects';
+import useState from 'react';
 import './styles/CardProjectsList.css';
 import Box from '@mui/material/Box';
 
 const CardProjectsList = (props) => {
   console.log(props);
+  // const [moreProjects, setMoreProjects] = useState(4);
+
+  // const seeMoreProjects = () => {
+  //   setMoreProjects(moreProjects + 4);
+  // };
 
   return (
     <div className='containerGallery'>
       <div className='cardsDisplay'>
-        {props.project.map((project) => (
+        {props.projects.map((project) => (
           <CardsProjects key={project.id} {...project} />
         ))}
       </div>
