@@ -20,12 +20,19 @@ const PageExpert = () => {
   const [jobTitleOptions, setJobTitleOptions] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [geoSelected, setGeoSelected] = useState([]);
+  const [langSelected, setLangSelected] = useState([])
+  const [practiceSelected, setPracticeSelected] = useState([])
+  const [jobSelected, setJobSelected] = useState([])
+  const [koeSelected, setKoeSelected] = useState([])
+  const [yoeSelected, setYoeSelected] = useState([])
+  
+
 
   useEffect(() => {
     const getOptions = () => {
       axios
         .get("http://localhost:4040/experts/form")
-        .then((res) => console.log(res.data) || setOptions(res.data));
+        .then((res) => console.log("res.data", res.data) || setOptions(res.data));
     };
     getOptions();
   }, []);
@@ -38,12 +45,31 @@ const PageExpert = () => {
     setPracticeOptions(options.practice);
     setJobTitleOptions(options.jobTitle);
   }, [options]);
-
+  console.log("recup", geoExpertiseOptions)
   const onSubmit = (data) => {
     let geoDatas = [];
-    geoSelected.forEach((geo) => geoDatas.push(geo.value));
+    let langDatas = []
+    let jobDatas = []
+    let koeDatas = []
+    let yoeDatas = []
+    let practiceDatas = []
+
+    geoSelected.forEach((geo) => geoDatas.push(geo.id));
+    langSelected.forEach((lang) => langDatas.push(lang.id));
+    jobSelected.forEach((job) => jobDatas.push(job.id));
+    koeSelected.forEach((koe) => koeDatas.push(koe.id));
+    yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
+    practiceSelected.forEach((practice) => practiceDatas.push(practice.id));
+
     let geoExpertise = { geoExpertise: [...geoDatas] };
-    let datas = { ...data, ...geoExpertise };
+    let languages = { languages: [...langDatas] };
+    let jobTitle = { jobTitle: [...jobDatas] };
+    let kindOfExpert = { kindOfExpert: [...koeDatas] };
+    let yearsOfExperience = { yearsOfExperience: [...yoeDatas] };
+    let practiceName = { practiceName: [...practiceDatas] };
+
+    let datas = { ...data, ...geoExpertise, ...languages, ...jobTitle, ...kindOfExpert, ...yearsOfExperience, ...practiceName };
+
     console.log("datas", datas);
     axios.post("http://localhost:4040/experts/test", datas);
     // console.log(errors);
@@ -140,7 +166,7 @@ const PageExpert = () => {
             </div>
           </div>
           <div className="columns">
-            <div className="columnsSelect">
+            <div className="columnsDiv">
               <label for="projects">Projects</label>
               <input
                 id="projects"
@@ -159,6 +185,7 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
+                onChange={(e) => setKoeSelected(e)}
               />
             </div>
 
@@ -172,10 +199,6 @@ const PageExpert = () => {
                 classNamePrefix="select"
                 defaultValue={selectedOptions}
                 onChange={(e) => setGeoSelected(e)}
-
-                // {...register("geoExpertise", {
-                //   setValueAS: (e) => parseInt(e),
-                // })}
               />
             </div>
             {console.log(geoSelected)}
@@ -187,6 +210,7 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
+                onChange={(e) => setPracticeSelected(e)}
               />
             </div>
             <div className="columnsSelect">
@@ -197,6 +221,7 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
+                onChange={(e) => setJobSelected(e)}
               />
             </div>
 
@@ -261,8 +286,7 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
-                // onChange={(e) => (e)}
-                // {...register(e)}
+                onChange={(e) => setYoeSelected(e)}
               />
             </div>
             <div className="columnsSelect">
@@ -273,6 +297,7 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
+                onChange={(e) => setLangSelected(e)}
               />
             </div>
             <div className="columnsDiv">
