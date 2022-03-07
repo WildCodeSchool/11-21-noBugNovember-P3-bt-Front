@@ -19,7 +19,7 @@ const TabExperts = () => {
     axios
       .get("http://localhost:4040/experts")
       .then((res) => res.data)
-      .then((res) => console.log("experts", res) || setExperts(res));
+      .then((res) => /* console.log("experts", res) || */ setExperts(res));
   }, []);
 
   // const onButtonClick = e => {

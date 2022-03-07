@@ -12,11 +12,11 @@ const Header = () => {
     axios
       .get("http://localhost:4040/stats/globalStats")
       .then((res) => res.data)
-      .then((res) => console.log("stats", res) || setStats(res));
+      .then((res) => setStats(res));
   }, []);
 
-  console.log("test", stats);
-  stats !== [] && console.log("test2", stats[0]);
+  
+  // stats !== [] && console.log("test2", stats[0]);
   return (
     <div className="headerContainer">
       <img src={BTHTLogo} alt="logo_BTHT" id="headerLogo" />
