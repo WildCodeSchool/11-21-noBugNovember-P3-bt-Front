@@ -8,7 +8,7 @@ function Loader() {
   // const [lessProject, setLessProject] = useState(6);
 
   useEffect(() => {
-    axios.get('http://localhost:4242/projects/').then((response) => {
+    axios.get('http://localhost:4040/projects/').then((response) => {
       setProjects(response.data);
     });
   }, []);

@@ -12,7 +12,7 @@ const TabClients = () => {
   // const gridRef = useRef(null);
 
   useEffect(() => {
-    axios.get('http://localhost:4242/clients/').then((response) => {
+    axios.get('http://localhost:4040/clients/').then((response) => {
       setClients(response.data);
     });
   }, []);

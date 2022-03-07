@@ -4,8 +4,8 @@ import Expert from '../assets/expert.png';
 import Project from '../assets/project.png';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import './styles/Navbar.css';
+import uuserbth from '../assets/uuserbth.png';
 
 const Navbar = (props) => {
   const open = () => {
@@ -31,49 +31,60 @@ const Navbar = (props) => {
       <div className='navbarOpener'>
         <img src={Chevron} alt='chevron' id='chevronLogo' />
       </div>
-      <div className='navbarLinksContainer'>
-        <ul className='navbarLinksWrapper'>
-          <NavLink
-            to='/projects'
-            className={({ isActive }) =>
-              isActive ? 'navbarLink activeLink' : 'navbarLink'
-            }
+      <div className='navbarLinksContainer'></div>
+      <ul className='navbarLinksWrapper'>
+        <div className='logoContainer'>
+          {({ isActive }) =>
+            isActive ? 'navbarLink activeLink' : 'navbarLink'
+          }
+
+          <img classname='userLogo' src={uuserbth} alt='userLogo' />
+          <span
+            className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
-            <img src={Project} alt='projectLogo' className='navbarLinkLogo' />
-            <span
-              className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
-            >
-              Projects
-            </span>
-          </NavLink>
-          <NavLink
-            to='/clients'
-            className={({ isActive }) =>
-              isActive ? 'navbarLink activeLink' : 'navbarLink'
-            }
+            Alexis
+          </span>
+        </div>
+        <NavLink
+          to='/projects'
+          className={({ isActive }) =>
+            isActive ? 'navbarLink activeLink' : 'navbarLink'
+          }
+        >
+          <img src={Project} alt='projectLogo' className='navbarLinkLogo' />
+          <span
+            className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
-            <img src={Client} alt='clientLogo' className='navbarLinkLogo' />
-            <span
-              className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
-            >
-              Clients
-            </span>
-          </NavLink>
-          <NavLink
-            to='/experts'
-            className={({ isActive }) =>
-              isActive ? 'navbarLink activeLink' : 'navbarLink'
-            }
+            Projects
+          </span>
+        </NavLink>
+        <NavLink
+          to='/clients'
+          className={({ isActive }) =>
+            isActive ? 'navbarLink activeLink' : 'navbarLink'
+          }
+        >
+          <img src={Client} alt='clientLogo' className='navbarLinkLogo' />
+          <span
+            className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
-            <img src={Expert} alt='expertLogo' className='navbarLinkLogo' />
-            <span
-              className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
-            >
-              Experts
-            </span>
-          </NavLink>
-        </ul>
-      </div>
+            Clients
+          </span>
+        </NavLink>
+        <NavLink
+          to='/experts'
+          className={({ isActive }) =>
+            isActive ? 'navbarLink activeLink' : 'navbarLink'
+          }
+        >
+          <img src={Expert} alt='expertLogo' className='navbarLinkLogo' />
+          <span
+            className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
+          >
+            Experts
+          </span>
+        </NavLink>
+      </ul>
     </div>
   );
 };
