@@ -1,6 +1,7 @@
 import "./styles/PageExpert.css";
 
-import { useState, useEffect } from "react";
+import CreatableSelect from 'react-select/creatable';
+import { useState, useEffect} from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
@@ -25,22 +26,22 @@ const PageExpert = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [geoSelected, setGeoSelected] = useState([]);
   const [langSelected, setLangSelected] = useState([])
-  const [practiceSelected, setPracticeSelected] = useState([])
-  const [jobSelected, setJobSelected] = useState([])
-  const [koeSelected, setKoeSelected] = useState([])
-  const [yoeSelected, setYoeSelected] = useState([])
-  const [cieSelected, setCieSelected] = useState([])
+  const [practiceSelected, setPracticeSelected] = useState(false)
+  const [jobSelected, setJobSelected] = useState(false)
+  const [koeSelected, setKoeSelected] = useState(false)
+  const [yoeSelected, setYoeSelected] = useState(false)
+  const [cieSelected, setCieSelected] = useState(false)
   const [pcieSelected, setPcieSelected] = useState([])
   const [ctcSelected, setCtcSelected] = useState([])
   const [pjtSelected, setPjtSelected] = useState([])
-  
+  const [error, setError] = useState(false)
 
 
   useEffect(() => {
     const getOptions = () => {
       axios
         .get("http://localhost:4040/experts/form")
-        .then((res) => /* console.log("res.data", res.data) || */ setOptions(res.data));
+        .then((res) => console.log("res.data", res.data) || setOptions(res.data));
     };
     getOptions();
   }, []);
@@ -57,10 +58,21 @@ const PageExpert = () => {
     setPastCompaniesOptions(options.companies)
     setProjectsOptions(options.projects)
   }, [options]);
+  /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
-  // console.log("recup", geoExpertiseOptions)
+  const handleCreate = (inputValue, table, column) => {
+    const newValue = {value: inputValue, table: table, column: column}
+    axios.post("http://localhost:4040/experts/test", newValue)
+  }
+
+  /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   const onSubmit = (data) => {
+
+    if (yoeSelected && cieSelected && jobSelected && practiceSelected && koeSelected) {
+
+    setError(false)
+
     let geoDatas = [];
     let langDatas = []
     let pcieDatas = []
@@ -89,9 +101,18 @@ const PageExpert = () => {
 
     
     axios.post("http://localhost:4040/experts/", datas);
-    // console.log("datas", datas);
     
+    navigate("/experts")
+    console.log(datas)
+    } else {
+      setError(true)
+      console.log("Form error", yoeSelected)
+      data.preventDefault()
+    }
+  
   };
+  
+  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   return (
     <div className="tabContainerExpert ">
@@ -117,7 +138,8 @@ const PageExpert = () => {
                   id="number"
                   name="number"
                   type="key"
-                  {...register("numExpert")}
+                  {...register("numExpert")} 
+                  required
                 ></input>
               </div>
             </div>
@@ -128,7 +150,8 @@ const PageExpert = () => {
                 name="firstName"
                 type="text"
                 autocomplete="off"
-                {...register("firstname")}
+                {...register("firstname")} 
+                required
               ></input>
             </div>
             <div className="columnsDiv">
@@ -138,7 +161,8 @@ const PageExpert = () => {
                 id="lastName"
                 name="lastName"
                 type="text"
-                {...register("lastname")}
+                {...register("lastname")} 
+                required
               ></input>
             </div>
             <div className="columnsDiv">
@@ -202,8 +226,8 @@ const PageExpert = () => {
               <Select
                 options={kindOfExpertOptions}
                 className="basic-multi-select"
-                classNamePrefix="select"
-                onChange={(e) => setKoeSelected(e)}
+                classNamePrefix={error && !koeSelected ? "novalidated" : "select"}
+                onChange={(e) => setKoeSelected(e)}  
               />
             </div>
 
@@ -225,8 +249,10 @@ const PageExpert = () => {
               <Select
                 options={practiceOptions}
                 className="basic-multi-select"
-                classNamePrefix="select"
+                classNamePrefix={error && !practiceSelected ? "novalidated" : "select"}
                 onChange={(e) => setPracticeSelected(e)}
+                
+                
               />
             </div>
             <div className="columnsSelect">
@@ -234,8 +260,9 @@ const PageExpert = () => {
               <Select
                 options={jobTitleOptions}
                 className="basic-multi-select"
-                classNamePrefix="select"
+                classNamePrefix={error && !jobSelected ? "novalidated" : "select"}
                 onChange={(e) => setJobSelected(e)}
+                
               />
             </div>
 
@@ -244,7 +271,7 @@ const PageExpert = () => {
               <Select
                 options={companyOptions}
                 className="basic-multi-select"
-                classNamePrefix="select"
+                classNamePrefix={error && !cieSelected? "novalidated" : "select"}
                 onChange={(e) => setCieSelected(e)}
               />
             </div>
@@ -297,18 +324,19 @@ const PageExpert = () => {
               <Select
                 options={yearsOfExperienceOptions}
                 className="basic-multi-select"
-                classNamePrefix="select"
+                classNamePrefix={error && !yoeSelected? "novalidated" : "select"}
                 onChange={(e) => setYoeSelected(e)}
               />
             </div>
             <div className="columnsSelect">
               <label htmlFor="languages">Languages</label>
-              <Select
+              <CreatableSelect
                 closeMenuOnSelect={false}
                 options={languagesOptions}
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
+                // onCreateOption={(e) => handleCreate(e, "languages", "languagesName")}
                 onChange={(e) => setLangSelected(e)}
               />
             </div>
