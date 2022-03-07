@@ -1,13 +1,15 @@
-.projectContainerOpen {
+.projectContainerNavOpen {
   margin-top: 50px;
-  margin-left: 220px;
+  margin-left: 230px;
   display: flex;
   flex-direction: column;
+  transition: all 0.5s;
 }
 
-.projectContainerClose {
+.projectContainerNavClose {
   margin-top: 50px;
-  margin-left: 150px;
+  margin-left: 100px;
   display: flex;
   flex-direction: column;
+  transition: all 0.5s;
 }
