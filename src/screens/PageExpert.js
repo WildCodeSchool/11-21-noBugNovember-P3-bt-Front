@@ -1,324 +1,332 @@
-import "./styles/PageExpert.css";
+import './styles/PageExpert.css'
 
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import Select from "react-select";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import Select from 'react-select'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
 
 const PageExpert = () => {
-  const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
-  const [options, setOptions] = useState([]);
-  const [languagesOptions, setLanguagesOptions] = useState([]);
-  const [geoExpertiseOptions, setGeoExpertiseOptions] = useState([]);
-  const [kindOfExpertOptions, setKindOfExpertOptions] = useState([]);
-  const [yearsOfExperienceOptions, setYearsOfExperienceOptions] = useState([]);
-  const [practiceOptions, setPracticeOptions] = useState([]);
-  const [jobTitleOptions, setJobTitleOptions] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [geoSelected, setGeoSelected] = useState([]);
+  const navigate = useNavigate()
+  const { register, handleSubmit } = useForm()
+  const [options, setOptions] = useState([])
+  const [languagesOptions, setLanguagesOptions] = useState([])
+  const [geoExpertiseOptions, setGeoExpertiseOptions] = useState([])
+  const [kindOfExpertOptions, setKindOfExpertOptions] = useState([])
+  const [yearsOfExperienceOptions, setYearsOfExperienceOptions] = useState([])
+  const [practiceOptions, setPracticeOptions] = useState([])
+  const [jobTitleOptions, setJobTitleOptions] = useState([])
+  const [selectedOptions, setSelectedOptions] = useState([])
+  const [geoSelected, setGeoSelected] = useState([])
   const [langSelected, setLangSelected] = useState([])
   const [practiceSelected, setPracticeSelected] = useState([])
   const [jobSelected, setJobSelected] = useState([])
   const [koeSelected, setKoeSelected] = useState([])
   const [yoeSelected, setYoeSelected] = useState([])
-  
-
 
   useEffect(() => {
     const getOptions = () => {
       axios
-        .get("http://localhost:4040/experts/form")
-        .then((res) => console.log("res.data", res.data) || setOptions(res.data));
-    };
-    getOptions();
-  }, []);
+        .get('http://localhost:4040/experts/form')
+        .then(
+          (res) => console.log('res.data', res.data) || setOptions(res.data)
+        )
+    }
+    getOptions()
+  }, [])
 
   useEffect(() => {
-    setLanguagesOptions(options.languages);
-    setGeoExpertiseOptions(options.geoExpertise);
-    setKindOfExpertOptions(options.kindOfExpert);
-    setYearsOfExperienceOptions(options.expertiseLevel);
-    setPracticeOptions(options.practice);
-    setJobTitleOptions(options.jobTitle);
-  }, [options]);
-  console.log("recup", geoExpertiseOptions)
+    setLanguagesOptions(options.languages)
+    setGeoExpertiseOptions(options.geoExpertise)
+    setKindOfExpertOptions(options.kindOfExpert)
+    setYearsOfExperienceOptions(options.expertiseLevel)
+    setPracticeOptions(options.practice)
+    setJobTitleOptions(options.jobTitle)
+  }, [options])
+  console.log('recup', geoExpertiseOptions)
   const onSubmit = (data) => {
-    let geoDatas = [];
+    let geoDatas = []
     let langDatas = []
     let jobDatas = []
     let koeDatas = []
     let yoeDatas = []
     let practiceDatas = []
 
-    geoSelected.forEach((geo) => geoDatas.push(geo.id));
-    langSelected.forEach((lang) => langDatas.push(lang.id));
-    jobSelected.forEach((job) => jobDatas.push(job.id));
-    koeSelected.forEach((koe) => koeDatas.push(koe.id));
-    yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
-    practiceSelected.forEach((practice) => practiceDatas.push(practice.id));
+    geoSelected.forEach((geo) => geoDatas.push(geo.id))
+    langSelected.forEach((lang) => langDatas.push(lang.id))
+    jobSelected.forEach((job) => jobDatas.push(job.id))
+    koeSelected.forEach((koe) => koeDatas.push(koe.id))
+    yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id))
+    practiceSelected.forEach((practice) => practiceDatas.push(practice.id))
 
-    let geoExpertise = { geoExpertise: [...geoDatas] };
-    let languages = { languages: [...langDatas] };
-    let jobTitle = { jobTitle: [...jobDatas] };
-    let kindOfExpert = { kindOfExpert: [...koeDatas] };
-    let yearsOfExperience = { yearsOfExperience: [...yoeDatas] };
-    let practiceName = { practiceName: [...practiceDatas] };
+    let geoExpertise = { geoExpertise: [...geoDatas] }
+    let languages = { languages: [...langDatas] }
+    let jobTitle = { jobTitle: [...jobDatas] }
+    let kindOfExpert = { kindOfExpert: [...koeDatas] }
+    let yearsOfExperience = { yearsOfExperience: [...yoeDatas] }
+    let practiceName = { practiceName: [...practiceDatas] }
 
-    let datas = { ...data, ...geoExpertise, ...languages, ...jobTitle, ...kindOfExpert, ...yearsOfExperience, ...practiceName };
+    let datas = {
+      ...data,
+      ...geoExpertise,
+      ...languages,
+      ...jobTitle,
+      ...kindOfExpert,
+      ...yearsOfExperience,
+      ...practiceName,
+    }
 
-    console.log("datas", datas);
-    axios.post("http://localhost:4040/experts/test", datas);
+    console.log('datas', datas)
+    axios.post('http://localhost:4040/experts/test', datas)
     // console.log(errors);
-  };
+  }
 
   return (
-    <div className="tabContainerExpert ">
-      {" "}
-      <div className="pageExpert">
+    <div className='tabContainerExpert '>
+      {' '}
+      <div className='pageExpert'>
         <FontAwesomeIcon
           icon={faCircleXmark}
-          size="xl"
-          className="circle"
+          size='xl'
+          className='circle'
           onClick={() => navigate(-1)}
         />
         <form
-          className="pageExpertForm"
-          autoComplete="off"
+          className='pageExpertForm'
+          autoComplete='off'
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="columns">
-            <div id="idWrapper" className="columnsDiv">
-              <h1 id="expert">EXPERT</h1>
-              <div id="expertNumber">
-                <label for="number">N°</label>
+          <div className='columns'>
+            <div id='idWrapper' className='columnsDiv'>
+              <h1 id='expert'>EXPERT</h1>
+              <div id='expertNumber'>
+                <label for='number'>N°</label>
                 <input
-                  id="number"
-                  name="number"
-                  type="key"
-                  {...register("numExpert")}
+                  id='number'
+                  name='number'
+                  type='key'
+                  {...register('numExpert')}
                 ></input>
               </div>
             </div>
-            <div className="columnsDiv">
-              <label for="firstName">FirstName</label>
+            <div className='columnsDiv'>
+              <label for='firstName'>FirstName</label>
               <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                autocomplete="off"
-                {...register("firstname")}
+                id='firstName'
+                name='firstName'
+                type='text'
+                autocomplete='off'
+                {...register('firstname')}
               ></input>
             </div>
-            <div className="columnsDiv">
-              <label for="lastName">LastName</label>
+            <div className='columnsDiv'>
+              <label for='lastName'>LastName</label>
               <input
-                autocomplete="off"
-                id="lastName"
-                name="lastName"
-                type="text"
-                {...register("lastName")}
+                autocomplete='off'
+                id='lastName'
+                name='lastName'
+                type='text'
+                {...register('lastName')}
               ></input>
             </div>
-            <div className="columnsDiv">
-              <label for="phone">Phone</label>
+            <div className='columnsDiv'>
+              <label for='phone'>Phone</label>
               <input
-                id="phone"
-                name="phone"
-                type="tel"
-                role="presentation"
-                autocomplete="off"
-                {...register("phone")}
+                id='phone'
+                name='phone'
+                type='tel'
+                role='presentation'
+                autocomplete='off'
+                {...register('phone')}
               ></input>
             </div>
-            <div className="columnsDiv">
-              <label for="email">Email</label>
+            <div className='columnsDiv'>
+              <label for='email'>Email</label>
               <input
-                id="email"
-                name="email"
-                type="email"
-                role="presentation"
-                {...register("email")}
+                id='email'
+                name='email'
+                type='email'
+                role='presentation'
+                {...register('email')}
               ></input>
             </div>
-            <div className="columnsDiv">
-              <label for="linkedin">Linkedin Profile</label>
+            <div className='columnsDiv'>
+              <label for='linkedin'>Linkedin Profile</label>
               <input
-                id="linkedin"
-                name="linkedin"
-                type="url"
-                role="presentation"
-                {...register("linkedinProfile")}
+                id='linkedin'
+                name='linkedin'
+                type='url'
+                role='presentation'
+                {...register('linkedinProfile')}
               ></input>
             </div>
-            <div className="columnsDiv">
-              <label for="contact">Contact Preferences</label>
+            <div className='columnsDiv'>
+              <label for='contact'>Contact Preferences</label>
               <input
-                id="contact"
-                name="contact"
-                type="text"
-                role="presentation"
-                {...register("contactType")}
+                id='contact'
+                name='contact'
+                type='text'
+                role='presentation'
+                {...register('contactType')}
               ></input>
             </div>
           </div>
-          <div className="columns">
-            <div className="columnsDiv">
-              <label for="projects">Projects</label>
+          <div className='columns'>
+            <div className='columnsDiv'>
+              <label for='projects'>Projects</label>
               <input
-                id="projects"
-                name="projects"
-                type="text"
-                role="presentation"
-                {...register("projects")}
+                id='projects'
+                name='projects'
+                type='text'
+                role='presentation'
+                {...register('projects')}
               ></input>
             </div>
 
-            <div className="columnsSelect">
-              <label for="kindOfExpertOptions">Type</label>
+            <div className='columnsSelect'>
+              <label for='kindOfExpertOptions'>Type</label>
               <Select
                 closeMenuOnSelect={false}
                 options={kindOfExpertOptions}
                 isMulti
-                className="basic-multi-select"
-                classNamePrefix="select"
+                className='basic-multi-select'
+                classNamePrefix='select'
                 onChange={(e) => setKoeSelected(e)}
               />
             </div>
 
-            <div className="columnsSelect">
-              <label for="geoExpertise">Geo Expertise</label>
+            <div className='columnsSelect'>
+              <label for='geoExpertise'>Geo Expertise</label>
               <Select
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
                 isMulti
-                className="basic-multi-select"
-                classNamePrefix="select"
+                className='basic-multi-select'
+                classNamePrefix='select'
                 defaultValue={selectedOptions}
                 onChange={(e) => setGeoSelected(e)}
               />
             </div>
             {console.log(geoSelected)}
-            <div className="columnsSelect">
-              <label for="practice">Practice</label>
+            <div className='columnsSelect'>
+              <label for='practice'>Practice</label>
               <Select
                 closeMenuOnSelect={false}
                 options={practiceOptions}
                 isMulti
-                className="basic-multi-select"
-                classNamePrefix="select"
+                className='basic-multi-select'
+                classNamePrefix='select'
                 onChange={(e) => setPracticeSelected(e)}
               />
             </div>
-            <div className="columnsSelect">
-              <label for="jobTitle">Job Title</label>
+            <div className='columnsSelect'>
+              <label for='jobTitle'>Job Title</label>
               <Select
                 closeMenuOnSelect={false}
                 options={jobTitleOptions}
                 isMulti
-                className="basic-multi-select"
-                classNamePrefix="select"
+                className='basic-multi-select'
+                classNamePrefix='select'
                 onChange={(e) => setJobSelected(e)}
               />
             </div>
 
-            <div className="columnsDiv">
-              <label for="company">Company</label>
+            <div className='columnsDiv'>
+              <label for='company'>Company</label>
               <input
-                id="company"
-                name="company"
-                type="text"
-                role="presentation"
-                {...register("company")}
+                id='company'
+                name='company'
+                type='text'
+                role='presentation'
+                {...register('company')}
               ></input>
             </div>
-            <div className="columnsDiv">
-              <label for="pastcompanies">Past Companies</label>
+            <div className='columnsDiv'>
+              <label for='pastcompanies'>Past Companies</label>
               <input
-                id="pastcompanies"
-                name="pastcompanies"
-                type="text"
-                role="presentation"
-                {...register("pastCompanies")}
+                id='pastcompanies'
+                name='pastcompanies'
+                type='text'
+                role='presentation'
+                {...register('pastCompanies')}
               ></input>
             </div>
           </div>
-          <div className="columns">
-            <div className="columnsDiv">
-              <label for="price/hr">Price/hr</label>
+          <div className='columns'>
+            <div className='columnsDiv'>
+              <label for='price/hr'>Price/hr</label>
               <input
-                id="price/hr"
-                name="price/hr"
-                type="number"
-                role="presentation"
-                {...register("price")}
+                id='price/hr'
+                name='price/hr'
+                type='number'
+                role='presentation'
+                {...register('price')}
               ></input>
             </div>
-            <div className="columnsDiv">
-              <label for="cost">Cost/hr</label>
+            <div className='columnsDiv'>
+              <label for='cost'>Cost/hr</label>
               <input
-                id="cost"
-                name="cost"
-                type="number"
-                role="presentation"
-                {...register("cost")}
+                id='cost'
+                name='cost'
+                type='number'
+                role='presentation'
+                {...register('cost')}
               ></input>
             </div>
-            <div className="columnsDiv">
-              <label for="feedback">Feedback</label>
+            <div className='columnsDiv'>
+              <label for='feedback'>Feedback</label>
               <textarea
-                id="feedback"
-                name="feedback"
-                rows="10"
-                cols="60"
-                role="presentation"
-                {...register("feedbackExpert")}
+                id='feedback'
+                name='feedback'
+                rows='10'
+                cols='60'
+                role='presentation'
+                {...register('feedbackExpert')}
               ></textarea>
             </div>
-            <div className="columnsSelect">
-              <label for="experience">Years of Experience</label>
+            <div className='columnsSelect'>
+              <label for='experience'>Years of Experience</label>
               <Select
                 closeMenuOnSelect={false}
                 options={yearsOfExperienceOptions}
                 isMulti
-                className="basic-multi-select"
-                classNamePrefix="select"
+                className='basic-multi-select'
+                classNamePrefix='select'
                 onChange={(e) => setYoeSelected(e)}
               />
             </div>
-            <div className="columnsSelect">
-              <label for="languages">Languages</label>
+            <div className='columnsSelect'>
+              <label for='languages'>Languages</label>
               <Select
                 closeMenuOnSelect={false}
                 options={languagesOptions}
                 isMulti
-                className="basic-multi-select"
-                classNamePrefix="select"
+                className='basic-multi-select'
+                classNamePrefix='select'
                 onChange={(e) => setLangSelected(e)}
               />
             </div>
-            <div className="columnsDiv">
-              <label for="keywords">Keywords</label>
+            <div className='columnsDiv'>
+              <label for='keywords'>Keywords</label>
               <input
-                id="keywords"
-                name="keywords"
-                type="text"
-                role="presentation"
-                {...register("keywords")}
+                id='keywords'
+                name='keywords'
+                type='text'
+                role='presentation'
+                {...register('keywords')}
               ></input>
             </div>
           </div>
-          <div className="checkOrTrash">
+          <div className='checkOrTrash'>
             <button> Add </button>
-            <FontAwesomeIcon icon={faTrashCan} size="lg" className="trashCan" />
+            <FontAwesomeIcon icon={faTrashCan} size='lg' className='trashCan' />
           </div>
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PageExpert;
+export default PageExpert
