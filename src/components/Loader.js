@@ -5,6 +5,11 @@ import './styles/Loader.css';
 
 function Loader() {
   const [projects, setProjects] = useState([]);
+  const [projectsU, setProjectsU] = useState(false);
+  const [projectsA, setProjectsA] = useState(false);
+  const [projectsC, setProjectsC] = useState(false);
+  const [projectsTBC, setProjectsTBC] = useState(false);
+  const [projectsNO, setProjectsNO] = useState(false);
   // const [lessProject, setLessProject] = useState(6);
 
   useEffect(() => {
@@ -23,9 +28,9 @@ function Loader() {
   return (
     <div className='loader'>
       <div className='statusContainer'>
-        <details>
+        <details onToggle={() => setProjectsU(!projectsU)}>
           <summary>URGENT</summary>
-          {projects && (
+          {projectsU && (
             <CardProjectsList
               projects={projects.filter(
                 (project) => project.status === 'Urgent'
@@ -34,10 +39,11 @@ function Loader() {
           )}
         </details>
       </div>
+
       <div className='statusContainer'>
-        <details>
+        <details onToggle={() => setProjectsA(!projectsA)}>
           <summary>ACTIVE</summary>
-          {projects && (
+          {projectsA && (
             <CardProjectsList
               projects={projects.filter(
                 (project) => project.status === 'Active'
@@ -48,9 +54,9 @@ function Loader() {
       </div>
 
       <div className='statusContainer'>
-        <details>
+        <details onToggle={() => setProjectsC(!projectsC)}>
           <summary>COMPLETED</summary>
-          {projects && (
+          {projectsC && (
             <CardProjectsList
               projects={projects.filter(
                 (project) => project.status === 'Completed'
@@ -61,9 +67,9 @@ function Loader() {
       </div>
 
       <div className='statusContainer'>
-        <details>
+        <details onToggle={() => setProjectsTBC(!projectsTBC)}>
           <summary>TO BE CONFIRMED BY OUR CLIENT</summary>
-          {projects && (
+          {projectsTBC && (
             <CardProjectsList
               projects={projects.filter(
                 (project) => project.status === 'To be confirmed by our client'
@@ -74,9 +80,9 @@ function Loader() {
       </div>
 
       <div className='statusContainer'>
-        <details>
+        <details onToggle={() => setProjectsNO(!projectsNO)}>
           <summary>NO</summary>
-          {projects && (
+          {projectsNO && (
             <CardProjectsList
               projects={projects.filter((project) => project.status === 'NO')}
             />
