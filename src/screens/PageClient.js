@@ -136,104 +136,103 @@ const PageClient = () => {
                 role='presentation'
                 {...register('email')}
               ></input>
-              <div className='columnsSelect'>
-                <label for='kindOfExpertOptions'>Projects</label>
-                <Select
-                  closeMenuOnSelect={false}
-                  options={projectsOptions}
-                  isMulti
-                  className='basic-multi-select'
-                  classNamePrefix='select'
-                  onChange={(e) => setProjectsSelected(e)}
-                />
+
+              <div className='columnsDiv'>
+                <label for='projects'>Country</label>
+                <input
+                  id='country'
+                  name='country'
+                  type='text'
+                  role='presentation'
+                  {...register('country')}
+                ></input>
               </div>
-              <div className='columnsSelect'>
-                <label for='geoExpertise'>Function</label>
-                <Select
-                  closeMenuOnSelect={false}
-                  options={functionsOptions}
-                  isMulti
-                  className='basic-multi-select'
-                  classNamePrefix='select'
-                  defaultValue={selectedOptions}
-                  onChange={(e) => setFunctionsSelected(e)}
-                />
-                <div className='columnsDiv'>
-                  <label for='projects'>Country</label>
-                  <input
-                    id='country'
-                    name='country'
-                    type='text'
-                    role='presentation'
-                    {...register('country')}
-                  ></input>
-                </div>
-                <div className='columnsDiv'>
-                  <label for='projects'>Business Name</label>
-                  <input
-                    id='Business Name'
-                    name='Business Name'
-                    type='text'
-                    role='presentation'
-                    {...register('Business Name')}
-                  ></input>
-                </div>
-                <div className='columnsSelect'>
-                  <label for='geoExpertise'>Favorite Contact</label>
-                  <Select
-                    closeMenuOnSelect={false}
-                    options={favcOptions}
-                    isMulti
-                    className='basic-multi-select'
-                    classNamePrefix='select'
-                    defaultValue={selectedOptions}
-                    onChange={(e) => setFavcSelected(e)}
-                  />
-                </div>
-                <div className='columnsSelect'>
-                  <label for='geoExpertise'>Kind Of Business</label>
-                  <Select
-                    closeMenuOnSelect={false}
-                    options={kobOptions}
-                    isMulti
-                    className='basic-multi-select'
-                    classNamePrefix='select'
-                    defaultValue={selectedOptions}
-                    onChange={(e) => setKobSelected(e)}
-                  />
-                </div>
-                <div className='columnsSelect'>
-                  <label for='geoExpertise'>Desired Serviced</label>
-                  <Select
-                    closeMenuOnSelect={false}
-                    options={dsOptions}
-                    isMulti
-                    className='basic-multi-select'
-                    classNamePrefix='select'
-                    defaultValue={selectedOptions}
-                    onChange={(e) => setDsSelected(e)}
-                  />
-                </div>
-                <div className='columnsDiv'>
-                  <label for='projects'>City</label>
-                  <input
-                    id='city'
-                    name='city'
-                    type='text'
-                    role='presentation'
-                    {...register('city')}
-                  ></input>
-                </div>
-              </div>
-              <div className='checkOrTrash'>
-                <button> Add </button>
-                <FontAwesomeIcon
-                  icon={faTrashCan}
-                  size='lg'
-                  className='trashCan'
-                />
+              <div className='columnsDiv'>
+                <label for='projects'>City</label>
+                <input
+                  id='city'
+                  name='city'
+                  type='text'
+                  role='presentation'
+                  {...register('city')}
+                ></input>
               </div>
             </div>
+          </div>
+          <div className='columns'>
+            <div className='columnsDiv'>
+              <label for='projects'>Business Name</label>
+              <input
+                id='Business Name'
+                name='Business Name'
+                type='text'
+                role='presentation'
+                {...register('Business Name')}
+              ></input>
+            </div>
+            <div className='columnsSelect'>
+              <label for='kindOfExpertOptions'>Projects</label>
+              <Select
+                closeMenuOnSelect={false}
+                options={projectsOptions}
+                isMulti
+                className='basic-multi-select'
+                classNamePrefix='select'
+                onChange={(e) => setProjectsSelected(e)}
+              />
+            </div>
+            <div className='columnsSelect'>
+              <label for='geoExpertise'>Function</label>
+              <Select
+                closeMenuOnSelect={false}
+                options={functionsOptions}
+                isMulti
+                className='basic-multi-select'
+                classNamePrefix='select'
+                defaultValue={selectedOptions}
+                onChange={(e) => setFunctionsSelected(e)}
+              />
+            </div>
+            <div className='columnsSelect'>
+              <label for='geoExpertise'>Favorite Contact</label>
+              <Select
+                closeMenuOnSelect={false}
+                options={favcOptions}
+                isMulti
+                className='basic-multi-select'
+                classNamePrefix='select'
+                defaultValue={selectedOptions}
+                onChange={(e) => setFavcSelected(e)}
+              />
+            </div>
+            <div className='columnsSelect'>
+              <label for='geoExpertise'>Kind Of Business</label>
+              <Select
+                closeMenuOnSelect={false}
+                options={kobOptions}
+                isMulti
+                className='basic-multi-select'
+                classNamePrefix='select'
+                defaultValue={selectedOptions}
+                onChange={(e) => setKobSelected(e)}
+              />
+            </div>
+            <div className='columnsSelect'>
+              <label for='geoExpertise'>Desired Serviced</label>
+              <Select
+                closeMenuOnSelect={false}
+                options={dsOptions}
+                isMulti
+                className='basic-multi-select'
+                classNamePrefix='select'
+                defaultValue={selectedOptions}
+                onChange={(e) => setDsSelected(e)}
+              />
+            </div>
+          </div>
+          <div className='checkOrTrash'>
+            <button> Add </button>
+            <FontAwesomeIcon icon={faTrashCan} size='lg' className='trashCan' />
           </div>
         </form>
       </div>

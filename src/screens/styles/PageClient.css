@@ -1,4 +1,4 @@
-.tabContainerClients {
+.tabContainerClient {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   padding-left: 70px;
 }
 
-.pageClients {
+.pageClient {
   border-radius: 20px;
   background-color: var(--secondColor);
   display: flex;
@@ -18,7 +18,7 @@
   width: 90vw;
 }
 
-.pageClientsForm {
+.pageClientForm {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -65,9 +65,9 @@
   margin-top: 0.5rem;
 }
 
-.pageClientsForm input,
-.pageClientsForm textarea,
-.pageClientsForm select {
+.pageClientForm input,
+.pageClientForm textarea,
+.pageClientForm select {
   background-color: var(--inputColor);
   border: none;
 }
