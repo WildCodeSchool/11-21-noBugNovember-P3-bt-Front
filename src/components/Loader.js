@@ -81,6 +81,7 @@ function Loader() {
 
       <div className='statusContainer'>
         <details onToggle={() => setProjectsNO(!projectsNO)}>
+          <summary>SANS STATUS</summary>
           {projectsNO && (
             <CardProjectsList
               projects={projects.filter((project) => project.status === 'NO')}
