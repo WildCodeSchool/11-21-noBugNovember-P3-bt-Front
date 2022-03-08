@@ -33,7 +33,11 @@ body {
   min-height: 100vh;
 }
 
+button {
+  font-family: var(--fontBody);
+}
+
 h1 {
   font-family: var(--fontTitle);
-  font-size: 30px;
+  font-size: 2rem;
 }

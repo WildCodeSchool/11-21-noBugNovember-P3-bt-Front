@@ -9,6 +9,7 @@ import Project from './screens/Project'
 import ProjectExpert from './screens/ProjectExpert'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
+import PageExpert from './screens/PageExpert'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path='/clients' element={<Clients />} />
         <Route path='/experts' element={<Experts />} />
+        <Route path='/pageExpert' element={<PageExpert />} />
         <Route path='/login' element={<Login />} />
         <Route path='/projects' element={<Project />} />
         <Route path='/projectexpert' element={<ProjectExpert />} />
