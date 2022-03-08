@@ -1,11 +1,13 @@
-import Chevron from '../assets/chevron.svg'
-import Client from '../assets/client.png'
-import Expert from '../assets/expert.png'
-import Project from '../assets/project.png'
-import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import './styles/Navbar.css'
-import uuserbth from '../assets/uuserbth.png'
+import Chevron from '../assets/chevron.svg';
+import client from '../assets/client.png';
+import avatar from '../assets/avatar.png';
+import deal from '../assets/deal.png';
+import experts from '../assets/experts.png';
+
+import Project from '../assets/project.png';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import './styles/Navbar.css';
 
 const Navbar = (props) => {
   const open = () => {
@@ -33,25 +35,31 @@ const Navbar = (props) => {
       </div>
       <div className='navbarLinksContainer'></div>
       <ul className='navbarLinksWrapper'>
-        <div className='logoContainer'>
-          {({ isActive }) =>
+        <NavLink
+          to='/user'
+          className={({ isActive }) =>
             isActive ? 'navbarLink activeLink' : 'navbarLink'
           }
+<<<<<<< HEAD
 
           <img className='userLogo' src={uuserbth} alt='userLogo' />
+=======
+        >
+          <img src={avatar} className='navbarLinkLogo' />
+>>>>>>> 8365a3d4b102b90d56235ed36e20b20b71dd990f
           <span
             className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
-            Alexis
+            Alexis{' '}
           </span>
-        </div>
+        </NavLink>
         <NavLink
           to='/projects'
           className={({ isActive }) =>
             isActive ? 'navbarLink activeLink' : 'navbarLink'
           }
         >
-          <img src={Project} alt='projectLogo' className='navbarLinkLogo' />
+          <img src={deal} alt='projectLogo' className='navbarLinkLogo' />
           <span
             className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
@@ -64,7 +72,7 @@ const Navbar = (props) => {
             isActive ? 'navbarLink activeLink' : 'navbarLink'
           }
         >
-          <img src={Client} alt='clientLogo' className='navbarLinkLogo' />
+          <img src={client} alt='clientLogo' className='navbarLinkLogo' />
           <span
             className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
@@ -77,7 +85,7 @@ const Navbar = (props) => {
             isActive ? 'navbarLink activeLink' : 'navbarLink'
           }
         >
-          <img src={Expert} alt='expertLogo' className='navbarLinkLogo' />
+          <img src={experts} alt='expertLogo' className='navbarLinkLogo' />
           <span
             className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
