@@ -37,97 +37,106 @@ const MidiProject = (props) => {
         <Typography
           sx={{ mb: 1.5 }}
           color='var(--firstColor)'
-          fontFamily='var(--fontBody)'
+          fontFamily='var(--fontTitle)'
         >
           <p>
             <ul className='midiCardRequiredContainer'>
-              <li>
-                <div className='projectFieldName'>Number of experts</div>
-                <div className='projectFieldContent'>
-                  {project.quantityExpert}
-                </div>
-              </li>
-              <li>
-                <div className='projectFieldName'>Type of experts</div>
-                <div className='projectFieldContent'>
-                  {project.kindOfExpert}
-                </div>
-              </li>
-              <li>
-                <div className='projectFieldName'>Total Price</div>
-                <div className='projectFieldContent'>{project.totalPrice}</div>
-              </li>
-              <li>
-                <div className='projectFieldName'>ITW Start</div>
-                <div className='projectFieldContent'>{project.itwStart}</div>
-              </li>
-              <li>
-                <div className='projectFieldName'>ITW Deadline</div>
-                <div className='projectFieldContent'>{project.itwDeadline}</div>
-              </li>
-              <li>
-                <div className='projectFieldName'>Industry</div>
-                <div className='projectFieldContent'>{project.industry}</div>
-              </li>
-              <li>
-                <div className='projectFieldName'>Job Title</div>
-                <div className='projectFieldContent'>{project.jobTitle}</div>
-              </li>
-              <li>
-                <div className='projectFieldName'>Function</div>
-                <div className='projectFieldContent'>{project.fonction}</div>
-              </li>
-              <li>
-                <div className='projectFieldContent'>
-                  {project.expertiseLevelName}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.recommend_company ? 'projectFieldName' : 'hidden'
-                  }
-                >
-                  Companies Examples
-                </div>
-                <div
-                  className={
-                    project.recommend_company ? 'projectFieldContent' : 'hidden'
-                  }
-                >
-                  {project.recommend_company}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.exclude_company ? 'projectFieldName' : 'hidden'
-                  }
-                >
-                  Excluded Companies
-                </div>
-                <div
-                  className={
-                    project.exclude_company ? 'projectFieldContent' : 'hidden'
-                  }
-                >
-                  {project.exclude_company}
-                </div>
-              </li>
-              <li>
-                <div className='projectFieldName'>Geo Expertise</div>
-                <div className='projectFieldContent'>
-                  {project.geoExpertise}
-                </div>
-              </li>
-              <li>
-                <div className='projectFieldName'>Languages</div>
-                <div className='projectFieldContent'>{project.languages}</div>
-              </li>
-              <li>
-                <div className='projectFieldName'>Linkedin Keywords</div>
-                <div className='projectFieldContent'>{project.linkedin}</div>
-              </li>
+              <div className='projectFieldName'>
+                <li>
+                  <div>Number of experts</div>
+                </li>
+                <li>
+                  <div>Type of experts</div>
+                </li>
+                <li>
+                  <div>Total Price</div>
+                </li>
+                <li>
+                  <div>ITW Start</div>
+                </li>
+                <li>
+                  <div>ITW Deadline</div>
+                </li>
+                <li>
+                  <div>Industry</div>
+                </li>
+                <li>
+                  <div>Job Title</div>
+                </li>
+                <li>
+                  <div>Function</div>
+                </li>
+                <li>
+                  <div>Years of Exp</div>
+                </li>
+                <li>
+                  <div className={project.recommend_company ? '' : 'hidden'}>
+                    Companies Examples
+                  </div>
+                </li>
+                <li>
+                  <div className={project.exclude_company ? '' : 'hidden'}>
+                    Excluded Companies
+                  </div>
+                </li>
+                <li>
+                  <div>Geo Expertise</div>
+                </li>
+                <li>
+                  <div>Languages</div>
+                </li>
+                <li>
+                  <div>Linkedin Keywords</div>
+                </li>
+              </div>
+              <div className='projectFieldContent'>
+                <li>
+                  <div>{project.quantityExpert}</div>
+                </li>
+                <li>
+                  <div>{project.kindOfExpert}</div>
+                </li>
+                <li>
+                  <div>{project.totalPrice}</div>
+                </li>
+                <li>
+                  <div>{project.itwStart}</div>
+                </li>
+                <li>
+                  <div>{project.itwDeadline}</div>
+                </li>
+                <li>
+                  <div>{project.industry}</div>
+                </li>
+                <li>
+                  <div>{project.jobTitle}</div>
+                </li>
+                <li>
+                  <div>{project.fonction}</div>
+                </li>
+                <li>
+                  <div>{project.expertiseLevelName}</div>
+                </li>
+                <li>
+                  <div className={project.recommend_company ? '' : 'hidden'}>
+                    {project.recommend_company}
+                  </div>
+                </li>
+                <li>
+                  <div className={project.exclude_company ? '' : 'hidden'}>
+                    {project.exclude_company}
+                  </div>
+                </li>
+                <li>
+                  <div>{project.geoExpertise}</div>
+                </li>
+                <li>
+                  <div>{project.languages}</div>
+                </li>
+                <li>
+                  <div>{project.linkedin}</div>
+                </li>
+              </div>
             </ul>
           </p>
         </Typography>
@@ -141,7 +150,7 @@ const MidiProject = (props) => {
         variant='outlined'
         className='midiCardProject'
         style={{
-          width: '400px',
+          width: '500px',
           backgroundColor: 'var(--cardBgColor)',
         }}
       >

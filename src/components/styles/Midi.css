@@ -1,6 +1,6 @@
 .midiCardHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 10px;
 }
 
@@ -13,20 +13,24 @@
   height: 1px;
   background-color: var(--firstColor);
   top: 115px;
+  margin-bottom: 10px;
 }
 
 .midiCardRequiredContainer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 0px;
+  grid-column-gap: 15px;
   grid-row-gap: 0px;
 }
 
 .projectFieldName {
-  grid-area: 1 / 1 / 2 / 3;
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 .projectFieldContent {
-  grid-area: 1 / 4 / 2 / 5;
+  grid-area: 1 / 2 / 2 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
