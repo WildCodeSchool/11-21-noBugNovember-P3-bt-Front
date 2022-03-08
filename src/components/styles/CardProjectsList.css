@@ -1,6 +1,5 @@
 .cardsDisplay {
+  margin: 1em 0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100vw;
+  justify-content: space-evenly;
 }

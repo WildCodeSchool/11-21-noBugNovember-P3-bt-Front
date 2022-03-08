@@ -1,0 +1,6 @@
+.projectContainer {
+  margin-top: 50px;
+  margin-left: 100px;
+  display: flex;
+  flex-direction: column;
+}
