@@ -6,6 +6,7 @@ import Clients from './screens/Clients'
 import Experts from './screens/Experts'
 import Login from './screens/Login'
 import Project from './screens/Project'
+import ProjectExpert from './screens/ProjectExpert'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import { useState } from 'react'
@@ -21,6 +22,7 @@ function App() {
         <Route path='/experts' element={<Experts />} />
         <Route path='/login' element={<Login />} />
         <Route path='/projects' element={<Project isOpened={isOpened} />} />
+        <Route path='/projectexpert' element={<ProjectExpert />} />
       </Routes>
     </div>
   )

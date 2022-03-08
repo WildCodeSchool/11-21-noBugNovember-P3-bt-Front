@@ -1,13 +1,13 @@
-import Chevron from '../assets/chevron.svg';
-import client from '../assets/client.png';
-import avatar from '../assets/avatar.png';
-import deal from '../assets/deal.png';
-import experts from '../assets/experts.png';
+import Chevron from '../assets/chevron.svg'
+import client from '../assets/client.png'
+import avatar from '../assets/avatar.png'
+import deal from '../assets/deal.png'
+import experts from '../assets/experts.png'
 
-import Project from '../assets/project.png';
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import './styles/Navbar.css';
+import Project from '../assets/project.png'
+import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import './styles/Navbar.css'
 
 const Navbar = (props) => {
   const open = () => {
@@ -40,13 +40,8 @@ const Navbar = (props) => {
           className={({ isActive }) =>
             isActive ? 'navbarLink activeLink' : 'navbarLink'
           }
-<<<<<<< HEAD
-
-          <img className='userLogo' src={uuserbth} alt='userLogo' />
-=======
         >
           <img src={avatar} className='navbarLinkLogo' />
->>>>>>> 8365a3d4b102b90d56235ed36e20b20b71dd990f
           <span
             className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
