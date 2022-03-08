@@ -13,7 +13,7 @@ function Loader() {
   // const [lessProject, setLessProject] = useState(6);
 
   useEffect(() => {
-    axios.get('http://localhost:4040/projects/').then((response) => {
+    axios.get('http://localhost:4040/projects/minicard').then((response) => {
       setProjects(response.data);
     });
   }, []);
@@ -81,7 +81,6 @@ function Loader() {
 
       <div className='statusContainer'>
         <details onToggle={() => setProjectsNO(!projectsNO)}>
-          <summary>NO</summary>
           {projectsNO && (
             <CardProjectsList
               projects={projects.filter((project) => project.status === 'NO')}

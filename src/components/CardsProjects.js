@@ -12,52 +12,60 @@ const CardsProjects = (props) => {
   const card = (
     <React.Fragment>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
+        <Typography
+          sx={{ fontSize: 16 }}
+          color='var(--firstColor)'
+          fontFamily='var(--fontTitle)'
+          gutterBottom
+        >
           <h4 className='nameProject'>{props.numProject}</h4>
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color='text.secondary'>
-          <p className='Project'>
+        <Typography
+          sx={{ mb: 1.5, fontSize: 14 }}
+          color='var(--firstColor)'
+          fontFamily='var(--fontBody)'
+        >
+          <div className='projectGroup'>
             <ul>
               <li>
-                <div className='projectTitle'>Project Type:</div>{' '}
-                <div className='projectTitle2'>{props.projectType}</div>
-              </li>
-              <li>
-                <div className='projectTitle'>Function:</div>{' '}
-                <div className='projectTitle2'>{props.fonction}</div>
-              </li>
-              <li>
-                <div className='projectTitle'>Kind of Expert:</div>
+                <div className='projectTitle'>K.o.Exp</div>
                 <div className='projectTitle2'> {props.kindOfExpert}</div>
               </li>
               <li>
-                <div className='projectTitle'>Number of Expert:</div> {}
+                <div className='projectTitle'>Nb.o.Exp</div>
+                <div className='projectTitle2'>{props.quantityExpert}</div>
               </li>
               <li>
-                <div className='projectTitle'>First Interview:</div>{' '}
+                <div className='projectTitle'>Interview 1</div>
                 <div className='projectTitle2'>{props.itwStart}</div>
               </li>
               <li>
-                <div className='projectTitle'>Deadline Interview:</div>{' '}
+                <div className='projectTitle'>Interview 2 </div>
                 <div className='projectTitle2'>{props.itwDeadline}</div>
               </li>
               <li>
-                <div className='projectTitle'>Price:</div>{' '}
+                <div className='projectTitle'>Price</div>
                 <div className='projectTitle2'>{props.totalPrice}</div>
               </li>
               <li>
-                <div className='projectTitle'>Keywords:</div>
-                <div className='projectTitle2'> {}</div>
+                <div className='projectTitle'>Keywords </div>
+                <div className='projectTitle2'> {props.linkedin}</div>
               </li>
             </ul>
-          </p>
+          </div>
         </Typography>
       </CardContent>
     </React.Fragment>
   );
   return (
-    <Box sx={{ maxWidth: 800 }} className='cardProjectContainer'>
-      <Card variant='outlined' className='cardProject'>
+    <Box>
+      <Card
+        variant='outlined'
+        className='cardProject'
+        style={{
+          backgroundColor: 'var(--cardBgColor)',
+        }}
+      >
         {card}
       </Card>
     </Box>

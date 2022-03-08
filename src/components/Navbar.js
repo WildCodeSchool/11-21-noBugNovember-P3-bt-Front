@@ -4,7 +4,6 @@ import avatar from '../assets/avatar.png';
 import deal from '../assets/deal.png';
 import experts from '../assets/experts.png';
 
-import Project from '../assets/project.png';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './styles/Navbar.css';
