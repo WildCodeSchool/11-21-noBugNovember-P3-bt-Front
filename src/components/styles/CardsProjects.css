@@ -23,6 +23,7 @@ ul {
   display: flex;
   justify-content: space-between;
 }
+
 .projectGroup div {
   max-width: 9em;
 }

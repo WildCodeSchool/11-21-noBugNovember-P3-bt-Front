@@ -9,19 +9,17 @@ import Project from './screens/Project'
 import ProjectExpert from './screens/ProjectExpert'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
-import { useState } from 'react'
 
 function App() {
-  const [isOpened, setIsOpened] = useState(false)
   return (
     <div className='App'>
       <Header />
-      <Navbar isOpened={isOpened} setIsOpened={setIsOpened} />
+      <Navbar />
       <Routes>
-        <Route path='/clients' element={<Clients isOpened={isOpened} />} />
+        <Route path='/clients' element={<Clients />} />
         <Route path='/experts' element={<Experts />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/projects' element={<Project isOpened={isOpened} />} />
+        <Route path='/projects' element={<Project />} />
         <Route path='/projectexpert' element={<ProjectExpert />} />
       </Routes>
     </div>

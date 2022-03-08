@@ -3,11 +3,7 @@ import './styles/Clients.css'
 
 const Clients = (props) => {
   return (
-    <div
-      className={
-        props.isOpened ? 'tabContainerNavOpen' : 'tabContainerNavClose'
-      }
-    >
+    <div className='tabContainer'>
       <h1 className='pageTitle'>Clients</h1>
       <TabClients />
     </div>

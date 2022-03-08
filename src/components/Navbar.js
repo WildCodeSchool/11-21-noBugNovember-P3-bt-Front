@@ -8,16 +8,18 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './styles/Navbar.css'
 
-const Navbar = (props) => {
+const Navbar = () => {
+  const [isOpened, setIsOpened] = useState(false)
+
   const open = () => {
-    props.setIsOpened(true)
+    setIsOpened(true)
     document.querySelector('.navbar').classList.toggle('opened')
     document.querySelector('.navbarOpener').classList.toggle('opened')
     document.querySelector('#chevronLogo').classList.toggle('opened')
   }
 
   const close = () => {
-    props.setIsOpened(false)
+    setIsOpened(false)
     document.querySelector('.navbar').classList.toggle('opened')
     document.querySelector('.navbarOpener').classList.toggle('opened')
     document.querySelector('#chevronLogo').classList.toggle('opened')
@@ -41,9 +43,7 @@ const Navbar = (props) => {
           }
         >
           <img src={avatar} className='navbarLinkLogo' />
-          <span
-            className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
-          >
+          <span className={isOpened ? 'namesDisplayed' : 'navbarLinkName'}>
             Alexis{' '}
           </span>
         </NavLink>
@@ -54,9 +54,7 @@ const Navbar = (props) => {
           }
         >
           <img src={deal} alt='projectLogo' className='navbarLinkLogo' />
-          <span
-            className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
-          >
+          <span className={isOpened ? 'namesDisplayed' : 'navbarLinkName'}>
             Projects
           </span>
         </NavLink>
@@ -67,9 +65,7 @@ const Navbar = (props) => {
           }
         >
           <img src={client} alt='clientLogo' className='navbarLinkLogo' />
-          <span
-            className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
-          >
+          <span className={isOpened ? 'namesDisplayed' : 'navbarLinkName'}>
             Clients
           </span>
         </NavLink>
@@ -80,9 +76,7 @@ const Navbar = (props) => {
           }
         >
           <img src={experts} alt='expertLogo' className='navbarLinkLogo' />
-          <span
-            className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
-          >
+          <span className={isOpened ? 'namesDisplayed' : 'navbarLinkName'}>
             Experts
           </span>
         </NavLink>

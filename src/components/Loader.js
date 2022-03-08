@@ -14,15 +14,9 @@ function Loader() {
 
   useEffect(() => {
     axios.get('http://localhost:4040/projects/minicard').then((response) => {
-<<<<<<< HEAD
       setProjects(response.data)
     })
   }, [])
-=======
-      setProjects(response.data);
-    });
-  }, []);
->>>>>>> c73ec4e1b5bf7d4b3191d1a7e19dc4216bb6b580
 
   console.log(projects)
 

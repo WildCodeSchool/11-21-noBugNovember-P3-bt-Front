@@ -64,7 +64,6 @@ const TabClients = () => {
       className='ag-theme-alpine tableau'
       style={{
         height: 600,
-        width: '87%',
         fontFamily: 'var(--fontBody)',
       }}
     >
