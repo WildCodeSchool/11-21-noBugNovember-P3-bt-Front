@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { AgGridReact } from "ag-grid-react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react'
+import { AgGridReact } from 'ag-grid-react'
+import axios from 'axios'
 
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+import 'ag-grid-community/dist/styles/ag-grid.css'
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 
-import "./styles/TabExperts.css";
+import './styles/TabExperts.css'
 
 const TabExperts = () => {
   // const gridRef = useRef(null);
-  const [experts, setExperts] = useState([]);
+  const [experts, setExperts] = useState([])
 
   const defaultColDef = {
     resizable: true,
-  };
+  }
 
   useEffect(() => {
     axios
-      .get("http://localhost:4040/experts")
+      .get('http://localhost:4040/experts')
       .then((res) => res.data)
-      .then((res) => console.log("experts", res) || setExperts(res));
-  }, []);
+      .then((res) => console.log('experts', res) || setExperts(res))
+  }, [])
 
   // const onButtonClick = e => {
   //       const selectedNodes = gridRef.current.api.getSelectedNodes()
@@ -106,63 +106,69 @@ const TabExperts = () => {
 
   const [columnDefs] = useState([
     {
-      field: "numExpert",
+      field: 'numExpert',
       sortable: true,
       filter: true,
       checkboxSelection: true,
-      pinned: "left",
+      pinned: 'left',
       lockPinned: true,
-      width: "120px",
+      width: '120px',
     },
     {
-      field: "firstname",
+      field: 'firstname',
       sortable: true,
       filter: true,
-      pinned: "left",
+      pinned: 'left',
       lockPinned: true,
-      width: "160px",
+      width: '160px',
     },
     {
-      field: "lastname",
+      field: 'lastname',
       sortable: true,
       filter: true,
-      pinned: "left",
+      pinned: 'left',
       lockPinned: true,
-      width: "160px",
+      width: '160px',
     },
-    { field: "phone" },
-    { field: "email" },
-    { field: "linkedinProfile", sortable: true, filter: true },
-    { field: "contact", sortable: true, filter: true },
-    { field: "kindOfExpertName", sortable: true, filter: true },
-    { field: "practiceType", sortable: true, filter: true },
-    { field: "jobTitleName", sortable: true, filter: true },
-    { field: "expertiseLevelName", sortable: true, filter: true },
-    { field: "companyName", sortable: true, filter: true },
-    { field: "pastCompanies", sortable: true, filter: true },
-    { field: "geoExpertiseName", sortable: true, filter: true },
-    { field: "languages", sortable: true, filter: true },
-    { field: "price", sortable: true, filter: true },
-    { field: "cost", sortable: true, filter: true },
-    { field: "feedbackExpert" },
-    { field: "answer", sortable: true, filter: true },
-    { field: "itwday", sortable: true, filter: true },
-    { field: "projet", sortable: true, filter: true },
-    { field: "keywords", sortable: true, filter: true },
-  ]);
+    { field: 'phone' },
+    { field: 'email' },
+    { field: 'linkedinProfile', sortable: true, filter: true },
+    { field: 'contact', sortable: true, filter: true },
+    { field: 'kindOfExpertName', sortable: true, filter: true },
+    { field: 'practiceType', sortable: true, filter: true },
+    { field: 'jobTitleName', sortable: true, filter: true },
+    { field: 'expertiseLevelName', sortable: true, filter: true },
+    { field: 'companyName', sortable: true, filter: true },
+    { field: 'pastCompanies', sortable: true, filter: true },
+    { field: 'geoExpertiseName', sortable: true, filter: true },
+    { field: 'languages', sortable: true, filter: true },
+    { field: 'price', sortable: true, filter: true },
+    { field: 'cost', sortable: true, filter: true },
+    { field: 'feedbackExpert' },
+    { field: 'answer', sortable: true, filter: true },
+    { field: 'itwday', sortable: true, filter: true },
+    { field: 'projet', sortable: true, filter: true },
+    { field: 'keywords', sortable: true, filter: true },
+  ])
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 600, width: "87%" }}>
+    <div
+      className='ag-theme-alpine tableau'
+      style={{
+        height: 600,
+        fontFamily: 'var(--fontBody)',
+      }}
+    >
       {/* <button onClick={onButtonClick}>Get selected rows</button> */}
       <AgGridReact
         // ref={gridRef}
         defaultColDef={defaultColDef}
         rowData={experts}
         columnDefs={columnDefs}
-        rowSelection="multiple"
+        rowSelection='multiple'
       ></AgGridReact>
     </div>
-  );
-};
+  )
+}
 
-export default TabExperts;
+export default TabExperts

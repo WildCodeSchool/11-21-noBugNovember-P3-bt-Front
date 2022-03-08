@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom'
 const Experts = () => {
   return (
     <div className='tabContainer'>
-      <h1>Experts</h1>
-      <Link to='/pageExpert'>
-        <button className='buttonAjoutExpert'>Ajouter</button>
-      </Link>
+      <div className='titleButtonContainer'>
+        <h1 className='pageTitle'>Experts</h1>
+        <Link to='/pageExpert'>
+          <button className='buttonAjout'>+ Add new expert</button>
+        </Link>
+      </div>
       <TabExperts />
     </div>
   )

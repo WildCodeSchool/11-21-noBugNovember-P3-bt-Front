@@ -41,3 +41,46 @@ h1 {
   font-family: var(--fontTitle);
   font-size: 2rem;
 }
+
+.tabContainer {
+  margin-left: 100px;
+  margin-right: 30px;
+}
+
+.titleButtonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.buttonAjout {
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  padding: 1em 1em 1em;
+  margin-bottom: 2wh;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.buttonAjout:hover {
+  text-decoration: none;
+}
+
+.buttonAjout:active {
+  position: relative;
+  top: 1px;
+}
+
+.tableau {
+  width: 100%;
+}

@@ -3,7 +3,7 @@ import './styles/ButtonAddProject.css'
 const ButtonAddProject = () => {
   return (
     <div className='adminHome'>
-      <button className='buttonAdminHome'>+ Add new project</button>
+      <button className='buttonAjout'>+ Add new project</button>
     </div>
   )
 }
