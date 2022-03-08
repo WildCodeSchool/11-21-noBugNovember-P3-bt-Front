@@ -26,11 +26,11 @@ const PageExpert = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [geoSelected, setGeoSelected] = useState([]);
   const [langSelected, setLangSelected] = useState([]);
-  const [practiceSelected, setPracticeSelected] = useState(false);
-  const [jobSelected, setJobSelected] = useState(false);
-  const [koeSelected, setKoeSelected] = useState(false);
-  const [yoeSelected, setYoeSelected] = useState(false);
-  const [cieSelected, setCieSelected] = useState(false);
+  const [practiceSelected, setPracticeSelected] = useState([]);
+  const [jobSelected, setJobSelected] = useState([]);
+  const [koeSelected, setKoeSelected] = useState([]);
+  const [yoeSelected, setYoeSelected] = useState([]);
+  const [cieSelected, setCieSelected] = useState([]);
   const [pcieSelected, setPcieSelected] = useState([]);
   const [ctcSelected, setCtcSelected] = useState([]);
   const [pjtSelected, setPjtSelected] = useState([]);
@@ -64,23 +64,29 @@ const PageExpert = () => {
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
   const handleCreate = (inputValue, table, column, set, selected) => {
-    for (let j = 0; j < inputValue.length; j++) {
+    console.log("inputValue", inputValue);
+    for (let i = 0; i < inputValue.length; i++) {
       // If the Value is New
-      if (Object.keys(inputValue[j]).includes("__isNew__")) {
+      if (Object.keys(inputValue[i]).includes("__isNew__")) {
         const newValue = {
-          value: inputValue[j].value,
+          value: inputValue[i].value,
           table: table,
           column: column,
         };
+        console.log("newValue", newValue);
         axios
           .post("http://localhost:4040/experts/test", newValue)
-          .then((res) => set([...selected, res.data]))
+          .then(
+            (res) =>
+              console.log("datas du back", res.data) ||
+              set([...selected, res.data])
+          )
           .catch(function (error) {
             console.log(error);
           });
         // If the Value Is in DATABASE
-      } else if (!selected.includes(inputValue[j])) {
-        set([...selected, inputValue[j]]);
+      } else if (!selected.includes(inputValue[i])) {
+        set([...selected, inputValue[i]]);
       }
     }
 
@@ -110,18 +116,30 @@ const PageExpert = () => {
   };
 
   useEffect(() => {
-    console.log("langSelected", langSelected);
-  }, [langSelected]);
+    console.log("langSelected", yoeSelected);
+  }, [yoeSelected]);
 
   /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   const onSubmit = (data) => {
-    if (
-      yoeSelected &&
-      cieSelected &&
-      jobSelected &&
-      practiceSelected &&
+    console.log(
+      "yoe",
+      yoeSelected,
+      "cie",
+      cieSelected,
+      "job",
+      jobSelected,
+      "pr",
+      practiceSelected,
+      "koe",
       koeSelected
+    );
+    if (
+      yoeSelected.length !== 0 &&
+      cieSelected.length !== 0 &&
+      jobSelected.length !== 0 &&
+      practiceSelected &&
+      koeSelected.length !== 0
     ) {
       setError(false);
 
@@ -130,10 +148,10 @@ const PageExpert = () => {
       let pcieDatas = [];
       let ctcDatas = [];
       let pjtDatas = [];
-      const company_id = cieSelected.id;
-      const kindOfExpert_id = koeSelected.id;
-      const expertiseLevel_id = yoeSelected.id;
-      const jobtitle_id = jobSelected.id;
+      let cieDatas = [];
+      let koeDatas = [];
+      let yoeDatas = [];
+      let jobDatas = [];
       const practice_id = practiceSelected.id;
 
       geoSelected.forEach((geo) => geoDatas.push(geo.id));
@@ -141,25 +159,35 @@ const PageExpert = () => {
       pcieSelected.forEach((pcie) => pcieDatas.push(pcie.id));
       ctcSelected.forEach((ctc) => ctcDatas.push(ctc.id));
       pjtSelected.forEach((pjt) => pjtDatas.push(pjt.id));
+      cieSelected.forEach((cie) => cieDatas.push(cie.id));
+      koeSelected.forEach(
+        (koe) => console.log("koe test", koe) || koeDatas.push(koe.id)
+      );
+      yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
+      jobSelected.forEach((job) => jobDatas.push(job.id));
 
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
       let languages_id = { languages_id: [...langDatas] };
       let pastCompany_id = { pastCompany_id: [...pcieDatas] };
       let contactType_id = { contactType_id: [...ctcDatas] };
       let projects_id = { projects_id: [...pjtDatas] };
+      let company_id = { company_id: [...cieDatas] };
+      let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
+      let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
+      let jobtitle_id = { jobtitle_id: [...jobDatas] };
 
       let datas = {
         ...data,
         ...geoExpertise_id,
         ...languages_id,
-        jobtitle_id,
-        kindOfExpert_id,
+        ...jobtitle_id,
+        ...kindOfExpert_id,
         practice_id,
         ...pastCompany_id,
         ...contactType_id,
         ...projects_id,
-        company_id,
-        expertiseLevel_id,
+        ...company_id,
+        ...expertiseLevel_id,
       };
 
       console.log("datas", datas);
@@ -199,7 +227,7 @@ const PageExpert = () => {
                 <input
                   id="number"
                   name="number"
-                  type="key"
+                  type="text"
                   {...register("numExpert")}
                   required
                 ></input>
@@ -260,13 +288,21 @@ const PageExpert = () => {
             </div>
             <div className="columnsSelect">
               <label htmlFor="contactOptions">Contact Preferences</label>
-              <Select
+              <CreatableSelect
                 closeMenuOnSelect={false}
                 options={contactsOptions}
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
-                onChange={(e) => setCtcSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    e,
+                    "contacttype",
+                    "contactTypeName",
+                    setCtcSelected,
+                    ctcSelected
+                  );
+                }}
               />
             </div>
           </div>
@@ -279,48 +315,49 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
-                onChange={(e) =>
-                  handleCreate(
-                    e,
-                    "projects",
-                    "projectTitle",
-                    setPjtSelected,
-                    pjtSelected
-                  )
-                }
+                onChange={(e) => setPjtSelected(e)}
               />
             </div>
 
             <div className="columnsSelect">
               <label htmlFor="kindOfExpertOptions">Type</label>
-              <Select
+              <CreatableSelect
                 options={kindOfExpertOptions}
                 className="basic-multi-select"
                 classNamePrefix={
-                  error && !koeSelected ? "novalidated" : "select"
+                  error && koeSelected.length === 0 ? "novalidated" : "select"
                 }
-                onChange={(e) => setKoeSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    [e],
+                    "kindofexpert",
+                    "kindOfExpertName",
+                    setKoeSelected,
+                    koeSelected
+                  );
+                }}
               />
             </div>
+            {console.log("length", koeSelected.length)}
 
             <div className="columnsSelect">
               <label htmlFor="geoExpertise">Geo Expertise</label>
-              <Select
+              <CreatableSelect
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
                 defaultValue={selectedOptions}
-                onChange={(e) =>
+                onChange={(e) => {
                   handleCreate(
                     e,
                     "geoexpertise",
                     "geoExpertiseName",
                     setGeoSelected,
                     geoSelected
-                  )
-                }
+                  );
+                }}
               />
             </div>
 
@@ -337,25 +374,41 @@ const PageExpert = () => {
             </div>
             <div className="columnsSelect">
               <label htmlFor="jobTitle">Job Title</label>
-              <Select
+              <CreatableSelect
                 options={jobTitleOptions}
                 className="basic-multi-select"
                 classNamePrefix={
-                  error && !jobSelected ? "novalidated" : "select"
+                  error && jobSelected.length === 0 ? "novalidated" : "select"
                 }
-                onChange={(e) => setJobSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    [e],
+                    "jobtitle",
+                    "jobTitleName",
+                    setJobSelected,
+                    jobSelected
+                  );
+                }}
               />
             </div>
 
             <div className="columnsSelect">
               <label htmlFor="companyOptions">Company</label>
-              <Select
+              <CreatableSelect
                 options={companyOptions}
                 className="basic-multi-select"
                 classNamePrefix={
-                  error && !cieSelected ? "novalidated" : "select"
+                  error && cieSelected.length === 0 ? "novalidated" : "select"
                 }
-                onChange={(e) => setCieSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    [e],
+                    "company",
+                    "companyName",
+                    setCieSelected,
+                    cieSelected
+                  );
+                }}
               />
             </div>
             <div className="columnsSelect">
@@ -369,8 +422,8 @@ const PageExpert = () => {
                 onChange={(e) =>
                   handleCreate(
                     e,
-                    "past_companies",
-                    "pastCompany_id",
+                    "company",
+                    "companyName",
                     setPcieSelected,
                     pcieSelected
                   )
@@ -412,13 +465,21 @@ const PageExpert = () => {
             </div>
             <div className="columnsSelect">
               <label htmlFor="experience">Years of Experience</label>
-              <Select
+              <CreatableSelect
                 options={yearsOfExperienceOptions}
                 className="basic-multi-select"
                 classNamePrefix={
-                  error && !yoeSelected ? "novalidated" : "select"
+                  error && yoeSelected.length === 0 ? "novalidated" : "select"
                 }
-                onChange={(e) => setYoeSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    [e],
+                    "expertiselevel",
+                    "expertiseLevelName",
+                    setYoeSelected,
+                    yoeSelected
+                  );
+                }}
               />
             </div>
             <div className="columnsSelect">
