@@ -1,6 +1,11 @@
 .cardsDisplay {
+  margin: 1em 0;
   display: flex;
+<<<<<<< HEAD
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+=======
+  justify-content: space-evenly;
+>>>>>>> c73ec4e1b5bf7d4b3191d1a7e19dc4216bb6b580
 }
