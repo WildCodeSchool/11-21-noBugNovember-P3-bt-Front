@@ -1,4 +1,32 @@
 .midiCardHeader {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+#headerMidiCardBorder {
+  width: 100%;
+  height: 1px;
+  background-color: var(--firstColor);
+  top: 115px;
+}
+
+.midiCardRequiredContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.projectFieldName {
+  grid-area: 1 / 1 / 2 / 3;
+}
+
+.projectFieldContent {
+  grid-area: 1 / 4 / 2 / 5;
 }
