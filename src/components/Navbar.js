@@ -1,26 +1,26 @@
-import Chevron from '../assets/chevron.svg';
-import Client from '../assets/client.png';
-import Expert from '../assets/expert.png';
-import Project from '../assets/project.png';
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import './styles/Navbar.css';
-import uuserbth from '../assets/uuserbth.png';
+import Chevron from '../assets/chevron.svg'
+import Client from '../assets/client.png'
+import Expert from '../assets/expert.png'
+import Project from '../assets/project.png'
+import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import './styles/Navbar.css'
+import uuserbth from '../assets/uuserbth.png'
 
 const Navbar = (props) => {
   const open = () => {
-    props.setIsOpened(true);
-    document.querySelector('.navbar').classList.toggle('opened');
-    document.querySelector('.navbarOpener').classList.toggle('opened');
-    document.querySelector('#chevronLogo').classList.toggle('opened');
-  };
+    props.setIsOpened(true)
+    document.querySelector('.navbar').classList.toggle('opened')
+    document.querySelector('.navbarOpener').classList.toggle('opened')
+    document.querySelector('#chevronLogo').classList.toggle('opened')
+  }
 
   const close = () => {
-    props.setIsOpened(false);
-    document.querySelector('.navbar').classList.toggle('opened');
-    document.querySelector('.navbarOpener').classList.toggle('opened');
-    document.querySelector('#chevronLogo').classList.toggle('opened');
-  };
+    props.setIsOpened(false)
+    document.querySelector('.navbar').classList.toggle('opened')
+    document.querySelector('.navbarOpener').classList.toggle('opened')
+    document.querySelector('#chevronLogo').classList.toggle('opened')
+  }
 
   return (
     <div
@@ -38,7 +38,7 @@ const Navbar = (props) => {
             isActive ? 'navbarLink activeLink' : 'navbarLink'
           }
 
-          <img classname='userLogo' src={uuserbth} alt='userLogo' />
+          <img className='userLogo' src={uuserbth} alt='userLogo' />
           <span
             className={props.isOpened ? 'namesDisplayed' : 'navbarLinkName'}
           >
@@ -86,7 +86,7 @@ const Navbar = (props) => {
         </NavLink>
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

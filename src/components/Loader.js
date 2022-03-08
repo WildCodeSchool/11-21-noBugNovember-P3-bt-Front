@@ -1,24 +1,24 @@
-import axios from 'axios';
-import CardProjectsList from './CardProjectsList';
-import { useState, useEffect } from 'react';
-import './styles/Loader.css';
+import axios from 'axios'
+import CardProjectsList from './CardProjectsList'
+import { useState, useEffect } from 'react'
+import './styles/Loader.css'
 
 function Loader() {
-  const [projects, setProjects] = useState([]);
-  const [projectsU, setProjectsU] = useState(false);
-  const [projectsA, setProjectsA] = useState(false);
-  const [projectsC, setProjectsC] = useState(false);
-  const [projectsTBC, setProjectsTBC] = useState(false);
-  const [projectsNO, setProjectsNO] = useState(false);
+  const [projects, setProjects] = useState([])
+  const [projectsU, setProjectsU] = useState(false)
+  const [projectsA, setProjectsA] = useState(false)
+  const [projectsC, setProjectsC] = useState(false)
+  const [projectsTBC, setProjectsTBC] = useState(false)
+  const [projectsNO, setProjectsNO] = useState(false)
   // const [lessProject, setLessProject] = useState(6);
 
   useEffect(() => {
-    axios.get('http://localhost:4040/projects/').then((response) => {
-      setProjects(response.data);
-    });
-  }, []);
+    axios.get('http://localhost:4040/projects/minicard').then((response) => {
+      setProjects(response.data)
+    })
+  }, [])
 
-  console.log(projects);
+  console.log(projects)
 
   // let seeLessProject = () => setLessProject(lessProject - 6);
   // useEffect(() => {
@@ -90,7 +90,7 @@ function Loader() {
         </details>
       </div>
     </div>
-  );
+  )
 }
 
-export default Loader;
+export default Loader
