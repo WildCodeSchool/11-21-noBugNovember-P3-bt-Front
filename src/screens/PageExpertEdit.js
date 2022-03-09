@@ -3,13 +3,15 @@ import "./styles/PageExpert.css";
 import CreatableSelect from "react-select/creatable";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-const PageExpert = () => {
+const PageExpertEdit = () => {
+  const { id } = useParams();
+
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [options, setOptions] = useState([]);
@@ -39,17 +41,23 @@ const PageExpert = () => {
   const [optionHasChanged, setOptionHasChanged] = useState([]);
   const [newOptions, setNewOptions] = useState([]);
 
+  //   State des Data de l'expert
+  const [dataExpert, setDataExpert] = useState([]);
+  //   State des Data de l'expert
+  const [datatest, setDatatest] = useState(false);
+
+  //  ********************   DONNE BDD EXPERT ***************************
+
   useEffect(() => {
     const getOptions = () => {
       axios
-        .get("http://localhost:4040/experts/form")
-        .then(
-          (res) => console.log("test bdd", res.data) || setOptions(res.data)
-        );
+        .get(`http://localhost:4040/experts/form`)
+        .then((res) => setOptions(res.data));
     };
     getOptions();
   }, [newOptions]);
 
+  //*****  Decompose la BDD ****
   useEffect(() => {
     setLanguagesOptions(options.languages);
     setGeoExpertiseOptions(options.geoExpertise);
@@ -62,6 +70,33 @@ const PageExpert = () => {
     setPastCompaniesOptions(options.companies);
     setProjectsOptions(options.projects);
   }, [options]);
+
+  // ********************   DATA EXPERT ***************************
+
+  useEffect(() => {
+    const dataExpertFunc = () => {
+      axios
+        .get(`http://localhost:4040/experts/form/${id}`)
+        .then(
+          (res) =>
+            console.log("data expert", res.data) ||
+            setDataExpert(res.data.company)
+        );
+    };
+    dataExpertFunc();
+  }, []);
+
+  useEffect(() => {
+    // console.log("testAnouchka", dataExpert[0]);
+    setDatatest([dataExpert[0]]);
+  }, [dataExpert]);
+
+  const objetTest = [
+    {
+      value: "EDF",
+      label: "EDF",
+    },
+  ];
 
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
@@ -244,6 +279,7 @@ const PageExpert = () => {
                 autocomplete="off"
                 {...register("firstname")}
                 required
+                value={datatest.firstname}
               ></input>
             </div>
             <div className="columnsDiv">
@@ -255,6 +291,7 @@ const PageExpert = () => {
                 type="text"
                 {...register("lastname")}
                 required
+                value={datatest.lastname}
               ></input>
             </div>
             <div className="columnsDiv">
@@ -266,6 +303,7 @@ const PageExpert = () => {
                 role="presentation"
                 autocomplete="off"
                 {...register("phone")}
+                value={datatest.phone}
               ></input>
             </div>
             <div className="columnsDiv">
@@ -275,6 +313,7 @@ const PageExpert = () => {
                 name="email"
                 type="email"
                 role="presentation"
+                value={datatest.email}
                 {...register("email")}
               ></input>
             </div>
@@ -285,6 +324,7 @@ const PageExpert = () => {
                 name="linkedin"
                 type="url"
                 role="presentation"
+                value={datatest.linkedinProfile}
                 {...register("linkedinProfile")}
               ></input>
             </div>
@@ -317,6 +357,7 @@ const PageExpert = () => {
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
+                value={datatest.projet}
                 onChange={(e) => setPjtSelected(e)}
               />
             </div>
@@ -329,6 +370,7 @@ const PageExpert = () => {
                 classNamePrefix={
                   error && koeSelected.length === 0 ? "novalidated" : "select"
                 }
+                value={datatest.kindOfExpertName}
                 onChange={(e) => {
                   handleCreate(
                     [e],
@@ -351,6 +393,7 @@ const PageExpert = () => {
                 className="basic-multi-select"
                 classNamePrefix="select"
                 defaultValue={selectedOptions}
+                value={datatest.geoExpertiseName}
                 onChange={(e) => {
                   handleCreate(
                     e,
@@ -371,6 +414,7 @@ const PageExpert = () => {
                 classNamePrefix={
                   error && !practiceSelected ? "novalidated" : "select"
                 }
+                value={datatest.practiceType}
                 onChange={(e) => setPracticeSelected(e)}
               />
             </div>
@@ -382,6 +426,7 @@ const PageExpert = () => {
                 classNamePrefix={
                   error && jobSelected.length === 0 ? "novalidated" : "select"
                 }
+                value={datatest.jobTitleName}
                 onChange={(e) => {
                   handleCreate(
                     [e],
@@ -397,20 +442,29 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="companyOptions">Company</label>
               <CreatableSelect
+                value={
+                  datatest
+                  //   companyOptions &&
+                  //   companyOptions.filter(
+                  //     (el) => dataExpert[0].value === el.value
+                  //   )
+                }
                 options={companyOptions}
+                isMulti
                 className="basic-multi-select"
                 classNamePrefix={
                   error && cieSelected.length === 0 ? "novalidated" : "select"
                 }
-                onChange={(e) => {
-                  handleCreate(
-                    [e],
-                    "company",
-                    "companyName",
-                    setCieSelected,
-                    cieSelected
-                  );
-                }}
+                onChange={(e) => setDatatest(e)}
+                // onChange={(e) => {
+                //   handleCreate(
+                //     [e],
+                //     "company",
+                //     "companyName",
+                //     setCieSelected,
+                //     cieSelected
+                //   );
+                // }}
               />
             </div>
             <div className="columnsSelect">
@@ -442,6 +496,7 @@ const PageExpert = () => {
                 type="number"
                 role="presentation"
                 {...register("price")}
+                value={datatest.price}
               ></input>
             </div>
             <div className="columnsDiv">
@@ -452,6 +507,7 @@ const PageExpert = () => {
                 type="number"
                 role="presentation"
                 {...register("cost")}
+                value={datatest.cost}
               ></input>
             </div>
             <div className="columnsDiv">
@@ -463,6 +519,7 @@ const PageExpert = () => {
                 cols="60"
                 role="presentation"
                 {...register("feedbackExpert")}
+                value={datatest.feedbackExpert}
               ></textarea>
             </div>
             <div className="columnsSelect">
@@ -511,11 +568,12 @@ const PageExpert = () => {
                 type="text"
                 role="presentation"
                 {...register("keywords")}
+                value={datatest.keywords}
               ></input>
             </div>
           </div>
           <div className="checkOrTrash">
-            <button className="buttonAddExpert"> Add </button>
+            <button> Add </button>
             <FontAwesomeIcon icon={faTrashCan} size="lg" className="trashCan" />
           </div>
         </form>
@@ -524,4 +582,4 @@ const PageExpert = () => {
   );
 };
 
-export default PageExpert;
+export default PageExpertEdit;
