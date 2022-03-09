@@ -15,15 +15,15 @@ const PageClient = () => {
   const [projectsOptions, setProjectsOptions] = useState([])
   const [functionsOptions, setFunctionsOptions] = useState([])
   // const [countryOptions, setCountryOptions] = useState([])
-  const [favcOptions, setFavcOptions] = useState([])
-  const [kobOptions, setKobOptions] = useState([])
-  const [dsOptions, setDsOptions] = useState([])
+  const [favcOptions, setFavcOptions] = useState([]) // Favc = Favorite Contact
+  const [kobOptions, setKobOptions] = useState([]) // Kob = Kind Of Business
+  const [dsOptions, setDsOptions] = useState([]) // Ds = Desired Serviced
   const [selectedOptions, setSelectedOptions] = useState([])
   const [projectsSelected, setProjectsSelected] = useState([])
   const [functionsSelected, setFunctionsSelected] = useState([])
-  const [favcSelected, setFavcSelected] = useState([])
-  const [kobSelected, setKobSelected] = useState([])
-  const [dsSelected, setDsSelected] = useState([])
+  const [favcSelected, setFavcSelected] = useState([]) // Favc = Favorite Contact
+  const [kobSelected, setKobSelected] = useState([]) // Kob = Kind Of Business
+  const [dsSelected, setDsSelected] = useState([]) // Ds = Desired Serviced
 
   useEffect(() => {
     const getOptions = () => {

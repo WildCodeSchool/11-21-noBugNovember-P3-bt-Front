@@ -10,6 +10,7 @@ import Header from './components/Header'
 import Navbar from './components/Navbar'
 import PageExpert from './screens/PageExpert'
 import PageClient from './screens/PageClient'
+import PageProject from './screens/PageClient'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/experts' element={<Experts />} />
         <Route path='/pageExpert' element={<PageExpert />} />
         <Route path='/pageClient' element={<PageClient />} />
+        <Route path='/pageProject' element={<PageProject />} />
         <Route path='/login' element={<Login />} />
         <Route path='/projects' element={<Project />} />
       </Routes>
