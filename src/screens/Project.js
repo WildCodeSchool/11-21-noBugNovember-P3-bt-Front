@@ -1,14 +1,14 @@
-import ButtonAddProject from './ButtonAddProject'
+import ButtonAddProject from '../components/ButtonAddProject'
 import Loader from '../components/Loader'
-import { Link } from 'react-router-dom'
+
+import './styles/Project.css'
 
 const Project = () => {
   return (
-    <>
+    <div className='projectContainer'>
       <ButtonAddProject />
-      <Link to='/pageProjects'>Ajouter</Link>
       <Loader />
-    </>
+    </div>
   )
 }
 

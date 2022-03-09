@@ -11,6 +11,7 @@ import Navbar from './components/Navbar'
 import PageExpert from './screens/PageExpert'
 import PageClient from './screens/PageClient'
 import PageProject from './screens/PageClient'
+import ProjectExpert from './screens/ProjectExpert'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/pageProject' element={<PageProject />} />
         <Route path='/login' element={<Login />} />
         <Route path='/projects' element={<Project />} />
+        <Route path='/projectexpert' element={<ProjectExpert />} />
       </Routes>
     </div>
   )

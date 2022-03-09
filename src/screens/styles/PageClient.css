@@ -107,7 +107,7 @@
   transform: scale(1.1);
 }
 
-button {
+.buttonAddClient {
   background-color: var(--firstColor);
   color: var(--secondColor);
   border: none;
@@ -117,7 +117,7 @@ button {
   margin-right: 1rem;
 }
 
-button:hover {
+.buttonAddClient:hover {
   transform: scale(1.1);
 }
 

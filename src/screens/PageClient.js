@@ -136,29 +136,30 @@ const PageClient = () => {
                 role='presentation'
                 {...register('email')}
               ></input>
+            </div>
 
-              <div className='columnsDiv'>
-                <label for='projects'>Country</label>
-                <input
-                  id='country'
-                  name='country'
-                  type='text'
-                  role='presentation'
-                  {...register('country')}
-                ></input>
-              </div>
-              <div className='columnsDiv'>
-                <label for='projects'>City</label>
-                <input
-                  id='city'
-                  name='city'
-                  type='text'
-                  role='presentation'
-                  {...register('city')}
-                ></input>
-              </div>
+            <div className='columnsDiv'>
+              <label for='projects'>Country</label>
+              <input
+                id='country'
+                name='country'
+                type='text'
+                role='presentation'
+                {...register('country')}
+              ></input>
+            </div>
+            <div className='columnsDiv'>
+              <label for='projects'>City</label>
+              <input
+                id='city'
+                name='city'
+                type='text'
+                role='presentation'
+                {...register('city')}
+              ></input>
             </div>
           </div>
+
           <div className='columns'>
             <div className='columnsDiv'>
               <label for='projects'>Business Name</label>
@@ -231,7 +232,7 @@ const PageClient = () => {
             </div>
           </div>
           <div className='checkOrTrash'>
-            <button> Add </button>
+            <button className='buttonAddClient'> Add </button>
             <FontAwesomeIcon icon={faTrashCan} size='lg' className='trashCan' />
           </div>
         </form>
