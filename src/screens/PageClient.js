@@ -232,7 +232,7 @@ const PageClient = () => {
             </div>
           </div>
           <div className='checkOrTrash'>
-            <button className='buttonAddClient'> Add </button>
+            <button className='buttonAddForm'> Add </button>
             <FontAwesomeIcon icon={faTrashCan} size='lg' className='trashCan' />
           </div>
         </form>

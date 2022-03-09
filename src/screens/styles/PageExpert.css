@@ -59,6 +59,10 @@
   background-color: var(--inputColor) !important;
 }
 
+.novalidated__control {
+  border: 1px solid red !important;
+}
+
 .columns textarea {
   width: 25vw;
   height: 9rem;

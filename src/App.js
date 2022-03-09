@@ -8,9 +8,10 @@ import Login from './screens/Login'
 import Project from './screens/Project'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
-import PageExpert from './screens/PageExpert'
 import PageClient from './screens/PageClient'
 import PageProject from './screens/PageClient'
+import PageExpert from './screens/PageExpert'
+import PageExpertEdit from './screens/PageExpertEdit'
 import ProjectExpert from './screens/ProjectExpert'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/clients' element={<Clients />} />
         <Route path='/experts' element={<Experts />} />
         <Route path='/pageExpert' element={<PageExpert />} />
+        <Route path='/pageExpertEdit/:id' element={<PageExpertEdit />} />
         <Route path='/pageClient' element={<PageClient />} />
         <Route path='/pageProject' element={<PageProject />} />
         <Route path='/login' element={<Login />} />
