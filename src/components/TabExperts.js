@@ -83,7 +83,13 @@ const TabExperts = ({ setExpertSelection }) => {
   };
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 600, width: "87%" }}>
+    <div
+      className="ag-theme-alpine tableau"
+      style={{
+        height: 600,
+        fontFamily: "var(--fontBody)",
+      }}
+    >
       {/* <button onClick={onButtonClick}>Get selected rows</button> */}
       <AgGridReact
         ref={gridRef}

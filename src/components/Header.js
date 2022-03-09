@@ -15,8 +15,6 @@ const Header = () => {
       .then((res) => setStats(res));
   }, []);
 
-  
-  // stats !== [] && console.log("test2", stats[0]);
   return (
     <div className="headerContainer">
       <img src={BTHTLogo} alt="logo_BTHT" id="headerLogo" />

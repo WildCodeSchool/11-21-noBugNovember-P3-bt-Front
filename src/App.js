@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import PageExpert from "./screens/PageExpert";
 import PageExpertEdit from "./screens/PageExpertEdit";
+import ProjectExpert from "./screens/ProjectExpert";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/pageExpertEdit/:id" element={<PageExpertEdit />} />
         <Route path="/login" element={<Login />} />
         <Route path="/projects" element={<Project />} />
+        <Route path="/projectexpert" element={<ProjectExpert />} />
       </Routes>
     </div>
   );

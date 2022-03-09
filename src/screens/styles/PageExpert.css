@@ -111,7 +111,7 @@
   transform: scale(1.1);
 }
 
-button {
+.buttonAddExpert {
   background-color: var(--firstColor);
   color: var(--secondColor);
   border: none;
@@ -121,7 +121,7 @@ button {
   margin-right: 1rem;
 }
 
-button:hover {
+.buttonAddExpert:hover {
   transform: scale(1.1);
 }
 

@@ -515,7 +515,7 @@ const PageExpert = () => {
             </div>
           </div>
           <div className="checkOrTrash">
-            <button> Add </button>
+            <button className="buttonAddExpert"> Add </button>
             <FontAwesomeIcon icon={faTrashCan} size="lg" className="trashCan" />
           </div>
         </form>
