@@ -89,7 +89,7 @@ const PageExpertEdit = () => {
   useEffect(() => {
     // console.log("testAnouchka", dataExpert[0]);
     setDatatest([dataExpert[0]]);
-  }, [companyOptions]);
+  }, [dataExpert]);
 
   const objetTest = [
     {
