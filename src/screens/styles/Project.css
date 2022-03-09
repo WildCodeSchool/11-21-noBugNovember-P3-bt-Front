@@ -1,17 +1,15 @@
-.tabContainerNavOpen {
+.projectContainerNavOpen {
   margin-top: 50px;
   margin-left: 230px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   transition: all 0.5s;
 }
 
-.tabContainerNavClose {
+.projectContainerNavClose {
   margin-top: 50px;
   margin-left: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   transition: all 0.5s;
 }
