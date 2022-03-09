@@ -5,26 +5,29 @@ import './components/styles/Navbar.css'
 import Clients from './screens/Clients'
 import Experts from './screens/Experts'
 import Login from './screens/Login'
-import PageExpert from './screens/PageExpert'
 import Project from './screens/Project'
-import ProjectExpert from './screens/ProjectExpert'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
-import { useState } from 'react'
-
+import PageClient from './screens/PageClient'
+import PageProject from './screens/PageClient'
+import PageExpert from './screens/PageExpert'
+import PageExpertEdit from './screens/PageExpertEdit'
+import ProjectExpert from './screens/ProjectExpert'
 
 function App() {
-  const [isOpened, setIsOpened] = useState(false)
   return (
-    <div className="App">
+    <div className='App'>
       <Header />
-      <Navbar isOpened={isOpened} setIsOpened={setIsOpened} />
+      <Navbar />
       <Routes>
-        <Route path="/experts" element={<Experts />} />
-        <Route path="/pageExpert" element={<PageExpert />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='/clients' element={<Clients isOpened={isOpened} />} />
-        <Route path='/projects' element={<Project isOpened={isOpened} />} />
+        <Route path='/clients' element={<Clients />} />
+        <Route path='/experts' element={<Experts />} />
+        <Route path='/pageExpert' element={<PageExpert />} />
+        <Route path='/pageExpertEdit/:id' element={<PageExpertEdit />} />
+        <Route path='/pageClient' element={<PageClient />} />
+        <Route path='/pageProject' element={<PageProject />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/projects' element={<Project />} />
         <Route path='/projectexpert' element={<ProjectExpert />} />
       </Routes>
     </div>

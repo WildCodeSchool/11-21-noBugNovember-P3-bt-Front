@@ -21,94 +21,136 @@ const MidiProject = (props) => {
   const card = (
     <React.Fragment>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
+        <Typography
+          sx={{ fontSize: 14 }}
+          color='var(--firstColor)'
+          fontFamily='var(--fontTitle)'
+          gutterBottom
+        >
           <div className='midiCardHeader'>
             <h4>{project.status}</h4>
             <h4>{project.projectTitle}</h4>
             <h4>{project.numProject}</h4>
           </div>
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color='text.secondary'>
-          <p>
+        <div id='headerMidiCardBorder'></div>
+        <Typography
+          sx={{ mb: 1.5 }}
+          color='var(--firstColor)'
+          fontFamily='var(--fontBody)'
+        >
+          <div className='projectGroupMidi'>
             <ul>
               <li>
-                <div className='projectFieldName'>Quantity of Experts : </div>
+                <div className='projectFieldName'>Number of experts</div>
                 <div className='projectFieldContent'>
-                  {project.quantityExpert} required
+                  {project.quantityExpert}
                 </div>
               </li>
               <li>
-                <div className='projectFieldName'>Type of Expert : </div>
+                <div className='projectFieldName'>Type of experts</div>
                 <div className='projectFieldContent'>
                   {project.kindOfExpert}
                 </div>
               </li>
               <li>
-                <div className='projectFieldName'>Total price : </div>
+                <div className='projectFieldName'>Total Price</div>
                 <div className='projectFieldContent'>{project.totalPrice}</div>
               </li>
               <li>
-                <div className='projectFieldName'>ITW Start : </div>
+                <div className='projectFieldName'>ITW Start</div>
                 <div className='projectFieldContent'>{project.itwStart}</div>
               </li>
               <li>
-                <div className='projectFieldName'>ITW Deadline : </div>
+                <div className='projectFieldName'>ITW Deadline</div>
                 <div className='projectFieldContent'>{project.itwDeadline}</div>
               </li>
               <li>
-                <div className='projectFieldName'>Industry : </div>
+                <div className='projectFieldName'>Industry</div>
                 <div className='projectFieldContent'>{project.industry}</div>
               </li>
               <li>
-                <div className='projectFieldName'>Job Title : </div>
+                <div className='projectFieldName'>Job Title</div>
                 <div className='projectFieldContent'>{project.jobTitle}</div>
               </li>
               <li>
-                <div className='projectFieldName'>Function : </div>
+                <div className='projectFieldName'>Function</div>
                 <div className='projectFieldContent'>{project.fonction}</div>
               </li>
               <li>
-                <div className='projectFieldName'>Expertise Level : </div>
+                <div className='projectFieldName'>Years of Exp</div>
                 <div className='projectFieldContent'>
                   {project.expertiseLevelName}
                 </div>
               </li>
               <li>
-                <div className='projectFieldName'>Companies Examples : </div>
-                <div className='projectFieldContent'>
+                <div
+                  className={
+                    project.recommend_company ? 'projectFieldName' : 'hidden'
+                  }
+                >
+                  Companies Examples
+                </div>
+                <div
+                  className={
+                    project.recommend_company ? 'projectFieldContent' : 'hidden'
+                  }
+                >
                   {project.recommend_company}
                 </div>
               </li>
               <li>
-                <div className='projectFieldName'>Excluded Companies : </div>
-                <div className='projectFieldContent'>
+                <div
+                  className={
+                    project.exclude_company ? 'projectFieldName' : 'hidden'
+                  }
+                >
+                  Excluded Companies
+                </div>
+                <div
+                  className={
+                    project.exclude_company ? 'projectFieldContent' : 'hidden'
+                  }
+                >
                   {project.exclude_company}
                 </div>
               </li>
               <li>
-                <div className='projectFieldName'>Geo Expertise : </div>
+                <div className='projectFieldName'>Geo Expertise</div>
                 <div className='projectFieldContent'>
                   {project.geoExpertise}
                 </div>
               </li>
               <li>
-                <div className='projectFieldName'>Languages : </div>
+                <div className='projectFieldName'>Languages</div>
                 <div className='projectFieldContent'>{project.languages}</div>
               </li>
               <li>
-                <div className='projectFieldName'>Linkedin keywords : </div>
+                <div className='projectFieldName'>Linkedin Keywords</div>
                 <div className='projectFieldContent'>{project.linkedin}</div>
               </li>
             </ul>
-          </p>
+          </div>
+          <div className='buttonMidiProjectContainer'>
+            <button className='buttonMidiProject'>
+              Voir toutes les informations
+            </button>
+          </div>
         </Typography>
       </CardContent>
     </React.Fragment>
   )
 
   return (
-    <Box sx={{ maxWidth: 800 }} className='midiProjectContainer'>
-      <Card variant='outlined' className='midiCardProject'>
+    <Box className='midiProjectContainer'>
+      <Card
+        variant='outlined'
+        className='midiCardProject'
+        style={{
+          width: '600px',
+          backgroundColor: 'var(--cardBgColor)',
+        }}
+      >
         {card}
       </Card>
     </Box>

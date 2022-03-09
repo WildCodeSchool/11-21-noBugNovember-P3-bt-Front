@@ -11,9 +11,6 @@
   margin-bottom: 3em; */
 /* } */
 
-.cardProjectContainer {
-}
-
 .pProject {
   font-size: 85%;
 }
@@ -21,5 +18,19 @@ ul {
   list-style-type: none;
   padding-left: 0;
 }
+
+.projectGroup li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectGroup div {
+  max-width: 9em;
+}
 .projectTitle {
+  text-align: left;
+  font-weight: bold;
+}
+.projectTitle2 {
+  text-align: right;
 }

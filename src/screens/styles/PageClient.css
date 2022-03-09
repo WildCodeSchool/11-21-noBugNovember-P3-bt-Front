@@ -1,4 +1,4 @@
-.tabContainerExpert {
+.tabContainerClient {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   padding-left: 70px;
 }
 
-.pageExpert {
+.pageClient {
   border-radius: 20px;
   background-color: var(--secondColor);
   display: flex;
@@ -18,7 +18,7 @@
   width: 90vw;
 }
 
-.pageExpertForm {
+.pageClientForm {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -59,19 +59,15 @@
   background-color: var(--inputColor) !important;
 }
 
-.novalidated__control {
-  border: 1px solid red !important;
-}
-
 .columns textarea {
   width: 25vw;
   height: 9rem;
   margin-top: 0.5rem;
 }
 
-.pageExpertForm input,
-.pageExpertForm textarea,
-.pageExpertForm select {
+.pageClientForm input,
+.pageClientForm textarea,
+.pageClientForm select {
   background-color: var(--inputColor);
   border: none;
 }
@@ -111,7 +107,7 @@
   transform: scale(1.1);
 }
 
-.buttonAddExpert {
+.buttonAddClient {
   background-color: var(--firstColor);
   color: var(--secondColor);
   border: none;
@@ -121,7 +117,7 @@
   margin-right: 1rem;
 }
 
-.buttonAddExpert:hover {
+.buttonAddClient:hover {
   transform: scale(1.1);
 }
 
