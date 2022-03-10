@@ -45,6 +45,7 @@ const PageExpertEdit = () => {
   const [error, setError] = useState(false);
   const [optionHasChanged, setOptionHasChanged] = useState([]);
   const [newOptions, setNewOptions] = useState([]);
+  // const [newData, setNewData] = useState([]);
 
   //   State des Data de l'expert
   const [dataExpert, setDataExpert] = useState([]);
@@ -103,10 +104,21 @@ const PageExpertEdit = () => {
 
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
-  const handleCreate = (inputValue, table, column, set, selected, multiple) => {
+  const handleCreate = async (
+    inputValue,
+    table,
+    column,
+    set,
+    selected,
+    multiple,
+    option
+  ) => {
     console.log("inputValue", inputValue);
+    let newDataPoulet = [];
 
+    console.log("newDataPoulet initial", newDataPoulet);
     for (let i = 0; i < inputValue.length; i++) {
+      let temp = [];
       // If the Value is New
       if (Object.keys(inputValue[i]).includes("__isNew__")) {
         const newValue = {
@@ -114,24 +126,66 @@ const PageExpertEdit = () => {
           table: table,
           column: column,
         };
-        axios
+        temp = await axios
           .post("http://localhost:4040/experts/test", newValue)
           .then((res) => {
-            if (multiple === "solo") {
-              set([res.data]);
-            } else {
-              set([...selected, res.data]);
-            }
+            return res.data;
+
+            // setNewData(...newDataPoulet, res.data);
+
+            // if (multiple === "solo") {
+            //   newDataPoulet = res.data;
+            //   // setNewData([res.data]);
+            // } else {
+            //   console.log("selected new", selected);
+            //   newDataPoulet.push(res.data);
+            //   // setNewData(...newDataPoulet, res.data);
+            // }
           })
           .catch(function (error) {
             console.log(error);
           });
+        if (multiple === "solo") {
+          console.log("solo temp", temp);
+          newDataPoulet = temp;
+          // setNewData([res.data]);
+        } else {
+          console.log("multi temp", temp);
+          console.log("selected new", selected);
+          console.log("multi data", newDataPoulet);
+          // newDataPoulet.push(temp);
+          newDataPoulet = [...newDataPoulet, temp];
+          console.log("last newDataPoulet", newDataPoulet);
+          // setNewData(...newDataPoulet, res.data);
+        }
+
         // If the Value Is in DATABASE
-      } else if (!selected.includes(inputValue[i])) {
-        console.log("yooooooooo");
-        // set([...selected, inputValue[i]]);
+      } else {
+        if (multiple === "solo") {
+          const goodOpt = option.filter(
+            (el) => el.value === inputValue[i].value
+          );
+          console.log("g1", goodOpt);
+          newDataPoulet = goodOpt;
+          // setNewData(goodOpt);
+
+          // console.log("g1 data", newDataPoulet);
+        } else {
+          console.log("selected not new", selected);
+          const goodOpt2 = option.filter(
+            (el) => el.value === inputValue[i].value
+          );
+          // console.log("good option 2", goodOpt2);
+          // console.log("g2 data1", newDataPoulet);
+          newDataPoulet.push(...goodOpt2);
+
+          // setNewData([...newDataPoulet, ...goodOpt2]);
+          // console.log("g2 data2", newDataPoulet);
+        }
       }
     }
+    console.log("newDataPoulet 2", newDataPoulet);
+    set(newDataPoulet);
     // let filtered = inputValue.filter((el) =>
     //   Object.keys(el).includes("__isNew__")
     // );
@@ -155,19 +209,18 @@ const PageExpertEdit = () => {
     //   }
     // }
   };
-
   /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
-  const updateTest = () => {
-    axios.put("http://localhost:4040/experts/form/5", {
-      name: "Matt",
-      lastname: "Vimbert",
-      lol: undefined,
-      ville: "Bordeaux",
-      geo: [],
-      stringvide: "",
-    });
-  };
+  // const updateTest = () => {
+  //   axios.put("http://localhost:4040/experts/form/5", {
+  //     name: "Matt",
+  //     lastname: "Vimbert",
+  //     lol: undefined,
+  //     ville: "Bordeaux",
+  //     geo: [],
+  //     stringvide: "",
+  //   });
+  // };
 
   const onSubmit = (data) => {
     if (
@@ -483,7 +536,9 @@ const PageExpertEdit = () => {
                     "company",
                     "companyName",
                     setPcieSelected,
-                    pcieSelected
+                    pcieSelected,
+                    "multiple",
+                    pastCompaniesOptions
                   );
                 }}
               />
@@ -580,7 +635,7 @@ const PageExpertEdit = () => {
             </div>
           </div>
           <div className="checkOrTrash">
-            <button onClick={() => updateTest()}> Add </button>
+            <button onClick={() => onSubmit()}> Add </button>
             <FontAwesomeIcon icon={faTrashCan} size="lg" className="trashCan" />
           </div>
         </form>
