@@ -5,21 +5,25 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import './styles/Midi.css'
 
-const MidiProject = (props) => {
+const MidiProject = () => {
   const [project, setProject] = useState([])
+  const { id } = useParams()
 
   useEffect(() => {
-    axios.get('http://localhost:4040/projects/midicard/1').then((response) => {
-      setProject(response.data[0])
-    })
+    axios
+      .get(`http://localhost:4040/projects/midicard/${id}`)
+      .then((response) => {
+        setProject(response.data[0])
+      })
   }, [])
 
   console.log(project)
 
   const card = (
-    <React.Fragment>
+    <React.Fragment className='midiProjectContainer'>
       <CardContent>
         <Typography
           sx={{ fontSize: 14 }}
