@@ -25,7 +25,6 @@ const PageExpertEdit = () => {
   const [companyOptions, setCompanyOptions] = useState([]);
   const [pastCompaniesOptions, setPastCompaniesOptions] = useState([]);
   const [projectsOptions, setProjectsOptions] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState([]);
   const [geoSelected, setGeoSelected] = useState([]);
   const [langSelected, setLangSelected] = useState([]);
   const [practiceSelected, setPracticeSelected] = useState([]);
@@ -42,10 +41,12 @@ const PageExpertEdit = () => {
   const [phoneSelected, setPhoneSelected] = useState([]);
   const [emailSelected, setEmailSelected] = useState([]);
   const [linkedinSelected, setLinkedinSelected] = useState([]);
+  const [keywordsSelected, setKeyWordsSelected] = useState([]);
+  const [feedbackSelected, setFeedbackSelected] = useState([]);
+  const [priceSelected, setPriceSelected] = useState([]);
+  const [costSelected, setCostSelected] = useState([]);
   const [error, setError] = useState(false);
-  const [optionHasChanged, setOptionHasChanged] = useState([]);
   const [newOptions, setNewOptions] = useState([]);
-  // const [newData, setNewData] = useState([]);
 
   //   State des Data de l'expert
   const [dataExpert, setDataExpert] = useState([]);
@@ -80,7 +81,7 @@ const PageExpertEdit = () => {
   useEffect(() => {
     const dataExpertFunc = () => {
       axios.get(`http://localhost:4040/experts/form/${id}`).then((res) => {
-        console.log("rest.data", res.data) || setDataExpert(res.data);
+        setDataExpert(res.data);
         setNumExpertSelected(res.data.numExpert);
         setFirstNameSelected(res.data.firstname);
         setLastNameSelected(res.data.lastname);
@@ -97,6 +98,10 @@ const PageExpertEdit = () => {
         setPjtSelected(res.data.projects);
         setCtcSelected(res.data.contact);
         setGeoSelected(res.data.geoExpertiseName);
+        setCostSelected(res.data.cost);
+        setFeedbackSelected(res.data.feedbackExpert);
+        setKeyWordsSelected(res.data.keywords);
+        setPriceSelected(res.data.price);
       });
     };
     dataExpertFunc();
@@ -111,12 +116,10 @@ const PageExpertEdit = () => {
     set,
     selected,
     multiple,
-    option
+    option,
+    setOption
   ) => {
-    console.log("inputValue", inputValue);
     let newDataPoulet = [];
-
-    console.log("newDataPoulet initial", newDataPoulet);
     for (let i = 0; i < inputValue.length; i++) {
       let temp = [];
       // If the Value is New
@@ -129,100 +132,38 @@ const PageExpertEdit = () => {
         temp = await axios
           .post("http://localhost:4040/experts/test", newValue)
           .then((res) => {
+            setOption([...option, res.data]);
             return res.data;
-
-            // setNewData(...newDataPoulet, res.data);
-
-            // if (multiple === "solo") {
-            //   newDataPoulet = res.data;
-            //   // setNewData([res.data]);
-            // } else {
-            //   console.log("selected new", selected);
-            //   newDataPoulet.push(res.data);
-            //   // setNewData(...newDataPoulet, res.data);
-            // }
           })
           .catch(function (error) {
             console.log(error);
           });
         if (multiple === "solo") {
-          console.log("solo temp", temp);
           newDataPoulet = temp;
-          // setNewData([res.data]);
         } else {
-          console.log("multi temp", temp);
-          console.log("selected new", selected);
-          console.log("multi data", newDataPoulet);
-          // newDataPoulet.push(temp);
           newDataPoulet = [...newDataPoulet, temp];
-          console.log("last newDataPoulet", newDataPoulet);
-          // setNewData(...newDataPoulet, res.data);
         }
-
+        temp = [];
         // If the Value Is in DATABASE
       } else {
         if (multiple === "solo") {
           const goodOpt = option.filter(
             (el) => el.value === inputValue[i].value
           );
-          console.log("g1", goodOpt);
           newDataPoulet = goodOpt;
-          // setNewData(goodOpt);
-
-          // console.log("g1 data", newDataPoulet);
         } else {
-          console.log("selected not new", selected);
           const goodOpt2 = option.filter(
             (el) => el.value === inputValue[i].value
           );
-          // console.log("good option 2", goodOpt2);
-          // console.log("g2 data1", newDataPoulet);
           newDataPoulet.push(...goodOpt2);
-
-          // setNewData([...newDataPoulet, ...goodOpt2]);
-          // console.log("g2 data2", newDataPoulet);
         }
       }
     }
-    console.log("newDataPoulet 2", newDataPoulet);
+
     set(newDataPoulet);
-    // let filtered = inputValue.filter((el) =>
-    //   Object.keys(el).includes("__isNew__")
-    // );
-    // for (let i = 0; i < filtered.length; i++) {
-    //   if (newOptions.includes(filtered[i].value)) {
-    //     console.log("deja existant :", filtered[i]);
-    //   } else {
-    //     setNewOptions(...newOptions, filtered[i].value);
-    //     const newValue = {
-    //       value: filtered[i].value,
-    //       table: table,
-    //       column: column,
-    //     };
-    //     console.log("newValue", newValue);
-    //     axios
-    //       .post("http://localhost:4040/experts/test", newValue)
-    //       .then((res) => setLangSelected([...langSelected, res.data]))
-    //       .catch(function (error) {
-    //         console.log(error);
-    //       });
-    //   }
-    // }
   };
-  /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
-  // const updateTest = () => {
-  //   axios.put("http://localhost:4040/experts/form/5", {
-  //     name: "Matt",
-  //     lastname: "Vimbert",
-  //     lol: undefined,
-  //     ville: "Bordeaux",
-  //     geo: [],
-  //     stringvide: "",
-  //   });
-  // };
-
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (
       yoeSelected.length !== 0 &&
       cieSelected.length !== 0 &&
@@ -241,18 +182,15 @@ const PageExpertEdit = () => {
       let yoeDatas = [];
       let jobDatas = [];
       const practice_id = practiceSelected.id;
-      geoSelected.forEach((geo) => geoDatas.push(geo.id));
-      langSelected.forEach((lang) => langDatas.push(lang.id));
-      pcieSelected.forEach((pcie) => pcieDatas.push(pcie.id));
-      ctcSelected.forEach((ctc) => ctcDatas.push(ctc.id));
-      pjtSelected.forEach((pjt) => pjtDatas.push(pjt.id));
-      console.log("coucouthomash", cieSelected);
-      cieSelected.forEach((cie) => cieDatas.push(cie.id));
-      koeSelected.forEach(
-        (koe) => console.log("koe test", koe) || koeDatas.push(koe.id)
-      );
-      yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
-      jobSelected.forEach((job) => jobDatas.push(job.id));
+      geoSelected.forEach((geo) => geo.id && geoDatas.push(geo.id));
+      langSelected.forEach((lang) => lang.id && langDatas.push(lang.id));
+      pcieSelected.forEach((pcie) => pcie.id && pcieDatas.push(pcie.id));
+      ctcSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
+      pjtSelected.forEach((pjt) => pjt.id && pjtDatas.push(pjt.id));
+      cieSelected.forEach((cie) => cie.id && cieDatas.push(cie.id));
+      koeSelected.forEach((koe) => koe.id && koeDatas.push(koe.id));
+      yoeSelected.forEach((yoe) => yoe.id && yoeDatas.push(yoe.id));
+      jobSelected.forEach((job) => job.id && jobDatas.push(job.id));
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
       let languages_id = { languages_id: [...langDatas] };
       let pastCompany_id = { pastCompany_id: [...pcieDatas] };
@@ -262,13 +200,27 @@ const PageExpertEdit = () => {
       let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
       let jobtitle_id = { jobtitle_id: [...jobDatas] };
+
       let datas = {
-        ...data,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        phone: data.phone,
+        company_id: data.company_id,
+        linkedinProfile: data.linkedinProfile,
+        price: data.price,
+        numExpert: data.numExpert,
+        kindOfExpert_id: data.kindOfExpert_id,
+        practice_id: data.practice_id,
+        expertiseLevel_id: data.expertiseLevel_id,
+        feedbackExpert: data.feedbackExpert,
+        cost: data.cost,
+        keywords: data.keywords,
+        jobtitle_id: data.jobtitle_id,
         ...geoExpertise_id,
         ...languages_id,
         ...jobtitle_id,
         ...kindOfExpert_id,
-        practice_id,
         ...pastCompany_id,
         ...contactType_id,
         ...projects_id,
@@ -276,8 +228,11 @@ const PageExpertEdit = () => {
         ...expertiseLevel_id,
       };
       console.log("datas", datas);
-      // axios.post("http://localhost:4040/experts/", datas);
-      // navigate("/experts");
+      axios
+        .put(`http://localhost:4040/experts/form/${id}`, datas)
+        .then(function (res) {
+          navigate("/experts");
+        });
     } else {
       setError(true);
       console.log("Form error", yoeSelected);
@@ -397,7 +352,10 @@ const PageExpertEdit = () => {
                     "contacttype",
                     "contactTypeName",
                     setCtcSelected,
-                    ctcSelected
+                    ctcSelected,
+                    "multiple",
+                    contactsOptions,
+                    setContactsOptions
                   );
                 }}
               />
@@ -435,7 +393,8 @@ const PageExpertEdit = () => {
                     "kindOfExpertName",
                     setKoeSelected,
                     koeSelected,
-                    "solo"
+                    "solo",
+                    kindOfExpertOptions
                   );
                 }}
               />
@@ -457,7 +416,10 @@ const PageExpertEdit = () => {
                     "geoexpertise",
                     "geoExpertiseName",
                     setGeoSelected,
-                    geoSelected
+                    geoSelected,
+                    "multiple",
+                    geoExpertiseOptions,
+                    setGeoExpertiseOptions
                   );
                 }}
               />
@@ -492,7 +454,8 @@ const PageExpertEdit = () => {
                     "jobTitleName",
                     setJobSelected,
                     jobSelected,
-                    "solo"
+                    "solo",
+                    jobTitleOptions
                   );
                 }}
               />
@@ -515,7 +478,8 @@ const PageExpertEdit = () => {
                     "companyName",
                     setCieSelected,
                     cieSelected,
-                    "solo"
+                    "solo",
+                    companyOptions
                   );
                 }}
               />
@@ -538,7 +502,8 @@ const PageExpertEdit = () => {
                     setPcieSelected,
                     pcieSelected,
                     "multiple",
-                    pastCompaniesOptions
+                    pastCompaniesOptions,
+                    setPastCompaniesOptions
                   );
                 }}
               />
@@ -553,7 +518,8 @@ const PageExpertEdit = () => {
                 type="number"
                 role="presentation"
                 {...register("price")}
-                value={dataExpert.price}
+                value={priceSelected}
+                onChange={(e) => setPriceSelected(e.target.value)}
               ></input>
             </div>
             <div className="columnsDiv">
@@ -564,7 +530,8 @@ const PageExpertEdit = () => {
                 type="number"
                 role="presentation"
                 {...register("cost")}
-                value={dataExpert.cost}
+                value={costSelected}
+                onChange={(e) => setCostSelected(e.target.value)}
               ></input>
             </div>
             <div className="columnsDiv">
@@ -576,7 +543,8 @@ const PageExpertEdit = () => {
                 cols="60"
                 role="presentation"
                 {...register("feedbackExpert")}
-                value={dataExpert.feedbackExpert}
+                value={feedbackSelected}
+                onChange={(e) => setFeedbackSelected(e.target.value)}
               ></textarea>
             </div>
             <div className="columnsSelect">
@@ -596,7 +564,8 @@ const PageExpertEdit = () => {
                     "expertiseLevelName",
                     setYoeSelected,
                     yoeSelected,
-                    "solo"
+                    "solo",
+                    yearsOfExperienceOptions
                   );
                 }}
               />
@@ -617,7 +586,10 @@ const PageExpertEdit = () => {
                     "languages",
                     "languagesName",
                     setLangSelected,
-                    langSelected
+                    langSelected,
+                    "multiple",
+                    languagesOptions,
+                    setLanguagesOptions
                   );
                 }}
               />
@@ -630,7 +602,8 @@ const PageExpertEdit = () => {
                 type="text"
                 role="presentation"
                 {...register("keywords")}
-                value={dataExpert.keywords}
+                value={keywordsSelected}
+                onChange={(e) => setKeyWordsSelected(e.target.value)}
               ></input>
             </div>
           </div>
