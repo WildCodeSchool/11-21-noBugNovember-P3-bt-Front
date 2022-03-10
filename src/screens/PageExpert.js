@@ -23,6 +23,7 @@ const PageExpert = () => {
   const [companyOptions, setCompanyOptions] = useState([])
   const [pastCompaniesOptions, setPastCompaniesOptions] = useState([])
   const [projectsOptions, setProjectsOptions] = useState([])
+  const [induOptions, setInduOptions] = useState([])
   const [selectedOptions, setSelectedOptions] = useState([])
   const [geoSelected, setGeoSelected] = useState([])
   const [langSelected, setLangSelected] = useState([])
@@ -34,6 +35,7 @@ const PageExpert = () => {
   const [pcieSelected, setPcieSelected] = useState([])
   const [ctcSelected, setCtcSelected] = useState([])
   const [pjtSelected, setPjtSelected] = useState([])
+  const [induSelected, setInduSelected] = useState([])
   const [error, setError] = useState(false)
 
   const [optionHasChanged, setOptionHasChanged] = useState([])
@@ -57,6 +59,7 @@ const PageExpert = () => {
     setCompanyOptions(options.companies)
     setPastCompaniesOptions(options.companies)
     setProjectsOptions(options.projects)
+    setInduOptions(options.industry)
   }, [options])
 
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
@@ -117,7 +120,7 @@ const PageExpert = () => {
 
   const onSubmit = (data) => {
     console.log('yoe', yoeSelected, 'cie', cieSelected, 'job', jobSelected, 'pr', practiceSelected, 'koe', koeSelected)
-    if (yoeSelected.length !== 0 && cieSelected.length !== 0 && jobSelected.length !== 0 && practiceSelected && koeSelected.length !== 0) {
+    if (yoeSelected.length !== 0 && cieSelected.length !== 0 && jobSelected.length !== 0 && induSelected.length !== 0 && practiceSelected && koeSelected.length !== 0) {
       setError(false)
 
       let geoDatas = []
@@ -129,6 +132,7 @@ const PageExpert = () => {
       let koeDatas = []
       let yoeDatas = []
       let jobDatas = []
+      let induDatas = []
       const practice_id = practiceSelected.id
 
       geoSelected.forEach((geo) => geoDatas.push(geo.id))
@@ -140,6 +144,7 @@ const PageExpert = () => {
       koeSelected.forEach((koe) => console.log('koe test', koe) || koeDatas.push(koe.id))
       yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id))
       jobSelected.forEach((job) => jobDatas.push(job.id))
+      induSelected.forEach((indu) => induDatas.push(indu.id))
 
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] }
       let languages_id = { languages_id: [...langDatas] }
@@ -150,6 +155,7 @@ const PageExpert = () => {
       let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] }
       let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] }
       let jobtitle_id = { jobtitle_id: [...jobDatas] }
+      let industry_id = { industry_id: [...induDatas] }
 
       let datas = {
         ...data,
@@ -163,6 +169,7 @@ const PageExpert = () => {
         ...projects_id,
         ...company_id,
         ...expertiseLevel_id,
+        ...industry_id,
       }
 
       console.log('datas', datas)
@@ -181,7 +188,6 @@ const PageExpert = () => {
 
   return (
     <div className='tabContainerForm '>
-      {' '}
       <div className='pageForm'>
         <FontAwesomeIcon icon={faCircleXmark} size='xl' className='circle' onClick={() => navigate(-1)} />
         <form className='pageFormInside' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
@@ -276,7 +282,17 @@ const PageExpert = () => {
                 }}
               />
             </div>
-
+            <div className='columnsSelect'>
+              <label htmlFor='industry'>Industries</label>
+              <CreatableSelect
+                closeMenuOnSelect={false}
+                options={induOptions}
+                isMulti
+                className='basic-multi-select'
+                classNamePrefix='select'
+                onChange={(e) => handleCreate(e, 'industry', 'industryName', setInduSelected, induSelected)}
+              />
+            </div>
             <div className='columnsSelect'>
               <label htmlFor='companyOptions'>Company</label>
               <CreatableSelect
