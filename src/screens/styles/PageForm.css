@@ -1,4 +1,4 @@
-.tabContainerExpert {
+.tabContainerForm {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   padding-left: 70px;
 }
 
-.pageExpert {
+.pageForm {
   border-radius: 20px;
   background-color: var(--secondColor);
   display: flex;
@@ -18,7 +18,7 @@
   width: 90vw;
 }
 
-.pageExpertForm {
+.pageFormInside {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -69,9 +69,9 @@
   margin-top: 0.5rem;
 }
 
-.pageExpertForm input,
-.pageExpertForm textarea,
-.pageExpertForm select {
+.pageFormInside input,
+.pageFormInside textarea,
+.pageFormInside select {
   background-color: var(--inputColor);
   border: none;
 }
@@ -111,7 +111,7 @@
   transform: scale(1.1);
 }
 
-.buttonAddExpert {
+.buttonAddForm {
   background-color: var(--firstColor);
   color: var(--secondColor);
   border: none;
@@ -121,7 +121,7 @@
   margin-right: 1rem;
 }
 
-.buttonAddExpert:hover {
+.buttonAddForm:hover {
   transform: scale(1.1);
 }
 

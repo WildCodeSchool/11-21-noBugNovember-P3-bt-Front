@@ -1,4 +1,4 @@
-import './styles/PageClient.css'
+import './styles/PageForm.css'
 
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -27,11 +27,7 @@ const PageClient = () => {
 
   useEffect(() => {
     const getOptions = () => {
-      axios
-        .get('http://localhost:4040/clients/form')
-        .then(
-          (res) => console.log('res.data', res.data) || setOptions(res.data)
-        )
+      axios.get('http://localhost:4040/clients/form').then((res) => console.log('res.data', res.data) || setOptions(res.data))
     }
     getOptions()
   }, [])
@@ -69,118 +65,54 @@ const PageClient = () => {
     axios.post('http://localhost:4040/clients/test', datas)
   }
   return (
-    <div className='tabContainerClient'>
+    <div className='tabContainerForm'>
       {' '}
-      <div className='pageClient'>
-        <FontAwesomeIcon
-          icon={faCircleXmark}
-          size='xl'
-          className='circle'
-          onClick={() => navigate(-1)}
-        />
-        <form
-          className='pageClientForm'
-          autoComplete='off'
-          onSubmit={handleSubmit(onSubmit)}
-        >
+      <div className='pageForm'>
+        <FontAwesomeIcon icon={faCircleXmark} size='xl' className='circle' onClick={() => navigate(-1)} />
+        <form className='pageFormInside' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
           <div className='columns'>
             <div id='idWrapper' className='columnsDiv'>
               <h1 id='client'>CLIENT</h1>
               <div id='clientNumber'>
                 <label for='number'>N°</label>
-                <input
-                  id='number'
-                  name='number'
-                  type='key'
-                  {...register('numExpert')}
-                ></input>
+                <input id='number' name='number' type='key' {...register('numExpert')}></input>
               </div>
             </div>
             <div className='columnsDiv'>
               <label for='firstName'>FirstName</label>
-              <input
-                id='firstName'
-                name='firstName'
-                type='text'
-                autocomplete='off'
-                {...register('firstname')}
-              ></input>
+              <input id='firstName' name='firstName' type='text' autocomplete='off' {...register('firstname')}></input>
             </div>
             <div className='columnsDiv'>
               <label for='lastName'>LastName</label>
-              <input
-                autocomplete='off'
-                id='lastName'
-                name='lastName'
-                type='text'
-                {...register('lastName')}
-              ></input>
+              <input autocomplete='off' id='lastName' name='lastName' type='text' {...register('lastName')}></input>
             </div>
             <div className='columnsDiv'>
               <label for='phone'>Phone</label>
-              <input
-                id='phone'
-                name='phone'
-                type='tell'
-                role='presentation'
-                autoComplete='off'
-                {...register('phone')}
-              ></input>
+              <input id='phone' name='phone' type='tell' role='presentation' autoComplete='off' {...register('phone')}></input>
             </div>
             <div className='columnsDiv'>
               <label for='email'>Email</label>
-              <input
-                id='email'
-                name='email'
-                type='email'
-                role='presentation'
-                {...register('email')}
-              ></input>
+              <input id='email' name='email' type='email' role='presentation' {...register('email')}></input>
             </div>
 
             <div className='columnsDiv'>
               <label for='projects'>Country</label>
-              <input
-                id='country'
-                name='country'
-                type='text'
-                role='presentation'
-                {...register('country')}
-              ></input>
+              <input id='country' name='country' type='text' role='presentation' {...register('country')}></input>
             </div>
             <div className='columnsDiv'>
               <label for='projects'>City</label>
-              <input
-                id='city'
-                name='city'
-                type='text'
-                role='presentation'
-                {...register('city')}
-              ></input>
+              <input id='city' name='city' type='text' role='presentation' {...register('city')}></input>
             </div>
           </div>
 
           <div className='columns'>
             <div className='columnsDiv'>
               <label for='projects'>Business Name</label>
-              <input
-                id='Business Name'
-                name='Business Name'
-                type='text'
-                role='presentation'
-                {...register('Business Name')}
-              ></input>
+              <input id='Business Name' name='Business Name' type='text' role='presentation' {...register('Business Name')}></input>
             </div>
             <div className='columnsSelect'>
               <label for='kindOfExpertOptions'>Projects</label>
-              <Select
-                closeMenuOnSelect={false}
-                options={projectsOptions}
-                isMulti
-                className='basic-multi-select'
-                classNamePrefix='select'
-                onChange={(e) => setProjectsSelected(e)}
-              />
+              <Select closeMenuOnSelect={false} options={projectsOptions} isMulti className='basic-multi-select' classNamePrefix='select' onChange={(e) => setProjectsSelected(e)} />
             </div>
             <div className='columnsSelect'>
               <label for='geoExpertise'>Function</label>
@@ -220,15 +152,7 @@ const PageClient = () => {
             </div>
             <div className='columnsSelect'>
               <label for='geoExpertise'>Desired Serviced</label>
-              <Select
-                closeMenuOnSelect={false}
-                options={dsOptions}
-                isMulti
-                className='basic-multi-select'
-                classNamePrefix='select'
-                defaultValue={selectedOptions}
-                onChange={(e) => setDsSelected(e)}
-              />
+              <Select closeMenuOnSelect={false} options={dsOptions} isMulti className='basic-multi-select' classNamePrefix='select' defaultValue={selectedOptions} onChange={(e) => setDsSelected(e)} />
             </div>
           </div>
           <div className='checkOrTrash'>

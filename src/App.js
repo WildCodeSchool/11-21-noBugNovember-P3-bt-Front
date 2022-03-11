@@ -9,7 +9,7 @@ import Project from './screens/Project'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import PageClient from './screens/PageClient'
-import PageProject from './screens/PageClient'
+import PageProject from './screens/PageProject'
 import PageExpert from './screens/PageExpert'
 import PageExpertEdit from './screens/PageExpertEdit'
 import ProjectExpert from './screens/ProjectExpert'
@@ -28,7 +28,7 @@ function App() {
         <Route path='/pageProject' element={<PageProject />} />
         <Route path='/login' element={<Login />} />
         <Route path='/projects' element={<Project />} />
-        <Route path='/projectexpert' element={<ProjectExpert />} />
+        <Route path='/projectexpert/:id' element={<ProjectExpert />} />
       </Routes>
     </div>
   )

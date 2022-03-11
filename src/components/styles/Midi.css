@@ -1,3 +1,8 @@
+/* MidiProject */
+.midiProjectContainer {
+  grid-area: 2 / 1 / 4 / 2;
+}
+
 .midiCardHeader {
   display: flex;
   justify-content: space-around;
@@ -6,6 +11,10 @@
 
 .hidden {
   display: none;
+}
+
+.background2 {
+  background-color: var(--cardBgColor2);
 }
 
 #headerMidiCardBorder {
@@ -72,4 +81,43 @@ ul {
 .buttonMidiProject:active {
   position: relative;
   top: 1px;
+}
+
+/* MidiExpert */
+.midiExpertContainer {
+  grid-area: 2 / 2 / 4 / 4;
+  display: flex;
+  flex-flow: row wrap;
+  overflow: scroll;
+}
+
+.midiExpertCard {
+  background-color: rgba(255, 255, 255, 0.7);
+  /* box-shadow: 0px 0px 3px 0px #ffffff; */
+  border-radius: 1%;
+  width: 16em;
+  height: 20em;
+  margin: 0 10px 20px 10px;
+  padding: 10px;
+}
+
+.separation {
+  height: 1px;
+  background-color: var(--firstColor);
+  margin: 5px 0 10px 0;
+}
+
+.infoExpert {
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.part2 > li {
+  display : flex; 
+  justify-content: space-between;
+}
+
+.part1 > li, .part2 > li {
+  padding : 3px; 
 }

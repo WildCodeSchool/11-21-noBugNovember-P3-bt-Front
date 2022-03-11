@@ -4,8 +4,11 @@
   --firstColor: #373472;
   --secondColor: #fff;
   --scrollColor: #e5e5e5;
+  --background: rgb(150, 183, 213);
+  --backgroundGradient: linear-gradient(90deg, rgba(150, 183, 213, 1) 25%, rgba(114, 127, 199, 1) 70%);
   --inputColor: rgba(181, 188, 240, 0.3);
   --cardBgColor: rgba(250, 250, 250, 0.8);
+  --cardBgColor2: rgb(150, 183, 213, 0.2);
   --fontBody: 'Montserrat' 300, sans-serif;
   --fontTitle: 'Montserrat' 600, sans-serif;
   --fontWeight: 'Montserrat' 400, sans-serif;
@@ -19,17 +22,14 @@
 
 a {
   text-decoration: none;
+  color : var(--firstColor); 
 }
 
 body {
   font-family: var(--fontBody);
   color: var(--firstColor);
-  background: rgb(150, 183, 213);
-  background: linear-gradient(
-    90deg,
-    rgba(150, 183, 213, 1) 25%,
-    rgba(114, 127, 199, 1) 70%
-  );
+  background: var(--background);
+  background: var(--backgroundGradient);
   min-height: 100vh;
 }
 
@@ -83,18 +83,4 @@ h1 {
 
 .tableau {
   width: 100%;
-}
-
-.buttonAddForm {
-  background-color: var(--firstColor);
-  color: var(--secondColor);
-  border: none;
-  width: 3rem;
-  border-radius: 0.3rem;
-  padding: 0.3rem;
-  margin-right: 1rem;
-}
-
-.buttonAddForm:hover {
-  transform: scale(1.1);
 }
