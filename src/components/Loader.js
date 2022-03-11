@@ -68,7 +68,7 @@ function Loader() {
 
       <div className='statusContainer'>
         <details onToggle={() => setProjectsTBC(!projectsTBC)}>
-          <summary>TO BE CONFIRMED BY OUR CLIENT</summary>
+          <summary>TO BE CONFIRMED</summary>
           {projectsTBC && (
             <CardProjectsList
               projects={projects.filter(
@@ -79,7 +79,7 @@ function Loader() {
         </details>
       </div>
 
-      <div className='statusContainer'>
+      {/* <div className='statusContainer'>
         <details onToggle={() => setProjectsNO(!projectsNO)}>
           <summary>SANS STATUS</summary>
           {projectsNO && (
@@ -88,7 +88,7 @@ function Loader() {
             />
           )}
         </details>
-      </div>
+      </div> */}
     </div>
   )
 }
