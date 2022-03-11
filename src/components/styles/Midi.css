@@ -96,14 +96,28 @@ ul {
   /* box-shadow: 0px 0px 3px 0px #ffffff; */
   border-radius: 1%;
   width: 16em;
+  height: 20em;
   margin: 0 10px 20px 10px;
+  padding: 10px;
 }
 
 .separation {
-  border: 0.5px solid var(--firstColor);
-  /* margin: 5px 0;  */
+  height: 1px;
+  background-color: var(--firstColor);
+  margin: 5px 0 10px 0;
 }
 
-.paddingMidiExpert {
-  padding: 10px;
+.infoExpert {
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.part2 > li {
+  display : flex; 
+  justify-content: space-between;
+}
+
+.part1 > li, .part2 > li {
+  padding : 3px; 
 }

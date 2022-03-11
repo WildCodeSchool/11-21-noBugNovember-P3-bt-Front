@@ -24,7 +24,7 @@ const ProjectExpert = () => {
           <div>Language</div>
           <div>Years of Exp</div>
           <div>Company</div>
-          <div>Excluded Company</div>
+          <div>Feedback</div>
           <div>Keywords</div>
         </ul>
       </div>
