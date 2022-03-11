@@ -119,7 +119,6 @@ const PageProject = () => {
       setError(false)
 
       const client_id = clientSelected.id
-      const practice_id = practiceSelected.id
       const status_id = statusSelected.id
 
       let ecieDatas = []
@@ -130,6 +129,7 @@ const PageProject = () => {
       let koeDatas = []
       let langDatas = []
       let linDatas = []
+      let praDatas = []
       let ptDatas = []
       let rcieDatas = []
       let seDatas = []
@@ -143,6 +143,7 @@ const PageProject = () => {
       koeSelected.forEach((koe) => console.log('koe test', koe) || koeDatas.push(koe.id))
       langSelected.forEach((lang) => langDatas.push(lang.id))
       linSelected.forEach((lin) => linDatas.push(lin.id))
+      practiceSelected.forEach((pra) => praDatas.push(pra.id))
       ptSelected.forEach((pt) => ptDatas.push(pt.id))
       rcieSelected.forEach((rcie) => rcieDatas.push(rcie.id))
       seSelected.forEach((se) => seDatas.push(se.id))
@@ -152,10 +153,11 @@ const PageProject = () => {
       let fonction_id = { fonction_id: [...fonDatas] }
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] }
       let industry_id = { industry_id: [...indDatas] }
-      let jobtitle_id = { jobtitle_id: [...jobDatas] }
+      let jobTitle_id = { jobTitle_id: [...jobDatas] }
       let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] }
       let languages_id = { languages_id: [...langDatas] }
       let linkedinKeywords_id = { linkedinKeywords_id: [...linDatas] }
+      let practice_id = { practice_id: [...praDatas] }
       let projectType_id = { projectType_id: [...ptDatas] }
       let exampleCompany_id = { exampleCompany_id: [...ecieDatas] }
       let service_id = { service_id: [...seDatas] }
@@ -163,17 +165,17 @@ const PageProject = () => {
 
       let datas = {
         client_id,
-        practice_id,
         status_id,
         ...data,
         ...excludedCompany_id,
         ...fonction_id,
         ...geoExpertise_id,
         ...industry_id,
-        ...jobtitle_id,
+        ...jobTitle_id,
         ...kindOfExpert_id,
         ...languages_id,
         ...linkedinKeywords_id,
+        ...practice_id,
         ...projectType_id,
         ...exampleCompany_id,
         ...service_id,
@@ -210,7 +212,7 @@ const PageProject = () => {
 
             <div className='columnsDiv'>
               <label htmlFor='projectTitle'>Project Title</label>
-              <input id='projectTitle' name='projectTitle' type='text' {...register('projectTitle')}></input>
+              <input id='projectTitle' name='projectTitle' type='text' autocomplete='off' {...register('projectTitle')}></input>
             </div>
 
             <div className='columnsSelect'>
@@ -221,19 +223,20 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='serviceOptions'>Service</label>
               <CreatableSelect
+                closeMenuOnSelect={false}
                 options={serviceOptions}
                 isMulti
                 className='basic-multi-select'
                 classNamePrefix='select'
                 onChange={(e) => {
-                  handleCreate([e], 'service', 'serviceName', setSeSelected, seSelected)
+                  handleCreate(e, 'service', 'serviceName', setSeSelected, seSelected)
                 }}
               />
             </div>
 
             <div className='columnsDiv'>
               <label htmlFor='totalPrice'>Total Price</label>
-              <input id='totalPrice' name='totalPrice' type='number' {...register('totalPrice')}></input>
+              <input id='totalPrice' name='totalPrice' type='number' autocomplete='off' {...register('totalPrice')}></input>
             </div>
 
             <div className='columnsSelect'>
@@ -244,49 +247,56 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='projectType'>Project Type</label>
               <CreatableSelect
-                closeMenuOnSelect={false}
                 options={projectTypeOptions}
                 className='basic-multi-select'
                 classNamePrefix='select'
                 onChange={(e) => {
-                  handleCreate(e, 'projecttype', 'projectTypeName', setPtSelected, ptSelected)
+                  handleCreate([e], 'projecttype', 'projectTypeName', setPtSelected, ptSelected)
                 }}
               />
             </div>
 
             <div className='columnsDiv'>
               <label htmlFor='itwStart'>ITW Start</label>
-              <input id='itwStart' name='itwStart' type='text' role='presentation' {...register('itwStart')}></input>
+              <input id='itwStart' name='itwStart' type='text' role='presentation' autocomplete='off' {...register('itwStart')}></input>
             </div>
 
             <div className='columnsDiv'>
               <label htmlFor='itwDeadline'>ITW Deadline</label>
-              <input id='itwDeadline' name='itwDeadline' type='text' role='presentation' {...register('itwDeadline')}></input>
+              <input id='itwDeadline' name='itwDeadline' type='text' role='presentation' autocomplete='off' {...register('itwDeadline')}></input>
             </div>
           </div>
 
           <div className='columns'>
             <div className='columnsDiv'>
               <label htmlFor='quantityExpert'>Quantity</label>
-              <input id='quantityExpert' name='quantityExpert' type='number' {...register('quantityExpert')}></input>
+              <input id='quantityExpert' name='quantityExpert' type='number' autocomplete='off' {...register('quantityExpert')}></input>
             </div>
 
             <div className='columnsSelect'>
               <label htmlFor='kindOfExpertOptions'>Type</label>
               <CreatableSelect
+                closeMenuOnSelect={false}
                 options={kindOfExpertOptions}
                 isMulti
                 className='basic-multi-select'
                 classNamePrefix='select'
                 onChange={(e) => {
-                  handleCreate([e], 'kindofexpert', 'kindOfExpertName', setKoeSelected, koeSelected)
+                  handleCreate(e, 'kindofexpert', 'kindOfExpertName', setKoeSelected, koeSelected)
                 }}
               />
             </div>
 
             <div className='columnsSelect'>
               <label htmlFor='practice'>Practice</label>
-              <Select options={practiceOptions} isMulti className='basic-multi-select' classNamePrefix='select' onChange={(e) => setPracticeSelected(e)} />
+              <Select
+                closeMenuOnSelect={false}
+                options={practiceOptions}
+                isMulti
+                className='basic-multi-select'
+                classNamePrefix='select'
+                onChange={(e) => console.log('practice:', e) || setPracticeSelected(e)}
+              />
             </div>
 
             <div className='columnsSelect'>
@@ -306,6 +316,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='rCompaniesOptions'>Companies Examples</label>
               <CreatableSelect
+                closeMenuOnSelect={false}
                 options={rCompaniesOptions}
                 isMulti
                 className='basic-multi-select'
@@ -331,26 +342,29 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='jobTitle'>Job Title</label>
               <CreatableSelect
+                closeMenuOnSelect={false}
                 options={jobTitleOptions}
                 isMulti
                 className='basic-multi-select'
                 classNamePrefix='select'
                 onChange={(e) => {
-                  handleCreate([e], 'jobtitle', 'jobTitleName', setJobSelected, jobSelected)
+                  handleCreate(e, 'jobtitle', 'jobTitleName', setJobSelected, jobSelected)
                 }}
               />
             </div>
           </div>
+
           <div className='columns'>
             <div className='columnsSelect'>
-              <label htmlFor='function'>Function</label>
+              <label htmlFor='fonction'>Function</label>
               <CreatableSelect
+                closeMenuOnSelect={false}
                 options={fonctionOptions}
                 isMulti
                 className='basic-multi-select'
                 classNamePrefix='select'
                 onChange={(e) => {
-                  handleCreate([e], 'fonction', 'fonctionName', setFonSelected, fonSelected)
+                  handleCreate(e, 'fonction', 'fonctionName', setFonSelected, fonSelected)
                 }}
               />
             </div>
@@ -377,7 +391,7 @@ const PageProject = () => {
                 classNamePrefix='select'
                 defaultValue={selectedOptions}
                 onChange={(e) => {
-                  handleCreate([e], 'geoexpertise', 'geoExpertiseName', setGeoSelected, geoSelected)
+                  handleCreate(e, 'geoexpertise', 'geoExpertiseName', setGeoSelected, geoSelected)
                 }}
               />
             </div>
@@ -408,7 +422,7 @@ const PageProject = () => {
 
             <div className='columnsDiv'>
               <label htmlFor='clientComment'>Comment</label>
-              <textarea id='clientComment' name='clientComment' rows='10' cols='60' role='presentation' {...register('clientComment')}></textarea>
+              <textarea id='clientComment' name='clientComment' rows='10' cols='60' role='presentation' autocomplete='off' {...register('clientComment')}></textarea>
             </div>
           </div>
           <div className='checkOrTrash'>
