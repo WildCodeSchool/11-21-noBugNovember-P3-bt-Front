@@ -1,0 +1,14 @@
+.buttonContainerExpert {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.buttonContainerExpert a {
+  margin: 0 2rem;
+}
+
+.buttonContainerExpert button {
+  width: 4rem;
+}

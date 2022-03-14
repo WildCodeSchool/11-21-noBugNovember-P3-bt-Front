@@ -18,14 +18,17 @@
 .headerStats {
   display: flex;
   flex-direction: row;
+
   /* align-items: center; */
 }
 
 .headerStats {
-  flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   text-align: left;
-  align-content: stretch;
+  width: 80vw;
+  justify-content: space-evenly;
+  font-size: 1em;
+  /* align-content: stretch; */
 }
 
 #headerGraphLogo {
@@ -36,6 +39,7 @@
 .statItem {
   margin: 0 1vh;
   color: var(--firstColor);
-  font-family: var(--fontBody);
-  width: 18ch;
+  font-family: var(--fontWeight);
+  /* width: 18ch; */
+  /* font-weight: 300 !important; */
 }
