@@ -10,8 +10,9 @@ const Experts = () => {
   console.log("expertSelection", expertSelection);
   return (
     <div className="tabContainer">
+      <h1>Experts</h1>
+      <TabExperts setExpertSelection={setExpertSelection} />
       <div className="titleButtonContainer">
-        <h1>Experts</h1>
         <div className="buttonContainerExpert">
           <div>
             <Link to="/pageExpert">
@@ -33,7 +34,6 @@ const Experts = () => {
           )}
         </div>
       </div>
-      <TabExperts setExpertSelection={setExpertSelection} />
     </div>
   );
 };

@@ -60,7 +60,7 @@ const TabExperts = ({ setExpertSelection }) => {
       width: "120px",
     },
     { field: "email", width: "130px", editable: true },
-    { field: "phone", width: "100px", editable: true },
+    { field: "phone", width: "120px", editable: true },
     {
       field: "jobTitleName",
       sortable: true,
@@ -96,7 +96,12 @@ const TabExperts = ({ setExpertSelection }) => {
       filter: true,
       headerName: "Expertise Level",
     },
-    { field: "pastCompanies", sortable: true, filter: true, width: "150px" },
+    {
+      field: "pastCompanies",
+      sortable: true,
+      filter: true,
+      width: "150px",
+    },
     {
       field: "geoExpertiseName",
       sortable: true,
@@ -129,8 +134,9 @@ const TabExperts = ({ setExpertSelection }) => {
     <div
       className="ag-theme-alpine tableau"
       style={{
-        height: "600px",
+        height: "74vh",
         fontFamily: "var(--fontBody)",
+        boxShadow: "0px 0px 15px 0px rgb(0 0 0 / 50%)",
       }}
     >
       {/* <button onClick={onButtonClick}>Get selected rows</button> */}

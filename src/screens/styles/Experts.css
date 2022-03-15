@@ -1,3 +1,8 @@
+.tabContainer h1 {
+  text-align: center;
+  margin: 10px 0px;
+}
+
 .buttonContainerExpert {
   display: flex;
   flex-direction: row;
@@ -10,5 +15,9 @@
 }
 
 .buttonContainerExpert button {
-  width: 4rem;
+  width: 6rem;
+  height: 2.5rem;
+  line-height: 1;
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 50%);
+  border: none;
 }
