@@ -112,7 +112,6 @@ const TabExperts = ({ setExpertSelection }) => {
     { field: "price", sortable: true, filter: true, width: "100px" },
     { field: "cost", sortable: true, filter: true, width: "100px" },
     { field: "feedbackExpert", headerName: "FeedBack", width: "200px" },
-    // { field: "answer", sortable: true, filter: true, width: "100px" },
     { field: "itwday", sortable: true, filter: true, width: "110px" },
     {
       field: "linkedinProfile",

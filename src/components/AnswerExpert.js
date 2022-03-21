@@ -1,30 +1,24 @@
+import * as React from 'react'
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+
 import './styles/Midi.css'
-import key from '../assets/key.png'
-import price from '../assets/price.png'
 
-const MidiExpert = (props) => {
-  const [experts, setExperts] = useState([])
-
-  console.log(props.project.id)
-
+const AnswerExpert = (props) => {
+  const [expertsProject, setExpertsProject] = useState([])
   useEffect(() => {
     axios
-      .get('http://localhost:4040/experts')
+      .get(`http://localhost:4040/projects/experts/${props.id}`)
       .then((res) => res.data)
-      .then((res) => console.log('experts', res) || setExperts(res))
+      .then((res) => console.log('experts', res) || setExpertsProject(res))
   }, [])
 
-  const maxiExpert = (id) => {
-    props.setMaxiExpert(true)
-    props.setIdExpert(id)
-  }
+  console.log(expertsProject)
 
   return (
     <div className='midiExpertContainer'>
-      {experts.map((expert) => (
-        <div className={expert.projects_id && expert.projects_id.includes(props.project.id) ? 'checkExpert midiExpertCard' : 'midiExpertCard'} key={expert.id} onClick={() => maxiExpert(expert.id)}>
+      {expertsProject.map((expert) => (
+        <div className={expert.projects_id && expert.projects_id.includes(props.project.id) ? 'checkExpert midiExpertCard' : 'midiExpertCard'} key={expert.id}>
           <p style={{ fontFamily: 'Montserrat', fontWeight: '600' }} className='paddingMidiExpert'>
             Expert # {expert.numExpert}
           </p>
@@ -76,4 +70,4 @@ const MidiExpert = (props) => {
   )
 }
 
-export default MidiExpert
+export default AnswerExpert

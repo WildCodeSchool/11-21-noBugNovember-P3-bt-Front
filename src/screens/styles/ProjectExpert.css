@@ -9,6 +9,34 @@
   height: 100vh;
 }
 
+.hidden {
+  display: none;
+}
+
+.gridMidiProject {
+  grid-area: 2 / 1 / 4 / 2;
+}
+
+.gridMidiExpert {
+  grid-area: 2 / 2 / 4 / 4;
+}
+
+.gridMaxiExpert {
+  grid-area: 2 / 2 / 4 / 4;
+}
+
+.centerPopupProject {
+  display: block;
+  position: fixed;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--background);
+}
+
 /* barre de filtre/recherche */
 .filter {
   grid-area: 1 / 1 / 2 / 4;
@@ -32,4 +60,9 @@
   padding: 8px 22px;
   background-color: var(--secondColor);
   margin: 5px;
+}
+
+.maxiProjectExpertContainer {
+  margin-left: 100px;
+  margin-top: 20px;
 }
