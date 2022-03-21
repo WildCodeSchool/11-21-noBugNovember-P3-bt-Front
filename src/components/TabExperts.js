@@ -120,7 +120,7 @@ const TabExperts = ({ setExpertSelection }) => {
       filter: true,
       editable: true,
     },
-    { field: "projet", sortable: true, filter: true },
+    { field: "projectTitle", sortable: true, filter: true },
     { field: "keywords", sortable: true, filter: true },
   ]);
 
