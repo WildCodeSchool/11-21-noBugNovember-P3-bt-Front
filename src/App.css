@@ -22,7 +22,7 @@
 
 a {
   text-decoration: none;
-  color : var(--firstColor); 
+  color: var(--firstColor);
 }
 
 body {
@@ -34,7 +34,7 @@ body {
 }
 
 button {
-  font-family: var(--fontBody);
+  font-family: var(--fontTitle);
 }
 
 h1 {
@@ -70,6 +70,7 @@ h1 {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   margin-top: 15px;
   margin-bottom: 15px;
+  color: var(--firstColor);
 }
 
 .buttonAjout:hover {

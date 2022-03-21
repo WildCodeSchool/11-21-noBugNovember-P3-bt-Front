@@ -2,9 +2,7 @@ import './styles/CardsProjects.css'
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 
@@ -13,24 +11,15 @@ const CardsProjects = (props) => {
   const card = (
     <React.Fragment>
       <Link to={`/projectexpert/${props.id}`}>
-        <CardContent >
-          <Typography
-            sx={{ fontSize: 16 }}
-            color='var(--firstColor)'
-            fontFamily='var(--fontTitle)'
-            gutterBottom
-          >
+        <CardContent>
+          <Typography sx={{ fontSize: 16 }} color='var(--firstColor)' fontFamily='var(--fontTitle)' gutterBottom>
             <h4 className='nameProject'>{props.numProject}</h4>
           </Typography>
           <div className='separation'></div>
-          <Typography
-            sx={{ mb: 1.5, fontSize: 14 }}
-            color='var(--firstColor)'
-            fontFamily='var(--fontBody)'
-          >
+          <Typography sx={{ mb: 1.5, fontSize: 14 }} color='var(--firstColor)' fontFamily='var(--fontBody)'>
             <div className='projectGroup'>
               <ul>
-              <li>
+                <li>
                   <div className='projectTitle'>#Experts</div>
                   <div className='projectTitle2'>{props.quantityExpert}</div>
                 </li>
