@@ -2,314 +2,111 @@ import * as React from 'react'
 import axios from 'axios'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
+import { Link } from 'react-router-dom'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './styles/Midi.css'
 
-const MidiProject = () => {
-  const [project, setProject] = useState([])
+const MidiProject = (props) => {
   const { id } = useParams()
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4040/projects/midicard/${id}`)
-      .then((response) => {
-        setProject(response.data[0])
-      })
+    axios.get(`http://localhost:4040/projects/midicard/${id}`).then((response) => {
+      props.setProject(response.data[0])
+    })
   }, [])
 
-  console.log(project)
+  console.log(props.project)
 
   const card = (
-    <React.Fragment className='midiProjectContainer'>
-      <CardContent>
-        <Typography
-          color='var(--firstColor)'
-          fontFamily='var(--fontTitle)'
-          gutterBottom
-        >
-          <div className='midiCardHeader'>
-            <h4 className={!project.status && 'hidden'}>{project.status}</h4>
-            <h4 className={!project.projectTitle && 'hidden'}>
-              {project.projectTitle}
-            </h4>
-            <h4 className={!project.numProject && 'hidden'}>
-              {project.numProject}
-            </h4>
-          </div>
-        </Typography>
-        <div id='headerMidiCardBorder'></div>
-        <Typography color='var(--firstColor)' fontFamily='var(--fontBody)'>
-          <div className='projectGroupMidi'>
-            <ul>
-              <li>
-                <div
-                  className={
-                    project.quantityExpert
-                      ? 'projectFieldName background2'
-                      : 'hidden'
-                  }
-                >
-                  Number of experts
-                </div>
-                <div
-                  className={
-                    project.quantityExpert
-                      ? 'projectFieldContent background2'
-                      : 'hidden'
-                  }
-                >
-                  {project.quantityExpert}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.kindOfExpert ? 'projectFieldName' : 'hidden'
-                  }
-                >
-                  Type of experts
-                </div>
-                <div
-                  className={
-                    project.kindOfExpert ? 'projectFieldContent' : 'hidden'
-                  }
-                >
-                  {project.kindOfExpert}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.totalPrice
-                      ? 'projectFieldName background2'
-                      : 'hidden'
-                  }
-                >
-                  Total Price
-                </div>
-                <div
-                  className={
-                    project.totalPrice
-                      ? 'projectFieldContent  background2'
-                      : 'hidden'
-                  }
-                >
-                  {project.totalPrice}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={project.itwStart ? 'projectFieldName' : 'hidden'}
-                >
-                  ITW Start
-                </div>
-                <div
-                  className={
-                    project.itwStart ? 'projectFieldContent' : 'hidden'
-                  }
-                >
-                  {project.itwStart}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.itwDeadline
-                      ? 'projectFieldName background2'
-                      : 'hidden'
-                  }
-                >
-                  ITW Deadline
-                </div>
-                <div
-                  className={
-                    project.itwDeadline
-                      ? 'projectFieldContent background2'
-                      : 'hidden'
-                  }
-                >
-                  {project.itwDeadline}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={project.industry ? 'projectFieldName' : 'hidden'}
-                >
-                  Industry
-                </div>
-                <div
-                  className={
-                    project.industry ? 'projectFieldContent' : 'hidden'
-                  }
-                >
-                  {project.industry}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.jobTitle ? 'projectFieldName background2' : 'hidden'
-                  }
-                >
-                  Job Title
-                </div>
-                <div
-                  className={
-                    project.jobTitle
-                      ? 'projectFieldContent background2'
-                      : 'hidden'
-                  }
-                >
-                  {project.jobTitle}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={project.fonction ? 'projectFieldName' : 'hidden'}
-                >
-                  Function
-                </div>
-                <div
-                  className={
-                    project.fonction ? 'projectFieldContent' : 'hidden'
-                  }
-                >
-                  {project.fonction}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.expertiseLevelName
-                      ? 'projectFieldName background2'
-                      : 'hidden'
-                  }
-                >
-                  Years of Exp
-                </div>
-                <div
-                  className={
-                    project.expertiseLevelName
-                      ? 'projectFieldContent background2'
-                      : 'hidden'
-                  }
-                >
-                  {project.expertiseLevelName}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.recommend_company ? 'projectFieldName ' : 'hidden'
-                  }
-                >
-                  Companies Examples
-                </div>
-                <div
-                  className={
-                    project.recommend_company
-                      ? 'projectFieldContent '
-                      : 'hidden'
-                  }
-                >
-                  {project.recommend_company}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.exclude_company
-                      ? 'projectFieldName background2'
-                      : 'hidden'
-                  }
-                >
-                  Excluded Companies
-                </div>
-                <div
-                  className={
-                    project.exclude_company
-                      ? 'projectFieldContent background2'
-                      : 'hidden'
-                  }
-                >
-                  {project.exclude_company}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.geoExpertise ? 'projectFieldName' : 'hidden'
-                  }
-                >
-                  Geo Expertise
-                </div>
-                <div
-                  className={
-                    project.geoExpertise ? 'projectFieldContent' : 'hidden'
-                  }
-                >
-                  {project.geoExpertise}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={
-                    project.languages
-                      ? 'projectFieldName background2'
-                      : 'hidden'
-                  }
-                >
-                  Languages
-                </div>
-                <div
-                  className={
-                    project.languages
-                      ? 'projectFieldContent background2'
-                      : 'hidden'
-                  }
-                >
-                  {project.languages}
-                </div>
-              </li>
-              <li>
-                <div
-                  className={project.linkedin ? 'projectFieldName' : 'hidden'}
-                >
-                  Linkedin Keywords
-                </div>
-                <div
-                  className={
-                    project.linkedin ? 'projectFieldContent' : 'hidden'
-                  }
-                >
-                  {project.linkedin}
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className='buttonMidiProjectContainer'>
-            <button className='buttonMidiProject'>
-              Voir toutes les informations
-            </button>
-          </div>
-        </Typography>
-      </CardContent>
+    <React.Fragment>
+      <div className='cardContainer'>
+        <CardContent>
+          <Typography color='var(--firstColor)' fontFamily='var(--fontTitle)' gutterBottom>
+            <div className='cardHeader'>
+              <h4 className={!props.project.status && 'hidden'}>{props.project.status}</h4>
+              <h4 className={!props.project.projectTitle && 'hidden'}>{props.project.projectTitle}</h4>
+              <h4 className={!props.project.numProject && 'hidden'}>{props.project.numProject}</h4>
+            </div>
+          </Typography>
+          <div className='headerCardBorder'></div>
+          <Typography color='var(--firstColor)' fontFamily='var(--fontBody)'>
+            <div className='groupMidMax' id='groupMidi'>
+              <ul>
+                <li>
+                  <div className={props.project.quantityExpert ? 'fieldName background2' : 'hidden'}>Number of experts</div>
+                  <div className={props.project.quantityExpert ? 'fieldContent background2' : 'hidden'}>{props.project.quantityExpert}</div>
+                </li>
+                <li>
+                  <div className={props.project.kindOfExpert ? 'fieldName' : 'hidden'}>Type of experts</div>
+                  <div className={props.project.kindOfExpert ? 'fieldContent' : 'hidden'}>{props.project.kindOfExpert}</div>
+                </li>
+                <li>
+                  <div className={props.project.totalPrice ? 'fieldName background2' : 'hidden'}>Total Price</div>
+                  <div className={props.project.totalPrice ? 'fieldContent  background2' : 'hidden'}>{props.project.totalPrice}</div>
+                </li>
+                <li>
+                  <div className={props.project.itwStart ? 'fieldName' : 'hidden'}>ITW Start</div>
+                  <div className={props.project.itwStart ? 'fieldContent' : 'hidden'}>{props.project.itwStart}</div>
+                </li>
+                <li>
+                  <div className={props.project.itwDeadline ? 'fieldName background2' : 'hidden'}>ITW Deadline</div>
+                  <div className={props.project.itwDeadline ? 'fieldContent background2' : 'hidden'}>{props.project.itwDeadline}</div>
+                </li>
+                <li>
+                  <div className={props.project.industry ? 'fieldName' : 'hidden'}>Industry</div>
+                  <div className={props.project.industry ? 'fieldContent' : 'hidden'}>{props.project.industry}</div>
+                </li>
+                <li>
+                  <div className={props.project.jobTitle ? 'fieldName background2' : 'hidden'}>Job Title</div>
+                  <div className={props.project.jobTitle ? 'fieldContent background2' : 'hidden'}>{props.project.jobTitle}</div>
+                </li>
+                <li>
+                  <div className={props.project.fonction ? 'fieldName' : 'hidden'}>Function</div>
+                  <div className={props.project.fonction ? 'fieldContent' : 'hidden'}>{props.project.fonction}</div>
+                </li>
+                <li>
+                  <div className={props.project.expertiseLevelName ? 'fieldName background2' : 'hidden'}>Years of Exp</div>
+                  <div className={props.project.expertiseLevelName ? 'fieldContent background2' : 'hidden'}>{props.project.expertiseLevelName}</div>
+                </li>
+                <li>
+                  <div className={props.project.recommend_company ? 'fieldName ' : 'hidden'}>Companies Examples</div>
+                  <div className={props.project.recommend_company ? 'fieldContent ' : 'hidden'}>{props.project.recommend_company}</div>
+                </li>
+                <li>
+                  <div className={props.project.exclude_company ? 'fieldName background2' : 'hidden'}>Excluded Companies</div>
+                  <div className={props.project.exclude_company ? 'fieldContent background2' : 'hidden'}>{props.project.exclude_company}</div>
+                </li>
+                <li>
+                  <div className={props.project.geoExpertise ? 'fieldName' : 'hidden'}>Geo Expertise</div>
+                  <div className={props.project.geoExpertise ? 'fieldContent' : 'hidden'}>{props.project.geoExpertise}</div>
+                </li>
+                <li>
+                  <div className={props.project.languages ? 'fieldName background2' : 'hidden'}>Languages</div>
+                  <div className={props.project.languages ? 'fieldContent background2' : 'hidden'}>{props.project.languages}</div>
+                </li>
+                <li>
+                  <div className={props.project.linkedin ? 'fieldName' : 'hidden'}>Linkedin Keywords</div>
+                  <div className={props.project.linkedin ? 'fieldContent' : 'hidden'}>{props.project.linkedin}</div>
+                </li>
+              </ul>
+            </div>
+            <Link to={`/maxiProjectExpert/${props.project.id}`}>
+              <div className='buttonCardContainer'>
+                <button className='buttonCard'>See more informations</button>
+              </div>
+            </Link>
+          </Typography>
+        </CardContent>
+      </div>
     </React.Fragment>
   )
 
   return (
-    <Box className='midiProjectContainer'>
-      <Card
-        variant='outlined'
-        className='midiCardProject'
-        style={{
-          width: '600px',
-          backgroundColor: 'var(--cardBgColor)',
-        }}
-      >
+    <Box>
+      <Card variant='outlined' className='card'>
         {card}
       </Card>
     </Box>
