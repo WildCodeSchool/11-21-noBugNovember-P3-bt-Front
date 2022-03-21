@@ -131,7 +131,7 @@ ul {
 }
 
 .checkExpert {
-  background-color: var(--background);
+  background-color: var(--inputColor);
 }
 
 /* MaxiExpert */
