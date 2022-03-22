@@ -12,6 +12,7 @@ import PageClient from './screens/PageClient'
 import PageExpert from './screens/PageExpert'
 import PageExpertEdit from './screens/PageExpertEdit'
 import PageProject from './screens/PageProject'
+import PageProjectEdit from './screens/PageProjectEdit'
 import Project from './screens/Project'
 import ProjectExpert from './screens/ProjectExpert'
 
@@ -25,12 +26,13 @@ function App() {
         <Route path='/experts' element={<Experts />} />
         <Route path='/pageExpert' element={<PageExpert />} />
         <Route path='/pageExpertEdit/:id' element={<PageExpertEdit />} />
-        <Route path='/maxiProjectExpert/:id' element={<MaxiProjectExpert />} />
         <Route path='/pageClient' element={<PageClient />} />
         <Route path='/pageProject' element={<PageProject />} />
+        <Route path='/projectexpert/:id' element={<ProjectExpert />} />
+        <Route path='/maxiProjectExpert/:id' element={<MaxiProjectExpert />} />
+        <Route path='/pageProjectEdit/:id' element={<PageProjectEdit />} />
         <Route path='/login' element={<Login />} />
         <Route path='/projects' element={<Project />} />
-        <Route path='/projectexpert/:id' element={<ProjectExpert />} />
       </Routes>
     </div>
   )

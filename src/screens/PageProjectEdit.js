@@ -3,17 +3,18 @@ import './styles/PageForm.css'
 import CreatableSelect from 'react-select/creatable'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Select from 'react-select'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 
-const PageProject = () => {
+const PageProjectEdit = () => {
+  const { id } = useParams()
+
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm()
   const [options, setOptions] = useState([])
-  const [selectedOptions, setSelectedOptions] = useState([])
 
   // my_dataOptions send predetermined datas to form
   const [clientOptions, setClientOptions] = useState([])
@@ -34,6 +35,14 @@ const PageProject = () => {
   const [yearsOfExperienceOptions, setYearsOfExperienceOptions] = useState([])
 
   // my_dataSelected send predetermined datas to back
+  const [numProjectSelected, setNumProjectSelected] = useState([])
+  const [projectTitleSelected, setProjectTitleSelected] = useState([])
+  const [totalPriceSelected, setTotalPriceSelected] = useState([])
+  const [itwStartSelected, setItwStartSelected] = useState([])
+  const [itwDeadlineSelected, setItwDeadlineSelected] = useState([])
+  const [quantitySelected, setQuantitySelected] = useState([])
+  const [clientCommentSelected, setClientCommentSelected] = useState([])
+
   const [clientSelected, setClientSelected] = useState([])
   const [practiceSelected, setPracticeSelected] = useState([])
   const [ptSelected, setPtSelected] = useState([])
@@ -54,15 +63,21 @@ const PageProject = () => {
   const [error, setError] = useState(false)
   const [newOptions, setNewOptions] = useState([])
 
+  //   State des Data du projet
+  const [dataProject, setDataProject] = useState([])
+
   useEffect(() => {
     const getOptions = () => {
       axios
         .get('http://localhost:4040/projects/form')
-        .then((res) => setOptions(res.data))
+        .then(
+          (res) => console.log('test bdd', res.data) || setOptions(res.data)
+        )
     }
     getOptions()
   }, [newOptions])
 
+  //*****  Decompose la BDD ****
   useEffect(() => {
     // listes déroulantes fermées
     setClientOptions(options.client)
@@ -83,6 +98,47 @@ const PageProject = () => {
     setServiceOptions(options.service)
     setYearsOfExperienceOptions(options.expertiseLevel)
   }, [options])
+
+  // ********************   DATA PROJECT ***************************
+
+  useEffect(() => {
+    const dataProjectFunc = () => {
+      axios.get(`http://localhost:4040/projects/form/${id}`).then((res) => {
+        console.log(res.data)
+        // récupération de l'ensemble des données pré-existantes
+        setDataProject(res.data)
+
+        // données uniques champ libre
+        setNumProjectSelected(res.data.numProject)
+        setProjectTitleSelected(res.data.projectTitle)
+        setTotalPriceSelected(res.data.totalPrice)
+        setItwStartSelected(res.data.itwStart)
+        setItwDeadlineSelected(res.data.itwDeadline)
+        setQuantitySelected(res.data.quantity)
+        setClientCommentSelected(res.data.comment)
+
+        // données uniques liste déroulante
+        setClientSelected(res.data.client)
+        setPtSelected(res.data.projectType)
+        setStatusSelected(res.data.status)
+        setYoeSelected(res.data.expertiseLevel)
+
+        // données multiples liste déroulante
+        setEcieSelected(res.data.ecie)
+        setFonSelected(res.data.fonction)
+        setGeoSelected(res.data.geoExpertise)
+        setIndSelected(res.data.industry)
+        setJobSelected(res.data.jobTitle)
+        setKoeSelected(res.data.kindOfExpert)
+        setLangSelected(res.data.languages)
+        setLinSelected(res.data.linkedin)
+        setPracticeSelected(res.data.practice)
+        setRcieSelected(res.data.rcie)
+        setSeSelected(res.data.service)
+      })
+    }
+    dataProjectFunc()
+  }, [])
 
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
@@ -143,10 +199,18 @@ const PageProject = () => {
   /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   const onSubmit = async (data) => {
-    if (clientSelected.length !== 0 && statusSelected.length !== 0) {
+    if (
+      clientSelected.length !== 0 &&
+      ptSelected.length !== 0 &&
+      statusSelected.length !== 0 &&
+      yoeSelected.length !== 0
+    ) {
       setError(false)
+
       const client_id = clientSelected.id
+      const projectType_id = ptSelected.id
       const status_id = statusSelected.id
+      const expertiseLevel_id = yoeSelected.id
 
       let ecieDatas = []
       let fonDatas = []
@@ -157,24 +221,22 @@ const PageProject = () => {
       let langDatas = []
       let linDatas = []
       let praDatas = []
-      let ptDatas = []
       let rcieDatas = []
       let seDatas = []
-      let yoeDatas = []
 
       ecieSelected.forEach((ecie) => ecieDatas.push(ecie.id))
       fonSelected.forEach((fon) => fonDatas.push(fon.id))
       geoSelected.forEach((geo) => geoDatas.push(geo.id))
       indSelected.forEach((ind) => indDatas.push(ind.id))
       jobSelected.forEach((job) => jobDatas.push(job.id))
-      koeSelected.forEach((koe) => koeDatas.push(koe.id))
+      koeSelected.forEach(
+        (koe) => console.log('koe test', koe) || koeDatas.push(koe.id)
+      )
       langSelected.forEach((lang) => langDatas.push(lang.id))
       linSelected.forEach((lin) => linDatas.push(lin.id))
       practiceSelected.forEach((pra) => praDatas.push(pra.id))
-      ptSelected.forEach((pt) => ptDatas.push(pt.id))
       rcieSelected.forEach((rcie) => rcieDatas.push(rcie.id))
       seSelected.forEach((se) => seDatas.push(se.id))
-      yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id))
 
       let excludedCompany_id = { excludedCompany_id: [...ecieDatas] }
       let fonction_id = { fonction_id: [...fonDatas] }
@@ -185,13 +247,10 @@ const PageProject = () => {
       let languages_id = { languages_id: [...langDatas] }
       let linkedinKeywords_id = { linkedinKeywords_id: [...linDatas] }
       let practice_id = { practice_id: [...praDatas] }
-      let projectType_id = { projectType_id: [...ptDatas] }
       let exampleCompany_id = { exampleCompany_id: [...ecieDatas] }
       let service_id = { service_id: [...seDatas] }
-      let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] }
 
       let datas = {
-        numProject: data.numProject,
         projectTitle: data.projectTitle,
         totalPrice: data.totalPrice,
         itwStart: data.itwStart,
@@ -200,7 +259,9 @@ const PageProject = () => {
         clientComment: data.clientComment,
 
         client_id: client_id,
+        projectType_id: projectType_id,
         status_id: status_id,
+        expertiseLevel_id: expertiseLevel_id,
 
         ...excludedCompany_id,
         ...fonction_id,
@@ -211,23 +272,32 @@ const PageProject = () => {
         ...languages_id,
         ...linkedinKeywords_id,
         ...practice_id,
-        ...projectType_id,
         ...exampleCompany_id,
         ...service_id,
-        ...expertiseLevel_id,
       }
 
       console.log('datas', datas)
-      axios.post('http://localhost:4040/projects/', datas)
-
-      navigate('/projects')
+      axios
+        .put(`http://localhost:4040/projects/${id}`, datas)
+        .then(function (res) {
+          navigate(`/maxiProjectExpert/${id}`)
+        })
     } else {
       setError(true)
+      console.log('Form error', yoeSelected)
       data.preventDefault()
     }
   }
 
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
+
+  // ******************** DELETE PROJECTS *******************
+
+  const onDelete = () => {
+    axios.delete(`http://localhost:4040/projects/${id}`).then(function (res) {
+      navigate('/projects')
+    })
+  }
 
   return (
     <div className='tabContainerForm '>
@@ -253,6 +323,8 @@ const PageProject = () => {
                   name='number'
                   type='key'
                   {...register('numProject')}
+                  value={numProjectSelected}
+                  onChange={(e) => setNumProjectSelected(e.target.value)}
                   required
                 ></input>
               </div>
@@ -266,6 +338,8 @@ const PageProject = () => {
                 type='text'
                 autoComplete='off'
                 {...register('projectTitle')}
+                value={projectTitleSelected}
+                onChange={(e) => setProjectTitleSelected(e.target.value)}
               ></input>
             </div>
 
@@ -277,6 +351,7 @@ const PageProject = () => {
                 classNamePrefix={
                   error && !clientSelected ? 'novalidated' : 'select'
                 }
+                value={clientSelected}
                 onChange={(e) => setClientSelected(e)}
               />
             </div>
@@ -284,13 +359,14 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='serviceOptions'>Service</label>
               <CreatableSelect
+                value={seSelected}
                 closeMenuOnSelect={false}
                 options={serviceOptions}
                 isMulti
                 className='basic-multi-select'
                 classNamePrefix='select'
                 onChange={(e) => {
-                  setSeSelected([e])
+                  setSeSelected(e)
                   handleCreate(
                     e,
                     'service',
@@ -311,8 +387,10 @@ const PageProject = () => {
                 id='totalPrice'
                 name='totalPrice'
                 type='number'
-                autocomplete='off'
+                autoComplete='off'
                 {...register('totalPrice')}
+                value={totalPriceSelected}
+                onChange={(e) => setTotalPriceSelected(e.target.value)}
               ></input>
             </div>
 
@@ -324,6 +402,7 @@ const PageProject = () => {
                 classNamePrefix={
                   error && !statusSelected ? 'novalidated' : 'select'
                 }
+                value={statusSelected}
                 onChange={(e) => setStatusSelected(e)}
               />
             </div>
@@ -331,11 +410,10 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='projectType'>Project Type</label>
               <CreatableSelect
+                value={ptSelected}
                 options={projectTypeOptions}
                 className='basic-multi-select'
-                classNamePrefix={
-                  error && ptSelected.length === 0 ? 'novalidated' : 'select'
-                }
+                classNamePrefix='select'
                 onChange={(e) => {
                   setPtSelected(e)
                   handleCreate(
@@ -345,8 +423,7 @@ const PageProject = () => {
                     setPtSelected,
                     ptSelected,
                     'solo',
-                    projectTypeOptions,
-                    setProjectTypeOptions
+                    projectTypeOptions
                   )
                 }}
               />
@@ -361,6 +438,8 @@ const PageProject = () => {
                 role='presentation'
                 autoComplete='off'
                 {...register('itwStart')}
+                value={itwStartSelected}
+                onChange={(e) => setItwStartSelected(e.target.value)}
               ></input>
             </div>
 
@@ -373,6 +452,8 @@ const PageProject = () => {
                 role='presentation'
                 autoComplete='off'
                 {...register('itwDeadline')}
+                value={itwDeadlineSelected}
+                onChange={(e) => setItwDeadlineSelected(e.target.value)}
               ></input>
             </div>
           </div>
@@ -384,14 +465,17 @@ const PageProject = () => {
                 id='quantityExpert'
                 name='quantityExpert'
                 type='number'
-                autocomplete='off'
+                autoComplete='off'
                 {...register('quantityExpert')}
+                value={quantitySelected}
+                onChange={(e) => setQuantitySelected(e.target.value)}
               ></input>
             </div>
 
             <div className='columnsSelect'>
               <label htmlFor='kindOfExpertOptions'>Type</label>
               <CreatableSelect
+                value={koeSelected}
                 closeMenuOnSelect={false}
                 options={kindOfExpertOptions}
                 isMulti
@@ -421,6 +505,7 @@ const PageProject = () => {
                 isMulti
                 className='basic-multi-select'
                 classNamePrefix='select'
+                value={practiceSelected}
                 onChange={(e) => setPracticeSelected(e)}
               />
             </div>
@@ -428,6 +513,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='Industry'>Industry</label>
               <CreatableSelect
+                value={indSelected}
                 closeMenuOnSelect={false}
                 options={industryOptions}
                 isMulti
@@ -452,6 +538,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='rCompaniesOptions'>Companies Examples</label>
               <CreatableSelect
+                value={rcieSelected}
                 closeMenuOnSelect={false}
                 options={rCompaniesOptions}
                 isMulti
@@ -476,6 +563,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='eCompaniesOptions'>Excluded Companies</label>
               <CreatableSelect
+                value={ecieSelected}
                 closeMenuOnSelect={false}
                 options={eCompaniesOptions}
                 isMulti
@@ -500,6 +588,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='jobTitle'>Job Title</label>
               <CreatableSelect
+                value={jobSelected}
                 closeMenuOnSelect={false}
                 options={jobTitleOptions}
                 isMulti
@@ -526,6 +615,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='fonction'>Function</label>
               <CreatableSelect
+                value={fonSelected}
                 closeMenuOnSelect={false}
                 options={fonctionOptions}
                 isMulti
@@ -550,6 +640,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='experience'>Years of Experience</label>
               <CreatableSelect
+                value={yoeSelected}
                 options={yearsOfExperienceOptions}
                 className='basic-multi-select'
                 classNamePrefix={
@@ -564,8 +655,7 @@ const PageProject = () => {
                     setYoeSelected,
                     yoeSelected,
                     'solo',
-                    yearsOfExperienceOptions,
-                    setYearsOfExperienceOptions
+                    yearsOfExperienceOptions
                   )
                 }}
               />
@@ -574,12 +664,12 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='geoExpertise'>Geo Expertise</label>
               <CreatableSelect
+                value={geoSelected}
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
                 isMulti
                 className='basic-multi-select'
                 classNamePrefix='select'
-                defaultValue={selectedOptions}
                 onChange={(e) => {
                   setGeoSelected(e)
                   handleCreate(
@@ -599,6 +689,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='languages'>Languages</label>
               <CreatableSelect
+                value={langSelected}
                 closeMenuOnSelect={false}
                 options={languagesOptions}
                 isMulti
@@ -623,6 +714,7 @@ const PageProject = () => {
             <div className='columnsDiv'>
               <label htmlFor='keywords'>Linkedin Keywords</label>
               <CreatableSelect
+                value={linSelected}
                 closeMenuOnSelect={false}
                 options={linkedinOptions}
                 isMulti
@@ -652,14 +744,23 @@ const PageProject = () => {
                 rows='10'
                 cols='60'
                 role='presentation'
-                autocomplete='off'
+                autoComplete='off'
                 {...register('clientComment')}
+                value={clientCommentSelected}
+                onChange={(e) => setClientCommentSelected(e.target.value)}
               ></textarea>
             </div>
           </div>
           <div className='checkOrTrash'>
-            <button className='buttonAddForm'> Add </button>
-            <FontAwesomeIcon icon={faTrashCan} size='lg' className='trashCan' />
+            <button className='buttonAddForm' onClick={() => onSubmit()}>
+              Add
+            </button>
+            <FontAwesomeIcon
+              onClick={() => onDelete()}
+              icon={faTrashCan}
+              size='lg'
+              className='trashCan'
+            />
           </div>
         </form>
       </div>
@@ -667,4 +768,4 @@ const PageProject = () => {
   )
 }
 
-export default PageProject
+export default PageProjectEdit
