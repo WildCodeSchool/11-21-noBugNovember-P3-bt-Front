@@ -116,7 +116,7 @@ const PageClientEdit = () => {
             console.log(error);
           });
         if (multiple === "solo") {
-          newDataPoulet = temp;
+          newDataPoulet = [temp];
         } else {
           newDataPoulet = [...newDataPoulet, temp];
         }
@@ -307,8 +307,8 @@ const PageClientEdit = () => {
                   setCompanyNameSelected([e]);
                   handleCreate(
                     [e],
-                    "companytype",
-                    "companyTypeName",
+                    "company",
+                    "companyName",
                     setCompanyNameSelected,
                     companyNameSelected,
                     "solo",
