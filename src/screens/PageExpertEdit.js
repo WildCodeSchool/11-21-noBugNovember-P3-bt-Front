@@ -164,6 +164,7 @@ const PageExpertEdit = () => {
   };
 
   const onSubmit = async (data) => {
+    console.log("data prob", data);
     if (
       yoeSelected.length !== 0 &&
       cieSelected.length !== 0 &&

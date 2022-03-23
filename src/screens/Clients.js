@@ -1,19 +1,41 @@
-import TabClients from '../components/TabClients'
-import './styles/Clients.css'
-import { Link } from 'react-router-dom'
+import { useState } from "react";
+import TabClients from "../components/TabClients";
+import "./styles/Clients.css";
+import { Link } from "react-router-dom";
 
 const Clients = (props) => {
-  return (
-    <div className='tabContainer'>
-      <div className='titleButtonContainer'>
-        <h1 className='pageTitle'>Clients</h1>
-        <Link to='/pageClient'>
-          <button className='buttonAjout'>+ Add new client</button>
-        </Link>
-      </div>
-      <TabClients />
-    </div>
-  )
-}
+  const [clientSelection, setClientSelection] = useState([]);
 
-export default Clients
+  console.log("clientSelection", clientSelection);
+
+  return (
+    <div className="tabContainer">
+      <h1>Client</h1>
+      <TabClients setClientSelection={setClientSelection} />
+      <div className="titleButtonContainer">
+        <div className="buttonContainerExpert">
+          <div>
+            <Link to="/pageClient">
+              <button className="buttonAjout">ADD</button>
+            </Link>
+          </div>
+          {clientSelection.length !== 0 ? (
+            <div>
+              <Link to={`/pageClientEdit/${clientSelection}`}>
+                <button className="buttonAjout">EDIT</button>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <a href="#">
+                <button className="buttonAjout">EDIT</button>
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Clients;

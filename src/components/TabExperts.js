@@ -124,7 +124,7 @@ const TabExperts = ({ setExpertSelection }) => {
     { field: "keywords", sortable: true, filter: true },
   ]);
 
-  const testpascompris = (e) => {
+  const rowSelection = (e) => {
     let expertSelected = gridRef.current.api.getSelectedRows();
     setExpertSelection(expertSelected[0].id);
   };
@@ -145,7 +145,7 @@ const TabExperts = ({ setExpertSelection }) => {
         rowData={experts}
         columnDefs={columnDefs}
         rowSelection="single"
-        onSelectionChanged={(e) => testpascompris(e)}
+        onSelectionChanged={(e) => rowSelection(e)}
       ></AgGridReact>
     </div>
   );
