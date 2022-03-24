@@ -206,12 +206,13 @@ const PageProjectEdit = () => {
       yoeSelected.length !== 0
     ) {
       setError(false)
-
+      // champs select donnée unique
       const client_id = clientSelected.id
-      const projectType_id = ptSelected.id
       const status_id = statusSelected.id
+      const projectType_id = ptSelected.id
       const expertiseLevel_id = yoeSelected.id
 
+      // champs select données multiples
       let ecieDatas = []
       let fonDatas = []
       let geoDatas = []
@@ -224,19 +225,17 @@ const PageProjectEdit = () => {
       let rcieDatas = []
       let seDatas = []
 
-      ecieSelected.forEach((ecie) => ecieDatas.push(ecie.id))
-      fonSelected.forEach((fon) => fonDatas.push(fon.id))
-      geoSelected.forEach((geo) => geoDatas.push(geo.id))
-      indSelected.forEach((ind) => indDatas.push(ind.id))
-      jobSelected.forEach((job) => jobDatas.push(job.id))
-      koeSelected.forEach(
-        (koe) => console.log('koe test', koe) || koeDatas.push(koe.id)
-      )
-      langSelected.forEach((lang) => langDatas.push(lang.id))
-      linSelected.forEach((lin) => linDatas.push(lin.id))
-      practiceSelected.forEach((pra) => praDatas.push(pra.id))
-      rcieSelected.forEach((rcie) => rcieDatas.push(rcie.id))
-      seSelected.forEach((se) => seDatas.push(se.id))
+      ecieSelected.forEach((ecie) => ecie.id && ecieDatas.push(ecie.id))
+      fonSelected.forEach((fon) => fon.id && fonDatas.push(fon.id))
+      geoSelected.forEach((geo) => geo.id && geoDatas.push(geo.id))
+      indSelected.forEach((ind) => ind.id && indDatas.push(ind.id))
+      jobSelected.forEach((job) => job.id && jobDatas.push(job.id))
+      koeSelected.forEach((koe) => koe.id && koeDatas.push(koe.id))
+      langSelected.forEach((lang) => lang.id && langDatas.push(lang.id))
+      linSelected.forEach((lin) => lin.id && linDatas.push(lin.id))
+      practiceSelected.forEach((pra) => pra.id && praDatas.push(pra.id))
+      rcieSelected.forEach((rcie) => rcie.id && rcieDatas.push(rcie.id))
+      seSelected.forEach((se) => se.id && seDatas.push(se.id))
 
       let excludedCompany_id = { excludedCompany_id: [...ecieDatas] }
       let fonction_id = { fonction_id: [...fonDatas] }
@@ -247,10 +246,11 @@ const PageProjectEdit = () => {
       let languages_id = { languages_id: [...langDatas] }
       let linkedinKeywords_id = { linkedinKeywords_id: [...linDatas] }
       let practice_id = { practice_id: [...praDatas] }
-      let exampleCompany_id = { exampleCompany_id: [...ecieDatas] }
+      let exampleCompany_id = { exampleCompany_id: [...rcieDatas] }
       let service_id = { service_id: [...seDatas] }
 
       let datas = {
+        // champs libres donnée unique
         projectTitle: data.projectTitle,
         totalPrice: data.totalPrice,
         itwStart: data.itwStart,
@@ -258,11 +258,13 @@ const PageProjectEdit = () => {
         quantityExpert: data.quantityExpert,
         clientComment: data.clientComment,
 
+        // champs select donnée unique
         client_id: client_id,
-        projectType_id: projectType_id,
         status_id: status_id,
+        projectType_id: projectType_id,
         expertiseLevel_id: expertiseLevel_id,
 
+        // champs select données multiples
         ...excludedCompany_id,
         ...fonction_id,
         ...geoExpertise_id,
@@ -423,7 +425,8 @@ const PageProjectEdit = () => {
                     setPtSelected,
                     ptSelected,
                     'solo',
-                    projectTypeOptions
+                    projectTypeOptions,
+                    setProjectTypeOptions
                   )
                 }}
               />
@@ -655,7 +658,8 @@ const PageProjectEdit = () => {
                     setYoeSelected,
                     yoeSelected,
                     'solo',
-                    yearsOfExperienceOptions
+                    yearsOfExperienceOptions,
+                    setYearsOfExperienceOptions
                   )
                 }}
               />

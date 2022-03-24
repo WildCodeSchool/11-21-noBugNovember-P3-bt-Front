@@ -102,3 +102,7 @@ h1 {
 .buttonAjoutContainer a {
   margin: 0 2rem;
 }
+
+.hidden {
+  display: none;
+}

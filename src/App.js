@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import './components/styles/Header.css'
@@ -17,6 +18,9 @@ import Project from './screens/Project'
 import ProjectExpert from './screens/ProjectExpert'
 
 function App() {
+  const [expert, setExpert] = useState([])
+  const [idExpert, setIdExpert] = useState()
+  const [maxiExpert, setMaxiExpert] = useState(false)
   return (
     <div className='App'>
       <Header />
@@ -28,8 +32,32 @@ function App() {
         <Route path='/pageExpertEdit/:id' element={<PageExpertEdit />} />
         <Route path='/pageClient' element={<PageClient />} />
         <Route path='/pageProject' element={<PageProject />} />
-        <Route path='/projectexpert/:id' element={<ProjectExpert />} />
-        <Route path='/maxiProjectExpert/:id' element={<MaxiProjectExpert />} />
+        <Route
+          path='/projectexpert/:id'
+          element={
+            <ProjectExpert
+              idExpert={idExpert}
+              setIdExpert={setIdExpert}
+              maxiExpert={maxiExpert}
+              setMaxiExpert={setMaxiExpert}
+              expert={expert}
+              setExpert={setExpert}
+            />
+          }
+        />
+        <Route
+          path='/maxiProjectExpert/:id'
+          element={
+            <MaxiProjectExpert
+              idExpert={idExpert}
+              setIdExpert={setIdExpert}
+              maxiExpert={maxiExpert}
+              setMaxiExpert={setMaxiExpert}
+              expert={expert}
+              setExpert={setExpert}
+            />
+          }
+        />
         <Route path='/pageProjectEdit/:id' element={<PageProjectEdit />} />
         <Route path='/login' element={<Login />} />
         <Route path='/projects' element={<Project />} />

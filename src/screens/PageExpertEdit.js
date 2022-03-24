@@ -175,60 +175,58 @@ const PageExpertEdit = () => {
       koeSelected.length !== 0
     ) {
       setError(false)
+      // champs select donnée unique
+      const company_id = cieSelected.id
+      const jobTitle_id = jobSelected.id
+      const kindOfExpert_id = koeSelected.id
+      const practice_id = practiceSelected.id
+      const expertiseLevel_id = yoeSelected.id
+
+      // champs select données multiples
       let geoDatas = []
       let langDatas = []
       let pcieDatas = []
       let ctcDatas = []
       let pjtDatas = []
-      let cieDatas = []
-      let koeDatas = []
-      let yoeDatas = []
-      let jobDatas = []
-      const practice_id = practiceSelected.id
+
       geoSelected.forEach((geo) => geo.id && geoDatas.push(geo.id))
       langSelected.forEach((lang) => lang.id && langDatas.push(lang.id))
       pcieSelected.forEach((pcie) => pcie.id && pcieDatas.push(pcie.id))
       ctcSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id))
       pjtSelected.forEach((pjt) => pjt.id && pjtDatas.push(pjt.id))
-      cieSelected.forEach((cie) => cie.id && cieDatas.push(cie.id))
-      koeSelected.forEach((koe) => koe.id && koeDatas.push(koe.id))
-      yoeSelected.forEach((yoe) => yoe.id && yoeDatas.push(yoe.id))
-      jobSelected.forEach((job) => job.id && jobDatas.push(job.id))
+
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] }
       let languages_id = { languages_id: [...langDatas] }
       let pastCompany_id = { pastCompany_id: [...pcieDatas] }
       let contactType_id = { contactType_id: [...ctcDatas] }
       let projects_id = { projects_id: [...pjtDatas] }
-      let company_id = { company_id: [...cieDatas] }
-      let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] }
-      let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] }
-      let jobtitle_id = { jobtitle_id: [...jobDatas] }
 
       let datas = {
+        // champs libres donnée unique
         firstname: data.firstname,
         lastname: data.lastname,
         email: data.email,
         phone: data.phone,
-        company_id: data.company_id,
         linkedinProfile: data.linkedinProfile,
         price: data.price,
         numExpert: data.numExpert,
-        kindOfExpert_id: data.kindOfExpert_id,
-        practice_id: practice_id,
-        expertiseLevel_id: data.expertiseLevel_id,
+        keywords: data.keywords,
         feedbackExpert: data.feedbackExpert,
         cost: data.cost,
-        keywords: data.keywords,
-        jobtitle_id: data.jobtitle_id,
+
+        // champs select donnée unique
+        company_id: company_id,
+        jobtitle_id: jobTitle_id,
+        kindOfExpert_id: kindOfExpert_id,
+        practice_id: practice_id,
+        expertiseLevel_id: expertiseLevel_id,
+
+        // champs select données multiples
         ...geoExpertise_id,
         ...languages_id,
-        ...jobtitle_id,
-        ...kindOfExpert_id,
         ...pastCompany_id,
         ...contactType_id,
         ...projects_id,
-        ...company_id,
-        ...expertiseLevel_id,
       }
       console.log('datas', datas)
       axios
@@ -396,7 +394,6 @@ const PageExpertEdit = () => {
                 classNamePrefix={
                   error && koeSelected.length === 0 ? 'novalidated' : 'select'
                 }
-                // value={datatest.kindOfExpertName}
                 onChange={(e) => {
                   setKoeSelected([e])
                   handleCreate(
@@ -406,7 +403,8 @@ const PageExpertEdit = () => {
                     setKoeSelected,
                     koeSelected,
                     'solo',
-                    kindOfExpertOptions
+                    kindOfExpertOptions,
+                    setKindOfExpertOptions
                   )
                 }}
               />
@@ -467,7 +465,8 @@ const PageExpertEdit = () => {
                     setJobSelected,
                     jobSelected,
                     'solo',
-                    jobTitleOptions
+                    jobTitleOptions,
+                    setJobTitleOptions
                   )
                 }}
               />
@@ -491,7 +490,8 @@ const PageExpertEdit = () => {
                     setCieSelected,
                     cieSelected,
                     'solo',
-                    companyOptions
+                    companyOptions,
+                    setCompanyOptions
                   )
                 }}
               />
@@ -577,7 +577,8 @@ const PageExpertEdit = () => {
                     setYoeSelected,
                     yoeSelected,
                     'solo',
-                    yearsOfExperienceOptions
+                    yearsOfExperienceOptions,
+                    setYearsOfExperienceOptions
                   )
                 }}
               />

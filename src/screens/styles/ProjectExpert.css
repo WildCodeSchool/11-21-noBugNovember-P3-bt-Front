@@ -64,7 +64,35 @@
 
 .maxiProjectExpertContainer {
   margin-left: 100px;
-  margin-top: 20px;
+  margin-top: 5px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 0px;
+}
+
+.gridMaxiProject {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.gridSmallAnswer {
+  grid-area: 1 / 2 / 2 / 6;
+}
+
+.gridBigAnswer {
+  grid-area: 1 / 2 / 2 / 6;
+}
+
+.answerEdit {
+  display: block;
+  position: fixed;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .maxiButton {

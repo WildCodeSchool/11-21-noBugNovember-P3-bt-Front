@@ -140,3 +140,23 @@
 #number {
   padding: 0;
 }
+
+/* Answer Edit */
+#formAnswer {
+  padding: 1em;
+  padding-bottom: 0.3em;
+  height: auto;
+  width: auto;
+}
+
+.checkOrTrashAnswer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.inputAnswer {
+  margin-top: 0em !important;
+  margin-bottom: 0.5em;
+}

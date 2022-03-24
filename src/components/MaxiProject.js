@@ -24,7 +24,7 @@ const MaxiProject = (props) => {
   const card = (
     <React.Fragment>
       <div className={props.projectMaxi ? 'maxiProjectContainer' : 'hidden'}>
-        <CardContent>
+        <CardContent id='maxiProjectCard'>
           <Typography
             color='var(--firstColor)'
             fontFamily='var(--fontTitle)'
