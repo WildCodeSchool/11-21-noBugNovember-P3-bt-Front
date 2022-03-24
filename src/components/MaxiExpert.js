@@ -16,18 +16,33 @@ const MaxiExpert = (props) => {
     }
   }, [props.idExpert])
 
+  console.log(props.isAnswer)
+
   const card = (
     <React.Fragment>
       <div className='cardContainer'>
         <CardContent>
-          <Typography color='var(--firstColor)' fontFamily='var(--fontTitle)' gutterBottom>
+          <Typography
+            color='var(--firstColor)'
+            fontFamily='var(--fontTitle)'
+            gutterBottom
+          >
             <div className='cardHeader'>
-              <button className='closePopup' onClick={() => props.setMaxiExpert(false)}>
+              <button
+                className='closePopup'
+                onClick={() => props.setMaxiExpert(false)}
+              >
                 X
               </button>
-              <h4 className={!props.expert.numExpert && 'hidden'}>{props.expert.numExpert}</h4>
-              <h4 className={!props.expert.firstname && 'hidden'}>{props.expert.firstname}</h4>
-              <h4 className={!props.expert.lastname && 'hidden'}>{props.expert.lastname}</h4>
+              <h4 className={!props.expert.numExpert && 'hidden'}>
+                {props.expert.numExpert}
+              </h4>
+              <h4 className={!props.expert.firstname && 'hidden'}>
+                {props.expert.firstname}
+              </h4>
+              <h4 className={!props.expert.lastname && 'hidden'}>
+                {props.expert.lastname}
+              </h4>
             </div>
           </Typography>
           <div className='headerCardBorder'></div>
@@ -36,7 +51,9 @@ const MaxiExpert = (props) => {
               <ul>
                 <li>
                   <div className='fieldName background2'>Phone</div>
-                  <div className='fieldContent background2'>{props.expert.phone}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.phone}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Email</div>
@@ -44,7 +61,9 @@ const MaxiExpert = (props) => {
                 </li>
                 <li>
                   <div className='fieldName background2'>Linkedin Profile</div>
-                  <div className='fieldContent background2'>{props.expert.linkedinProfile}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.linkedinProfile}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Contact</div>
@@ -52,23 +71,33 @@ const MaxiExpert = (props) => {
                 </li>
                 <li>
                   <div className='fieldName background2'>Practice</div>
-                  <div className='fieldContent background2'>{props.expert.practiceType}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.practiceType}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Category</div>
-                  <div className='fieldContent'>{props.expert.kindOfExpertName}</div>
+                  <div className='fieldContent'>
+                    {props.expert.kindOfExpertName}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName background2'>Job Title</div>
-                  <div className='fieldContent background2'>{props.expert.jobTitleName}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.jobTitleName}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Expertise Level</div>
-                  <div className='fieldContent'>{props.expert.expertiseLevelName}</div>
+                  <div className='fieldContent'>
+                    {props.expert.expertiseLevelName}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName background2'>Company</div>
-                  <div className='fieldContent background2'>{props.expert.companyName}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.companyName}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Industry</div>
@@ -76,7 +105,9 @@ const MaxiExpert = (props) => {
                 </li>
                 <li>
                   <div className='fieldName background2'>Job Title</div>
-                  <div className='fieldContent background2'>{props.expert.jobTitleName}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.jobTitleName}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Function</div>
@@ -84,7 +115,9 @@ const MaxiExpert = (props) => {
                 </li>
                 <li>
                   <div className='fieldName background2'>Past Company</div>
-                  <div className='fieldContent background2'>{props.expert.pastCompanies}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.pastCompanies}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Cost</div>
@@ -92,15 +125,21 @@ const MaxiExpert = (props) => {
                 </li>
                 <li>
                   <div className='fieldName background2'>Price</div>
-                  <div className='fieldContent background2'>{props.expert.price}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.price}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Geo Expertise</div>
-                  <div className='fieldContent'>{props.expert.geoExpertiseName}</div>
+                  <div className='fieldContent'>
+                    {props.expert.geoExpertiseName}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName background2'>Languages</div>
-                  <div className='fieldContent background2'>{props.expert.languages}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.languages}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Projects</div>
@@ -108,15 +147,20 @@ const MaxiExpert = (props) => {
                 </li>
                 <li>
                   <div className='fieldName background2'>Feedback</div>
-                  <div className='fieldContent background2'>{props.expert.feedbackExpert}</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.feedbackExpert}
+                  </div>
                 </li>
                 <li>
                   <div className='fieldName'>Linkedin Keywords</div>
                   <div className='fieldContent'>{props.expert.keywords}</div>
                 </li>
               </ul>
-              <div className='buttonCardContainer'>
-                <button className='buttonCard' onClick={() => props.setPopupProject(true)}>
+              <div className={props.isAnwer ? 'hidden' : 'buttonCardContainer'}>
+                <button
+                  className='buttonCard'
+                  onClick={() => props.setPopupProject(true)}
+                >
                   Add to the project
                 </button>
               </div>
