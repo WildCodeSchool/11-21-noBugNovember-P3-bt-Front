@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
 
@@ -7,9 +7,9 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 import "./styles/TabClients.css";
 
-const TabClients = () => {
+const TabClients = ({ setClientSelection }) => {
   const [clients, setClients] = useState([]);
-  // const gridRef = useRef(null);
+  const gridRef = useRef();
 
   useEffect(() => {
     axios.get("http://localhost:4040/clients/").then((response) => {
@@ -59,6 +59,12 @@ const TabClients = () => {
     { field: "numProject", sortable: true, filter: true },
   ]);
 
+  const rowSelection = (e) => {
+    let clientSelected = gridRef.current.api.getSelectedRows();
+
+    setClientSelection(clientSelected[0].id);
+  };
+
   return (
     <div
       className="ag-theme-alpine tableau"
@@ -69,12 +75,13 @@ const TabClients = () => {
     >
       {/* <button onClick={onButtonClick}>Get selected rows</button> */}
       <AgGridReact
-        // ref={gridRef}
+        ref={gridRef}
         className="txtTableau"
         defaultColDef={defaultColDef}
         rowData={clients}
         columnDefs={columnDefs}
-        rowSelection="multiple"
+        rowSelection="single"
+        onSelectionChanged={(e) => rowSelection(e)}
       ></AgGridReact>
     </div>
   );

@@ -166,7 +166,9 @@ const PageExpertEdit = () => {
     set(newDataPoulet)
   }
 
+  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
   const onSubmit = async (data) => {
+    console.log("data prob", data);
     if (
       yoeSelected.length !== 0 &&
       cieSelected.length !== 0 &&
@@ -240,8 +242,6 @@ const PageExpertEdit = () => {
       data.preventDefault()
     }
   }
-
-  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   // ******************** DELETE EXPERTS *******************
 
