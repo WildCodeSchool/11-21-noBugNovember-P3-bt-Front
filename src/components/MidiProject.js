@@ -297,7 +297,7 @@ const MidiProject = (props) => {
             </div>
             <div className='buttonCardContainer'>
               <Link to={`/maxiProjectExpert/${props.project.id}`}>
-                <button className='buttonCard'>See more informations</button>
+                <button className='buttonAjout maxiButton'>MORE</button>
               </Link>
             </div>
           </Typography>

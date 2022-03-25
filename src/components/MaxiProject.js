@@ -19,12 +19,10 @@ const MaxiProject = (props) => {
       })
   }, [])
 
-  console.log(props.projectMaxi, props.setProjectMaxi)
-
   const card = (
     <React.Fragment>
       <div className={props.projectMaxi ? 'maxiProjectContainer' : 'hidden'}>
-        <CardContent id='maxiProjectCard'>
+        <CardContent id='maxiCard'>
           <Typography
             color='var(--firstColor)'
             fontFamily='var(--fontTitle)'
@@ -174,6 +172,11 @@ const MaxiProject = (props) => {
               <div>
                 <Link to={`/pageProjectEdit/${props.id}`}>
                   <button className='buttonAjout maxiButton'>EDIT</button>
+                </Link>
+              </div>
+              <div>
+                <Link to={`/projectexpert/${props.id}`}>
+                  <button className='buttonAjout maxiButton'>PREVIOUS</button>
                 </Link>
               </div>
             </div>

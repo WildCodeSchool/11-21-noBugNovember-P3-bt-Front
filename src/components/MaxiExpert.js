@@ -2,6 +2,8 @@ import axios from 'axios'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Typography from '@mui/material/Typography'
 import React, { useEffect } from 'react'
 import './styles/Midi.css'
@@ -21,19 +23,25 @@ const MaxiExpert = (props) => {
   const card = (
     <React.Fragment>
       <div className='cardContainer'>
-        <CardContent>
+        <CardContent id='maxiCard'>
           <Typography
             color='var(--firstColor)'
             fontFamily='var(--fontTitle)'
             gutterBottom
           >
             <div className='cardHeader'>
-              <button
+              <FontAwesomeIcon
+                onClick={() => props.setMaxiExpert(false)}
+                icon={faCircleXmark}
+                size='lg'
+                className='circle'
+              />
+              {/* <button
                 className='closePopup'
                 onClick={() => props.setMaxiExpert(false)}
               >
                 X
-              </button>
+              </button> */}
               <h4 className={!props.expert.numExpert && 'hidden'}>
                 {props.expert.numExpert}
               </h4>
@@ -158,10 +166,10 @@ const MaxiExpert = (props) => {
               </ul>
               <div className={props.isAnwer ? 'hidden' : 'buttonCardContainer'}>
                 <button
-                  className='buttonCard'
+                  className='buttonAjout maxiButton'
                   onClick={() => props.setPopupProject(true)}
                 >
-                  Add to the project
+                  ADD
                 </button>
               </div>
             </div>

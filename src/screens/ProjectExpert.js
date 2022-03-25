@@ -36,8 +36,10 @@ const ProjectExpert = (props) => {
       <div className={!props.maxiExpert ? 'gridMidiExpert' : 'hidden'}>
         <MidiExpert
           setMaxiExpert={props.setMaxiExpert}
+          maxiExpert={props.maxiExpert}
           setIdExpert={props.setIdExpert}
           project={project}
+          popupProject={popupProject}
         />
       </div>
       <div
@@ -57,6 +59,7 @@ const ProjectExpert = (props) => {
       <div className={popupProject ? 'centerPopupProject' : 'hidden'}>
         <PopupProject
           setPopupProject={setPopupProject}
+          setMaxiExpert={props.setMaxiExpert}
           idExpert={props.idExpert}
           expert={props.expert}
           project={project}

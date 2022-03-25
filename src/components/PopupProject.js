@@ -2,12 +2,13 @@ import axios from 'axios'
 import './styles/Midi.css'
 
 const PopupProject = (props) => {
-  const onSubmit = () => {
-    axios.post('http://localhost:4040/projexperts/', {
+  const onSubmit = async () => {
+    props.setPopupProject(false)
+    await axios.post('http://localhost:4040/projexperts/', {
       expert_id: props.expert.id,
       project_id: props.project.id,
     })
-    props.setPopupProject(false)
+    props.setMaxiExpert(false)
   }
 
   return (
