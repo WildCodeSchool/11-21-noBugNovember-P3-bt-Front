@@ -18,13 +18,6 @@ function Loader() {
     })
   }, [])
 
-  console.log(projects)
-
-  // let seeLessProject = () => setLessProject(lessProject - 6);
-  // useEffect(() => {
-  //   seeLessProject();
-  // }, [project.poScroll]);
-
   return (
     <div className='loader'>
       <div className='statusContainer'>

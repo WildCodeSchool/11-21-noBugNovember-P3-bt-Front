@@ -15,10 +15,6 @@
   margin-bottom: 10px;
 }
 
-.hidden {
-  display: none;
-}
-
 .background2 {
   background-color: var(--cardBgColor2);
 }
@@ -131,20 +127,15 @@ ul {
 }
 
 .checkExpert {
-  background-color: var(--background);
+  background-color: var(--inputColor);
 }
 
 /* MaxiExpert */
-.closePopup {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: red;
+
+#maxiCard {
+  padding-bottom: 5px;
 }
 
-/* PopupProject */
-
-/* MaxiExpert */
-
-.maxiProjectContainer {
+.answerCard {
+  height: auto;
 }

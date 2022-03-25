@@ -14,7 +14,7 @@ const MidiExpert = (props) => {
       .get('http://localhost:4040/experts')
       .then((res) => res.data)
       .then((res) => console.log('experts', res) || setExperts(res))
-  }, [])
+  }, [props.popupProject, props.maxiExpert])
 
   const maxiExpert = (id) => {
     props.setMaxiExpert(true)
@@ -24,8 +24,19 @@ const MidiExpert = (props) => {
   return (
     <div className='midiExpertContainer'>
       {experts.map((expert) => (
-        <div className={expert.projects_id && expert.projects_id.includes(props.project.id) ? 'checkExpert midiExpertCard' : 'midiExpertCard'} key={expert.id} onClick={() => maxiExpert(expert.id)}>
-          <p style={{ fontFamily: 'Montserrat', fontWeight: '600' }} className='paddingMidiExpert'>
+        <div
+          className={
+            expert.projects_id && expert.projects_id.includes(props.project.id)
+              ? 'checkExpert midiExpertCard'
+              : 'midiExpertCard'
+          }
+          key={expert.id}
+          onClick={() => maxiExpert(expert.id)}
+        >
+          <p
+            style={{ fontFamily: 'Montserrat', fontWeight: '600' }}
+            className='paddingMidiExpert'
+          >
             Expert # {expert.numExpert}
           </p>
           <div className='separation'></div>

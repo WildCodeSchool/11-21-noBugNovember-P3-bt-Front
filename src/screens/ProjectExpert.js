@@ -8,10 +8,7 @@ import search from '../assets/search.svg'
 
 import './styles/ProjectExpert.css'
 
-const ProjectExpert = () => {
-  const [expert, setExpert] = useState([])
-  const [idExpert, setIdExpert] = useState()
-  const [maxiExpert, setMaxiExpert] = useState(false)
+const ProjectExpert = (props) => {
   const [popupProject, setPopupProject] = useState(false)
   const [project, setProject] = useState([])
 
@@ -36,14 +33,38 @@ const ProjectExpert = () => {
       <div className='gridMidiProject'>
         <MidiProject project={project} setProject={setProject} />
       </div>
-      <div className={!maxiExpert ? 'gridMidiExpert' : 'hidden'}>
-        <MidiExpert setMaxiExpert={setMaxiExpert} setIdExpert={setIdExpert} project={project} />
+      <div className={!props.maxiExpert ? 'gridMidiExpert' : 'hidden'}>
+        <MidiExpert
+          setMaxiExpert={props.setMaxiExpert}
+          maxiExpert={props.maxiExpert}
+          setIdExpert={props.setIdExpert}
+          project={project}
+          popupProject={popupProject}
+        />
       </div>
-      <div className={maxiExpert && idExpert ? 'gridMaxiExpert' : 'hidden'}>
-        <MaxiExpert idExpert={idExpert} maxiExpert={maxiExpert} setMaxiExpert={setMaxiExpert} setPopupProject={setPopupProject} expert={expert} setExpert={setExpert} />
+      <div
+        className={
+          props.maxiExpert && props.idExpert ? 'gridMaxiExpert' : 'hidden'
+        }
+      >
+        <MaxiExpert
+          idExpert={props.idExpert}
+          maxiExpert={props.maxiExpert}
+          setMaxiExpert={props.setMaxiExpert}
+          setPopupProject={setPopupProject}
+          expert={props.expert}
+          setExpert={props.setExpert}
+        />
       </div>
       <div className={popupProject ? 'centerPopupProject' : 'hidden'}>
-        <PopupProject setPopupProject={setPopupProject} idExpert={idExpert} expert={expert} project={project} setProject={setProject} />
+        <PopupProject
+          setPopupProject={setPopupProject}
+          setMaxiExpert={props.setMaxiExpert}
+          idExpert={props.idExpert}
+          expert={props.expert}
+          project={project}
+          setProject={setProject}
+        />
       </div>
     </div>
   )

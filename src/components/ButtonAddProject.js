@@ -6,7 +6,7 @@ const ButtonAddProject = () => {
   return (
     <div className='adminHome'>
       <Link to='/pageProject'>
-        <button className='buttonAjout'>+ Add new project</button>
+        <button className='buttonAjout'>ADD</button>
       </Link>
     </div>
   )
