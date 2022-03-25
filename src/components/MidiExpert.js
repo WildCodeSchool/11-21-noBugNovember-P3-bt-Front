@@ -14,7 +14,7 @@ const MidiExpert = (props) => {
       .get('http://localhost:4040/experts')
       .then((res) => res.data)
       .then((res) => console.log('experts', res) || setExperts(res))
-  }, [])
+  }, [props.popupProject, props.maxiExpert])
 
   const maxiExpert = (id) => {
     props.setMaxiExpert(true)

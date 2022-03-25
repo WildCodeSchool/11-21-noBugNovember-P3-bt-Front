@@ -13,9 +13,7 @@ const MaxiProjectExpert = (props) => {
   const { id } = useParams()
   const [projectMaxi, setProjectMaxi] = useState([])
   const [isAnswer, setIsAnswer] = useState(false)
-  const [answerEdit, setAnswerEdit] = useState(true)
-
-  console.log(projectMaxi, setProjectMaxi)
+  const [answerEdit, setAnswerEdit] = useState(false)
 
   return (
     <div className='maxiProjectExpertContainer'>
@@ -37,6 +35,7 @@ const MaxiProjectExpert = (props) => {
           setExpert={props.setExpert}
           setIsAnswer={setIsAnswer}
           setAnswerEdit={setAnswerEdit}
+          answerEdit={answerEdit}
         />
       </div>
       <div
@@ -54,7 +53,14 @@ const MaxiProjectExpert = (props) => {
         />
       </div>
       <div className={answerEdit ? 'answerEdit' : 'hidden'}>
-        <AnswerEdit />
+        {answerEdit && (
+          <AnswerEdit
+            setAnswerEdit={setAnswerEdit}
+            answerEdit={answerEdit}
+            idExpert={props.idExpert}
+            idProject={id}
+          />
+        )}
       </div>
     </div>
   )

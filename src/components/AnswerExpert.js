@@ -11,7 +11,7 @@ const AnswerExpert = (props) => {
       .get(`http://localhost:4040/projexperts/${props.id}`)
       .then((res) => res.data)
       .then((res) => console.log('experts', res) || setExpertsProject(res))
-  }, [])
+  }, [props.answerEdit])
 
   const maxiExpert = (id) => {
     props.setMaxiExpert(true)
@@ -20,12 +20,11 @@ const AnswerExpert = (props) => {
   }
 
   const answerEdit = (id) => {
-    props.setMaxiExpert(true)
+    props.setAnswerEdit(true)
     props.setIdExpert(id)
-    props.setIsAnswer(true)
   }
 
-  console.log(expertsProject)
+  console.log(props)
 
   return (
     <div className='midiExpertContainer'>
@@ -92,7 +91,13 @@ const AnswerExpert = (props) => {
               </li>
               <li>
                 <p style={{ fontWeight: '600' }}>Answer</p>
-                <p>{expert.answer}</p>
+                <p>
+                  {expert.answer !== null
+                    ? expert.answer === 1
+                      ? 'Yes'
+                      : 'No'
+                    : 'Waiting'}
+                </p>
               </li>
               <li>
                 <p style={{ fontWeight: '600' }}>Factu</p>
@@ -104,12 +109,24 @@ const AnswerExpert = (props) => {
               </li>
             </div>
           </ul>
-          <button className='buttonCard' onClick={() => maxiExpert(expert.id)}>
-            See more informations
-          </button>
-          <button className='buttonCard' onClick={() => answerEdit(expert.id)}>
-            EDIT
-          </button>
+          <div className='buttonAjoutContainer'>
+            <div>
+              <button
+                className='buttonAjout maxiButton'
+                onClick={() => maxiExpert(expert.id)}
+              >
+                MORE
+              </button>
+            </div>
+            <div>
+              <button
+                className='buttonAjout maxiButton'
+                onClick={() => answerEdit(expert.id)}
+              >
+                EDIT
+              </button>
+            </div>
+          </div>
         </div>
       ))}
     </div>

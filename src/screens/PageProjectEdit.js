@@ -301,6 +301,8 @@ const PageProjectEdit = () => {
     })
   }
 
+  console.log(clientOptions)
+
   return (
     <div className='tabContainerForm '>
       <div className='pageForm'>

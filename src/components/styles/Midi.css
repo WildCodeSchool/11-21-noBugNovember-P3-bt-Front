@@ -131,17 +131,11 @@ ul {
 }
 
 /* MaxiExpert */
-.closePopup {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: red;
-}
 
-#maxiProjectCard {
+#maxiCard {
   padding-bottom: 5px;
 }
 
 .answerCard {
-  height: 26em;
+  height: 26.3em;
 }

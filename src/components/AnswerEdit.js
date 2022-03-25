@@ -1,7 +1,6 @@
 import '../screens/styles/PageForm.css'
 
 import axios from 'axios'
-import CreatableSelect from 'react-select/creatable'
 import { faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Select from 'react-select'
@@ -9,17 +8,14 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const AnswerEdit = () => {
+const AnswerEdit = (props) => {
   const { id } = useParams()
 
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm()
-  const [options, setOptions] = useState([])
 
   // my_dataOptions send predetermined datas to form
   const [answerOptions, setAnswerOptions] = useState([])
-  const [itwDayOptions, setItwDayOptions] = useState([])
-  const [factuOptions, setFactuOptions] = useState([])
 
   // my_dataSelected send predetermined datas to back
   const [answerSelected, setAnswerSelected] = useState([])
@@ -31,52 +27,72 @@ const AnswerEdit = () => {
   //   State des Data du projet
   const [dataProjexperts, setDataProjexperts] = useState([])
 
-  // ********************   DATA PROJECT ***************************
+  // ********************   DATA PROJEXPERT ***************************
+  useEffect(() => {
+    setAnswerOptions([
+      { id: 1, value: 'Yes', label: 'Yes' },
+      { id: 2, value: 'No', label: 'No' },
+    ])
+  }, [])
 
   useEffect(() => {
     const dataProjexpertsFunc = () => {
-      axios.get(`http://localhost:4040/projexperts/form/${id}`).then((res) => {
-        console.log(res.data)
-        // récupération de l'ensemble des données pré-existantes
-        setDataProjexperts(res.data)
+      axios
+        .put(`http://localhost:4040/projexperts/form/${props.idExpert}`, {
+          projects_id: props.idProject,
+        })
+        .then((res) => {
+          console.log(res.data)
+          // récupération de l'ensemble des données pré-existantes
+          setDataProjexperts(res.data)
 
-        // données uniques champ libre
-        setItwDaySelected(res.data.numProject)
-        setFactuSelected(res.data.projectTitle)
-        setAnswerSelected(res.data.client)
-      })
+          // données uniques champ libre
+          setItwDaySelected(res.data.itwDay)
+          setFactuSelected(res.data.factu)
+          if (res.data.answer !== null) {
+            if (res.data.answer === 1) {
+              setAnswerSelected({ label: 'Yes', value: 'Yes' })
+            } else {
+              setAnswerSelected('No')
+            }
+          } else {
+            setAnswerSelected('Waiting')
+          }
+        })
     }
     dataProjexpertsFunc()
-  }, [])
+  }, [props.idExpert])
 
   /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   const onSubmit = async (data) => {
     setError(false)
+    let answer = undefined
 
-    let answer = null
-
-    if (data.answer) {
-      if (data.answer === 'Yes') {
-        let answer = 1
-      } else {
-        let answer = 0
-      }
+    if (answerSelected.id === 1) {
+      answer = 1
+    } else if (answerSelected.id === 2) {
+      answer = 0
     }
 
     let datas = {
-      // champs libres donnée unique
+      idProject: props.idProject,
       answer: answer,
+      // champs libres donnée unique
       itwDay: data.itwDay,
       factu: data.factu,
     }
 
     console.log('datas', datas)
-    axios
-      .put(`http://localhost:4040/projexperts/${id}`, datas)
-      .then(function (res) {
-        navigate(`/maxiProjectExpert/${id}`)
-      })
+
+    const onPut = async () => {
+      await axios
+        .put(`http://localhost:4040/projexperts/${props.idExpert}`, datas)
+        .then(function (res) {
+          props.setAnswerEdit(false)
+        })
+    }
+    onPut()
   }
 
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
@@ -85,9 +101,11 @@ const AnswerEdit = () => {
 
   const onDelete = () => {
     axios
-      .delete(`http://localhost:4040/projexperts/${id}`)
+      .put(`http://localhost:4040/projexperts/delete/${props.idExpert}`, {
+        projects_id: props.idProject,
+      })
       .then(function (res) {
-        navigate(`/maxiProjectExpert/${id}`)
+        props.setAnswerEdit(false)
       })
   }
 
@@ -98,7 +116,7 @@ const AnswerEdit = () => {
           icon={faCircleXmark}
           size='xl'
           className='circle'
-          onClick={() => navigate(-1)}
+          onClick={() => props.setAnswerEdit(false)}
         />
         <form
           className='pageFormInside'
@@ -106,20 +124,6 @@ const AnswerEdit = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className='columns'>
-            <div className='columnsDiv'>
-              <label htmlFor='answer'>Answer</label>
-              <input
-                className='inputAnswer'
-                id='answer'
-                name='answer'
-                type='text'
-                autoComplete='off'
-                {...register('answer')}
-                value={answerSelected}
-                onChange={(e) => setAnswerSelected(e.target.value)}
-              ></input>
-            </div>
-
             <div className='columnsDiv'>
               <label htmlFor='itwDay'>ITW Day</label>
               <input
@@ -147,19 +151,32 @@ const AnswerEdit = () => {
                 onChange={(e) => setFactuSelected(e.target.value)}
               ></input>
             </div>
+
+            <div className='columnsDiv'>
+              <label htmlFor='answer'>Answer</label>
+              <Select
+                options={answerOptions}
+                className='basic-multi-select'
+                classNamePrefix={
+                  error && !answerSelected ? 'novalidated' : 'select'
+                }
+                value={answerSelected}
+                onChange={(e) => setAnswerSelected(e)}
+              ></Select>
+            </div>
+          </div>
+          <div className='checkOrTrashAnswer'>
+            <button className='buttonAddForm' onClick={() => onSubmit()}>
+              Add
+            </button>
+            <FontAwesomeIcon
+              onClick={() => onDelete()}
+              icon={faTrashCan}
+              size='lg'
+              className='trashCan'
+            />
           </div>
         </form>
-        <div className='checkOrTrashAnswer'>
-          <button className='buttonAddForm' onClick={() => onSubmit()}>
-            Add
-          </button>
-          <FontAwesomeIcon
-            onClick={() => onDelete()}
-            icon={faTrashCan}
-            size='lg'
-            className='trashCan'
-          />
-        </div>
       </div>
     </div>
   )
