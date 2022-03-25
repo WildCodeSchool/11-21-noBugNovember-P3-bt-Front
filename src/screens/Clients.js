@@ -10,7 +10,7 @@ const Clients = (props) => {
 
   return (
     <div className="tabContainer">
-      <h1>Client</h1>
+      <h1>Clients</h1>
       <TabClients setClientSelection={setClientSelection} />
       <div className="titleButtonContainer">
         <div className="buttonContainerExpert">

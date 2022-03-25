@@ -289,15 +289,6 @@ const PageClientEdit = () => {
             </div>
             <div className="columnsDiv">
               <label for="businessName">Business Name</label>
-              {/* <input
-                id="businessName"
-                name="businessName"
-                type="text"
-                role="presentation"
-                {...register("businessName")}
-                value={companyNameSelected}
-                onChange={(e) => setCompanyNameSelected(e.target.value)}
-              ></input> */}
               <CreatableSelect
                 value={companyNameSelected}
                 options={companyNameOptions}

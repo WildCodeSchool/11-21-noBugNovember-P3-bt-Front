@@ -163,6 +163,7 @@ const PageExpertEdit = () => {
     set(newDataPoulet);
   };
 
+  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
   const onSubmit = async (data) => {
     console.log("data prob", data);
     if (
@@ -240,8 +241,6 @@ const PageExpertEdit = () => {
       data.preventDefault();
     }
   };
-
-  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   // ******************** DELETE EXPERTS *******************
 
