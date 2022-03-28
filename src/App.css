@@ -35,6 +35,7 @@ body {
 
 button {
   font-family: var(--fontBody);
+  color: var(--firstColor);
 }
 
 h1 {

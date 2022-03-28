@@ -1,5 +1,5 @@
 .navbar {
-  z-index: 2;
+  z-index: 10;
   display: flex;
   padding-left: 15px;
   align-items: center;
@@ -66,7 +66,7 @@
   display: flex;
   align-items: center;
   list-style-type: none;
-  color: black;
+  color: var(--firstColor);
 }
 .activeLink {
   font-weight: bold;

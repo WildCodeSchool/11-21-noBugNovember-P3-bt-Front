@@ -151,7 +151,7 @@ const PageClient = () => {
               />
             </div>
             <div className='columnsSelect'>
-              <label for='geoExpertise'>Desired Serviced</label>
+              <label for='geoExpertise'>Desired Service</label>
               <Select closeMenuOnSelect={false} options={dsOptions} isMulti className='basic-multi-select' classNamePrefix='select' defaultValue={selectedOptions} onChange={(e) => setDsSelected(e)} />
             </div>
           </div>

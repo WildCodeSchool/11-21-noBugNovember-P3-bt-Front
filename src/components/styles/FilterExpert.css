@@ -1,0 +1,104 @@
+/* barre de filtre/recherche */
+.filter {
+    grid-area: 1 / 1 / 2 / 4;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sousfilter {
+    margin-top: 5%;
+    display : flex;
+    align-items : center; 
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 25px; 
+    width: 90vw;
+    position: relative;
+  }
+  
+  .filterBar {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    overflow-x: scroll;
+    overflow-y: hidden; 
+    scrollbar-width: none;
+    align-items: center;
+    /* border-left : solid 1px var(--background);  */
+  }
+  
+  .filterBar::-webkit-scrollbar {
+    display: none;
+  } 
+  
+  .filterBar > button, .search, .filterBar > select {
+    border: 2px solid var(--firstColor) !important;
+    border-radius: 20px !important;
+    padding: 8px 20px !important;
+    background-color: var(--secondColor) !important;
+    margin: 5px !important;
+    min-width: fit-content !important; 
+    height: 40px;
+    /* min-width:max-content;  */
+  }
+  
+  #filter {
+    margin: 0 14px; 
+  }
+  
+  
+  .search {
+    padding: 8px 14px; 
+  }
+  
+  .search > input {
+    border : none; 
+  }
+  
+  #searchBar {
+    margin-left: 14px;
+  }
+/* .dropdown {
+  position: relative; 
+}  */
+
+.dropdown-content {
+  display: none; 
+  position: absolute; 
+  background-color: var(--secondColor);
+  color :var(--firstColor); 
+  min-width: max-content;
+  height: max-content; 
+  z-index: 4;
+  text-align: left;
+  padding : 5px; 
+  top: 45px; 
+  /* border-radius: 5%; */
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterBar > button:hover {
+  background-color: var(--firstColor);
+  color : var(--secondColor);
+  border: 2px solid var(--secondColor);
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border : none !important; 
+}  
+
+.MuiInputBase-formControl {
+  border : 2px solid var(--firstColor) !important; 
+  border-radius: 20px !important;
+  background-color: var(--secondColor) !important;
+}
+
+.stop {
+  width: 20px;
+}
+/* .dropdown-content a:hover {
+  background-color: #f1f1f1; 
+} */

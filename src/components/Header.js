@@ -21,7 +21,7 @@ const Header = () => {
       <div className="headerStatsContainer">
         <img src={GraphLogo} alt="graph_logo" id="headerGraphLogo" />
         <div className="headerStats">
-          <p className="statItem">{stats.doneprojects} Done Projects</p>
+          <p className="statItem">{stats.doneprojects} Ongoing Projects</p>
           <p className="statItem">{stats.ongoingProjects} Ongoing Projects</p>
           <p className="statItem">{stats.DoneCA} CA</p>
           <p className="statItem">
