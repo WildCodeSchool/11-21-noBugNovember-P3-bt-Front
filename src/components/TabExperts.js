@@ -89,13 +89,35 @@ const TabExperts = ({ setExpertSelection }) => {
       width: "150px",
       headerName: "Category",
     },
-    { field: "contact", sortable: true, filter: true, width: "130px" },
     {
-      field: "expertiseLevelName",
+      field: "hcpTypeName",
       sortable: true,
       filter: true,
-      headerName: "Expertise Level",
+      width: "150px",
+      headerName: "HCP Type",
     },
+    {
+      field: "sectorName",
+      sortable: true,
+      filter: true,
+      width: "150px",
+      headerName: "Sector",
+    },
+    {
+      field: "industry",
+      sortable: true,
+      filter: true,
+      width: "150px",
+      headerName: "Industry",
+    },
+    {
+      field: "fonction",
+      sortable: true,
+      filter: true,
+      width: "150px",
+      headerName: "Function",
+    },
+
     {
       field: "pastCompanies",
       sortable: true,
@@ -109,10 +131,20 @@ const TabExperts = ({ setExpertSelection }) => {
       headerName: "Geo Expertise",
     },
     { field: "languages", sortable: true, filter: true, width: "120px" },
-    { field: "price", sortable: true, filter: true, width: "100px" },
+    {
+      field: "expertiseLevelName",
+      sortable: true,
+      filter: true,
+      headerName: "Expertise Level",
+    },
+    {
+      field: "price",
+      sortable: true,
+      filter: true,
+      width: "100px",
+      headerName: "Hourly Rate",
+    },
     { field: "cost", sortable: true, filter: true, width: "100px" },
-    { field: "feedbackExpert", headerName: "FeedBack", width: "200px" },
-    { field: "itwday", sortable: true, filter: true, width: "110px" },
     {
       field: "linkedinProfile",
       width: "130px",
@@ -120,8 +152,15 @@ const TabExperts = ({ setExpertSelection }) => {
       filter: true,
       editable: true,
     },
-    { field: "projectTitle", sortable: true, filter: true },
+    {
+      field: "projectTitle",
+      sortable: true,
+      filter: true,
+      headerName: "Project",
+    },
+    { field: "feedbackExpert", headerName: "FeedBack", width: "200px" },
     { field: "keywords", sortable: true, filter: true },
+    { field: "contact", sortable: true, filter: true, width: "130px" },
   ]);
 
   const rowSelection = (e) => {

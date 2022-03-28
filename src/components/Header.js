@@ -15,7 +15,7 @@ const Header = () => {
       .then((res) => res.data)
       .then((res) => setStats(res));
   }, []);
-  console.log("stats", stats);
+
   return (
     <div className="headerContainer">
       <img src={BTHTLogo} alt="logo_BTHT" id="headerLogo" />
