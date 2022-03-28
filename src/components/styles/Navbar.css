@@ -1,13 +1,14 @@
 .navbar {
   z-index: 10;
   display: flex;
-  padding-left: 15px;
+  padding-left: 7px;
   align-items: center;
   position: fixed;
   height: 92vh;
-  width: 70px;
+  width: 50px;
   background-color: #a9cae2;
   transition: all 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
 }
 
 .navbar.opened {
@@ -19,8 +20,8 @@
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 10vh;
-  left: 70px;
+  top: 5vh;
+  left: 50px;
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 50%;
@@ -30,6 +31,7 @@
   padding-top: 5.5px;
   padding-left: 2px;
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 .navbarOpener.opened {
@@ -56,7 +58,7 @@
 .navbarLinksWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   height: 100%;
 }
@@ -66,16 +68,18 @@
   display: flex;
   align-items: center;
   list-style-type: none;
-  color: var(--firstColor);
+  color: rgba(114, 127, 199, 1);
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 .activeLink {
-  font-weight: bold;
-  transform: scale(1.2);
+  transform: scale(1);
   transition: all 0.2s;
+  color: var(--firstColor);
 }
 
 .navbarLinkLogo {
-  height: 40px;
+  height: 2rem;
 }
 
 .navbarLinkName {

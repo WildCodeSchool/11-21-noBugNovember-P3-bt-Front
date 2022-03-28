@@ -15,6 +15,7 @@ const PageExpertEdit = () => {
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm()
   const [options, setOptions] = useState([])
+
   const [languagesOptions, setLanguagesOptions] = useState([])
   const [geoExpertiseOptions, setGeoExpertiseOptions] = useState([])
   const [kindOfExpertOptions, setKindOfExpertOptions] = useState([])
@@ -25,6 +26,7 @@ const PageExpertEdit = () => {
   const [companyOptions, setCompanyOptions] = useState([])
   const [pastCompaniesOptions, setPastCompaniesOptions] = useState([])
   const [projectsOptions, setProjectsOptions] = useState([])
+
   const [geoSelected, setGeoSelected] = useState([])
   const [langSelected, setLangSelected] = useState([])
   const [practiceSelected, setPracticeSelected] = useState([])
@@ -45,6 +47,7 @@ const PageExpertEdit = () => {
   const [feedbackSelected, setFeedbackSelected] = useState([])
   const [priceSelected, setPriceSelected] = useState([])
   const [costSelected, setCostSelected] = useState([])
+
   const [error, setError] = useState(false)
   const [newOptions, setNewOptions] = useState([])
 
@@ -55,7 +58,9 @@ const PageExpertEdit = () => {
 
   useEffect(() => {
     const getOptions = () => {
-      axios.get(`http://localhost:4040/experts/form`).then((res) => setOptions(res.data))
+      axios
+        .get(`http://localhost:4040/experts/form`)
+        .then((res) => setOptions(res.data))
     }
     getOptions()
   }, [newOptions])
@@ -107,7 +112,16 @@ const PageExpertEdit = () => {
 
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
-  const handleCreate = async (inputValue, table, column, set, selected, multiple, option, setOption) => {
+  const handleCreate = async (
+    inputValue,
+    table,
+    column,
+    set,
+    selected,
+    multiple,
+    option,
+    setOption
+  ) => {
     let newDataPoulet = []
     for (let i = 0; i < inputValue.length; i++) {
       let temp = []
@@ -136,10 +150,14 @@ const PageExpertEdit = () => {
         // If the Value Is in DATABASE
       } else {
         if (multiple === 'solo') {
-          const goodOpt = option.filter((el) => el.value === inputValue[i].value)
+          const goodOpt = option.filter(
+            (el) => el.value === inputValue[i].value
+          )
           newDataPoulet = goodOpt
         } else {
-          const goodOpt2 = option.filter((el) => el.value === inputValue[i].value)
+          const goodOpt2 = option.filter(
+            (el) => el.value === inputValue[i].value
+          )
           newDataPoulet.push(...goodOpt2)
         }
       }
@@ -148,68 +166,76 @@ const PageExpertEdit = () => {
     set(newDataPoulet)
   }
 
+  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
   const onSubmit = async (data) => {
-    if (yoeSelected.length !== 0 && cieSelected.length !== 0 && jobSelected.length !== 0 && practiceSelected && koeSelected.length !== 0) {
+    console.log("data prob", data);
+    if (
+      yoeSelected.length !== 0 &&
+      cieSelected.length !== 0 &&
+      jobSelected.length !== 0 &&
+      practiceSelected &&
+      koeSelected.length !== 0
+    ) {
       setError(false)
+      // champs select donnée unique
+      const company_id = cieSelected.id
+      const jobTitle_id = jobSelected.id
+      const kindOfExpert_id = koeSelected.id
+      const practice_id = practiceSelected.id
+      const expertiseLevel_id = yoeSelected.id
+
+      // champs select données multiples
       let geoDatas = []
       let langDatas = []
       let pcieDatas = []
       let ctcDatas = []
       let pjtDatas = []
-      let cieDatas = []
-      let koeDatas = []
-      let yoeDatas = []
-      let jobDatas = []
-      const practice_id = practiceSelected.id
+
       geoSelected.forEach((geo) => geo.id && geoDatas.push(geo.id))
       langSelected.forEach((lang) => lang.id && langDatas.push(lang.id))
       pcieSelected.forEach((pcie) => pcie.id && pcieDatas.push(pcie.id))
       ctcSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id))
       pjtSelected.forEach((pjt) => pjt.id && pjtDatas.push(pjt.id))
-      cieSelected.forEach((cie) => cie.id && cieDatas.push(cie.id))
-      koeSelected.forEach((koe) => koe.id && koeDatas.push(koe.id))
-      yoeSelected.forEach((yoe) => yoe.id && yoeDatas.push(yoe.id))
-      jobSelected.forEach((job) => job.id && jobDatas.push(job.id))
+
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] }
       let languages_id = { languages_id: [...langDatas] }
       let pastCompany_id = { pastCompany_id: [...pcieDatas] }
       let contactType_id = { contactType_id: [...ctcDatas] }
       let projects_id = { projects_id: [...pjtDatas] }
-      let company_id = { company_id: [...cieDatas] }
-      let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] }
-      let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] }
-      let jobtitle_id = { jobtitle_id: [...jobDatas] }
 
       let datas = {
+        // champs libres donnée unique
         firstname: data.firstname,
         lastname: data.lastname,
         email: data.email,
         phone: data.phone,
-        company_id: data.company_id,
         linkedinProfile: data.linkedinProfile,
         price: data.price,
         numExpert: data.numExpert,
-        kindOfExpert_id: data.kindOfExpert_id,
-        practice_id: data.practice_id,
-        expertiseLevel_id: data.expertiseLevel_id,
+        keywords: data.keywords,
         feedbackExpert: data.feedbackExpert,
         cost: data.cost,
-        keywords: data.keywords,
-        jobtitle_id: data.jobtitle_id,
+
+        // champs select donnée unique
+        company_id: company_id,
+        jobtitle_id: jobTitle_id,
+        kindOfExpert_id: kindOfExpert_id,
+        practice_id: practice_id,
+        expertiseLevel_id: expertiseLevel_id,
+
+        // champs select données multiples
         ...geoExpertise_id,
         ...languages_id,
-        ...jobtitle_id,
-        ...kindOfExpert_id,
         ...pastCompany_id,
         ...contactType_id,
         ...projects_id,
-        ...company_id,
-        ...expertiseLevel_id,
       }
       console.log('datas', datas)
-      axios.put(`http://localhost:4040/experts/form/${id}`, datas).then(function (res) {
-        navigate('/experts')
-      })
+      axios
+        .put(`http://localhost:4040/experts/form/${id}`, datas)
+        .then(function (res) {
+          navigate('/experts')
+        })
     } else {
       setError(true)
       console.log('Form error', yoeSelected)
@@ -217,20 +243,44 @@ const PageExpertEdit = () => {
     }
   }
 
-  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
+  // ******************** DELETE EXPERTS *******************
+
+  const onDelete = () => {
+    axios
+      .delete(`http://localhost:4040/experts/form/${id}`)
+      .then(function (res) {
+        navigate('/experts')
+      })
+  }
 
   return (
     <div className='tabContainerForm '>
-      {' '}
       <div className='pageForm'>
-        <FontAwesomeIcon icon={faCircleXmark} size='xl' className='circle' onClick={() => navigate(-1)} />
-        <form className='pageFormInside' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+        <FontAwesomeIcon
+          icon={faCircleXmark}
+          size='xl'
+          className='circle'
+          onClick={() => navigate(-1)}
+        />
+        <form
+          className='pageFormInside'
+          autoComplete='off'
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className='columns'>
             <div id='idWrapper' className='columnsDiv'>
               <h1 id='expert'>EXPERT</h1>
               <div id='expertNumber'>
                 <label htmlFor='number'>N°</label>
-                <input id='number' name='number' type='key' {...register('numExpert')} value={numExpertSelected} onChange={(e) => setNumExpertSelected(e.target.value)} required></input>
+                <input
+                  id='number'
+                  name='number'
+                  type='key'
+                  {...register('numExpert')}
+                  value={numExpertSelected}
+                  onChange={(e) => setNumExpertSelected(e.target.value)}
+                  required
+                ></input>
               </div>
             </div>
             <div className='columnsDiv'>
@@ -261,11 +311,28 @@ const PageExpertEdit = () => {
             </div>
             <div className='columnsDiv'>
               <label htmlFor='phone'>Phone</label>
-              <input id='phone' name='phone' type='tel' role='presentation' autocomplete='off' {...register('phone')} value={phoneSelected} onChange={(e) => setPhoneSelected(e.target.value)}></input>
+              <input
+                id='phone'
+                name='phone'
+                type='tel'
+                role='presentation'
+                autocomplete='off'
+                {...register('phone')}
+                value={phoneSelected}
+                onChange={(e) => setPhoneSelected(e.target.value)}
+              ></input>
             </div>
             <div className='columnsDiv'>
               <label htmlFor='email'>Email</label>
-              <input id='email' name='email' type='email' role='presentation' {...register('email')} value={emailSelected} onChange={(e) => setEmailSelected(e.target.value)}></input>
+              <input
+                id='email'
+                name='email'
+                type='email'
+                role='presentation'
+                {...register('email')}
+                value={emailSelected}
+                onChange={(e) => setEmailSelected(e.target.value)}
+              ></input>
             </div>
             <div className='columnsDiv'>
               <label htmlFor='linkedin'>Linkedin Profile</label>
@@ -290,7 +357,16 @@ const PageExpertEdit = () => {
                 classNamePrefix='select'
                 onChange={(e) => {
                   setCtcSelected(e)
-                  handleCreate(e, 'contacttype', 'contactTypeName', setCtcSelected, ctcSelected, 'multiple', contactsOptions, setContactsOptions)
+                  handleCreate(
+                    e,
+                    'contacttype',
+                    'contactTypeName',
+                    setCtcSelected,
+                    ctcSelected,
+                    'multiple',
+                    contactsOptions,
+                    setContactsOptions
+                  )
                 }}
               />
             </div>
@@ -298,7 +374,15 @@ const PageExpertEdit = () => {
           <div className='columns'>
             <div className='columnsDiv'>
               <label htmlFor='projectOptions'>Projects</label>
-              <Select closeMenuOnSelect={false} options={projectsOptions} isMulti className='basic-multi-select' classNamePrefix='select' value={pjtSelected} onChange={(e) => setPjtSelected(e)} />
+              <Select
+                closeMenuOnSelect={false}
+                options={projectsOptions}
+                isMulti
+                className='basic-multi-select'
+                classNamePrefix='select'
+                value={pjtSelected}
+                onChange={(e) => setPjtSelected(e)}
+              />
             </div>
 
             <div className='columnsSelect'>
@@ -307,11 +391,21 @@ const PageExpertEdit = () => {
                 value={koeSelected}
                 options={kindOfExpertOptions}
                 className='basic-multi-select'
-                classNamePrefix={error && koeSelected.length === 0 ? 'novalidated' : 'select'}
-                // value={datatest.kindOfExpertName}
+                classNamePrefix={
+                  error && koeSelected.length === 0 ? 'novalidated' : 'select'
+                }
                 onChange={(e) => {
                   setKoeSelected([e])
-                  handleCreate([e], 'kindofexpert', 'kindOfExpertName', setKoeSelected, koeSelected, 'solo', kindOfExpertOptions)
+                  handleCreate(
+                    [e],
+                    'kindofexpert',
+                    'kindOfExpertName',
+                    setKoeSelected,
+                    koeSelected,
+                    'solo',
+                    kindOfExpertOptions,
+                    setKindOfExpertOptions
+                  )
                 }}
               />
             </div>
@@ -327,7 +421,16 @@ const PageExpertEdit = () => {
                 classNamePrefix='select'
                 onChange={(e) => {
                   setGeoSelected(e)
-                  handleCreate(e, 'geoexpertise', 'geoExpertiseName', setGeoSelected, geoSelected, 'multiple', geoExpertiseOptions, setGeoExpertiseOptions)
+                  handleCreate(
+                    e,
+                    'geoexpertise',
+                    'geoExpertiseName',
+                    setGeoSelected,
+                    geoSelected,
+                    'multiple',
+                    geoExpertiseOptions,
+                    setGeoExpertiseOptions
+                  )
                 }}
               />
             </div>
@@ -337,7 +440,9 @@ const PageExpertEdit = () => {
               <Select
                 options={practiceOptions}
                 className='basic-multi-select'
-                classNamePrefix={error && !practiceSelected ? 'novalidated' : 'select'}
+                classNamePrefix={
+                  error && !practiceSelected ? 'novalidated' : 'select'
+                }
                 value={practiceSelected}
                 onChange={(e) => setPracticeSelected(e)}
               />
@@ -348,10 +453,21 @@ const PageExpertEdit = () => {
                 value={jobSelected}
                 options={jobTitleOptions}
                 className='basic-multi-select'
-                classNamePrefix={error && jobSelected.length === 0 ? 'novalidated' : 'select'}
+                classNamePrefix={
+                  error && jobSelected.length === 0 ? 'novalidated' : 'select'
+                }
                 onChange={(e) => {
                   setJobSelected([e])
-                  handleCreate([e], 'jobtitle', 'jobTitleName', setJobSelected, jobSelected, 'solo', jobTitleOptions)
+                  handleCreate(
+                    [e],
+                    'jobtitle',
+                    'jobTitleName',
+                    setJobSelected,
+                    jobSelected,
+                    'solo',
+                    jobTitleOptions,
+                    setJobTitleOptions
+                  )
                 }}
               />
             </div>
@@ -362,10 +478,21 @@ const PageExpertEdit = () => {
                 value={cieSelected}
                 options={companyOptions}
                 className='basic-multi-select'
-                classNamePrefix={error && cieSelected.length === 0 ? 'novalidated' : 'select'}
+                classNamePrefix={
+                  error && cieSelected.length === 0 ? 'novalidated' : 'select'
+                }
                 onChange={(e) => {
                   setCieSelected([e])
-                  handleCreate([e], 'company', 'companyName', setCieSelected, cieSelected, 'solo', companyOptions)
+                  handleCreate(
+                    [e],
+                    'company',
+                    'companyName',
+                    setCieSelected,
+                    cieSelected,
+                    'solo',
+                    companyOptions,
+                    setCompanyOptions
+                  )
                 }}
               />
             </div>
@@ -380,7 +507,16 @@ const PageExpertEdit = () => {
                 classNamePrefix='select'
                 onChange={(e) => {
                   setPcieSelected(e)
-                  handleCreate(e, 'company', 'companyName', setPcieSelected, pcieSelected, 'multiple', pastCompaniesOptions, setPastCompaniesOptions)
+                  handleCreate(
+                    e,
+                    'company',
+                    'companyName',
+                    setPcieSelected,
+                    pcieSelected,
+                    'multiple',
+                    pastCompaniesOptions,
+                    setPastCompaniesOptions
+                  )
                 }}
               />
             </div>
@@ -388,11 +524,27 @@ const PageExpertEdit = () => {
           <div className='columns'>
             <div className='columnsDiv'>
               <label htmlFor='price/hr'>Price/hr</label>
-              <input id='price/hr' name='price/hr' type='number' role='presentation' {...register('price')} value={priceSelected} onChange={(e) => setPriceSelected(e.target.value)}></input>
+              <input
+                id='price/hr'
+                name='price/hr'
+                type='number'
+                role='presentation'
+                {...register('price')}
+                value={priceSelected}
+                onChange={(e) => setPriceSelected(e.target.value)}
+              ></input>
             </div>
             <div className='columnsDiv'>
               <label htmlFor='cost'>Cost/hr</label>
-              <input id='cost' name='cost' type='number' role='presentation' {...register('cost')} value={costSelected} onChange={(e) => setCostSelected(e.target.value)}></input>
+              <input
+                id='cost'
+                name='cost'
+                type='number'
+                role='presentation'
+                {...register('cost')}
+                value={costSelected}
+                onChange={(e) => setCostSelected(e.target.value)}
+              ></input>
             </div>
             <div className='columnsDiv'>
               <label htmlFor='feedback'>Feedback</label>
@@ -413,10 +565,21 @@ const PageExpertEdit = () => {
                 value={yoeSelected}
                 options={yearsOfExperienceOptions}
                 className='basic-multi-select'
-                classNamePrefix={error && yoeSelected.length === 0 ? 'novalidated' : 'select'}
+                classNamePrefix={
+                  error && yoeSelected.length === 0 ? 'novalidated' : 'select'
+                }
                 onChange={(e) => {
                   setYoeSelected([e])
-                  handleCreate([e], 'expertiselevel', 'expertiseLevelName', setYoeSelected, yoeSelected, 'solo', yearsOfExperienceOptions)
+                  handleCreate(
+                    [e],
+                    'expertiselevel',
+                    'expertiseLevelName',
+                    setYoeSelected,
+                    yoeSelected,
+                    'solo',
+                    yearsOfExperienceOptions,
+                    setYearsOfExperienceOptions
+                  )
                 }}
               />
             </div>
@@ -431,20 +594,42 @@ const PageExpertEdit = () => {
                 classNamePrefix='select'
                 onChange={(e) => {
                   setLangSelected(e)
-                  handleCreate(e, 'languages', 'languagesName', setLangSelected, langSelected, 'multiple', languagesOptions, setLanguagesOptions)
+                  handleCreate(
+                    e,
+                    'languages',
+                    'languagesName',
+                    setLangSelected,
+                    langSelected,
+                    'multiple',
+                    languagesOptions,
+                    setLanguagesOptions
+                  )
                 }}
               />
             </div>
             <div className='columnsDiv'>
               <label htmlFor='keywords'>Keywords</label>
-              <input id='keywords' name='keywords' type='text' role='presentation' {...register('keywords')} value={keywordsSelected} onChange={(e) => setKeyWordsSelected(e.target.value)}></input>
+              <input
+                id='keywords'
+                name='keywords'
+                type='text'
+                role='presentation'
+                {...register('keywords')}
+                value={keywordsSelected}
+                onChange={(e) => setKeyWordsSelected(e.target.value)}
+              ></input>
             </div>
           </div>
           <div className='checkOrTrash'>
             <button className='buttonAddForm' onClick={() => onSubmit()}>
               Add
             </button>
-            <FontAwesomeIcon icon={faTrashCan} size='lg' className='trashCan' />
+            <FontAwesomeIcon
+              onClick={() => onDelete()}
+              icon={faTrashCan}
+              size='lg'
+              className='trashCan'
+            />
           </div>
         </form>
       </div>
