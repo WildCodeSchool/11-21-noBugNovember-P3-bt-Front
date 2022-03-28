@@ -35,16 +35,16 @@ const Header = () => {
             />
             {stats.ongoingProjects} Ongoing Projects
           </p>
-          <p className="statItem">${stats.OngoingCA} Ongoing CA </p>
+          <p className="statItem">€{stats.OngoingCA} Ongoing CA </p>
           {/* <p className="statItem">{stats.doneprojects} Done Projects</p> */}
           <p className="statItem">{stats.totalProjects} Projects</p>
           <p className="statItem">{stats.totalExperts} Experts</p>
-          <p className="statItem">{stats.DoneCA} CA</p>
+          <p className="statItem">€{stats.DoneCA} CA</p>
           {/* <p className="statItem">
             {stats.expertsWorked} Participating Experts
           </p> */}
           {/* <p className="statItem">{stats.totalClients} Clients</p> */}
-          <p className="statItem">${stats.CostExperts} Experts Cost</p>
+          <p className="statItem">€{stats.CostExperts} Experts Cost</p>
         </div>
       </div>
     </div>
