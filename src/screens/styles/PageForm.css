@@ -143,7 +143,7 @@
 
 /* Answer Edit */
 #formAnswer {
-  padding: 1em;
+  padding: 1.5em;
   padding-bottom: 0.3em;
   height: auto;
   width: auto;
@@ -151,12 +151,14 @@
 
 .checkOrTrashAnswer {
   display: flex;
-  justify-content: end;
+  justify-content: space-around;
   align-items: center;
-  margin-top: 0.5em;
+  margin: 0.8em;
+  width: 100%;
 }
 
 .inputAnswer {
   margin-top: 0em !important;
   margin-bottom: 0.5em;
 }
+

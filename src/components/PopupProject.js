@@ -17,8 +17,10 @@ const PopupProject = (props) => {
         Confirm you want to add {props.expert.lastname} {props.expert.firstname}{' '}
         to {props.project.numProject}
       </p>
-      <button onClick={onSubmit}>Confirm</button>
-      <button onClick={() => props.setPopupProject(false)}>Cancel</button>
+      <div className='buttonAjoutContainer'>
+        <button onClick={onSubmit} className="smallButton" >Confirm</button>
+        <button onClick={() => props.setPopupProject(false)} className="smallButton">Cancel</button>
+      </div>
     </div>
   )
 }
