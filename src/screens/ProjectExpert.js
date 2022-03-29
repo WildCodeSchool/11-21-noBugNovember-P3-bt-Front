@@ -4,37 +4,27 @@ import MaxiExpert from '../components/MaxiExpert'
 import PopupProject from '../components/PopupProject'
 import React, { useState } from 'react'
 
-import search from '../assets/search.svg'
-
 import './styles/ProjectExpert.css'
+import FilterExpert from '../components/FilterExpert'
+
 
 const ProjectExpert = (props) => {
+  const [experts, setExperts] = useState([])
   const [popupProject, setPopupProject] = useState(false)
   const [project, setProject] = useState([])
 
   return (
     <div className='projectExpertContainer'>
-      <div className='filter'>
-        <img src={search} alt='search' width='50px' />
-        <ul className='filterBar'>
-          <div>Type</div>
-          <div>Price</div>
-          <div>Practice</div>
-          <div>Industry</div>
-          <div>Job Title</div>
-          <div>Geo Expertise</div>
-          <div>Language</div>
-          <div>Years of Exp</div>
-          <div>Company</div>
-          <div>Feedback</div>
-          <div>Keywords</div>
-        </ul>
-      </div>
+      <FilterExpert 
+      experts={experts} setExperts={setExperts} 
+      /> 
+          
       <div className='gridMidiProject'>
         <MidiProject project={project} setProject={setProject} />
       </div>
       <div className={!props.maxiExpert ? 'gridMidiExpert' : 'hidden'}>
         <MidiExpert
+          experts={experts} setExperts={setExperts}
           setMaxiExpert={props.setMaxiExpert}
           maxiExpert={props.maxiExpert}
           setIdExpert={props.setIdExpert}
