@@ -231,6 +231,19 @@ const PageClient = () => {
               />
             </div>
           </div>
+          <div className="columns">
+            <div className="columnsDiv">
+              <label htmlFor="feedback">Comment</label>
+              <textarea
+                id="feedback"
+                name="feedback"
+                rows="20"
+                cols="60"
+                role="presentation"
+                {...register("feedbackClient")}
+              ></textarea>
+            </div>
+          </div>
           <div className="checkOrTrash">
             <button className="buttonAddForm"> Add </button>
             <FontAwesomeIcon icon={faTrashCan} size="lg" className="trashCan" />

@@ -30,6 +30,7 @@ const PageExpertEdit = () => {
   const [sectorOptions, setSectorOptions] = useState([]);
   const [induOptions, setInduOptions] = useState([]);
   const [fonctionOptions, setFonctionOptions] = useState([]);
+  const [specialtyOptions, setSpecialtyOptions] = useState([]);
 
   const [geoSelected, setGeoSelected] = useState([]);
   const [langSelected, setLangSelected] = useState([]);
@@ -55,6 +56,7 @@ const PageExpertEdit = () => {
   const [sctSelected, setSctSelected] = useState([]);
   const [induSelected, setInduSelected] = useState([]);
   const [fctSelected, setFctSelected] = useState([]);
+  const [specSelected, setSpecSelected] = useState([]);
 
   const [error, setError] = useState(false);
   const [newOptions, setNewOptions] = useState([]);
@@ -91,6 +93,7 @@ const PageExpertEdit = () => {
     setInduOptions(options.industry);
     setHcpOptions(options.hcptype);
     setSectorOptions(options.sector);
+    setSpecialtyOptions(options.specialty);
   }, [options]);
 
   // ********************   DATA EXPERT ***************************
@@ -123,6 +126,7 @@ const PageExpertEdit = () => {
         setSctSelected(res.data.sectorName);
         setFctSelected(res.data.fonction);
         setInduSelected(res.data.industry);
+        setSpecSelected(res.data.specialty);
       });
     };
     dataExpertFunc();
@@ -212,6 +216,7 @@ const PageExpertEdit = () => {
       let fctDatas = [];
       let hcpDatas = [];
       let sctDatas = [];
+      let specDatas = [];
 
       geoSelected.forEach((geo) => geo.id && geoDatas.push(geo.id));
       langSelected.forEach((lang) => lang.id && langDatas.push(lang.id));
@@ -222,6 +227,7 @@ const PageExpertEdit = () => {
       fctSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
       hcpSelected.forEach((hcp) => hcp.id && hcpDatas.push(hcp.id));
       sctSelected.forEach((sct) => sct.id && sctDatas.push(sct.id));
+      specSelected.forEach((spec) => spec.id && specDatas.push(spec.id));
 
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
       let languages_id = { languages_id: [...langDatas] };
@@ -232,6 +238,7 @@ const PageExpertEdit = () => {
       let fonction_id = { fonction_id: [...fctDatas] };
       let hcpType_id = { hcpType_id: [...hcpDatas] };
       let sector_id = { sector_id: [...sctDatas] };
+      let specialty_id = { specialty_id: [...specDatas] };
 
       let datas = {
         // champs libres donnée unique
@@ -263,6 +270,7 @@ const PageExpertEdit = () => {
         ...fonction_id,
         ...hcpType_id,
         ...sector_id,
+        ...specialty_id,
       };
       console.log("datas", datas);
       axios
@@ -395,7 +403,6 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="fonction">Fonction</label>
               <CreatableSelect
-                menuPlacement="top"
                 menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={fonctionOptions}
@@ -696,8 +703,32 @@ const PageExpertEdit = () => {
                 }
               />
             </div>
+            <div className="columnsSelect">
+              <label htmlFor="specialty">Specialty</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={specialtyOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                value={specSelected}
+                onChange={(e) =>
+                  handleCreate(
+                    e,
+                    "specialty",
+                    "specialtyName",
+                    setSpecSelected,
+                    specSelected,
+                    "multiple",
+                    specialtyOptions,
+                    setSpecialtyOptions
+                  )
+                }
+              />
+            </div>
             <div className="columnsDiv">
-              <label htmlFor="feedback">Feedback</label>
+              <label htmlFor="feedback">Comment</label>
               <textarea
                 id="feedback"
                 name="feedback"

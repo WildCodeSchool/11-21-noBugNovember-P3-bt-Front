@@ -28,6 +28,7 @@ const PageExpert = () => {
   const [hcpOptions, setHcpOptions] = useState([]);
   const [sectorOptions, setSectorOptions] = useState([]);
   const [fonctionOptions, setFonctionOptions] = useState([]);
+  const [specialtyOptions, setSpecialtyOptions] = useState([]);
 
   const [geoSelected, setGeoSelected] = useState([]);
   const [langSelected, setLangSelected] = useState([]);
@@ -43,6 +44,7 @@ const PageExpert = () => {
   const [hcpSelected, setHcpSelected] = useState([]);
   const [sctSelected, setSctSelected] = useState([]);
   const [fctSelected, setFctSelected] = useState([]);
+  const [specSelected, setSpecSelected] = useState([]);
   const [error, setError] = useState(false);
 
   const [optionHasChanged, setOptionHasChanged] = useState([]);
@@ -74,6 +76,7 @@ const PageExpert = () => {
     setHcpOptions(options.hcptype);
     setSectorOptions(options.sector);
     setFonctionOptions(options.fonction);
+    setSpecialtyOptions(options.specialty);
   }, [options]);
 
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
@@ -91,11 +94,13 @@ const PageExpert = () => {
         console.log("newValue", newValue);
         axios
           .post("http://localhost:4040/experts/test", newValue)
-          .then(
-            (res) =>
-              console.log("datas du back", res.data) ||
-              set([...selected, res.data])
-          )
+          .then((res) => {
+            if (multiple === "multiple") {
+              set([...selected, res.data]);
+            } else if (multiple === "solo") {
+              set([res.data]);
+            }
+          })
           .catch(function (error) {
             console.log(error);
           });
@@ -153,6 +158,7 @@ const PageExpert = () => {
       let hcpDatas = [];
       let sctDatas = [];
       let fctDatas = [];
+      let specDatas = [];
       const practice_id = practiceSelected.id;
 
       geoSelected.forEach((geo) => geoDatas.push(geo.id));
@@ -170,6 +176,7 @@ const PageExpert = () => {
       hcpSelected.forEach((hcp) => hcpDatas.push(hcp.id));
       sctSelected.forEach((sct) => sctDatas.push(sct.id));
       fctSelected.forEach((fct) => fctDatas.push(fct.id));
+      specSelected.forEach((spec) => specDatas.push(spec.id));
 
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
       let languages_id = { languages_id: [...langDatas] };
@@ -177,6 +184,7 @@ const PageExpert = () => {
       let contactType_id = { contactType_id: [...ctcDatas] };
       let projects_id = { projects_id: [...pjtDatas] };
       let company_id = { company_id: [...cieDatas] };
+      // let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
       let jobtitle_id = { jobtitle_id: [...jobDatas] };
@@ -184,6 +192,7 @@ const PageExpert = () => {
       let hcpType_id = { hcpType_id: [...hcpDatas] };
       let sector_id = { sector_id: [...sctDatas] };
       let fonction_id = { fonction_id: [...fctDatas] };
+      let specialty_id = { specialty_id: [...specDatas] };
 
       let datas = {
         practice_id,
@@ -201,6 +210,7 @@ const PageExpert = () => {
         ...hcpType_id,
         ...sector_id,
         ...fonction_id,
+        ...specialty_id,
       };
 
       console.log("datas", datas);
@@ -293,7 +303,7 @@ const PageExpert = () => {
               <input
                 id="linkedin"
                 name="linkedin"
-                type="url"
+                type="text"
                 role="presentation"
                 {...register("linkedinProfile")}
               ></input>
@@ -518,6 +528,7 @@ const PageExpert = () => {
                 name="price/hr"
                 type="number"
                 role="presentation"
+                max="1000000"
                 {...register("price")}
               ></input>
             </div>
@@ -528,6 +539,7 @@ const PageExpert = () => {
                 name="cost"
                 type="number"
                 role="presentation"
+                max="1000000"
                 {...register("cost")}
               ></input>
             </div>
@@ -574,28 +586,28 @@ const PageExpert = () => {
               />
             </div>
             <div className="columnsSelect">
-              <label htmlFor="sector">Sector</label>
+              <label htmlFor="specialty">Specialty</label>
               <CreatableSelect
                 menuPlacement="top"
                 closeMenuOnSelect={false}
-                options={sectorOptions}
+                options={specialtyOptions}
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
                 onChange={(e) =>
                   handleCreate(
                     e,
-                    "sector",
-                    "sectorName",
-                    setSctSelected,
-                    sctSelected,
+                    "specialty",
+                    "specialtyName",
+                    setSpecSelected,
+                    specSelected,
                     "multiple"
                   )
                 }
               />
             </div>
             <div className="columnsDiv">
-              <label htmlFor="feedback">Feedback</label>
+              <label htmlFor="feedback">Comment</label>
               <textarea
                 id="feedback"
                 name="feedback"
