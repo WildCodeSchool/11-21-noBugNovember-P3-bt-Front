@@ -37,30 +37,6 @@
   background-color: var(--background);
 }
 
-/* barre de filtre/recherche */
-.filter {
-  grid-area: 1 / 1 / 2 / 4;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.filterBar {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 25px;
-  overflow-x: scroll;
-}
-
-.filterBar > div {
-  border: 2px solid var(--firstColor);
-  border-radius: 20px;
-  padding: 8px 22px;
-  background-color: var(--secondColor);
-  margin: 5px;
-}
 
 .maxiProjectExpertContainer {
   margin-left: 100px;

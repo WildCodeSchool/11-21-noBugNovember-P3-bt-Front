@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [stats, setStats] = useState([]);
+  let margin = ((stats.DoneCA - stats.CostExperts) / stats.DoneCA) * 100;
 
   useEffect(() => {
     axios
@@ -48,6 +49,7 @@ const Header = () => {
           </p> */}
           {/* <p className="statItem">{stats.totalClients} Clients</p> */}
           <p className="statItem">€{stats.CostExperts} Total Expert Cost</p>
+          <p className="statItem">{margin.toFixed(2)} % Gross Margin</p>
         </div>
       </div>
     </div>
