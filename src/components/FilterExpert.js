@@ -267,7 +267,7 @@ const FilterExpert = (props) => {
                         autocomplete="off"
                         value={filFeedback} 
                         onChange={e=> setFilFeedback(e.target.value)} 
-                        placeholder='Feedback'/>
+                        placeholder='Comment'/>
                     </div>
                     <div className='search'>
                         <img src={loupe} alt='search' width='14px' />  
