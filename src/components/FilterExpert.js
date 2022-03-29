@@ -13,6 +13,7 @@ import './styles/FilterExpert.css'
 
 
 const FilterExpert = (props) => {
+//states filters
     const [filters, setFilters] = useState("")
     const [idKoe, setIdKoe] = useState([])
     const [filPrice, setFilPrice] = useState([])
@@ -26,19 +27,21 @@ const FilterExpert = (props) => {
     const [filPastCie, setFilPastCie] = useState("")
     const [filFeedback, setFilFeedback] = useState("")
     const [filKey, setFilKey] = useState("")
+
+//states options drop-down menu
     const [options, setOptions] = useState(null)
     const [newOptions, setNewOptions] = useState([])
 
 
-
+//choice drop-down menu
     useEffect(() => {
         const getOptions = () => {
-            axios.get('http://localhost:4040/experts/form').then((res) => console.log('test bdd', res.data) || setOptions(res.data))
+            axios.get('http://localhost:4040/experts/form').then((res) => setOptions(res.data))
         }
         getOptions()
     }, [newOptions])
 
-
+//filters
     useEffect(() => {
         let filter =[]; 
 
@@ -61,18 +64,34 @@ const FilterExpert = (props) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:4040/filter${filters}`) //?kindofexpert=1?&lang=1,2&...
+            .get(`http://localhost:4040/filter${filters}`) 
             .then((res) => res.data)
             .then((res) => console.log('experts', res) || props.setExperts(res))
         }, [filters])
     
         console.log("filters", filters)
 
+// remove filters
+    const removeFilters = () => {
+        setFilters("")
+        setIdKoe([])
+        setFilPrice([])
+        setIdPractice([])
+        setIdIndustry([])
+        setIdJob([])
+        setIdGeo([])
+        setIdLang([])
+        setIdYoe([])
+        setFilCie("")
+        setFilPastCie("")
+        setFilFeedback("")
+        setFilKey("")
+    }
 
     return (
         <div className='filter'>
             <div className="sousfilter">
-                <img src={filter} alt='filter' id='filter' width='20px' />
+                <img src={filter} onClick={removeFilters} alt='filter' id='filter' width='20px' />
 
                 <ul className="filterBar">
                     {/* <button class="dropdown">Type
@@ -248,7 +267,7 @@ const FilterExpert = (props) => {
                         autocomplete="off"
                         value={filFeedback} 
                         onChange={e=> setFilFeedback(e.target.value)} 
-                        placeholder='Feedback' /*onChange={handleSearch}*//>
+                        placeholder='Feedback'/>
                     </div>
                     <div className='search'>
                         <img src={loupe} alt='search' width='14px' />  

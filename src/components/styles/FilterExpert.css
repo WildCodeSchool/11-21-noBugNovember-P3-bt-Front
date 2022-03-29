@@ -5,63 +5,75 @@
     align-items: center;
   }
   
-  .sousfilter {
-    margin-top: 5%;
-    display : flex;
-    align-items : center; 
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 25px; 
-    width: 90vw;
-    position: relative;
-  }
+.sousfilter {
+  /* margin-top: 2%; */
+  display : flex;
+  align-items : center; 
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 30px; 
+  width: 90vw;
+  position: relative;
+}
   
-  .filterBar {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    overflow-x: scroll;
-    overflow-y: hidden; 
-    scrollbar-width: none;
-    align-items: center;
-    /* border-left : solid 1px var(--background);  */
-  }
-  
-  .filterBar::-webkit-scrollbar {
-    display: none;
-  } 
-  
-  .filterBar > button, .search, .filterBar > select {
-    border: 2px solid var(--firstColor) !important;
-    border-radius: 20px !important;
-    padding: 8px 20px !important;
-    background-color: var(--secondColor) !important;
-    margin: 5px !important;
-    min-width: fit-content !important; 
-    height: 40px;
-    /* min-width:max-content;  */
-  }
-  
-  #filter {
-    margin: 0 14px; 
-  }
-  
-  
-  .search {
-    padding: 8px 14px; 
-  }
-  
-  .search > input {
-    border : none; 
-  }
-  
-  #searchBar {
-    margin-left: 14px;
-  }
-/* .dropdown {
-  position: relative; 
-}  */
+.filterBar {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  overflow-x: scroll;
+  overflow-y: hidden; 
+  scrollbar-width: none;
+  align-items: center;
+  height: 60px;
+  /* border-left : solid 1px var(--background);  */
+}
 
-.dropdown-content {
+.filterBar::-webkit-scrollbar {
+  display: none;
+} 
+
+.search {
+  border: 2px solid var(--firstColor) !important;
+  border-radius: 20px !important;
+  padding: 8px 20px !important;
+  background-color: var(--secondColor) !important;
+  margin: 5px !important;
+  min-width: fit-content !important; 
+  height: 40px;
+  /* min-width:max-content;  */
+}
+
+
+#filter {
+  margin: 0 14px; 
+}
+
+
+.search {
+  padding: 8px 14px; 
+}
+
+.search > input {
+  border : none; 
+  height: 20px;
+  color: var(--firstColor); 
+  font-family: var(--fontBody); 
+  font-size: 1em;
+}
+
+.search > input:focus {
+  outline : none; 
+}
+
+#searchBar::placeholder {
+  color: var(--firstColor); 
+}
+
+#searchBar {
+  margin-left: 14px;
+}
+
+
+/* .dropdown-content {
   display: none; 
   position: absolute; 
   background-color: var(--secondColor);
@@ -73,12 +85,12 @@
   padding : 5px; 
   top: 45px; 
   /* border-radius: 5%; */
-}
 
-.dropdown:hover .dropdown-content {
+
+/* .dropdown:hover .dropdown-content {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .filterBar > button:hover {
   background-color: var(--firstColor);
@@ -93,7 +105,27 @@
 .MuiInputBase-formControl {
   border : 2px solid var(--firstColor) !important; 
   border-radius: 20px !important;
+  padding: 8px 20px !important;
   background-color: var(--secondColor) !important;
+  margin: 5px !important;
+  font-family: var(--fontBody) !important;
+}
+
+.MuiInputLabel-root {
+  font-family: var(--fontBody) !important;
+  color: var(--firstColor) !important; 
+  font-size: 1em !important;
+  padding-left: 8px !important;
+}
+
+.MuiMenuItem-root{
+  font-family: var(--fontBody) !important; 
+  color: var(--firstColor) !important;
+  font-size: 0.9em !important;
+}
+
+.MuiSelect-multiple, .MuiSelect-select {
+  color: #ED5829 !important; 
 }
 
 .stop {
