@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import sha256 from 'crypto-js/sha256'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import './styles/Login.css'
 
@@ -41,7 +42,10 @@ const Login = () => {
       <div className='loginBackground'></div>
       <div className='loginContainer'>
         <img src={BTHTLogo} alt='logo_BTHT' id='loginLogo' />
-        <form className='loginWrapper' onSubmit={(e) => handleSubmit(e)}>
+        <form className='loginWrapper1' onSubmit={(e) => handleSubmit(e)}>
+          <Link to='/creation'>
+            <button id='loginBtn2'>SIGN IN</button>
+          </Link>
           <span className='loginTitle'>Username</span>
           <label className='loginLabel'>
             <input
@@ -67,6 +71,7 @@ const Login = () => {
           <div className='loginBtnWrapper'>
             <button id='loginBtn'>ENTER</button>
           </div>
+
           {errorConnect && (
             <p className='inputText' id='gridCo4'>
               ⚠ Wrong Username or password
@@ -77,19 +82,6 @@ const Login = () => {
               ⚠ Serveur distant indisponible
             </p>
           )}
-          {/* <input type='submit' value='ENTER' className='loginBtn'></input> */}
-          {/* <div className='loginInput'> */}
-          {/* <label htmlFor='userName' className='loginLabel'>
-              Username
-            </label>
-            <input type='text' id='userName' placeholder='username' /> */}
-          {/* </div> */}
-          {/* <div className='loginInput'>
-            <label htmlFor='password' className='loginLabel'>
-              Password
-            </label>
-            <input type='text' id='password' placeholder='password' />
-          </div> */}
         </form>
       </div>
       <div className='loginBackground backgroundRight'></div>

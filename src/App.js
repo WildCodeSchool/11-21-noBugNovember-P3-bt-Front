@@ -15,6 +15,7 @@ import PageProject from './screens/PageProject'
 import Project from './screens/Project'
 import ProjectExpert from './screens/ProjectExpert'
 import Protected from './screens/Protected'
+import Creation from './screens/Creation'
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           }
         />
         <Route path='/projectexpert/:id' element={<ProjectExpert />} />
+        <Route path='/creation' element={<Creation />} />
       </Routes>
     </div>
   )
