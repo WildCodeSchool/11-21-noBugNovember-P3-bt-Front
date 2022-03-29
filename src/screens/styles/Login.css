@@ -52,13 +52,13 @@
 }
 
 .loginInput {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  height: 10vh;
-  font-family: 'Roboto', sans-serif;
-  color: #25318d;
+  padding-left: 10px;
+  height: 5vh;
+  width: 100%;
+  border: 1px solid #25318d;
+  border-radius: 10px / 10px;
+  align-self: center;
+  background-color: #eff1fc;
 }
 
 #userName,
