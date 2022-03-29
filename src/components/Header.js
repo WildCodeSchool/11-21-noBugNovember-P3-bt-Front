@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import "./styles/Header.css";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [stats, setStats] = useState([]);
@@ -18,7 +19,9 @@ const Header = () => {
 
   return (
     <div className="headerContainer">
-      <img src={BTHTLogo} alt="logo_BTHT" id="headerLogo" />
+      <NavLink to="../">
+        <img src={BTHTLogo} alt="logo_BTHT" id="headerLogo" />
+      </NavLink>
       <div className="headerStatsContainer">
         {/* <img src={GraphLogo} alt="graph_logo" id="headerGraphLogo" /> */}
         <div className="headerStats">
