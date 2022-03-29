@@ -139,16 +139,6 @@ const PageClient = () => {
             </div>
 
             <div className="columnsDiv">
-              <label for="country">Country</label>
-              <input
-                id="country"
-                name="country"
-                type="text"
-                role="presentation"
-                {...register("country")}
-              ></input>
-            </div>
-            <div className="columnsDiv">
               <label for="city">City</label>
               <input
                 id="city"
@@ -182,7 +172,7 @@ const PageClient = () => {
                 onChange={(e) => setProjectsSelected(e)}
               />
             </div>
-            <div className="columnsSelect">
+            {/* <div className="columnsSelect">
               <label for="fonction">Function</label>
               <Select
                 closeMenuOnSelect={false}
@@ -193,7 +183,7 @@ const PageClient = () => {
                 defaultValue={selectedOptions}
                 onChange={(e) => setFunctionsSelected(e)}
               />
-            </div>
+            </div> */}
             <div className="columnsSelect">
               <label for="contacts">Favorite Contact</label>
               <Select
@@ -229,6 +219,19 @@ const PageClient = () => {
                 defaultValue={selectedOptions}
                 onChange={(e) => setDsSelected(e)}
               />
+            </div>
+          </div>
+          <div className="columns">
+            <div className="columnsDiv">
+              <label htmlFor="feedback">Comment</label>
+              <textarea
+                id="feedback"
+                name="feedback"
+                rows="20"
+                cols="60"
+                role="presentation"
+                {...register("feedbackClient")}
+              ></textarea>
             </div>
           </div>
           <div className="checkOrTrash">

@@ -31,6 +31,7 @@ const TabClients = ({ setClientSelection }) => {
       pinned: "left",
       lockPinned: true,
       width: "120px",
+      headerName: "N°",
     },
     {
       field: "firstname",
@@ -39,6 +40,7 @@ const TabClients = ({ setClientSelection }) => {
       pinned: "left",
       lockPinned: true,
       width: "160px",
+      headerName: "First Name",
     },
     {
       field: "lastname",
@@ -47,16 +49,32 @@ const TabClients = ({ setClientSelection }) => {
       pinned: "left",
       lockPinned: true,
       width: "160px",
+      headerName: "Last Name",
     },
     { field: "phone" },
     { field: "email" },
-    { field: "contactType", sortable: true, filter: true },
-    { field: "companyName", sortable: true, filter: true },
+    {
+      field: "contactType",
+      sortable: true,
+      filter: true,
+      headerName: "Contact",
+    },
+    {
+      field: "companyName",
+      sortable: true,
+      filter: true,
+      headerName: "Company",
+    },
     { field: "city", sortable: true, filter: true },
     { field: "languages", sortable: true, filter: true },
     { field: "service", sortable: true, filter: true },
-    { field: "feedbackClient" },
-    { field: "numProject", sortable: true, filter: true },
+    { field: "feedbackClient", headerName: "Comment" },
+    {
+      field: "numProject",
+      sortable: true,
+      filter: true,
+      headerName: "Project",
+    },
   ]);
 
   const rowSelection = (e) => {

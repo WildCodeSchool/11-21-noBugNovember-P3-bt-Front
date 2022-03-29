@@ -25,6 +25,11 @@ const PageExpert = () => {
   const [projectsOptions, setProjectsOptions] = useState([]);
   const [induOptions, setInduOptions] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [hcpOptions, setHcpOptions] = useState([]);
+  const [sectorOptions, setSectorOptions] = useState([]);
+  const [fonctionOptions, setFonctionOptions] = useState([]);
+  const [specialtyOptions, setSpecialtyOptions] = useState([]);
+
   const [geoSelected, setGeoSelected] = useState([]);
   const [langSelected, setLangSelected] = useState([]);
   const [practiceSelected, setPracticeSelected] = useState([]);
@@ -36,6 +41,10 @@ const PageExpert = () => {
   const [ctcSelected, setCtcSelected] = useState([]);
   const [pjtSelected, setPjtSelected] = useState([]);
   const [induSelected, setInduSelected] = useState([]);
+  const [hcpSelected, setHcpSelected] = useState([]);
+  const [sctSelected, setSctSelected] = useState([]);
+  const [fctSelected, setFctSelected] = useState([]);
+  const [specSelected, setSpecSelected] = useState([]);
   const [error, setError] = useState(false);
 
   const [optionHasChanged, setOptionHasChanged] = useState([]);
@@ -64,11 +73,15 @@ const PageExpert = () => {
     setPastCompaniesOptions(options.companies);
     setProjectsOptions(options.projects);
     setInduOptions(options.industry);
+    setHcpOptions(options.hcptype);
+    setSectorOptions(options.sector);
+    setFonctionOptions(options.fonction);
+    setSpecialtyOptions(options.specialty);
   }, [options]);
 
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
-  const handleCreate = (inputValue, table, column, set, selected) => {
+  const handleCreate = (inputValue, table, column, set, selected, multiple) => {
     console.log("inputValue", inputValue);
     for (let i = 0; i < inputValue.length; i++) {
       // If the Value is New
@@ -81,43 +94,26 @@ const PageExpert = () => {
         console.log("newValue", newValue);
         axios
           .post("http://localhost:4040/experts/test", newValue)
-          .then(
-            (res) =>
-              console.log("datas du back", res.data) ||
-              set([...selected, res.data])
-          )
+          .then((res) => {
+            if (multiple === "multiple") {
+              set([...selected, res.data]);
+            } else if (multiple === "solo") {
+              set([res.data]);
+            }
+          })
           .catch(function (error) {
             console.log(error);
           });
         // If the Value Is in DATABASE
-      } else if (!selected.includes(inputValue[i])) {
-        set([...selected, inputValue[i]]);
+      } else {
+        if (multiple === "multiple") {
+          if (!selected.includes(inputValue[i]))
+            set([...selected, inputValue[i]]);
+        } else if (multiple === "solo") {
+          set([inputValue[i]]);
+        }
       }
     }
-
-    // let filtered = inputValue.filter((el) =>
-    //   Object.keys(el).includes("__isNew__")
-    // );
-    // for (let i = 0; i < filtered.length; i++) {
-    //   if (newOptions.includes(filtered[i].value)) {
-    //     console.log("deja existant :", filtered[i]);
-    //   } else {
-    //     setNewOptions(...newOptions, filtered[i].value);
-
-    //     const newValue = {
-    //       value: filtered[i].value,
-    //       table: table,
-    //       column: column,
-    //     };
-    //     console.log("newValue", newValue);
-    //     axios
-    //       .post("http://localhost:4040/experts/test", newValue)
-    //       .then((res) => setLangSelected([...langSelected, res.data]))
-    //       .catch(function (error) {
-    //         console.log(error);
-    //       });
-    //   }
-    // }
   };
 
   useEffect(() => {
@@ -159,6 +155,10 @@ const PageExpert = () => {
       let yoeDatas = [];
       let jobDatas = [];
       let induDatas = [];
+      let hcpDatas = [];
+      let sctDatas = [];
+      let fctDatas = [];
+      let specDatas = [];
       const practice_id = practiceSelected.id;
 
       geoSelected.forEach((geo) => geoDatas.push(geo.id));
@@ -173,6 +173,10 @@ const PageExpert = () => {
       yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
       jobSelected.forEach((job) => jobDatas.push(job.id));
       induSelected.forEach((indu) => induDatas.push(indu.id));
+      hcpSelected.forEach((hcp) => hcpDatas.push(hcp.id));
+      sctSelected.forEach((sct) => sctDatas.push(sct.id));
+      fctSelected.forEach((fct) => fctDatas.push(fct.id));
+      specSelected.forEach((spec) => specDatas.push(spec.id));
 
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
       let languages_id = { languages_id: [...langDatas] };
@@ -180,24 +184,33 @@ const PageExpert = () => {
       let contactType_id = { contactType_id: [...ctcDatas] };
       let projects_id = { projects_id: [...pjtDatas] };
       let company_id = { company_id: [...cieDatas] };
+      // let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
       let jobtitle_id = { jobtitle_id: [...jobDatas] };
       let industry_id = { industry_id: [...induDatas] };
+      let hcpType_id = { hcpType_id: [...hcpDatas] };
+      let sector_id = { sector_id: [...sctDatas] };
+      let fonction_id = { fonction_id: [...fctDatas] };
+      let specialty_id = { specialty_id: [...specDatas] };
 
       let datas = {
+        practice_id,
         ...data,
         ...geoExpertise_id,
         ...languages_id,
         ...jobtitle_id,
         ...kindOfExpert_id,
-        practice_id,
         ...pastCompany_id,
         ...contactType_id,
         ...projects_id,
         ...company_id,
         ...expertiseLevel_id,
         ...industry_id,
+        ...hcpType_id,
+        ...sector_id,
+        ...fonction_id,
+        ...specialty_id,
       };
 
       console.log("datas", datas);
@@ -290,14 +303,47 @@ const PageExpert = () => {
               <input
                 id="linkedin"
                 name="linkedin"
-                type="url"
+                type="text"
                 role="presentation"
                 {...register("linkedinProfile")}
               ></input>
             </div>
+            <div className="columnsDiv">
+              <label htmlFor="keywords">Keywords</label>
+              <input
+                id="keywords"
+                name="keywords"
+                type="text"
+                role="presentation"
+                {...register("keywords")}
+              ></input>
+            </div>
+            <div className="columnsSelect">
+              <label htmlFor="fonction">Fonction</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={fonctionOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                defaultValue={selectedOptions}
+                onChange={(e) => {
+                  handleCreate(
+                    e,
+                    "fonction",
+                    "fonctionName",
+                    setFctSelected,
+                    fctSelected,
+                    "multiple"
+                  );
+                }}
+              />
+            </div>
             <div className="columnsSelect">
               <label htmlFor="contactOptions">Contact Preferences</label>
               <CreatableSelect
+                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={contactsOptions}
                 isMulti
@@ -309,7 +355,8 @@ const PageExpert = () => {
                     "contacttype",
                     "contactTypeName",
                     setCtcSelected,
-                    ctcSelected
+                    ctcSelected,
+                    "multiple"
                   );
                 }}
               />
@@ -319,6 +366,7 @@ const PageExpert = () => {
             <div className="columnsDiv">
               <label htmlFor="projectOptions">Projects</label>
               <Select
+                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={projectsOptions}
                 isMulti
@@ -331,18 +379,21 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="kindOfExpertOptions">Type</label>
               <CreatableSelect
+                menuPlacement="top"
                 options={kindOfExpertOptions}
                 className="basic-multi-select"
                 classNamePrefix={
                   error && koeSelected.length === 0 ? "novalidated" : "select"
                 }
                 onChange={(e) => {
+                  console.log(e);
                   handleCreate(
                     [e],
                     "kindofexpert",
                     "kindOfExpertName",
                     setKoeSelected,
-                    koeSelected
+                    koeSelected,
+                    "solo"
                   );
                 }}
               />
@@ -352,6 +403,7 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="geoExpertise">Geo Expertise</label>
               <CreatableSelect
+                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
                 isMulti
@@ -364,7 +416,8 @@ const PageExpert = () => {
                     "geoexpertise",
                     "geoExpertiseName",
                     setGeoSelected,
-                    geoSelected
+                    geoSelected,
+                    "multiple"
                   );
                 }}
               />
@@ -373,6 +426,7 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="practice">Practice</label>
               <Select
+                menuPlacement="top"
                 options={practiceOptions}
                 className="basic-multi-select"
                 classNamePrefix={
@@ -384,6 +438,7 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="jobTitle">Job Title</label>
               <CreatableSelect
+                menuPlacement="top"
                 options={jobTitleOptions}
                 className="basic-multi-select"
                 classNamePrefix={
@@ -395,7 +450,8 @@ const PageExpert = () => {
                     "jobtitle",
                     "jobTitleName",
                     setJobSelected,
-                    jobSelected
+                    jobSelected,
+                    "solo"
                   );
                 }}
               />
@@ -403,6 +459,7 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="industry">Industries</label>
               <CreatableSelect
+                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={induOptions}
                 isMulti
@@ -414,7 +471,8 @@ const PageExpert = () => {
                     "industry",
                     "industryName",
                     setInduSelected,
-                    induSelected
+                    induSelected,
+                    "multiple"
                   )
                 }
               />
@@ -422,6 +480,7 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="companyOptions">Company</label>
               <CreatableSelect
+                menuPlacement="top"
                 options={companyOptions}
                 className="basic-multi-select"
                 classNamePrefix={
@@ -433,7 +492,8 @@ const PageExpert = () => {
                     "company",
                     "companyName",
                     setCieSelected,
-                    cieSelected
+                    cieSelected,
+                    "solo"
                   );
                 }}
               />
@@ -441,6 +501,7 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="pastCompaniesOptions">Past Companies</label>
               <CreatableSelect
+                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={pastCompaniesOptions}
                 isMulti
@@ -452,7 +513,8 @@ const PageExpert = () => {
                     "company",
                     "companyName",
                     setPcieSelected,
-                    pcieSelected
+                    pcieSelected,
+                    "multiple"
                   )
                 }
               />
@@ -466,6 +528,7 @@ const PageExpert = () => {
                 name="price/hr"
                 type="number"
                 role="presentation"
+                max="1000000"
                 {...register("price")}
               ></input>
             </div>
@@ -476,15 +539,79 @@ const PageExpert = () => {
                 name="cost"
                 type="number"
                 role="presentation"
+                max="1000000"
                 {...register("cost")}
               ></input>
             </div>
+            <div className="columnsSelect">
+              <label htmlFor="hcpType">HCP Type</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={hcpOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={(e) =>
+                  handleCreate(
+                    e,
+                    "hcptype",
+                    "hcpTypeName",
+                    setHcpSelected,
+                    hcpSelected,
+                    "multiple"
+                  )
+                }
+              />
+            </div>
+            <div className="columnsSelect">
+              <label htmlFor="sector">Sector</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={sectorOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={(e) =>
+                  handleCreate(
+                    e,
+                    "sector",
+                    "sectorName",
+                    setSctSelected,
+                    sctSelected,
+                    "multiple"
+                  )
+                }
+              />
+            </div>
+            <div className="columnsSelect">
+              <label htmlFor="specialty">Specialty</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={specialtyOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={(e) =>
+                  handleCreate(
+                    e,
+                    "specialty",
+                    "specialtyName",
+                    setSpecSelected,
+                    specSelected,
+                    "multiple"
+                  )
+                }
+              />
+            </div>
             <div className="columnsDiv">
-              <label htmlFor="feedback">Feedback</label>
+              <label htmlFor="feedback">Comment</label>
               <textarea
                 id="feedback"
                 name="feedback"
-                rows="10"
+                rows="4"
                 cols="60"
                 role="presentation"
                 {...register("feedbackExpert")}
@@ -493,6 +620,7 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="experience">Years of Experience</label>
               <CreatableSelect
+                menuPlacement="top"
                 options={yearsOfExperienceOptions}
                 className="basic-multi-select"
                 classNamePrefix={
@@ -504,7 +632,8 @@ const PageExpert = () => {
                     "expertiselevel",
                     "expertiseLevelName",
                     setYoeSelected,
-                    yoeSelected
+                    yoeSelected,
+                    "solo"
                   );
                 }}
               />
@@ -512,6 +641,7 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="languages">Languages</label>
               <CreatableSelect
+                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={languagesOptions}
                 isMulti
@@ -523,20 +653,11 @@ const PageExpert = () => {
                     "languages",
                     "languagesName",
                     setLangSelected,
-                    langSelected
+                    langSelected,
+                    "multiple"
                   )
                 }
               />
-            </div>
-            <div className="columnsDiv">
-              <label htmlFor="keywords">Keywords</label>
-              <input
-                id="keywords"
-                name="keywords"
-                type="text"
-                role="presentation"
-                {...register("keywords")}
-              ></input>
             </div>
           </div>
           <div className="checkOrTrash">

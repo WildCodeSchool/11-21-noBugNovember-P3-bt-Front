@@ -409,7 +409,7 @@ const PageClientEdit = () => {
               />
             </div>
             <div className="columnsDiv">
-              <label htmlFor="feedback">Feedback</label>
+              <label htmlFor="feedback">Comment</label>
               <textarea
                 id="feedback"
                 name="feedback"
