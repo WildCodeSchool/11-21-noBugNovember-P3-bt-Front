@@ -14,6 +14,7 @@ import PageExpertEdit from './screens/PageExpertEdit'
 import PageProject from './screens/PageProject'
 import Project from './screens/Project'
 import ProjectExpert from './screens/ProjectExpert'
+import Protected from './screens/Protected'
 
 function App() {
   return (
@@ -21,15 +22,36 @@ function App() {
       <Header />
       <Navbar />
       <Routes>
-        <Route path='/clients' element={<Clients />} />
-        <Route path='/experts' element={<Experts />} />
+        <Route path='/' element={<Login />} />
+        <Route
+          path='/clients'
+          element={
+            <Protected>
+              <Clients />
+            </Protected>
+          }
+        />
+        <Route
+          path='/experts'
+          element={
+            <Protected>
+              <Experts />
+            </Protected>
+          }
+        />
         <Route path='/pageExpert' element={<PageExpert />} />
         <Route path='/pageExpertEdit/:id' element={<PageExpertEdit />} />
         <Route path='/maxiProjectExpert/:id' element={<MaxiProjectExpert />} />
         <Route path='/pageClient' element={<PageClient />} />
         <Route path='/pageProject' element={<PageProject />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/projects' element={<Project />} />
+        <Route
+          path='/projects'
+          element={
+            <Protected>
+              <Project />
+            </Protected>
+          }
+        />
         <Route path='/projectexpert/:id' element={<ProjectExpert />} />
       </Routes>
     </div>

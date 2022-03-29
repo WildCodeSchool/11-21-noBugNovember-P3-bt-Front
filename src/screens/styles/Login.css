@@ -57,7 +57,7 @@
   justify-content: space-around;
   align-items: flex-start;
   height: 10vh;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #25318d;
 }
 
@@ -89,4 +89,14 @@
   background-color: #25318d;
   color: white;
   cursor: pointer;
+}
+
+.loginTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 10vh;
+  font-family: 'Roboto', sans-serif;
+  color: #25318d;
 }
