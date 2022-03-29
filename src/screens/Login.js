@@ -42,22 +42,23 @@ const Login = () => {
       <div className='loginContainer'>
         <img src={BTHTLogo} alt='logo_BTHT' id='loginLogo' />
         <form className='loginWrapper' onSubmit={(e) => handleSubmit(e)}>
-          <span className='loginTitle'>S'identifier</span>
+          <span className='loginTitle'>Username</span>
           <label className='loginLabel'>
             <input
               type='email'
               name='email'
-              placeholder='tictac@gmail.com'
+              placeholder='username'
               className='loginInput'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
           </label>
+          <span className='loginTitle'>Password</span>
           <label className='loginLabel'>
             <input
               type='password'
               name='password'
-              placeholder='mot de passe'
+              placeholder='password'
               className='loginInput'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -68,7 +69,7 @@ const Login = () => {
           </div>
           {errorConnect && (
             <p className='inputText' id='gridCo4'>
-              ⚠ Mauvais nom d'utilisateur ou mot de passe
+              ⚠ Wrong Username or password
             </p>
           )}
           {isOut && (
