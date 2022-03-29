@@ -1,19 +1,17 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import './styles/Midi.css'
-import key from '../assets/key.png'
-import price from '../assets/price.png'
 
 const MidiExpert = (props) => {
   const [experts, setExperts] = useState([])
 
-  console.log(props.project.id)
+  console.log(experts, 'id : ', props.project.id)
 
   useEffect(() => {
     axios
       .get('http://localhost:4040/experts')
       .then((res) => res.data)
-      .then((res) => console.log('experts', res) || setExperts(res))
+      .then((res) => setExperts(res))
   }, [props.popupProject, props.maxiExpert])
 
   const maxiExpert = (id) => {
@@ -26,7 +24,8 @@ const MidiExpert = (props) => {
       {experts.map((expert) => (
         <div
           className={
-            expert.projects_id && expert.projects_id.includes(props.project.id)
+            expert.projects_id &&
+            expert.projects_id.split(', ').includes(`${props.project.id}`)
               ? 'checkExpert midiExpertCard'
               : 'midiExpertCard'
           }
@@ -60,19 +59,11 @@ const MidiExpert = (props) => {
                 <p>{expert.pastCompanies} </p>
               </li>
               <li>
-                <p style={{ fontWeight: '600' }}>
-                  {' '}
-                  Keywords
-                  {/* <img src={key} alt='keywords' width='16px' /> */}
-                </p>
+                <p style={{ fontWeight: '600' }}>Keywords</p>
                 <p> {expert.keywords}</p>
               </li>
               <li>
-                <p style={{ fontWeight: '600' }}>
-                  {' '}
-                  Price
-                  {/* <img src={price} alt='price' width='17px' /> */}
-                </p>
+                <p style={{ fontWeight: '600' }}>Price</p>
                 <p>{expert.price}€ </p>
               </li>
               <li>

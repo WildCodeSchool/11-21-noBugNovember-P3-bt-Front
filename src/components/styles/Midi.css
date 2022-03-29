@@ -137,5 +137,31 @@ ul {
 }
 
 .answerCard {
-  height: 26.3em;
+  height: auto;
+}
+
+/* AnswerExpert */
+
+.dragDropZone {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Container */
+.column {
+  width: 18em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.columnHeader {
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: var(--firstColor);
+  color: var(--secondColor);
+  width: 16rem;
+  margin-bottom: 1em;
+  border-radius: 5px;
 }

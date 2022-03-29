@@ -11,7 +11,6 @@ import './styles/Midi.css'
 
 const MaxiProject = (props) => {
   useEffect(() => {
-    console.log(props.projectMaxi)
     axios
       .get(`http://localhost:4040/projects/maxicard/${props.id}`)
       .then((response) => {
@@ -45,15 +44,15 @@ const MaxiProject = (props) => {
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Project Title</div>
+                  <div className='fieldName'>Total Price</div>
                   <div className='fieldContent'>
-                    {props.projectMaxi.projectTitle}
+                    {props.projectMaxi.totalPrice}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName background2'>Number of experts</div>
+                  <div className='fieldName background2'>Project Title</div>
                   <div className='fieldContent background2'>
-                    {props.projectMaxi.quantityExpert}
+                    {props.projectMaxi.projectTitle}
                   </div>
                 </li>
                 <li>
@@ -75,39 +74,53 @@ const MaxiProject = (props) => {
                   </div>
                 </li>
                 <li>
+                  <div className='fieldName background2'>ITW Start</div>
+                  <div className='fieldContent background2'>
+                    {props.projectMaxi.itwStart}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName'>ITW Deadline</div>
+                  <div className='fieldContent'>
+                    {props.projectMaxi.itwDeadline}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName background2'>Number of Experts</div>
+                  <div className='fieldContent background2'>
+                    {props.projectMaxi.quantityExpert}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName'>Type of Experts</div>
+                  <div className='fieldContent'>
+                    {props.projectMaxi.kindOfExpert}
+                  </div>
+                </li>
+                <li>
                   <div className='fieldName background2'>Practice</div>
                   <div className='fieldContent background2'>
                     {props.projectMaxi.practice}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Type of experts</div>
-                  <div className='fieldContent'>
-                    {props.projectMaxi.kindOfExpert}
-                  </div>
-                </li>
-                <li>
-                  <div className='fieldName background2'>Total Price</div>
-                  <div className='fieldContent background2'>
-                    {props.projectMaxi.totalPrice}
-                  </div>
-                </li>
-                <li>
-                  <div className='fieldName'>ITW Start</div>
-                  <div className='fieldContent'>
-                    {props.projectMaxi.itwStart}
-                  </div>
-                </li>
-                <li>
-                  <div className='fieldName background2'>ITW Deadline</div>
-                  <div className='fieldContent background2'>
-                    {props.projectMaxi.itwDeadline}
-                  </div>
-                </li>
-                <li>
                   <div className='fieldName'>Industry</div>
                   <div className='fieldContent'>
                     {props.projectMaxi.industry}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName background2'>
+                    Companies Examples
+                  </div>
+                  <div className='fieldContent background2'>
+                    {props.projectMaxi.recommend_company}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName '>Excluded Companies</div>
+                  <div className='fieldContent '>
+                    {props.projectMaxi.exclude_company}
                   </div>
                 </li>
                 <li>
@@ -129,20 +142,6 @@ const MaxiProject = (props) => {
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Companies Examples</div>
-                  <div className='fieldContent'>
-                    {props.projectMaxi.recommend_company}
-                  </div>
-                </li>
-                <li>
-                  <div className='fieldName background2'>
-                    Excluded Companies
-                  </div>
-                  <div className='fieldContent background2'>
-                    {props.projectMaxi.exclude_company}
-                  </div>
-                </li>
-                <li>
                   <div className='fieldName'>Geo Expertise</div>
                   <div className='fieldContent'>
                     {props.projectMaxi.geoExpertise}
@@ -161,7 +160,7 @@ const MaxiProject = (props) => {
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName background2'>Client Comment</div>
+                  <div className='fieldName background2'>Comment</div>
                   <div className='fieldContent background2'>
                     {props.projectMaxi.clientComment}
                   </div>

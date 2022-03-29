@@ -40,6 +40,7 @@ const ProjectExpert = (props) => {
           setIdExpert={props.setIdExpert}
           project={project}
           popupProject={popupProject}
+          idExpert={props.idExpert}
         />
       </div>
       <div

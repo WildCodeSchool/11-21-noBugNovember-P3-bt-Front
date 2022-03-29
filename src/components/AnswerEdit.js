@@ -49,14 +49,11 @@ const AnswerEdit = (props) => {
           // données uniques champ libre
           setItwDaySelected(res.data.itwDay)
           setFactuSelected(res.data.factu)
-          if (res.data.answer !== null) {
-            if (res.data.answer === 1) {
-              setAnswerSelected({ label: 'Yes', value: 'Yes' })
-            } else {
-              setAnswerSelected('No')
-            }
-          } else {
-            setAnswerSelected('Waiting')
+
+          if (res.data.answer === 1) {
+            setAnswerSelected({ label: 'Yes', value: 'Yes' })
+          } else if (res.data.answer === 0) {
+            setAnswerSelected({ label: 'No', value: 'No' })
           }
         })
     }
