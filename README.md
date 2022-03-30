@@ -1,3 +1,48 @@
+# 11-21-noBugNovember-P3-BTHT-Front
+
+# ABOUT THE PROJECT  
+
+This application allows you to manage and optimize your business. 
+You can add/edit/delete clients, projects, experts.
+Find and connect the best experts suited to your clients' projects. 
+Follow the progress of projects. 
+Get a global overview of the essential figures for monitoring the company
+
+👀 (lien vidéo)
+
+## Built With: 
+
+  - React.js 
+  - Axios
+  - Material-UI : https://mui.com/
+  - Font Awesome : https://fontawesome.com/
+  - React DnD : https://react-dnd.github.io/react-dnd/about
+  - AG Grid : https://www.ag-grid.com/
+
+## Getting Started 🚀 : 
+
+:one: Install the backend -> 11-21-noBugNovember-P3-bt-Back 
+
+:two: Clone the repo 
+
+      git clone https://github.com/WildCodeSchool/11-21-noBugNovember-P3-bt-Front.git
+
+:three: Install NPM packages
+
+      npm install
+
+:four: Lancement 
+
+      npm start
+
+
+Enjoy ! 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+# README REACT 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
