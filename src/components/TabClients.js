@@ -68,6 +68,7 @@ const TabClients = ({ setClientSelection }) => {
     { field: "city", sortable: true, filter: true },
     { field: "languages", sortable: true, filter: true },
     { field: "service", sortable: true, filter: true },
+    { field: "fonction", sortable: true, filter: true, headerName: "Function" },
     { field: "feedbackClient", headerName: "Comment" },
     {
       field: "numProject",
@@ -87,7 +88,7 @@ const TabClients = ({ setClientSelection }) => {
     <div
       className="ag-theme-alpine tableau"
       style={{
-        height: 600,
+        height: "74vh",
         fontFamily: "var(--fontBody)",
       }}
     >

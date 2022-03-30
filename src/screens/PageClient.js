@@ -7,6 +7,7 @@ import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import CreatableSelect from "react-select/creatable";
 
 const PageClient = () => {
   const navigate = useNavigate();
@@ -18,12 +19,15 @@ const PageClient = () => {
   const [favcOptions, setFavcOptions] = useState([]); // Favc = Favorite Contact
   const [kobOptions, setKobOptions] = useState([]); // Kob = Kind Of Business
   const [dsOptions, setDsOptions] = useState([]); // Ds = Desired Serviced
+  const [companyNameOptions, setCompanyNameOptions] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
+
   const [projectsSelected, setProjectsSelected] = useState([]);
   const [functionsSelected, setFunctionsSelected] = useState([]);
   const [favcSelected, setFavcSelected] = useState([]); // Favc = Favorite Contact
   const [kobSelected, setKobSelected] = useState([]); // Kob = Kind Of Business
   const [dsSelected, setDsSelected] = useState([]); // Ds = Desired Serviced
+  const [companyNameSelected, setCompanyNameSelected] = useState([]);
 
   useEffect(() => {
     const getOptions = () => {
@@ -37,37 +41,81 @@ const PageClient = () => {
   }, []);
 
   useEffect(() => {
-    setProjectsOptions(options.projects);
-    setFunctionsOptions(options.functions);
-    setFavcOptions(options.favc);
-    setKobOptions(options.kob);
-    setDsOptions(options.ds);
+    setFunctionsOptions(options.fonction);
+    setFavcOptions(options.contactType);
+    setKobOptions(options.companyType);
+    setDsOptions(options.service);
+    setCompanyNameOptions(options.companyName);
   }, [options]);
-  console.log("recup", projectsOptions);
+
   const onSubmit = (data) => {
-    let projectsDatas = [];
+    console.log("submit datas", data);
     let functionsDatas = [];
     let favoriteCDatas = [];
     let kindOfBDatas = [];
     let desiDatas = [];
+    let companyDatas = [];
 
-    projectsSelected.forEach((projects) => projectsDatas.push(projects.id));
     functionsSelected.forEach((functions) => functionsDatas.push(functions.id));
     favcSelected.forEach((favc) => favoriteCDatas.push(favc.id));
     kobSelected.forEach((kob) => kindOfBDatas.push(kob.id));
     dsSelected.forEach((ds) => desiDatas.push(ds.id));
+    companyNameSelected.forEach((company) => companyDatas.push(company.id));
 
-    let projects = { projects: [...projectsDatas] };
-    let functions = { functions: [...functionsDatas] };
-    let favc = { favc: [...favoriteCDatas] };
-    let kob = { kob: [...kindOfBDatas] };
-    let ds = { ds: [...desiDatas] };
+    let fonction_id = { fonction_id: [...functionsDatas] };
+    let contactType_id = { contactType_id: [...favoriteCDatas] };
+    let companyType_id = { companyType_id: [...kindOfBDatas] };
+    let service_id = { service_id: [...desiDatas] };
+    let company_id = { company_id: [...companyDatas] };
 
-    let datas = { ...data, ...projects, ...functions, ...favc, ...kob, ...ds };
+    let datas = {
+      ...data,
+      ...fonction_id,
+      ...contactType_id,
+      ...companyType_id,
+      ...service_id,
+      ...company_id,
+    };
 
-    console.log("datas", datas);
-    axios.post("http://localhost:4040/clients/test", datas);
+    console.log("post datas", datas);
+    axios.post("http://localhost:4040/clients/", datas);
   };
+
+  const handleCreate = (inputValue, table, column, set, selected, multiple) => {
+    console.log("inputValue", inputValue);
+    for (let i = 0; i < inputValue.length; i++) {
+      // If the Value is New
+      if (Object.keys(inputValue[i]).includes("__isNew__")) {
+        const newValue = {
+          value: inputValue[i].value,
+          table: table,
+          column: column,
+        };
+        console.log("newValue", newValue);
+        axios
+          .post("http://localhost:4040/experts/test", newValue)
+          .then((res) => {
+            if (multiple === "multiple") {
+              set([...selected, res.data]);
+            } else if (multiple === "solo") {
+              set([res.data]);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        // If the Value Is in DATABASE
+      } else {
+        if (multiple === "multiple") {
+          if (!selected.includes(inputValue[i]))
+            set([...selected, inputValue[i]]);
+        } else if (multiple === "solo") {
+          set([inputValue[i]]);
+        }
+      }
+    }
+  };
+
   return (
     <div className="tabContainerForm">
       {" "}
@@ -87,12 +135,12 @@ const PageClient = () => {
             <div id="idWrapper" className="columnsDiv">
               <h1 id="client">CLIENT</h1>
               <div id="clientNumber">
-                <label for="number">N°</label>
+                <label for="numClients">N°</label>
                 <input
-                  id="number"
-                  name="number"
+                  id="numClients"
+                  name="numClients"
                   type="key"
-                  {...register("numExpert")}
+                  {...register("numClients")}
                 ></input>
               </div>
             </div>
@@ -113,7 +161,7 @@ const PageClient = () => {
                 id="lastName"
                 name="lastName"
                 type="text"
-                {...register("lastName")}
+                {...register("lastname")}
               ></input>
             </div>
             <div className="columnsDiv">
@@ -152,72 +200,106 @@ const PageClient = () => {
 
           <div className="columns">
             <div className="columnsDiv">
-              <label for="businessName">Business Name</label>
-              <input
-                id="businessName"
-                name="businessName"
-                type="text"
-                role="presentation"
-                {...register("Business Name")}
-              ></input>
-            </div>
-            <div className="columnsSelect">
-              <label for="projects">Projects</label>
-              <Select
-                closeMenuOnSelect={false}
-                options={projectsOptions}
-                isMulti
+              <label for="company">Company</label>
+              <CreatableSelect
+                value={companyNameSelected}
+                options={companyNameOptions}
                 className="basic-multi-select"
                 classNamePrefix="select"
-                onChange={(e) => setProjectsSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    [e],
+                    "company",
+                    "companyName",
+                    setCompanyNameSelected,
+                    companyNameSelected,
+                    "solo"
+                  );
+                }}
               />
             </div>
-            {/* <div className="columnsSelect">
-              <label for="fonction">Function</label>
-              <Select
+            <div className="columnsDiv">
+              <label for="function">Function</label>
+              <CreatableSelect
                 closeMenuOnSelect={false}
+                value={functionsSelected}
                 options={functionsOptions}
-                isMulti
                 className="basic-multi-select"
+                isMulti
                 classNamePrefix="select"
-                defaultValue={selectedOptions}
-                onChange={(e) => setFunctionsSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    e,
+                    "fonction",
+                    "fonctionName",
+                    setFunctionsSelected,
+                    functionsSelected,
+                    "multiple"
+                  );
+                }}
               />
-            </div> */}
+            </div>
             <div className="columnsSelect">
               <label for="contacts">Favorite Contact</label>
-              <Select
+              <CreatableSelect
                 closeMenuOnSelect={false}
+                value={favcSelected}
                 options={favcOptions}
-                isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
-                defaultValue={selectedOptions}
-                onChange={(e) => setFavcSelected(e)}
+                isMulti
+                onChange={(e) => {
+                  handleCreate(
+                    e,
+                    "contacttype",
+                    "contactTypeName",
+                    setFavcSelected,
+                    favcSelected,
+                    "multiple"
+                  );
+                }}
               />
             </div>
             <div className="columnsSelect">
               <label for="kindOfBusiness">Kind Of Business</label>
-              <Select
-                closeMenuOnSelect={false}
+              <CreatableSelect
+                menuPlacement="top"
+                value={kobSelected}
                 options={kobOptions}
-                isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
-                defaultValue={selectedOptions}
-                onChange={(e) => setKobSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    [e],
+                    "companytype",
+                    "companyTypeName",
+                    setKobSelected,
+                    kobSelected,
+                    "solo"
+                  );
+                }}
               />
             </div>
             <div className="columnsSelect">
-              <label for="services">Desired Serviced</label>
-              <Select
+              <label for="services">Desired Service</label>
+              <CreatableSelect
+                menuPlacement="top"
                 closeMenuOnSelect={false}
+                value={dsSelected}
                 options={dsOptions}
                 isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
-                defaultValue={selectedOptions}
-                onChange={(e) => setDsSelected(e)}
+                onChange={(e) => {
+                  handleCreate(
+                    e,
+                    "service",
+                    "serviceName",
+                    setDsSelected,
+                    dsSelected,
+                    "multiple"
+                  );
+                }}
               />
             </div>
           </div>

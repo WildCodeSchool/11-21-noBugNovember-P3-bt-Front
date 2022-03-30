@@ -123,18 +123,6 @@ const PageExpert = () => {
   /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   const onSubmit = (data) => {
-    console.log(
-      "yoe",
-      yoeSelected,
-      "cie",
-      cieSelected,
-      "job",
-      jobSelected,
-      "pr",
-      practiceSelected,
-      "koe",
-      koeSelected
-    );
     if (
       yoeSelected.length !== 0 &&
       cieSelected.length !== 0 &&
@@ -167,9 +155,7 @@ const PageExpert = () => {
       ctcSelected.forEach((ctc) => ctcDatas.push(ctc.id));
       pjtSelected.forEach((pjt) => pjtDatas.push(pjt.id));
       cieSelected.forEach((cie) => cieDatas.push(cie.id));
-      koeSelected.forEach(
-        (koe) => console.log("koe test", koe) || koeDatas.push(koe.id)
-      );
+      koeSelected.forEach((koe) => koeDatas.push(koe.id));
       yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
       jobSelected.forEach((job) => jobDatas.push(job.id));
       induSelected.forEach((indu) => induDatas.push(indu.id));
@@ -379,7 +365,6 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="kindOfExpertOptions">Type</label>
               <CreatableSelect
-                menuPlacement="top"
                 options={kindOfExpertOptions}
                 className="basic-multi-select"
                 classNamePrefix={
@@ -403,7 +388,6 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="geoExpertise">Geo Expertise</label>
               <CreatableSelect
-                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
                 isMulti
@@ -546,7 +530,6 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="hcpType">HCP Type</label>
               <CreatableSelect
-                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={hcpOptions}
                 isMulti

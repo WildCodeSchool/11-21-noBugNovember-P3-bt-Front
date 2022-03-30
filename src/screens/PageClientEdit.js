@@ -22,6 +22,7 @@ const PageClientEdit = () => {
   const [contactTypeOptions, setContactTypeOptions] = useState([]);
   const [serviceOptions, setServiceOptions] = useState([]);
   const [languagesOptions, setLanguagesOptions] = useState([]);
+  const [functionsOptions, setFunctionsOptions] = useState([]);
 
   const [numClientSelected, setNumClientSelected] = useState([]);
   const [firstNameSelected, setFirstNameSelected] = useState([]);
@@ -34,6 +35,7 @@ const PageClientEdit = () => {
   const [companyTypeSelected, setCompanyTypeSelected] = useState([]);
   const [serviceSelected, setServiceSelected] = useState([]);
   const [languagesSelected, setLanguagesSelected] = useState([]);
+  const [functionsSelected, setFunctionsSelected] = useState([]);
   const [feedbackClientSelected, setFeedbackClientSelected] = useState([]);
 
   const [dataClient, setDataClient] = useState([]);
@@ -56,6 +58,7 @@ const PageClientEdit = () => {
   //*****  Decompose les infos du GET de la BDD ****
   useEffect(() => {
     console.log("options", options);
+    setFunctionsOptions(options.fonction);
     setCompanyNameOptions(options.companyName);
     setCompanyTypeOptions(options.companyType);
     setContactTypeOptions(options.contactType);
@@ -80,6 +83,7 @@ const PageClientEdit = () => {
         setServiceSelected(res.data.service);
         setLanguagesSelected(res.data.languages);
         setFeedbackClientSelected(res.data.feedbackClient);
+        setFunctionsSelected(res.data.fonction);
       });
     };
     dataClientFunc();
@@ -154,18 +158,21 @@ const PageClientEdit = () => {
       let servDatas = [];
       let compDatas = [];
       let cieDatas = [];
+      let fctDatas = [];
 
       companyNameSelected.forEach((cie) => cie.id && cieDatas.push(cie.id));
       companyTypeSelected.forEach((comp) => comp.id && compDatas.push(comp.id));
       languagesSelected.forEach((lang) => lang.id && langDatas.push(lang.id));
       contactTypeSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
       serviceSelected.forEach((serv) => serv.id && servDatas.push(serv.id));
+      functionsSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
 
       let companyType_id = { companyType_id: [...compDatas] };
       let languages_id = { languages_id: [...langDatas] };
       let contactType_id = { contactType_id: [...ctcDatas] };
       let service_id = { service_id: [...servDatas] };
       let company_id = { company_id: [...cieDatas] };
+      let fonction_id = { fonction_id: [...fctDatas] };
 
       let datas = {
         numClients: data.numClient,
@@ -179,6 +186,7 @@ const PageClientEdit = () => {
         ...languages_id,
         ...contactType_id,
         ...service_id,
+        ...fonction_id,
       };
       console.log("datas", datas);
       axios
@@ -261,6 +269,19 @@ const PageClientEdit = () => {
               ></input>
             </div>
             <div className="columnsDiv">
+              <label for="phone">Phone</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tell"
+                role="presentation"
+                autoComplete="off"
+                {...register("phone")}
+                value={phoneSelected}
+                onChange={(e) => setPhoneSelected(e.target.value)}
+              ></input>
+            </div>
+            <div className="columnsDiv">
               <label for="city">City</label>
               <input
                 id="city"
@@ -275,20 +296,7 @@ const PageClientEdit = () => {
           </div>
           <div className="columns">
             <div className="columnsDiv">
-              <label for="phone">Phone</label>
-              <input
-                id="phone"
-                name="phone"
-                type="tell"
-                role="presentation"
-                autoComplete="off"
-                {...register("phone")}
-                value={phoneSelected}
-                onChange={(e) => setPhoneSelected(e.target.value)}
-              ></input>
-            </div>
-            <div className="columnsDiv">
-              <label for="businessName">Business Name</label>
+              <label for="company">Company</label>
               <CreatableSelect
                 value={companyNameSelected}
                 options={companyNameOptions}
@@ -309,31 +317,31 @@ const PageClientEdit = () => {
                 }}
               />
             </div>
+
             <div className="columnsSelect">
-              <label for="kindOfBusiness">Kind Of Business</label>
+              <label for="functions">Functions</label>
               <CreatableSelect
-                value={companyTypeSelected}
-                options={companyTypeOptions}
+                value={functionsSelected}
+                closeMenuOnSelect={false}
+                options={functionsOptions}
+                isMulti
                 className="basic-multi-select"
                 classNamePrefix="select"
                 onChange={(e) => {
-                  setCompanyTypeSelected([e]);
+                  setFunctionsSelected(e);
                   handleCreate(
-                    [e],
-                    "companytype",
-                    "companyTypeName",
-                    setCompanyTypeSelected,
-                    companyTypeSelected,
-                    "solo",
-                    companyTypeOptions,
-                    setCompanyTypeOptions
+                    e,
+                    "functions",
+                    "functionsName",
+                    setFunctionsSelected,
+                    functionsOptions,
+                    "multiple",
+                    functionsOptions,
+                    setFunctionsOptions
                   );
                 }}
               />
             </div>
-
-            {/* <div className="columns"> */}
-
             <div className="columnsSelect">
               <label for="contacts">Favorite Contact</label>
               <CreatableSelect
@@ -358,11 +366,33 @@ const PageClientEdit = () => {
                 }}
               />
             </div>
-          </div>
-          <div className="columns">
+            <div className="columnsSelect">
+              <label for="kindOfBusiness">Kind Of Business</label>
+              <CreatableSelect
+                menuPlacement="top"
+                value={companyTypeSelected}
+                options={companyTypeOptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={(e) => {
+                  setCompanyTypeSelected([e]);
+                  handleCreate(
+                    [e],
+                    "companytype",
+                    "companyTypeName",
+                    setCompanyTypeSelected,
+                    companyTypeSelected,
+                    "solo",
+                    companyTypeOptions,
+                    setCompanyTypeOptions
+                  );
+                }}
+              />
+            </div>
             <div className="columnsSelect">
               <label for="services">Desired Services</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={serviceSelected}
                 closeMenuOnSelect={false}
                 options={serviceOptions}
@@ -384,7 +414,11 @@ const PageClientEdit = () => {
                 }}
               />
             </div>
-            <div className="columnsSelect">
+
+            {/* <div className="columns"> */}
+          </div>
+          <div className="columns">
+            {/* <div className="columnsSelect">
               <label for="languages">Languages</label>
               <CreatableSelect
                 value={languagesSelected}
@@ -407,13 +441,13 @@ const PageClientEdit = () => {
                   );
                 }}
               />
-            </div>
+            </div> */}
             <div className="columnsDiv">
               <label htmlFor="feedback">Comment</label>
               <textarea
                 id="feedback"
                 name="feedback"
-                rows="10"
+                rows="20"
                 cols="60"
                 role="presentation"
                 {...register("feedbackClient")}

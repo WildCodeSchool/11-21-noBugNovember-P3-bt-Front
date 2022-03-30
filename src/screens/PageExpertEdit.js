@@ -468,7 +468,6 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="kindOfExpertOptions">Type</label>
               <CreatableSelect
-                menuPlacement="top"
                 value={koeSelected}
                 options={kindOfExpertOptions}
                 className="basic-multi-select"
@@ -494,7 +493,6 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="geoExpertise">Geo Expertise</label>
               <CreatableSelect
-                menuPlacement="top"
                 value={geoSelected}
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
@@ -658,7 +656,6 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="hcpType">HCP Type</label>
               <CreatableSelect
-                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={hcpOptions}
                 isMulti

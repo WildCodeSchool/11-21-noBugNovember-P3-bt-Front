@@ -10,10 +10,10 @@ const Clients = (props) => {
 
   return (
     <div className="tabContainer">
-      <h1>Clients</h1>
-      <TabClients setClientSelection={setClientSelection} />
       <div className="titleButtonContainer">
-        <div className="buttonContainerExpert">
+        <h1>Clients</h1>
+        <TabClients setClientSelection={setClientSelection} />
+        <div className="buttonAjoutContainer">
           <div>
             <Link to="/pageClient">
               <button className="buttonAjout">ADD</button>
