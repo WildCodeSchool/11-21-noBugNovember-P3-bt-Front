@@ -1,11 +1,13 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
+import chevronDroit from '../assets/chevronDroit.svg'
+import chevronGauche from '../assets/chevronGauche.svg'
 import filter from '../assets/filter.png'
 import loupe from '../assets/search.png'
 
@@ -88,22 +90,22 @@ const FilterExpert = (props) => {
         setFilKey("")
     }
 
+//button scroll filter
+
+    const ref = useRef(null);
+
+    const scroll = (scrollOffset) => {
+        ref.current.scrollLeft += scrollOffset;
+        };
+
+
     return (
         <div className='filter'>
             <div className="sousfilter">
                 <img src={filter} onClick={removeFilters} alt='filter' id='filter' width='20px' />
 
-                <ul className="filterBar">
-                    {/* <button class="dropdown">Type
-                        <div class="dropdown-content" >
-                        {options && options.kindOfExpert.map((koe) => (
-                            <label key={koe.id} >
-                                <input type="checkbox" id={koe.id} value={koe.id} name={koe.value} onChange={e=> console.log(e) || setIdKoe(e.target.value)}/> 
-                                {koe.value} 
-                            </label>
-                        ))}
-                        </div>
-                    </button> */}
+                <ul className="filterBar" ref={ref}>
+
                     <div>
                         <FormControl  > 
                             <InputLabel id="koe">Type</InputLabel>
@@ -135,13 +137,6 @@ const FilterExpert = (props) => {
                             </Select>
                         </FormControl>
                     </div>
-                    {/* <button className ="dropdown">Price
-                        <div class="dropdown-content" onChange={e=> setFilPrice(e.target.value)} > 
-                            <label> <input type="checkbox" value={1}/> {"\u003C"} 250 € </label>
-                            <label> <input type="checkbox" value={2}/> 250 € to 500 € </label>
-                            <label> <input type="checkbox" value={3}/> {"\u003E"} 500 € </label>
-                        </div>
-                    </button> */}
                             
                     <div>
                         <FormControl  > 
@@ -279,8 +274,14 @@ const FilterExpert = (props) => {
                         onChange={e=> setFilKey(e.target.value)} 
                         placeholder='Keywords'/>
                     </div>
+
                 </ul>
-                <div className='stop'></div>
+
+                <div className='scroll'>
+                    <img src={chevronGauche} onClick={() => scroll(-100)} alt='left' width='30px' />
+                    <img src={chevronDroit} onClick={()=> scroll(100)} alt='right' width='30px' />
+                </div>
+                
             </div>
         </div>
     )
