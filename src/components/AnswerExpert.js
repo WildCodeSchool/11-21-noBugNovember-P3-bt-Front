@@ -110,22 +110,18 @@ const AnswerExpert = (props) => {
             </div>
           </ul>
           <div className='buttonAjoutContainer'>
-            <div>
               <button
-                className='buttonAjout maxiButton'
+                className='smallButton'
                 onClick={() => maxiExpert(expert.id)}
               >
-                MORE
+                More
               </button>
-            </div>
-            <div>
               <button
-                className='buttonAjout maxiButton'
+                className='smallButton'
                 onClick={() => answerEdit(expert.id)}
               >
-                EDIT
+                Edit
               </button>
-            </div>
           </div>
         </div>
       ))}

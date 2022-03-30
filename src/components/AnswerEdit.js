@@ -117,7 +117,7 @@ const AnswerEdit = (props) => {
           onClick={() => props.setAnswerEdit(false)}
         />
         <form
-          className="pageFormInside"
+          className="pageFormInside columns"
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
@@ -164,15 +164,15 @@ const AnswerEdit = (props) => {
             </div>
           </div>
           <div className="checkOrTrashAnswer">
-            <button className="buttonAddForm" onClick={() => onSubmit()}>
-              Add
-            </button>
             <FontAwesomeIcon
               onClick={() => onDelete()}
               icon={faTrashCan}
               size="lg"
               className="trashCan"
             />
+             <button className="buttonAddForm" onClick={() => onSubmit()}>
+              Add
+            </button>
           </div>
         </form>
       </div>
