@@ -107,7 +107,7 @@ const AnswerEdit = (props) => {
   }
 
   return (
-    <div className='tabContainerForm '>
+    <div className='tabContainerForm'>
       <div className='pageForm' id='formAnswer'>
         <FontAwesomeIcon
           icon={faCircleXmark}
@@ -117,11 +117,12 @@ const AnswerEdit = (props) => {
         />
         <form
           className='pageFormInside'
+          id='answerForm'
           autoComplete='off'
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className='columns'>
-            <div className='columnsDiv'>
+          <div>
+            <div>
               <label htmlFor='itwDay'>ITW Day</label>
               <input
                 className='inputAnswer'
@@ -135,7 +136,7 @@ const AnswerEdit = (props) => {
               ></input>
             </div>
 
-            <div className='columnsDiv'>
+            <div>
               <label htmlFor='factu'>Facturation</label>
               <input
                 className='inputAnswer'
@@ -149,11 +150,11 @@ const AnswerEdit = (props) => {
               ></input>
             </div>
 
-            <div className='columnsDiv'>
+            <div>
               <label htmlFor='answer'>Answer</label>
               <Select
                 options={answerOptions}
-                className='basic-multi-select'
+                className='basic-multi-select inputAnswer'
                 classNamePrefix={
                   error && !answerSelected ? 'novalidated' : 'select'
                 }

@@ -175,7 +175,12 @@ const MaxiProject = (props) => {
               </div>
               <div>
                 <Link to={`/projectexpert/${props.id}`}>
-                  <button className='buttonAjout maxiButton'>PREVIOUS</button>
+                  <button
+                    className='buttonAjout maxiButton'
+                    onClick={() => props.setMaxiExpert(false)}
+                  >
+                    PREVIOUS
+                  </button>
                 </Link>
               </div>
             </div>

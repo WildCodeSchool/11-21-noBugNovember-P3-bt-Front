@@ -5,9 +5,11 @@ import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine } from '@fortawesome/free-solid-svg-icons'
 import './styles/Header.css'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
   const [stats, setStats] = useState([])
+  let margin = ((stats.DoneCA - stats.CostExperts) / stats.DoneCA) * 100
 
   useEffect(() => {
     axios
@@ -18,7 +20,9 @@ const Header = () => {
 
   return (
     <div className='headerContainer'>
-      <img src={BTHTLogo} alt='logo_BTHT' id='headerLogo' />
+      <NavLink to='../'>
+        <img src={BTHTLogo} alt='logo_BTHT' id='headerLogo' />
+      </NavLink>
       <div className='headerStatsContainer'>
         {/* <img src={GraphLogo} alt="graph_logo" id="headerGraphLogo" /> */}
         <div className='headerStats'>
@@ -35,16 +39,17 @@ const Header = () => {
             />
             {stats.ongoingProjects} Ongoing Projects
           </p>
-          <p className='statItem'>${stats.OngoingCA} Ongoing CA </p>
+          <p className='statItem'>€{stats.OngoingCA} Ongoing TO </p>
           {/* <p className="statItem">{stats.doneprojects} Done Projects</p> */}
           <p className='statItem'>{stats.totalProjects} Projects</p>
           <p className='statItem'>{stats.totalExperts} Experts</p>
-          <p className='statItem'>{stats.DoneCA} CA</p>
+          <p className='statItem'>€{stats.DoneCA} Total TO</p>
           {/* <p className="statItem">
             {stats.expertsWorked} Participating Experts
           </p> */}
           {/* <p className="statItem">{stats.totalClients} Clients</p> */}
-          <p className='statItem'>${stats.CostExperts} Experts Cost</p>
+          <p className='statItem'>€{stats.CostExperts} Total Expert Cost</p>
+          <p className='statItem'>{margin.toFixed(2)} % Gross Margin</p>
         </div>
       </div>
     </div>

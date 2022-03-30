@@ -12,7 +12,7 @@ import './styles/ProjectExpert.css'
 const MaxiProjectExpert = (props) => {
   const { id } = useParams()
   const [projectMaxi, setProjectMaxi] = useState([])
-  const [isAnswer, setIsAnswer] = useState(false)
+  const [isAnswer, setIsAnswer] = useState(true)
   const [answerEdit, setAnswerEdit] = useState(false)
   const [changeColumn, setChangeColumn] = useState(false)
   const [expertsProject, setExpertsProject] = useState([])
@@ -28,6 +28,7 @@ const MaxiProjectExpert = (props) => {
         <MaxiProject
           projectMaxi={projectMaxi}
           setProjectMaxi={setProjectMaxi}
+          setMaxiExpert={props.setMaxiExpert}
           id={id}
         />
       </div>

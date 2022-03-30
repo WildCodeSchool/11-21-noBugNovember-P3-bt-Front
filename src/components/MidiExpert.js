@@ -3,35 +3,48 @@ import React, { useState, useEffect } from 'react'
 import './styles/Midi.css'
 
 const MidiExpert = (props) => {
-  const [experts, setExperts] = useState([])
-
-  console.log(experts, 'id : ', props.project.id)
+  // const [experts, setExperts] = useState([])
 
   useEffect(() => {
     axios
       .get('http://localhost:4040/experts')
       .then((res) => res.data)
-      .then((res) => setExperts(res))
+      .then((res) => props.setExperts(res))
   }, [props.popupProject, props.maxiExpert])
 
   const maxiExpert = (id) => {
     props.setMaxiExpert(true)
     props.setIdExpert(id)
   }
-
+  console.log(props.experts)
   return (
     <div className='midiExpertContainer'>
-      {experts.map((expert) => (
+      {props.experts.map((expert) => (
         <div
-          className={
+          // className={
+          //   expert.projects_id &&
+          //   expert.projects_id.split(', ').includes(`${props.project.id}`)
+          //     ? 'checkExpert midiExpertCard'
+          //     : 'midiExpertCard'
+          // }
+          className={`midiExpertCard
+          ${
             expert.projects_id &&
             expert.projects_id.split(', ').includes(`${props.project.id}`)
-              ? 'checkExpert midiExpertCard'
-              : 'midiExpertCard'
+              ? 'checkExpert'
+              : ''
           }
+          `}
           key={expert.id}
           onClick={() => maxiExpert(expert.id)}
         >
+          {/* {expert.projects_id &&
+            console.log(
+              'id expert : ',
+              expert.id,
+              expert.projects_id.split(', '),
+              props.project.id
+            )} */}
           <p
             style={{ fontFamily: 'Montserrat', fontWeight: '600' }}
             className='paddingMidiExpert'
@@ -45,8 +58,9 @@ const MidiExpert = (props) => {
                 {expert.firstname} {expert.lastname}
               </li>
               <li>{expert.jobTitleName}</li>
-              <li>{expert.industry}</li>
+              {/* kOE = Category */}
               <li>{expert.kindOfExpertName}</li>
+              <li>{expert.industry}</li>
               <li>{expert.languages}</li>
             </div>
             <div className='part2'>
@@ -63,7 +77,7 @@ const MidiExpert = (props) => {
                 <p> {expert.keywords}</p>
               </li>
               <li>
-                <p style={{ fontWeight: '600' }}>Price</p>
+                <p style={{ fontWeight: '600' }}>Hourly Rate</p>
                 <p>{expert.price}€ </p>
               </li>
               <li>

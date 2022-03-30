@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
 
@@ -7,9 +7,9 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 import "./styles/TabClients.css";
 
-const TabClients = () => {
+const TabClients = ({ setClientSelection }) => {
   const [clients, setClients] = useState([]);
-  // const gridRef = useRef(null);
+  const gridRef = useRef();
 
   useEffect(() => {
     axios.get("http://localhost:4040/clients/").then((response) => {
@@ -31,6 +31,7 @@ const TabClients = () => {
       pinned: "left",
       lockPinned: true,
       width: "120px",
+      headerName: "N°",
     },
     {
       field: "firstname",
@@ -39,6 +40,7 @@ const TabClients = () => {
       pinned: "left",
       lockPinned: true,
       width: "160px",
+      headerName: "First Name",
     },
     {
       field: "lastname",
@@ -47,17 +49,39 @@ const TabClients = () => {
       pinned: "left",
       lockPinned: true,
       width: "160px",
+      headerName: "Last Name",
     },
     { field: "phone" },
     { field: "email" },
-    { field: "contactType", sortable: true, filter: true },
-    { field: "companyName", sortable: true, filter: true },
+    {
+      field: "contactType",
+      sortable: true,
+      filter: true,
+      headerName: "Contact",
+    },
+    {
+      field: "companyName",
+      sortable: true,
+      filter: true,
+      headerName: "Company",
+    },
     { field: "city", sortable: true, filter: true },
     { field: "languages", sortable: true, filter: true },
     { field: "service", sortable: true, filter: true },
-    { field: "feedbackClient" },
-    { field: "numProject", sortable: true, filter: true },
+    { field: "feedbackClient", headerName: "Comment" },
+    {
+      field: "numProject",
+      sortable: true,
+      filter: true,
+      headerName: "Project",
+    },
   ]);
+
+  const rowSelection = (e) => {
+    let clientSelected = gridRef.current.api.getSelectedRows();
+
+    setClientSelection(clientSelected[0].id);
+  };
 
   return (
     <div
@@ -69,12 +93,13 @@ const TabClients = () => {
     >
       {/* <button onClick={onButtonClick}>Get selected rows</button> */}
       <AgGridReact
-        // ref={gridRef}
+        ref={gridRef}
         className="txtTableau"
         defaultColDef={defaultColDef}
         rowData={clients}
         columnDefs={columnDefs}
-        rowSelection="multiple"
+        rowSelection="single"
+        onSelectionChanged={(e) => rowSelection(e)}
       ></AgGridReact>
     </div>
   );
