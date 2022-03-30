@@ -24,12 +24,13 @@
   scrollbar-width: none;
   align-items: center;
   height: 60px;
+  scroll-behavior: smooth;
   /* border-left : solid 1px var(--background);  */
 }
 
 .filterBar::-webkit-scrollbar {
   display: none;
-} 
+}
 
 .search {
   border: 2px solid var(--firstColor) !important;
@@ -45,6 +46,7 @@
 
 #filter {
   margin: 0 14px; 
+  cursor: pointer; 
 }
 
 
@@ -70,32 +72,6 @@
 
 #searchBar {
   margin-left: 14px;
-}
-
-
-/* .dropdown-content {
-  display: none; 
-  position: absolute; 
-  background-color: var(--secondColor);
-  color :var(--firstColor); 
-  min-width: max-content;
-  height: max-content; 
-  z-index: 4;
-  text-align: left;
-  padding : 5px; 
-  top: 45px; 
-  /* border-radius: 5%; */
-
-
-/* .dropdown:hover .dropdown-content {
-  display: flex;
-  flex-direction: column;
-} */
-
-.filterBar > button:hover {
-  background-color: var(--firstColor);
-  color : var(--secondColor);
-  border: 2px solid var(--secondColor);
 }
 
 .MuiOutlinedInput-notchedOutline {
@@ -128,9 +104,13 @@
   color: #ED5829 !important; 
 }
 
-.stop {
-  width: 20px;
+.scroll {
+  display: flex;
+  flex-direction: row;
 }
-/* .dropdown-content a:hover {
-  background-color: #f1f1f1; 
-} */
+
+.scroll > img {
+  cursor: pointer;
+}
+
+
