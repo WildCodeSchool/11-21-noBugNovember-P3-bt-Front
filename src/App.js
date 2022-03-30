@@ -61,7 +61,7 @@ function App() {
           }
         />
         <Route path="/pageProjectEdit/:id" element={<PageProjectEdit />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/projects" element={<Project />} />
       </Routes>
     </div>
