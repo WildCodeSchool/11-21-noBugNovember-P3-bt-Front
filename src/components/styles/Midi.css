@@ -88,7 +88,7 @@ ul {
 .midiExpertContainer {
   display: flex;
   flex-flow: row wrap;
-  overflow: scroll;
+  justify-content: center;
 }
 
 .midiExpertCard {
@@ -133,7 +133,7 @@ ul {
 /* MaxiExpert */
 
 #maxiCard {
-  padding-bottom: 5px;
+  padding-bottom: 24px;
 }
 
 .answerCard {

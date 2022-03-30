@@ -17,15 +17,17 @@ const PopupProject = (props) => {
         Do you really want to add {props.expert.lastname}{' '}
         {props.expert.firstname} to {props.project.numProject} ?
       </p>
-      <button className='buttonAjout maxiButton' onClick={onSubmit}>
-        YES
-      </button>
-      <button
-        className='buttonAjout maxiButton'
-        onClick={() => props.setPopupProject(false)}
-      >
-        NO
-      </button>
+      <div className='buttonAjoutContainer'>
+        <button className='smallButton' onClick={onSubmit}>
+          Yes
+        </button>
+        <button
+          className='smallButton'
+          onClick={() => props.setPopupProject(false)}
+        >
+          No
+        </button>
+      </div>
     </div>
   )
 }
