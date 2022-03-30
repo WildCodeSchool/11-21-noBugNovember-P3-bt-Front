@@ -1,11 +1,10 @@
-import BTHTLogo from '../assets/BTHT-Blue_edited.webp'
-import GraphLogo from '../assets/GraphLogo.png'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import BTHTLogo from '../assets/BTHT-Blue_edited.webp'
 import { faChartLine } from '@fortawesome/free-solid-svg-icons'
-import './styles/Header.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NavLink } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import './styles/Header.css'
 
 const Header = () => {
   const [stats, setStats] = useState([])
@@ -24,12 +23,10 @@ const Header = () => {
         <img src={BTHTLogo} alt='logo_BTHT' id='headerLogo' />
       </NavLink>
       <div className='headerStatsContainer'>
-        {/* <img src={GraphLogo} alt="graph_logo" id="headerGraphLogo" /> */}
         <div className='headerStats'>
           <p className='statItem'>
             <FontAwesomeIcon
               icon={faChartLine}
-              // className="navbarLinkLogo"
               size='xl'
               style={{
                 color: '#373472',
@@ -40,14 +37,9 @@ const Header = () => {
             {stats.ongoingProjects} Ongoing Projects
           </p>
           <p className='statItem'>€{stats.OngoingCA} Ongoing TO </p>
-          {/* <p className="statItem">{stats.doneprojects} Done Projects</p> */}
           <p className='statItem'>{stats.totalProjects} Projects</p>
           <p className='statItem'>{stats.totalExperts} Experts</p>
           <p className='statItem'>€{stats.DoneCA} Total TO</p>
-          {/* <p className="statItem">
-            {stats.expertsWorked} Participating Experts
-          </p> */}
-          {/* <p className="statItem">{stats.totalClients} Clients</p> */}
           <p className='statItem'>€{stats.CostExperts} Total Expert Cost</p>
           <p className='statItem'>{margin.toFixed(2)} % Gross Margin</p>
         </div>

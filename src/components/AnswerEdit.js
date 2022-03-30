@@ -1,17 +1,12 @@
-import '../screens/styles/PageForm.css'
-
 import axios from 'axios'
 import { faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Select from 'react-select'
-import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import '../screens/styles/PageForm.css'
 
 const AnswerEdit = (props) => {
-  const { id } = useParams()
-
-  const navigate = useNavigate()
   const { register, handleSubmit } = useForm()
 
   // my_dataOptions send predetermined datas to form

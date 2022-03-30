@@ -1,11 +1,10 @@
-import MidiProject from '../components/MidiProject'
-import MidiExpert from '../components/MidiExpert'
+import FilterExpert from '../components/FilterExpert'
 import MaxiExpert from '../components/MaxiExpert'
+import MidiExpert from '../components/MidiExpert'
+import MidiProject from '../components/MidiProject'
 import PopupProject from '../components/PopupProject'
 import React, { useState } from 'react'
-
 import './styles/ProjectExpert.css'
-import FilterExpert from '../components/FilterExpert'
 
 const ProjectExpert = (props) => {
   const [experts, setExperts] = useState([])

@@ -1,10 +1,8 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './styles/Midi.css'
 
 const MidiExpert = (props) => {
-  // const [experts, setExperts] = useState([])
-
   useEffect(() => {
     axios
       .get('http://localhost:4040/experts')
@@ -21,12 +19,6 @@ const MidiExpert = (props) => {
     <div className='midiExpertContainer'>
       {props.experts.map((expert) => (
         <div
-          // className={
-          //   expert.projects_id &&
-          //   expert.projects_id.split(', ').includes(`${props.project.id}`)
-          //     ? 'checkExpert midiExpertCard'
-          //     : 'midiExpertCard'
-          // }
           className={`midiExpertCard
           ${
             expert.projects_id &&
@@ -38,13 +30,6 @@ const MidiExpert = (props) => {
           key={expert.id}
           onClick={() => maxiExpert(expert.id)}
         >
-          {/* {expert.projects_id &&
-            console.log(
-              'id expert : ',
-              expert.id,
-              expert.projects_id.split(', '),
-              props.project.id
-            )} */}
           <p
             style={{ fontFamily: 'Montserrat', fontWeight: '600' }}
             className='paddingMidiExpert'

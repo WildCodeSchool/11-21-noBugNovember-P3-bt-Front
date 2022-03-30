@@ -3,7 +3,6 @@ import axios from 'axios'
 import Card from './Card'
 import { useDrop } from 'react-dnd'
 import { useState, useEffect } from 'react'
-
 import './styles/Midi.css'
 
 const Container = (props) => {

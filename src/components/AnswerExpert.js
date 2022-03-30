@@ -3,8 +3,7 @@ import axios from 'axios'
 import Container from './Container'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { useState, useEffect } from 'react'
-
+import { useEffect } from 'react'
 import './styles/Midi.css'
 
 const AnswerExpert = (props) => {

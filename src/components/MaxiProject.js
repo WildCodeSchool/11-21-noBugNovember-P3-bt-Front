@@ -3,10 +3,9 @@ import axios from 'axios'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import { Link } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-
 import './styles/Midi.css'
 
 const MaxiProject = (props) => {

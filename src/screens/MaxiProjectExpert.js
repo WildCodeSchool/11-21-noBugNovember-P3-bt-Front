@@ -1,12 +1,10 @@
 import * as React from 'react'
-
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import AnswerEdit from '../components/AnswerEdit'
+import AnswerExpert from '../components/AnswerExpert'
 import MaxiExpert from '../components/MaxiExpert'
 import MaxiProject from '../components/MaxiProject'
-import AnswerExpert from '../components/AnswerExpert'
-import AnswerEdit from '../components/AnswerEdit'
-
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import './styles/ProjectExpert.css'
 
 const MaxiProjectExpert = (props) => {
