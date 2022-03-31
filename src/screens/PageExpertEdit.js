@@ -191,100 +191,87 @@ const PageExpertEdit = () => {
   };
 
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
-  const onSubmit = async (data) => {
-    console.log(cieSelected);
-    if (
-      yoeSelected.length !== 0 &&
-      cieSelected.length !== 0 &&
-      jobSelected.length !== 0 &&
-      practiceSelected &&
-      koeSelected.length !== 0
-    ) {
-      setError(false);
+  const onSubmit = (data) => {
+    setError(false);
+    // champs select donnée unique
+    const company_id = cieSelected[0].id;
+    const jobTitle_id = jobSelected[0].id;
+    const kindOfExpert_id = koeSelected[0].id;
+    const practice_id = practiceSelected.id;
+    const expertiseLevel_id = yoeSelected[0].id;
+
+    // champs select données multiples
+    let geoDatas = [];
+    let langDatas = [];
+    let pcieDatas = [];
+    let ctcDatas = [];
+    let pjtDatas = [];
+    let indDatas = [];
+    let fctDatas = [];
+    let hcpDatas = [];
+    let sctDatas = [];
+    let specDatas = [];
+
+    geoSelected.forEach((geo) => geo.id && geoDatas.push(geo.id));
+    langSelected.forEach((lang) => lang.id && langDatas.push(lang.id));
+    pcieSelected.forEach((pcie) => pcie.id && pcieDatas.push(pcie.id));
+    ctcSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
+    pjtSelected.forEach((pjt) => pjt.id && pjtDatas.push(pjt.id));
+    induSelected.forEach((indu) => indu.id && indDatas.push(indu.id));
+    fctSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
+    hcpSelected.forEach((hcp) => hcp.id && hcpDatas.push(hcp.id));
+    sctSelected.forEach((sct) => sct.id && sctDatas.push(sct.id));
+    specSelected.forEach((spec) => spec.id && specDatas.push(spec.id));
+
+    let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
+    let languages_id = { languages_id: [...langDatas] };
+    let pastCompany_id = { pastCompany_id: [...pcieDatas] };
+    let contactType_id = { contactType_id: [...ctcDatas] };
+    let projects_id = { projects_id: [...pjtDatas] };
+    let industry_id = { industry_id: [...indDatas] };
+    let fonction_id = { fonction_id: [...fctDatas] };
+    let hcpType_id = { hcpType_id: [...hcpDatas] };
+    let sector_id = { sector_id: [...sctDatas] };
+    let specialty_id = { specialty_id: [...specDatas] };
+
+    let datas = {
+      // champs libres donnée unique
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      phone: data.phone,
+      linkedinProfile: data.linkedinProfile,
+      price: data.price,
+      numExpert: data.numExpert,
+      keywords: data.keywords,
+      feedbackExpert: data.feedbackExpert,
+      cost: data.cost,
+
       // champs select donnée unique
-      const company_id = cieSelected[0].id;
-      const jobTitle_id = jobSelected[0].id;
-      const kindOfExpert_id = koeSelected[0].id;
-      const practice_id = practiceSelected.id;
-      const expertiseLevel_id = yoeSelected[0].id;
+      company_id: company_id,
+      jobtitle_id: jobTitle_id,
+      kindOfExpert_id: kindOfExpert_id,
+      practice_id: practice_id,
+      expertiseLevel_id: expertiseLevel_id,
 
       // champs select données multiples
-      let geoDatas = [];
-      let langDatas = [];
-      let pcieDatas = [];
-      let ctcDatas = [];
-      let pjtDatas = [];
-      let indDatas = [];
-      let fctDatas = [];
-      let hcpDatas = [];
-      let sctDatas = [];
-      let specDatas = [];
-
-      geoSelected.forEach((geo) => geo.id && geoDatas.push(geo.id));
-      langSelected.forEach((lang) => lang.id && langDatas.push(lang.id));
-      pcieSelected.forEach((pcie) => pcie.id && pcieDatas.push(pcie.id));
-      ctcSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
-      pjtSelected.forEach((pjt) => pjt.id && pjtDatas.push(pjt.id));
-      induSelected.forEach((indu) => indu.id && indDatas.push(indu.id));
-      fctSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
-      hcpSelected.forEach((hcp) => hcp.id && hcpDatas.push(hcp.id));
-      sctSelected.forEach((sct) => sct.id && sctDatas.push(sct.id));
-      specSelected.forEach((spec) => spec.id && specDatas.push(spec.id));
-
-      let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
-      let languages_id = { languages_id: [...langDatas] };
-      let pastCompany_id = { pastCompany_id: [...pcieDatas] };
-      let contactType_id = { contactType_id: [...ctcDatas] };
-      let projects_id = { projects_id: [...pjtDatas] };
-      let industry_id = { industry_id: [...indDatas] };
-      let fonction_id = { fonction_id: [...fctDatas] };
-      let hcpType_id = { hcpType_id: [...hcpDatas] };
-      let sector_id = { sector_id: [...sctDatas] };
-      let specialty_id = { specialty_id: [...specDatas] };
-
-      let datas = {
-        // champs libres donnée unique
-        firstname: data.firstname,
-        lastname: data.lastname,
-        email: data.email,
-        phone: data.phone,
-        linkedinProfile: data.linkedinProfile,
-        price: data.price,
-        numExpert: data.numExpert,
-        keywords: data.keywords,
-        feedbackExpert: data.feedbackExpert,
-        cost: data.cost,
-
-        // champs select donnée unique
-        company_id: company_id,
-        jobtitle_id: jobTitle_id,
-        kindOfExpert_id: kindOfExpert_id,
-        practice_id: practice_id,
-        expertiseLevel_id: expertiseLevel_id,
-
-        // champs select données multiples
-        ...geoExpertise_id,
-        ...languages_id,
-        ...pastCompany_id,
-        ...contactType_id,
-        ...projects_id,
-        ...industry_id,
-        ...fonction_id,
-        ...hcpType_id,
-        ...sector_id,
-        ...specialty_id,
-      };
-      console.log("datas", datas);
-      axios
-        .put(`http://localhost:4040/experts/form/${id}`, datas)
-        .then(function (res) {
-          navigate("/experts");
-        });
-    } else {
-      setError(true);
-      console.log("Form error", yoeSelected);
-      data.preventDefault();
-    }
+      ...geoExpertise_id,
+      ...languages_id,
+      ...pastCompany_id,
+      ...contactType_id,
+      ...projects_id,
+      ...industry_id,
+      ...fonction_id,
+      ...hcpType_id,
+      ...sector_id,
+      ...specialty_id,
+    };
+    axios
+      .put(`http://localhost:4040/experts/form/${id}`, datas)
+      .then(function (res) {
+        navigate("/experts");
+      })
+      .catch(navigate("/experts"));
   };
 
   // ******************** DELETE EXPERTS *******************
@@ -294,7 +281,8 @@ const PageExpertEdit = () => {
       .delete(`http://localhost:4040/experts/form/${id}`)
       .then(function (res) {
         navigate("/experts");
-      });
+      })
+      .catch(navigate("/experts"));
   };
 
   return (

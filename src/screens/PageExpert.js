@@ -120,89 +120,79 @@ const PageExpert = () => {
   /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
   const onSubmit = async (data) => {
-    if (
-      yoeSelected.length !== 0 &&
-      cieSelected.length !== 0 &&
-      jobSelected.length !== 0 &&
-      induSelected.length !== 0 &&
-      practiceSelected &&
-      koeSelected.length !== 0
-    ) {
-      setError(false);
+    setError(false);
 
-      let geoDatas = [];
-      let langDatas = [];
-      let pcieDatas = [];
-      let ctcDatas = [];
-      let pjtDatas = [];
-      let cieDatas = [];
-      let koeDatas = [];
-      let yoeDatas = [];
-      let jobDatas = [];
-      let induDatas = [];
-      let hcpDatas = [];
-      let sctDatas = [];
-      let fctDatas = [];
-      let specDatas = [];
-      const practice_id = practiceSelected.id;
+    let geoDatas = [];
+    let langDatas = [];
+    let pcieDatas = [];
+    let ctcDatas = [];
+    let pjtDatas = [];
+    let cieDatas = [];
+    let koeDatas = [];
+    let yoeDatas = [];
+    let jobDatas = [];
+    let induDatas = [];
+    let hcpDatas = [];
+    let sctDatas = [];
+    let fctDatas = [];
+    let specDatas = [];
+    const practice_id = practiceSelected.id;
 
-      geoSelected.forEach((geo) => geoDatas.push(geo.id));
-      langSelected.forEach((lang) => langDatas.push(lang.id));
-      pcieSelected.forEach((pcie) => pcieDatas.push(pcie.id));
-      ctcSelected.forEach((ctc) => ctcDatas.push(ctc.id));
-      pjtSelected.forEach((pjt) => pjtDatas.push(pjt.id));
-      cieSelected.forEach((cie) => cieDatas.push(cie.id));
-      koeSelected.forEach((koe) => koeDatas.push(koe.id));
-      yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
-      jobSelected.forEach((job) => jobDatas.push(job.id));
-      induSelected.forEach((indu) => induDatas.push(indu.id));
-      hcpSelected.forEach((hcp) => hcpDatas.push(hcp.id));
-      sctSelected.forEach((sct) => sctDatas.push(sct.id));
-      fctSelected.forEach((fct) => fctDatas.push(fct.id));
-      specSelected.forEach((spec) => specDatas.push(spec.id));
+    geoSelected.forEach((geo) => geoDatas.push(geo.id));
+    langSelected.forEach((lang) => langDatas.push(lang.id));
+    pcieSelected.forEach((pcie) => pcieDatas.push(pcie.id));
+    ctcSelected.forEach((ctc) => ctcDatas.push(ctc.id));
+    pjtSelected.forEach((pjt) => pjtDatas.push(pjt.id));
+    cieSelected.forEach((cie) => cieDatas.push(cie.id));
+    koeSelected.forEach((koe) => koeDatas.push(koe.id));
+    yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
+    jobSelected.forEach((job) => jobDatas.push(job.id));
+    induSelected.forEach((indu) => induDatas.push(indu.id));
+    hcpSelected.forEach((hcp) => hcpDatas.push(hcp.id));
+    sctSelected.forEach((sct) => sctDatas.push(sct.id));
+    fctSelected.forEach((fct) => fctDatas.push(fct.id));
+    specSelected.forEach((spec) => specDatas.push(spec.id));
 
-      let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
-      let languages_id = { languages_id: [...langDatas] };
-      let pastCompany_id = { pastCompany_id: [...pcieDatas] };
-      let contactType_id = { contactType_id: [...ctcDatas] };
-      let projects_id = { projects_id: [...pjtDatas] };
-      let company_id = { company_id: [...cieDatas] };
-      let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
-      let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
-      let jobtitle_id = { jobtitle_id: [...jobDatas] };
-      let industry_id = { industry_id: [...induDatas] };
-      let hcpType_id = { hcpType_id: [...hcpDatas] };
-      let sector_id = { sector_id: [...sctDatas] };
-      let fonction_id = { fonction_id: [...fctDatas] };
-      let specialty_id = { specialty_id: [...specDatas] };
+    let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
+    let languages_id = { languages_id: [...langDatas] };
+    let pastCompany_id = { pastCompany_id: [...pcieDatas] };
+    let contactType_id = { contactType_id: [...ctcDatas] };
+    let projects_id = { projects_id: [...pjtDatas] };
+    let company_id = { company_id: [...cieDatas] };
+    let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
+    let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
+    let jobtitle_id = { jobtitle_id: [...jobDatas] };
+    let industry_id = { industry_id: [...induDatas] };
+    let hcpType_id = { hcpType_id: [...hcpDatas] };
+    let sector_id = { sector_id: [...sctDatas] };
+    let fonction_id = { fonction_id: [...fctDatas] };
+    let specialty_id = { specialty_id: [...specDatas] };
 
-      let datas = {
-        practice_id,
-        ...data,
-        ...geoExpertise_id,
-        ...languages_id,
-        ...jobtitle_id,
-        ...kindOfExpert_id,
-        ...pastCompany_id,
-        ...contactType_id,
-        ...projects_id,
-        ...company_id,
-        ...expertiseLevel_id,
-        ...industry_id,
-        ...hcpType_id,
-        ...sector_id,
-        ...fonction_id,
-        ...specialty_id,
-      };
+    let datas = {
+      practice_id,
+      ...data,
+      ...geoExpertise_id,
+      ...languages_id,
+      ...jobtitle_id,
+      ...kindOfExpert_id,
+      ...pastCompany_id,
+      ...contactType_id,
+      ...projects_id,
+      ...company_id,
+      ...expertiseLevel_id,
+      ...industry_id,
+      ...hcpType_id,
+      ...sector_id,
+      ...fonction_id,
+      ...specialty_id,
+    };
 
-      await axios
-        .post("http://localhost:4040/experts/", datas)
-        .catch(navigate("/experts"));
-      navigate("/experts");
-    } else {
-      setError(true);
-      data.preventDefault();
-    }
+    axios
+      .post("http://localhost:4040/experts/", datas)
+      .then(function (res) {
+        navigate("/experts");
+      })
+      .catch(navigate("/experts"));
   };
 
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */

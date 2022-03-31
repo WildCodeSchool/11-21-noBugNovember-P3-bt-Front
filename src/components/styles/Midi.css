@@ -95,7 +95,7 @@ ul {
   background-color: var(--cardBgColor);
   border-radius: 1%;
   width: 16em;
-  height: 20em;
+  height: auto;
   margin: 0 10px 20px 10px;
   padding: 10px;
 }

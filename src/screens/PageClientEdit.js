@@ -144,7 +144,7 @@ const PageClientEdit = () => {
   };
 
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     setError(false);
     let ctcDatas = [];
     let servDatas = [];
@@ -177,11 +177,12 @@ const PageClientEdit = () => {
       ...service_id,
       ...fonction_id,
     };
-    console.log("datas", datas);
-    await axios
+    axios
       .put(`http://localhost:4040/clients/form/${id}`, datas)
+      .then(function (res) {
+        navigate("/clients");
+      })
       .catch(navigate("/clients"));
-    navigate("/clients");
   };
 
   return (

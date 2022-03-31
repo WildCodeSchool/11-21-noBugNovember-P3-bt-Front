@@ -46,7 +46,7 @@ const PageClient = () => {
     setCompanyNameOptions(options.companyName);
   }, [options]);
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     let functionsDatas = [];
     let favoriteCDatas = [];
     let kindOfBDatas = [];
@@ -74,10 +74,12 @@ const PageClient = () => {
       ...company_id,
     };
 
-    await axios
+    axios
       .post("http://localhost:4040/clients/", datas)
+      .then(function (res) {
+        navigate("/clients");
+      })
       .catch(navigate("/clients"));
-    navigate("/clients");
   };
 
   const handleCreate = (inputValue, table, column, set, selected, multiple) => {
@@ -200,7 +202,6 @@ const PageClient = () => {
             <div className="columnsDiv">
               <label for="company">Company</label>
               <CreatableSelect
-                value={companyNameSelected}
                 options={companyNameOptions}
                 className="basic-multi-select"
                 classNamePrefix="select"
@@ -220,7 +221,6 @@ const PageClient = () => {
               <label for="function">Function</label>
               <CreatableSelect
                 closeMenuOnSelect={false}
-                value={functionsSelected}
                 options={functionsOptions}
                 className="basic-multi-select"
                 isMulti
@@ -241,7 +241,6 @@ const PageClient = () => {
               <label for="contacts">Favorite Contact</label>
               <CreatableSelect
                 closeMenuOnSelect={false}
-                value={favcSelected}
                 options={favcOptions}
                 className="basic-multi-select"
                 classNamePrefix="select"
@@ -262,7 +261,6 @@ const PageClient = () => {
               <label for="kindOfBusiness">Kind Of Business</label>
               <CreatableSelect
                 menuPlacement="top"
-                value={kobSelected}
                 options={kobOptions}
                 className="basic-multi-select"
                 classNamePrefix="select"
@@ -283,7 +281,6 @@ const PageClient = () => {
               <CreatableSelect
                 menuPlacement="top"
                 closeMenuOnSelect={false}
-                value={dsSelected}
                 options={dsOptions}
                 isMulti
                 className="basic-multi-select"
