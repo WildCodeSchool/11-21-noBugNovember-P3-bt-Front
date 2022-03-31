@@ -3,10 +3,15 @@
 # ABOUT THE PROJECT  
 
 This application allows you to manage and optimize your business. 
+
 You can add/edit/delete clients, projects, experts.
+
 Find and connect the best experts suited to your clients' projects. 
-Follow the progress of projects. 
-Get a global overview of the essential figures for monitoring the company
+
+Follow the progress of the projects. 
+
+Get a global overview of your main figures for monitoring the company
+
 
 👀 (lien vidéo)
 
@@ -14,6 +19,8 @@ Get a global overview of the essential figures for monitoring the company
 
   - React.js 
   - Axios
+  - React-select : https://react-select.com/
+  - React-hook-form : https://react-hook-form.com/
   - Material-UI : https://mui.com/
   - Font Awesome : https://fontawesome.com/
   - React DnD : https://react-dnd.github.io/react-dnd/about
@@ -21,7 +28,7 @@ Get a global overview of the essential figures for monitoring the company
 
 ## Getting Started 🚀 : 
 
-:one: Install the backend -> 11-21-noBugNovember-P3-bt-Back 
+:one: Install the backend 🔗 -> 11-21-noBugNovember-P3-bt-Back 
 
 :two: Clone the repo 
 
