@@ -7,16 +7,24 @@ import { Link } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 
 const CardsProjects = (props) => {
-  console.log(props)
   const card = (
     <React.Fragment>
       <Link to={`/projectexpert/${props.id}`}>
         <CardContent>
-          <Typography sx={{ fontSize: 16 }} color='var(--firstColor)' fontFamily='var(--fontTitle)' gutterBottom>
+          <Typography
+            sx={{ fontSize: 16 }}
+            color='var(--firstColor)'
+            fontFamily='var(--fontTitle)'
+            gutterBottom
+          >
             <h4 className='nameProject'>{props.numProject}</h4>
           </Typography>
           <div className='separation'></div>
-          <Typography sx={{ mb: 1.5, fontSize: 14 }} color='var(--firstColor)' fontFamily='var(--fontBody)'>
+          <Typography
+            sx={{ mb: 1.5, fontSize: 14 }}
+            color='var(--firstColor)'
+            fontFamily='var(--fontBody)'
+          >
             <div className='projectGroup'>
               <ul>
                 <li>

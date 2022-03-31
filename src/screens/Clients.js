@@ -1,7 +1,7 @@
-import { useState } from "react";
-import TabClients from "../components/TabClients";
-import "./styles/Clients.css";
 import { Link } from "react-router-dom";
+import TabClients from "../components/TabClients";
+import { useState } from "react";
+import "./styles/Clients.css";
 
 const Clients = (props) => {
   const [clientSelection, setClientSelection] = useState([]);
@@ -10,10 +10,10 @@ const Clients = (props) => {
 
   return (
     <div className="tabContainer">
-      <h1>Clients</h1>
-      <TabClients setClientSelection={setClientSelection} />
       <div className="titleButtonContainer">
-        <div className="buttonContainerExpert">
+        <h1>Clients</h1>
+        <TabClients setClientSelection={setClientSelection} />
+        <div className="buttonAjoutContainer">
           <div>
             <Link to="/pageClient">
               <button className="buttonAjout">ADD</button>

@@ -1,9 +1,4 @@
 import Chevron from '../assets/chevron.svg'
-// import client from "../assets/client.png";
-// import avatar from "../assets/avatar.png";
-// import avatar2 from "../assets/avatar2.svg";
-// import deal from "../assets/deal.png";
-// import experts from "../assets/experts.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faUserDoctor,
@@ -38,27 +33,12 @@ const Navbar = () => {
   //   setUser({ email: '', password: '' })
   // }
   return (
-    <div
-      className='navbar'
-      // onMouseEnter={() => open()}
-      // onMouseLeave={() => close()}
-    >
+    <div className='navbar'>
       <div className='navbarOpener' onClick={() => Open()}>
         <img src={Chevron} alt='chevron' id='chevronLogo' />
       </div>
       <div className='navbarLinksContainer'></div>
       <ul className='navbarLinksWrapper'>
-        {/* <NavLink
-          to="/user"
-          className={({ isActive }) =>
-            isActive ? "navbarLink activeLink" : "navbarLink"
-          }
-        >
-          <img src={avatar2} className="navbarLinkLogo" />
-          <span className={isOpened ? "namesDisplayed" : "navbarLinkName"}>
-            Alexis{" "}
-          </span>
-        </NavLink> */}
         <NavLink
           to='/projects'
           className={({ isActive }) =>
@@ -70,7 +50,7 @@ const Navbar = () => {
             // className="navbarLinkLogo"
             style={{ fontSize: '30px' }}
           />
-          {/* <img src={deal} alt="projectLogo" className="navbarLinkLogo" /> */}
+
           <span className={isOpened ? 'namesDisplayed' : 'navbarLinkName'}>
             Projects
           </span>
@@ -87,7 +67,6 @@ const Navbar = () => {
             style={{ fontSize: '30px' }}
           />
 
-          {/* <img src={client} alt="clientLogo" className="navbarLinkLogo" /> */}
           <span className={isOpened ? 'namesDisplayed' : 'navbarLinkName'}>
             Clients
           </span>
@@ -104,7 +83,7 @@ const Navbar = () => {
             // size="xl"
             style={{ fontSize: '30px' }}
           />
-          {/* <img src={experts} alt="expertLogo" className="navbarLinkLogo" /> */}
+
           <span className={isOpened ? 'namesDisplayed' : 'navbarLinkName'}>
             Experts
           </span>

@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const PageExpert = () => {
@@ -47,7 +47,6 @@ const PageExpert = () => {
   const [specSelected, setSpecSelected] = useState([]);
   const [error, setError] = useState(false);
 
-  const [optionHasChanged, setOptionHasChanged] = useState([]);
   const [newOptions, setNewOptions] = useState([]);
 
   useEffect(() => {
@@ -56,7 +55,10 @@ const PageExpert = () => {
         .get("http://localhost:4040/experts/form")
         .then(
           (res) => console.log("test bdd", res.data) || setOptions(res.data)
-        );
+        )
+        .catch(function (error) {
+          console.log(error);
+        });
     };
     getOptions();
   }, [newOptions]);
@@ -82,7 +84,6 @@ const PageExpert = () => {
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
   const handleCreate = (inputValue, table, column, set, selected, multiple) => {
-    console.log("inputValue", inputValue);
     for (let i = 0; i < inputValue.length; i++) {
       // If the Value is New
       if (Object.keys(inputValue[i]).includes("__isNew__")) {
@@ -116,25 +117,9 @@ const PageExpert = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("langSelected", yoeSelected);
-  }, [yoeSelected]);
-
   /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
-  const onSubmit = (data) => {
-    console.log(
-      "yoe",
-      yoeSelected,
-      "cie",
-      cieSelected,
-      "job",
-      jobSelected,
-      "pr",
-      practiceSelected,
-      "koe",
-      koeSelected
-    );
+  const onSubmit = async (data) => {
     if (
       yoeSelected.length !== 0 &&
       cieSelected.length !== 0 &&
@@ -167,9 +152,7 @@ const PageExpert = () => {
       ctcSelected.forEach((ctc) => ctcDatas.push(ctc.id));
       pjtSelected.forEach((pjt) => pjtDatas.push(pjt.id));
       cieSelected.forEach((cie) => cieDatas.push(cie.id));
-      koeSelected.forEach(
-        (koe) => console.log("koe test", koe) || koeDatas.push(koe.id)
-      );
+      koeSelected.forEach((koe) => koeDatas.push(koe.id));
       yoeSelected.forEach((yoe) => yoeDatas.push(yoe.id));
       jobSelected.forEach((job) => jobDatas.push(job.id));
       induSelected.forEach((indu) => induDatas.push(indu.id));
@@ -184,7 +167,6 @@ const PageExpert = () => {
       let contactType_id = { contactType_id: [...ctcDatas] };
       let projects_id = { projects_id: [...pjtDatas] };
       let company_id = { company_id: [...cieDatas] };
-      // let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
       let jobtitle_id = { jobtitle_id: [...jobDatas] };
@@ -213,14 +195,12 @@ const PageExpert = () => {
         ...specialty_id,
       };
 
-      console.log("datas", datas);
-      axios.post("http://localhost:4040/experts/", datas);
-
+      await axios
+        .post("http://localhost:4040/experts/", datas)
+        .catch(navigate("/experts"));
       navigate("/experts");
-      console.log("lang submit", langSelected);
     } else {
       setError(true);
-      console.log("Form error", yoeSelected);
       data.preventDefault();
     }
   };
@@ -256,7 +236,7 @@ const PageExpert = () => {
               </div>
             </div>
             <div className="columnsDiv">
-              <label htmlFor="firstName">FirstName</label>
+              <label htmlFor="firstName">First Name</label>
               <input
                 id="firstName"
                 name="firstName"
@@ -267,7 +247,7 @@ const PageExpert = () => {
               ></input>
             </div>
             <div className="columnsDiv">
-              <label htmlFor="lastName">LastName</label>
+              <label htmlFor="lastName">Last Name</label>
               <input
                 autocomplete="off"
                 id="lastName"
@@ -379,7 +359,6 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="kindOfExpertOptions">Type</label>
               <CreatableSelect
-                menuPlacement="top"
                 options={kindOfExpertOptions}
                 className="basic-multi-select"
                 classNamePrefix={
@@ -403,7 +382,6 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="geoExpertise">Geo Expertise</label>
               <CreatableSelect
-                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
                 isMulti
@@ -546,7 +524,6 @@ const PageExpert = () => {
             <div className="columnsSelect">
               <label htmlFor="hcpType">HCP Type</label>
               <CreatableSelect
-                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={hcpOptions}
                 isMulti

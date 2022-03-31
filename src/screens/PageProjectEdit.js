@@ -1,13 +1,12 @@
-import './styles/PageForm.css'
-
+import axios from 'axios'
 import CreatableSelect from 'react-select/creatable'
-import { useState, useEffect } from 'react'
+import { faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Select from 'react-select'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
-import Select from 'react-select'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios'
+import { useState, useEffect } from 'react'
+import './styles/PageForm.css'
 
 const PageProjectEdit = () => {
   const { id } = useParams()
@@ -209,8 +208,8 @@ const PageProjectEdit = () => {
       // champs select donnée unique
       const client_id = clientSelected.id
       const status_id = statusSelected.id
-      const projectType_id = ptSelected.id
-      const expertiseLevel_id = yoeSelected.id
+      const projectType_id = ptSelected[0].id
+      const expertiseLevel_id = yoeSelected[0].id
 
       // champs select données multiples
       let ecieDatas = []
@@ -363,6 +362,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='serviceOptions'>Service</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={seSelected}
                 closeMenuOnSelect={false}
                 options={serviceOptions}
@@ -401,6 +401,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='status'>Status</label>
               <Select
+                menuPlacement='top'
                 options={statusOptions}
                 className='basic-multi-select'
                 classNamePrefix={
@@ -414,6 +415,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='projectType'>Project Type</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={ptSelected}
                 options={projectTypeOptions}
                 className='basic-multi-select'
@@ -505,6 +507,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='practice'>Practice</label>
               <Select
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={practiceOptions}
                 isMulti
@@ -518,6 +521,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='Industry'>Industry</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={indSelected}
                 closeMenuOnSelect={false}
                 options={industryOptions}
@@ -543,6 +547,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='rCompaniesOptions'>Companies Examples</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={rcieSelected}
                 closeMenuOnSelect={false}
                 options={rCompaniesOptions}
@@ -568,6 +573,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='eCompaniesOptions'>Excluded Companies</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={ecieSelected}
                 closeMenuOnSelect={false}
                 options={eCompaniesOptions}
@@ -593,6 +599,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='jobTitle'>Job Title</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={jobSelected}
                 closeMenuOnSelect={false}
                 options={jobTitleOptions}
@@ -670,6 +677,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='geoExpertise'>Geo Expertise</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={geoSelected}
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
@@ -695,6 +703,7 @@ const PageProjectEdit = () => {
             <div className='columnsSelect'>
               <label htmlFor='languages'>Languages</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={langSelected}
                 closeMenuOnSelect={false}
                 options={languagesOptions}
@@ -720,6 +729,7 @@ const PageProjectEdit = () => {
             <div className='columnsDiv'>
               <label htmlFor='keywords'>Linkedin Keywords</label>
               <CreatableSelect
+                menuPlacement='top'
                 value={linSelected}
                 closeMenuOnSelect={false}
                 options={linkedinOptions}

@@ -98,6 +98,7 @@ function App() {
         />
         <Route path='/pageProjectEdit/:id' element={<PageProjectEdit />} />
         <Route path='/' element={<Login />} />
+        <Route path='/creation' element={<Creation />} />
         <Route
           path='/projects'
           element={

@@ -1,12 +1,10 @@
-import MidiProject from '../components/MidiProject'
-import MidiExpert from '../components/MidiExpert'
+import FilterExpert from '../components/FilterExpert'
 import MaxiExpert from '../components/MaxiExpert'
+import MidiExpert from '../components/MidiExpert'
+import MidiProject from '../components/MidiProject'
 import PopupProject from '../components/PopupProject'
 import React, { useState } from 'react'
-
 import './styles/ProjectExpert.css'
-import FilterExpert from '../components/FilterExpert'
-
 
 const ProjectExpert = (props) => {
   const [experts, setExperts] = useState([])
@@ -15,21 +13,25 @@ const ProjectExpert = (props) => {
 
   return (
     <div className='projectExpertContainer'>
-      <FilterExpert 
-      experts={experts} setExperts={setExperts} 
-      /> 
-          
+      <FilterExpert experts={experts} setExperts={setExperts} />
+
       <div className='gridMidiProject'>
-        <MidiProject project={project} setProject={setProject} />
+        <MidiProject
+          project={project}
+          setProject={setProject}
+          setMaxiExpert={props.setMaxiExpert}
+        />
       </div>
       <div className={!props.maxiExpert ? 'gridMidiExpert' : 'hidden'}>
         <MidiExpert
-          experts={experts} setExperts={setExperts}
+          experts={experts}
+          setExperts={setExperts}
           setMaxiExpert={props.setMaxiExpert}
           maxiExpert={props.maxiExpert}
           setIdExpert={props.setIdExpert}
           project={project}
           popupProject={popupProject}
+          idExpert={props.idExpert}
         />
       </div>
       <div
