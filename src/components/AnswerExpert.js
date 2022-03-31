@@ -8,18 +8,39 @@ const AnswerExpert = (props) => {
   const [expertsProject, setExpertsProject] = useState([])
   useEffect(() => {
     axios
-      .get(`http://localhost:4040/projects/experts/${props.id}`)
+      .get(`http://localhost:4040/projexperts/${props.id}`)
       .then((res) => res.data)
       .then((res) => console.log('experts', res) || setExpertsProject(res))
-  }, [])
+  }, [props.answerEdit])
 
-  console.log(expertsProject)
+  const maxiExpert = (id) => {
+    props.setMaxiExpert(true)
+    props.setIdExpert(id)
+    props.setIsAnswer(true)
+  }
+
+  const answerEdit = (id) => {
+    props.setAnswerEdit(true)
+    props.setIdExpert(id)
+  }
+
+  console.log(props)
 
   return (
     <div className='midiExpertContainer'>
       {expertsProject.map((expert) => (
-        <div className={expert.projects_id && expert.projects_id.includes(props.project.id) ? 'checkExpert midiExpertCard' : 'midiExpertCard'} key={expert.id}>
-          <p style={{ fontFamily: 'Montserrat', fontWeight: '600' }} className='paddingMidiExpert'>
+        <div
+          className={
+            expert.projects_id && expert.projects_id.includes(props.project.id)
+              ? 'checkExpert midiExpertCard'
+              : 'midiExpertCard answerCard'
+          }
+          key={expert.id}
+        >
+          <p
+            style={{ fontFamily: 'Montserrat', fontWeight: '600' }}
+            className='paddingMidiExpert'
+          >
             Expert # {expert.numExpert}
           </p>
           <div className='separation'></div>
@@ -28,12 +49,26 @@ const AnswerExpert = (props) => {
               <li>
                 {expert.firstname} {expert.lastname}
               </li>
-              <li>{expert.jobTitleName}</li>
-              <li>{expert.industry}</li>
-              <li>{expert.kindOfExpertName}</li>
-              <li>{expert.languages}</li>
             </div>
             <div className='part2'>
+              <li>
+                <p style={{ fontWeight: '600' }}> Job Title </p>
+                <p>{expert.jobTitleName}</p>
+              </li>
+
+              <li>
+                <p style={{ fontWeight: '600' }}> Industry </p>
+                <p>{expert.industry}</p>
+              </li>
+
+              <li>
+                <p style={{ fontWeight: '600' }}> Type </p>
+                <p>{expert.kindOfExpertName}</p>
+              </li>
+              <li>
+                <p style={{ fontWeight: '600' }}> Languages </p>
+                <p>{expert.languages}</p>
+              </li>
               <li>
                 <p style={{ fontWeight: '600' }}> Current cie </p>
                 <p>{expert.companyName} </p>
@@ -43,27 +78,51 @@ const AnswerExpert = (props) => {
                 <p>{expert.pastCompanies} </p>
               </li>
               <li>
-                <p style={{ fontWeight: '600' }}>
-                  {' '}
-                  Keywords
-                  {/* <img src={key} alt='keywords' width='16px' /> */}
-                </p>
+                <p style={{ fontWeight: '600' }}>Keywords</p>
                 <p> {expert.keywords}</p>
               </li>
               <li>
-                <p style={{ fontWeight: '600' }}>
-                  {' '}
-                  Price
-                  {/* <img src={price} alt='price' width='17px' /> */}
-                </p>
+                <p style={{ fontWeight: '600' }}>Price</p>
                 <p>{expert.price}€ </p>
               </li>
               <li>
                 <p> 💸 </p>
                 <p> {expert.cost}€ </p>
               </li>
+              <li>
+                <p style={{ fontWeight: '600' }}>Answer</p>
+                <p>
+                  {expert.answer !== null
+                    ? expert.answer === 1
+                      ? 'Yes'
+                      : 'No'
+                    : 'Waiting'}
+                </p>
+              </li>
+              <li>
+                <p style={{ fontWeight: '600' }}>Factu</p>
+                <p>{expert.factuByExpert}€ </p>
+              </li>
+              <li>
+                <p style={{ fontWeight: '600' }}>Itw Day</p>
+                <p>{expert.preferedItwDay}</p>
+              </li>
             </div>
           </ul>
+          <div className='buttonAjoutContainer'>
+              <button
+                className='smallButton'
+                onClick={() => maxiExpert(expert.id)}
+              >
+                More
+              </button>
+              <button
+                className='smallButton'
+                onClick={() => answerEdit(expert.id)}
+              >
+                Edit
+              </button>
+          </div>
         </div>
       ))}
     </div>

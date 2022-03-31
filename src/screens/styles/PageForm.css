@@ -14,7 +14,7 @@
   align-items: space-around;
   flex-direction: column;
   position: relative;
-  height: 84vh;
+  height: 87vh;
   width: 90vw;
 }
 
@@ -24,7 +24,7 @@
   justify-content: space-evenly;
   align-items: space-around;
   overflow-wrap: normal;
-  height: 80%;
+  height: 88%;
 }
 
 .columns {
@@ -65,7 +65,7 @@
 
 .columns textarea {
   width: 25vw;
-  height: 9rem;
+  height: auto;
   margin-top: 0.5rem;
 }
 
@@ -132,7 +132,7 @@
 .checkOrTrash {
   position: absolute;
   right: 4vw;
-  bottom: 1.2rem;
+  bottom: 0.2rem;
   display: flex;
   align-items: center;
 }
@@ -140,3 +140,25 @@
 #number {
   padding: 0;
 }
+
+/* Answer Edit */
+#formAnswer {
+  padding: 1.5em;
+  padding-bottom: 0.3em;
+  height: auto;
+  width: auto;
+}
+
+.checkOrTrashAnswer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.8em;
+  width: 100%;
+}
+
+.inputAnswer {
+  margin-top: 0em !important;
+  margin-bottom: 0.5em;
+}
+

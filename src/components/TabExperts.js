@@ -12,6 +12,7 @@ const TabExperts = ({ setExpertSelection }) => {
 
   const defaultColDef = {
     resizable: true,
+    width: "max-content",
   };
 
   const gridRef = useRef();
@@ -39,7 +40,7 @@ const TabExperts = ({ setExpertSelection }) => {
       checkboxSelection: false,
       pinned: "left",
       lockPinned: true,
-      width: "70px",
+      width: "120px",
     },
     {
       field: "firstname",
@@ -48,7 +49,7 @@ const TabExperts = ({ setExpertSelection }) => {
       filter: true,
       pinned: "left",
       lockPinned: true,
-      width: "120px",
+      width: "160px",
     },
     {
       field: "lastname",
@@ -57,50 +58,69 @@ const TabExperts = ({ setExpertSelection }) => {
       filter: true,
       pinned: "left",
       lockPinned: true,
-      width: "120px",
+      width: "160px",
     },
-    { field: "email", width: "130px", editable: true },
-    { field: "phone", width: "120px", editable: true },
+    { field: "email", editable: true },
+    { field: "phone", editable: true },
     {
       field: "jobTitleName",
       sortable: true,
       filter: true,
-      width: "130px",
       headerName: "Job Title",
     },
     {
       field: "companyName",
       sortable: true,
       filter: true,
-      width: "150px",
       headerName: "Company",
     },
     {
       field: "practiceType",
       sortable: true,
       filter: true,
-      width: "100px",
       headerName: "Practice",
     },
     {
       field: "kindOfExpertName",
       sortable: true,
       filter: true,
-      width: "150px",
       headerName: "Category",
     },
-    { field: "contact", sortable: true, filter: true, width: "130px" },
     {
-      field: "expertiseLevelName",
+      field: "hcpTypeName",
       sortable: true,
       filter: true,
-      headerName: "Expertise Level",
+      headerName: "HCP Type",
     },
+    {
+      field: "sectorName",
+      sortable: true,
+      filter: true,
+      headerName: "Sector",
+    },
+    {
+      field: "industry",
+      sortable: true,
+      filter: true,
+      headerName: "Industry",
+    },
+    {
+      field: "fonction",
+      sortable: true,
+      filter: true,
+      headerName: "Function",
+    },
+    {
+      field: "specialty",
+      sortable: true,
+      filter: true,
+      headerName: "Specialty",
+    },
+
     {
       field: "pastCompanies",
       sortable: true,
       filter: true,
-      width: "150px",
     },
     {
       field: "geoExpertiseName",
@@ -108,23 +128,39 @@ const TabExperts = ({ setExpertSelection }) => {
       filter: true,
       headerName: "Geo Expertise",
     },
-    { field: "languages", sortable: true, filter: true, width: "120px" },
-    { field: "price", sortable: true, filter: true, width: "100px" },
-    { field: "cost", sortable: true, filter: true, width: "100px" },
-    { field: "feedbackExpert", headerName: "FeedBack", width: "200px" },
-    { field: "itwday", sortable: true, filter: true, width: "110px" },
+    { field: "languages", sortable: true, filter: true },
+    {
+      field: "expertiseLevelName",
+      sortable: true,
+      filter: true,
+      headerName: "Expertise Level",
+    },
+    {
+      field: "price",
+      sortable: true,
+      filter: true,
+      headerName: "Hourly Rate",
+    },
+    { field: "cost", sortable: true, filter: true },
     {
       field: "linkedinProfile",
-      width: "130px",
       sortable: true,
       filter: true,
       editable: true,
+      headerName: "Linkedin",
     },
-    { field: "projectTitle", sortable: true, filter: true },
+    {
+      field: "projectTitle",
+      sortable: true,
+      filter: true,
+      headerName: "Project",
+    },
+    { field: "feedbackExpert", headerName: "Comment" },
     { field: "keywords", sortable: true, filter: true },
+    { field: "contact", sortable: true, filter: true },
   ]);
 
-  const testpascompris = (e) => {
+  const rowSelection = (e) => {
     let expertSelected = gridRef.current.api.getSelectedRows();
     setExpertSelection(expertSelected[0].id);
   };
@@ -145,7 +181,7 @@ const TabExperts = ({ setExpertSelection }) => {
         rowData={experts}
         columnDefs={columnDefs}
         rowSelection="single"
-        onSelectionChanged={(e) => testpascompris(e)}
+        onSelectionChanged={(e) => rowSelection(e)}
       ></AgGridReact>
     </div>
   );

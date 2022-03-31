@@ -15,6 +15,7 @@ const PageExpertEdit = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [options, setOptions] = useState([]);
+
   const [languagesOptions, setLanguagesOptions] = useState([]);
   const [geoExpertiseOptions, setGeoExpertiseOptions] = useState([]);
   const [kindOfExpertOptions, setKindOfExpertOptions] = useState([]);
@@ -25,6 +26,12 @@ const PageExpertEdit = () => {
   const [companyOptions, setCompanyOptions] = useState([]);
   const [pastCompaniesOptions, setPastCompaniesOptions] = useState([]);
   const [projectsOptions, setProjectsOptions] = useState([]);
+  const [hcpOptions, setHcpOptions] = useState([]);
+  const [sectorOptions, setSectorOptions] = useState([]);
+  const [induOptions, setInduOptions] = useState([]);
+  const [fonctionOptions, setFonctionOptions] = useState([]);
+  const [specialtyOptions, setSpecialtyOptions] = useState([]);
+
   const [geoSelected, setGeoSelected] = useState([]);
   const [langSelected, setLangSelected] = useState([]);
   const [practiceSelected, setPracticeSelected] = useState([]);
@@ -45,6 +52,12 @@ const PageExpertEdit = () => {
   const [feedbackSelected, setFeedbackSelected] = useState([]);
   const [priceSelected, setPriceSelected] = useState([]);
   const [costSelected, setCostSelected] = useState([]);
+  const [hcpSelected, setHcpSelected] = useState([]);
+  const [sctSelected, setSctSelected] = useState([]);
+  const [induSelected, setInduSelected] = useState([]);
+  const [fctSelected, setFctSelected] = useState([]);
+  const [specSelected, setSpecSelected] = useState([]);
+
   const [error, setError] = useState(false);
   const [newOptions, setNewOptions] = useState([]);
 
@@ -74,6 +87,13 @@ const PageExpertEdit = () => {
     setCompanyOptions(options.companies);
     setPastCompaniesOptions(options.companies);
     setProjectsOptions(options.projects);
+    setHcpOptions(options.hcptype);
+    setSectorOptions(options.sector);
+    setFonctionOptions(options.fonction);
+    setInduOptions(options.industry);
+    setHcpOptions(options.hcptype);
+    setSectorOptions(options.sector);
+    setSpecialtyOptions(options.specialty);
   }, [options]);
 
   // ********************   DATA EXPERT ***************************
@@ -102,6 +122,11 @@ const PageExpertEdit = () => {
         setFeedbackSelected(res.data.feedbackExpert);
         setKeyWordsSelected(res.data.keywords);
         setPriceSelected(res.data.price);
+        setHcpSelected(res.data.hcpTypeName);
+        setSctSelected(res.data.sectorName);
+        setFctSelected(res.data.fonction);
+        setInduSelected(res.data.industry);
+        setSpecSelected(res.data.specialty);
       });
     };
     dataExpertFunc();
@@ -163,7 +188,9 @@ const PageExpertEdit = () => {
     set(newDataPoulet);
   };
 
+  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
   const onSubmit = async (data) => {
+    console.log("data prob", data);
     if (
       yoeSelected.length !== 0 &&
       cieSelected.length !== 0 &&
@@ -172,60 +199,78 @@ const PageExpertEdit = () => {
       koeSelected.length !== 0
     ) {
       setError(false);
+      // champs select donnée unique
+      const company_id = cieSelected.id;
+      const jobTitle_id = jobSelected.id;
+      const kindOfExpert_id = koeSelected.id;
+      const practice_id = practiceSelected.id;
+      const expertiseLevel_id = yoeSelected.id;
+
+      // champs select données multiples
       let geoDatas = [];
       let langDatas = [];
       let pcieDatas = [];
       let ctcDatas = [];
       let pjtDatas = [];
-      let cieDatas = [];
-      let koeDatas = [];
-      let yoeDatas = [];
-      let jobDatas = [];
-      const practice_id = practiceSelected.id;
+      let indDatas = [];
+      let fctDatas = [];
+      let hcpDatas = [];
+      let sctDatas = [];
+      let specDatas = [];
+
       geoSelected.forEach((geo) => geo.id && geoDatas.push(geo.id));
       langSelected.forEach((lang) => lang.id && langDatas.push(lang.id));
       pcieSelected.forEach((pcie) => pcie.id && pcieDatas.push(pcie.id));
       ctcSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
       pjtSelected.forEach((pjt) => pjt.id && pjtDatas.push(pjt.id));
-      cieSelected.forEach((cie) => cie.id && cieDatas.push(cie.id));
-      koeSelected.forEach((koe) => koe.id && koeDatas.push(koe.id));
-      yoeSelected.forEach((yoe) => yoe.id && yoeDatas.push(yoe.id));
-      jobSelected.forEach((job) => job.id && jobDatas.push(job.id));
+      induSelected.forEach((indu) => indu.id && indDatas.push(indu.id));
+      fctSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
+      hcpSelected.forEach((hcp) => hcp.id && hcpDatas.push(hcp.id));
+      sctSelected.forEach((sct) => sct.id && sctDatas.push(sct.id));
+      specSelected.forEach((spec) => spec.id && specDatas.push(spec.id));
+
       let geoExpertise_id = { geoExpertise_id: [...geoDatas] };
       let languages_id = { languages_id: [...langDatas] };
       let pastCompany_id = { pastCompany_id: [...pcieDatas] };
       let contactType_id = { contactType_id: [...ctcDatas] };
       let projects_id = { projects_id: [...pjtDatas] };
-      let company_id = { company_id: [...cieDatas] };
-      let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
-      let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
-      let jobtitle_id = { jobtitle_id: [...jobDatas] };
+      let industry_id = { industry_id: [...indDatas] };
+      let fonction_id = { fonction_id: [...fctDatas] };
+      let hcpType_id = { hcpType_id: [...hcpDatas] };
+      let sector_id = { sector_id: [...sctDatas] };
+      let specialty_id = { specialty_id: [...specDatas] };
 
       let datas = {
+        // champs libres donnée unique
         firstname: data.firstname,
         lastname: data.lastname,
         email: data.email,
         phone: data.phone,
-        company_id: data.company_id,
         linkedinProfile: data.linkedinProfile,
         price: data.price,
         numExpert: data.numExpert,
-        kindOfExpert_id: data.kindOfExpert_id,
-        practice_id: practice_id,
-        expertiseLevel_id: data.expertiseLevel_id,
+        keywords: data.keywords,
         feedbackExpert: data.feedbackExpert,
         cost: data.cost,
-        keywords: data.keywords,
-        jobtitle_id: data.jobtitle_id,
+
+        // champs select donnée unique
+        company_id: company_id,
+        jobtitle_id: jobTitle_id,
+        kindOfExpert_id: kindOfExpert_id,
+        practice_id: practice_id,
+        expertiseLevel_id: expertiseLevel_id,
+
+        // champs select données multiples
         ...geoExpertise_id,
         ...languages_id,
-        ...jobtitle_id,
-        ...kindOfExpert_id,
         ...pastCompany_id,
         ...contactType_id,
         ...projects_id,
-        ...company_id,
-        ...expertiseLevel_id,
+        ...industry_id,
+        ...fonction_id,
+        ...hcpType_id,
+        ...sector_id,
+        ...specialty_id,
       };
       console.log("datas", datas);
       axios
@@ -240,8 +285,6 @@ const PageExpertEdit = () => {
     }
   };
 
-  /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
-
   // ******************** DELETE EXPERTS *******************
 
   const onDelete = () => {
@@ -254,7 +297,6 @@ const PageExpertEdit = () => {
 
   return (
     <div className="tabContainerForm ">
-      {" "}
       <div className="pageForm">
         <FontAwesomeIcon
           icon={faCircleXmark}
@@ -346,9 +388,46 @@ const PageExpertEdit = () => {
                 onChange={(e) => setLinkedinSelected(e.target.value)}
               ></input>
             </div>
+            <div className="columnsDiv">
+              <label htmlFor="keywords">Keywords</label>
+              <input
+                id="keywords"
+                name="keywords"
+                type="text"
+                role="presentation"
+                {...register("keywords")}
+                value={keywordsSelected}
+                onChange={(e) => setKeyWordsSelected(e.target.value)}
+              ></input>
+            </div>
+            <div className="columnsSelect">
+              <label htmlFor="fonction">Fonction</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={fonctionOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                value={fctSelected}
+                onChange={(e) => {
+                  handleCreate(
+                    e,
+                    "fonction",
+                    "fonctionName",
+                    setFctSelected,
+                    fctSelected,
+                    "multiple",
+                    fonctionOptions,
+                    setFonctionOptions
+                  );
+                }}
+              />
+            </div>
             <div className="columnsSelect">
               <label htmlFor="contactOptions">Contact Preferences</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={ctcSelected}
                 closeMenuOnSelect={false}
                 options={contactsOptions}
@@ -375,6 +454,7 @@ const PageExpertEdit = () => {
             <div className="columnsDiv">
               <label htmlFor="projectOptions">Projects</label>
               <Select
+                menuPlacement="top"
                 closeMenuOnSelect={false}
                 options={projectsOptions}
                 isMulti
@@ -388,13 +468,13 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="kindOfExpertOptions">Type</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={koeSelected}
                 options={kindOfExpertOptions}
                 className="basic-multi-select"
                 classNamePrefix={
                   error && koeSelected.length === 0 ? "novalidated" : "select"
                 }
-                // value={datatest.kindOfExpertName}
                 onChange={(e) => {
                   setKoeSelected([e]);
                   handleCreate(
@@ -404,7 +484,8 @@ const PageExpertEdit = () => {
                     setKoeSelected,
                     koeSelected,
                     "solo",
-                    kindOfExpertOptions
+                    kindOfExpertOptions,
+                    setKindOfExpertOptions
                   );
                 }}
               />
@@ -413,6 +494,7 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="geoExpertise">Geo Expertise</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={geoSelected}
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
@@ -434,10 +516,34 @@ const PageExpertEdit = () => {
                 }}
               />
             </div>
-
+            <div className="columnsSelect">
+              <label htmlFor="industry">Industries</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={induOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                value={induSelected}
+                onChange={(e) =>
+                  handleCreate(
+                    e,
+                    "industry",
+                    "industryName",
+                    setInduSelected,
+                    induSelected,
+                    "multiple",
+                    induOptions,
+                    setInduOptions
+                  )
+                }
+              />
+            </div>
             <div className="columnsSelect">
               <label htmlFor="practice">Practice</label>
               <Select
+                menuPlacement="top"
                 options={practiceOptions}
                 className="basic-multi-select"
                 classNamePrefix={
@@ -450,6 +556,7 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="jobTitle">Job Title</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={jobSelected}
                 options={jobTitleOptions}
                 className="basic-multi-select"
@@ -465,7 +572,8 @@ const PageExpertEdit = () => {
                     setJobSelected,
                     jobSelected,
                     "solo",
-                    jobTitleOptions
+                    jobTitleOptions,
+                    setJobTitleOptions
                   );
                 }}
               />
@@ -474,6 +582,7 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="companyOptions">Company</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={cieSelected}
                 options={companyOptions}
                 className="basic-multi-select"
@@ -489,7 +598,8 @@ const PageExpertEdit = () => {
                     setCieSelected,
                     cieSelected,
                     "solo",
-                    companyOptions
+                    companyOptions,
+                    setCompanyOptions
                   );
                 }}
               />
@@ -497,6 +607,7 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="pastCompaniesOptions">Past Companies</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={pcieSelected}
                 closeMenuOnSelect={false}
                 options={pastCompaniesOptions}
@@ -544,12 +655,84 @@ const PageExpertEdit = () => {
                 onChange={(e) => setCostSelected(e.target.value)}
               ></input>
             </div>
+            <div className="columnsSelect">
+              <label htmlFor="hcpType">HCP Type</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={hcpOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                value={hcpSelected}
+                onChange={(e) =>
+                  handleCreate(
+                    e,
+                    "hcptype",
+                    "hcpTypeName",
+                    setHcpSelected,
+                    hcpSelected,
+                    "multiple",
+                    hcpOptions,
+                    setHcpOptions
+                  )
+                }
+              />
+            </div>
+            <div className="columnsSelect">
+              <label htmlFor="sector">Sector</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={sectorOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                value={sctSelected}
+                onChange={(e) =>
+                  handleCreate(
+                    e,
+                    "sector",
+                    "sectorName",
+                    setSctSelected,
+                    sctSelected,
+                    "multiple",
+                    sectorOptions,
+                    setSectorOptions
+                  )
+                }
+              />
+            </div>
+            <div className="columnsSelect">
+              <label htmlFor="specialty">Specialty</label>
+              <CreatableSelect
+                menuPlacement="top"
+                closeMenuOnSelect={false}
+                options={specialtyOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
+                value={specSelected}
+                onChange={(e) =>
+                  handleCreate(
+                    e,
+                    "specialty",
+                    "specialtyName",
+                    setSpecSelected,
+                    specSelected,
+                    "multiple",
+                    specialtyOptions,
+                    setSpecialtyOptions
+                  )
+                }
+              />
+            </div>
             <div className="columnsDiv">
-              <label htmlFor="feedback">Feedback</label>
+              <label htmlFor="feedback">Comment</label>
               <textarea
                 id="feedback"
                 name="feedback"
-                rows="10"
+                rows="4"
                 cols="60"
                 role="presentation"
                 {...register("feedbackExpert")}
@@ -560,6 +743,7 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="experience">Years of Experience</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={yoeSelected}
                 options={yearsOfExperienceOptions}
                 className="basic-multi-select"
@@ -575,7 +759,8 @@ const PageExpertEdit = () => {
                     setYoeSelected,
                     yoeSelected,
                     "solo",
-                    yearsOfExperienceOptions
+                    yearsOfExperienceOptions,
+                    setYearsOfExperienceOptions
                   );
                 }}
               />
@@ -583,6 +768,7 @@ const PageExpertEdit = () => {
             <div className="columnsSelect">
               <label htmlFor="languages">Languages</label>
               <CreatableSelect
+                menuPlacement="top"
                 value={langSelected}
                 closeMenuOnSelect={false}
                 options={languagesOptions}
@@ -603,18 +789,6 @@ const PageExpertEdit = () => {
                   );
                 }}
               />
-            </div>
-            <div className="columnsDiv">
-              <label htmlFor="keywords">Keywords</label>
-              <input
-                id="keywords"
-                name="keywords"
-                type="text"
-                role="presentation"
-                {...register("keywords")}
-                value={keywordsSelected}
-                onChange={(e) => setKeyWordsSelected(e.target.value)}
-              ></input>
             </div>
           </div>
           <div className="checkOrTrash">

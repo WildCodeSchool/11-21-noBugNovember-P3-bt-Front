@@ -7,13 +7,12 @@ import { Link } from "react-router-dom";
 const Experts = () => {
   const [expertSelection, setExpertSelection] = useState([]);
 
-  console.log("expertSelection", expertSelection);
   return (
     <div className="tabContainer">
-      <h1>Experts</h1>
-      <TabExperts setExpertSelection={setExpertSelection} />
       <div className="titleButtonContainer">
-        <div className="buttonContainerExpert">
+        <h1>Experts</h1>
+        <TabExperts setExpertSelection={setExpertSelection} />
+        <div className="buttonAjoutContainer">
           <div>
             <Link to="/pageExpert">
               <button className="buttonAjout">ADD</button>
