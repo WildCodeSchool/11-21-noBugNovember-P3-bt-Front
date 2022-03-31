@@ -91,14 +91,15 @@ const AnswerEdit = (props) => {
 
   // ******************** DELETE PROJEXPERT *******************
 
-  const onDelete = () => {
-    axios
+  const onDelete = async () => {
+    await axios
       .put(`http://localhost:4040/projexperts/delete/${props.idExpert}`, {
         projects_id: props.idProject,
       })
       .then(function (res) {
         props.setAnswerEdit(false)
       })
+    props.setIdExpert(null)
   }
 
   return (
