@@ -40,14 +40,14 @@
   margin-bottom: 15%;
 }
 
-.loginWrapper1 {
+.loginWrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   border: 1px solid #25318d;
   border-radius: 10px / 10px;
   padding: 2vh 5%;
-  height: 38vh;
+  height: 45vh;
   width: 60%;
 }
 
@@ -115,4 +115,10 @@
   font-size: 0.5rem;
   align-items: center;
   margin-left: 299px;
+}
+
+.cross {
+  position: absolute;
+  margin-left: 359px;
+  margin-bottom: 403px;
 }
