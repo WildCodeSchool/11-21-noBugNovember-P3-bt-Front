@@ -19,7 +19,7 @@
 
 .gridMidiExpert {
   grid-area: 2 / 2 / 4 / 4;
-} 
+}
 
 .gridMaxiExpert {
   grid-area: 2 / 2 / 4 / 4;
@@ -34,10 +34,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* background-color: var(--background); */
+  border: 1px solid var(--firstColor);
   background-color: var(--secondColor);
 }
-
 
 .maxiProjectExpertContainer {
   margin-left: 100px;
@@ -75,5 +74,5 @@
 .maxiButton {
   margin-bottom: 0;
   background-color: var(--firstColor);
-  color: var(--secondColor); 
+  color: var(--secondColor);
 }

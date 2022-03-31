@@ -18,8 +18,6 @@ const MaxiExpert = (props) => {
     }
   }, [props.idExpert])
 
-  console.log(props.isAnswer)
-
   const card = (
     <React.Fragment>
       <div className='cardContainer'>
@@ -36,12 +34,6 @@ const MaxiExpert = (props) => {
                 size='lg'
                 className='circle'
               />
-              {/* <button
-                className='closePopup'
-                onClick={() => props.setMaxiExpert(false)}
-              >
-                X
-              </button> */}
               <h4 className={!props.expert.numExpert && 'hidden'}>
                 {props.expert.numExpert}
               </h4>
@@ -58,24 +50,24 @@ const MaxiExpert = (props) => {
             <div className='groupMidMax'>
               <ul>
                 <li>
-                  <div className='fieldName background2'>Phone</div>
+                  <div className='fieldName background2'>Email</div>
                   <div className='fieldContent background2'>
-                    {props.expert.phone}
+                    {props.expert.email}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Email</div>
-                  <div className='fieldContent'>{props.expert.email}</div>
+                  <div className='fieldName'>Phone</div>
+                  <div className='fieldContent'>{props.expert.phone}</div>
                 </li>
                 <li>
-                  <div className='fieldName background2'>Linkedin Profile</div>
+                  <div className='fieldName background2'>Job Title</div>
                   <div className='fieldContent background2'>
-                    {props.expert.linkedinProfile}
+                    {props.expert.jobTitleName}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Contact</div>
-                  <div className='fieldContent'>{props.expert.contact}</div>
+                  <div className='fieldName'>Company</div>
+                  <div className='fieldContent'>{props.expert.companyName}</div>
                 </li>
                 <li>
                   <div className='fieldName background2'>Practice</div>
@@ -90,31 +82,19 @@ const MaxiExpert = (props) => {
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName background2'>Job Title</div>
+                  <div className='fieldName background2'>HCP Type</div>
                   <div className='fieldContent background2'>
-                    {props.expert.jobTitleName}
+                    {props.expert.hcpTypeName}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Expertise Level</div>
-                  <div className='fieldContent'>
-                    {props.expert.expertiseLevelName}
-                  </div>
+                  <div className='fieldName'>Sector</div>
+                  <div className='fieldContent'>{props.expert.sectorName}</div>
                 </li>
                 <li>
-                  <div className='fieldName background2'>Company</div>
+                  <div className='fieldName background2'>Industry</div>
                   <div className='fieldContent background2'>
-                    {props.expert.companyName}
-                  </div>
-                </li>
-                <li>
-                  <div className='fieldName'>Industry</div>
-                  <div className='fieldContent'>{props.expert.industry}</div>
-                </li>
-                <li>
-                  <div className='fieldName background2'>Job Title</div>
-                  <div className='fieldContent background2'>
-                    {props.expert.jobTitleName}
+                    {props.expert.industry}
                   </div>
                 </li>
                 <li>
@@ -122,56 +102,82 @@ const MaxiExpert = (props) => {
                   <div className='fieldContent'>{props.expert.fonction}</div>
                 </li>
                 <li>
-                  <div className='fieldName background2'>Past Company</div>
+                  <div className='fieldName background2'>Specialty</div>
                   <div className='fieldContent background2'>
+                    {props.expert.specialty}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName'>Past Companies</div>
+                  <div className='fieldContent'>
                     {props.expert.pastCompanies}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Cost</div>
-                  <div className='fieldContent'>{props.expert.cost}</div>
-                </li>
-                <li>
-                  <div className='fieldName background2'>Price</div>
+                  <div className='fieldName background2'>Geo Expertise</div>
                   <div className='fieldContent background2'>
-                    {props.expert.price}
-                  </div>
-                </li>
-                <li>
-                  <div className='fieldName'>Geo Expertise</div>
-                  <div className='fieldContent'>
                     {props.expert.geoExpertiseName}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName background2'>Languages</div>
+                  <div className='fieldName'>Languages</div>
+                  <div className='fieldContent'>{props.expert.languages}</div>
+                </li>
+                <li>
+                  <div className='fieldName background2'>Expertise Level</div>
                   <div className='fieldContent background2'>
-                    {props.expert.languages}
+                    {props.expert.expertiseLevelName}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Projects</div>
-                  <div className='fieldContent'>{props.expert.numProject}</div>
+                  <div className='fieldName'>Hourly Rate</div>
+                  <div className='fieldContent'>{props.expert.price}</div>
                 </li>
                 <li>
-                  <div className='fieldName background2'>Feedback</div>
+                  <div className='fieldName background2'>Cost</div>
                   <div className='fieldContent background2'>
+                    {props.expert.cost}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName'>Linkedin</div>
+                  <div className='fieldContent'>
+                    {props.expert.linkedinProfile}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName background2'>Project</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.numProject}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName'>Comment</div>
+                  <div className='fieldContent'>
                     {props.expert.feedbackExpert}
                   </div>
                 </li>
                 <li>
-                  <div className='fieldName'>Linkedin Keywords</div>
-                  <div className='fieldContent'>{props.expert.keywords}</div>
+                  <div className='fieldName background2'>Keywords</div>
+                  <div className='fieldContent background2'>
+                    {props.expert.keywords}
+                  </div>
+                </li>
+                <li>
+                  <div className='fieldName'>Contact</div>
+                  <div className='fieldContent'>{props.expert.contact}</div>
                 </li>
               </ul>
-              <div className={props.isAnwer ? 'hidden' : 'buttonCardContainer'}>
-                <button
-                  className='buttonAjout maxiButton'
-                  onClick={() => props.setPopupProject(true)}
-                >
-                  ADD
-                </button>
-              </div>
+              {!props.isAnswer && (
+                <div className='buttonCardContainer'>
+                  <button
+                    className='buttonAjout maxiButton'
+                    onClick={() => props.setPopupProject(true)}
+                  >
+                    ADD
+                  </button>
+                </div>
+              )}
             </div>
           </Typography>
         </CardContent>

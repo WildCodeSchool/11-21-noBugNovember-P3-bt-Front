@@ -1,26 +1,26 @@
 /* barre de filtre/recherche */
 .filter {
-    grid-area: 1 / 1 / 2 / 4;
-    display: flex;
-    align-items: center;
-  }
-  
+  grid-area: 1 / 1 / 2 / 4;
+  display: flex;
+  align-items: center;
+}
+
 .sousfilter {
   /* margin-top: 2%; */
-  display : flex;
-  align-items : center; 
+  display: flex;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 30px; 
+  border-radius: 30px;
   width: 90vw;
   position: relative;
 }
-  
+
 .filterBar {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   overflow-x: scroll;
-  overflow-y: hidden; 
+  overflow-y: hidden;
   scrollbar-width: none;
   align-items: center;
   height: 60px;
@@ -38,36 +38,34 @@
   padding: 8px 20px !important;
   background-color: var(--secondColor) !important;
   margin: 5px !important;
-  min-width: fit-content !important; 
+  min-width: fit-content !important;
   height: 40px;
   /* min-width:max-content;  */
 }
 
-
 #filter {
-  margin: 0 14px; 
-  cursor: pointer; 
+  margin: 0 14px;
+  cursor: pointer;
 }
 
-
 .search {
-  padding: 8px 14px; 
+  padding: 8px 14px;
 }
 
 .search > input {
-  border : none; 
+  border: none;
   height: 20px;
-  color: var(--firstColor); 
-  font-family: var(--fontBody); 
+  color: var(--firstColor);
+  font-family: var(--fontBody);
   font-size: 1em;
 }
 
 .search > input:focus {
-  outline : none; 
+  outline: none;
 }
 
 #searchBar::placeholder {
-  color: var(--firstColor); 
+  color: var(--firstColor);
 }
 
 #searchBar {
@@ -75,11 +73,11 @@
 }
 
 .MuiOutlinedInput-notchedOutline {
-  border : none !important; 
-}  
+  border: none !important;
+}
 
 .MuiInputBase-formControl {
-  border : 2px solid var(--firstColor) !important; 
+  border: 2px solid var(--firstColor) !important;
   border-radius: 20px !important;
   padding: 8px 20px !important;
   background-color: var(--secondColor) !important;
@@ -89,19 +87,20 @@
 
 .MuiInputLabel-root {
   font-family: var(--fontBody) !important;
-  color: var(--firstColor) !important; 
+  color: var(--firstColor) !important;
   font-size: 1em !important;
   padding-left: 8px !important;
 }
 
-.MuiMenuItem-root{
-  font-family: var(--fontBody) !important; 
+.MuiMenuItem-root {
+  font-family: var(--fontBody) !important;
   color: var(--firstColor) !important;
   font-size: 0.9em !important;
 }
 
-.MuiSelect-multiple, .MuiSelect-select {
-  color: #ED5829 !important; 
+.MuiSelect-multiple,
+.MuiSelect-select {
+  color: #ed5829 !important;
 }
 
 .scroll {
@@ -112,5 +111,3 @@
 .scroll > img {
   cursor: pointer;
 }
-
-

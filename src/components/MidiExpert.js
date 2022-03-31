@@ -1,17 +1,13 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './styles/Midi.css'
 
 const MidiExpert = (props) => {
-  // const [experts, setExperts] = useState([])
-
-  console.log(props.project.id)
-
   useEffect(() => {
     axios
       .get('http://localhost:4040/experts')
       .then((res) => res.data)
-      .then((res) => console.log('experts', res) || props.setExperts(res))
+      .then((res) => props.setExperts(res))
   }, [props.popupProject, props.maxiExpert])
 
   const maxiExpert = (id) => {
@@ -21,14 +17,16 @@ const MidiExpert = (props) => {
 
   return (
     <div className='midiExpertContainer'>
-    {/* {props.experts.map((expert) => */}
       {props.experts.map((expert) => (
         <div
-          className={
-            expert.projects_id && expert.projects_id.includes(props.project.id)
-              ? 'checkExpert midiExpertCard'
-              : 'midiExpertCard'
+          className={`midiExpertCard
+          ${
+            expert.projects_id &&
+            expert.projects_id.split(', ').includes(`${props.project.id}`)
+              ? 'checkExpert'
+              : ''
           }
+          `}
           key={expert.id}
           onClick={() => maxiExpert(expert.id)}
         >
@@ -45,8 +43,9 @@ const MidiExpert = (props) => {
                 {expert.firstname} {expert.lastname}
               </li>
               <li>{expert.jobTitleName}</li>
-              <li>{expert.industry}</li>
+              {/* kOE = Category */}
               <li>{expert.kindOfExpertName}</li>
+              <li>{expert.industry}</li>
               <li>{expert.languages}</li>
             </div>
             <div className='part2'>
@@ -59,19 +58,11 @@ const MidiExpert = (props) => {
                 <p>{expert.pastCompanies} </p>
               </li>
               <li>
-                <p style={{ fontWeight: '600' }}>
-                  {' '}
-                  Keywords
-                  {/* <img src={key} alt='keywords' width='16px' /> */}
-                </p>
+                <p style={{ fontWeight: '600' }}>Keywords</p>
                 <p> {expert.keywords}</p>
               </li>
               <li>
-                <p style={{ fontWeight: '600' }}>
-                  {' '}
-                  Price
-                  {/* <img src={price} alt='price' width='17px' /> */}
-                </p>
+                <p style={{ fontWeight: '600' }}>Hourly Rate</p>
                 <p>{expert.price}€ </p>
               </li>
               <li>
@@ -83,7 +74,7 @@ const MidiExpert = (props) => {
         </div>
       ))}
     </div>
-    )
-  }
+  )
+}
 
 export default MidiExpert

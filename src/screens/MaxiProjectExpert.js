@@ -1,19 +1,24 @@
 import * as React from 'react'
-// import { DragDropContext } from 'react-beautiful-dnd'
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import AnswerEdit from '../components/AnswerEdit'
+import AnswerExpert from '../components/AnswerExpert'
 import MaxiExpert from '../components/MaxiExpert'
 import MaxiProject from '../components/MaxiProject'
-import AnswerExpert from '../components/AnswerExpert'
-import AnswerEdit from '../components/AnswerEdit'
-
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import './styles/ProjectExpert.css'
 
 const MaxiProjectExpert = (props) => {
   const { id } = useParams()
   const [projectMaxi, setProjectMaxi] = useState([])
-  const [isAnswer, setIsAnswer] = useState(false)
+  const [isAnswer, setIsAnswer] = useState(true)
   const [answerEdit, setAnswerEdit] = useState(false)
+  const [changeColumn, setChangeColumn] = useState(false)
+  const [expertsProject, setExpertsProject] = useState([])
+  const [trueFalse, setTrueFalse] = useState(false)
+
+  useEffect(() => {
+    setTrueFalse(!trueFalse)
+  }, [expertsProject])
 
   return (
     <div className='maxiProjectExpertContainer'>
@@ -21,6 +26,7 @@ const MaxiProjectExpert = (props) => {
         <MaxiProject
           projectMaxi={projectMaxi}
           setProjectMaxi={setProjectMaxi}
+          setMaxiExpert={props.setMaxiExpert}
           id={id}
         />
       </div>
@@ -36,6 +42,13 @@ const MaxiProjectExpert = (props) => {
           setIsAnswer={setIsAnswer}
           setAnswerEdit={setAnswerEdit}
           answerEdit={answerEdit}
+          idProject={id}
+          changeColumn={changeColumn}
+          setChangeColumn={setChangeColumn}
+          expertsProject={expertsProject}
+          setExpertsProject={setExpertsProject}
+          trueFalse={trueFalse}
+          setTrueFalse={setTrueFalse}
         />
       </div>
       <div
