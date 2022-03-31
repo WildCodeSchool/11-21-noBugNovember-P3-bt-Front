@@ -1,46 +1,46 @@
-import axios from 'axios'
-import CreatableSelect from 'react-select/creatable'
-import { faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Select from 'react-select'
-import { useForm } from 'react-hook-form'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import './styles/PageForm.css'
+import "./styles/PageForm.css";
+
+import CreatableSelect from "react-select/creatable";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const PageClientEdit = () => {
-  const { id } = useParams()
+  const { id } = useParams();
 
   //*** Form Submit *****/
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm();
   // *** State Get Data ***
-  const [options, setOptions] = useState([])
+  const [options, setOptions] = useState([]);
   // *** Get Data Decomposé ***
-  const [companyNameOptions, setCompanyNameOptions] = useState([])
-  const [companyTypeOptions, setCompanyTypeOptions] = useState([])
-  const [contactTypeOptions, setContactTypeOptions] = useState([])
-  const [serviceOptions, setServiceOptions] = useState([])
-  const [languagesOptions, setLanguagesOptions] = useState([])
+  const [companyNameOptions, setCompanyNameOptions] = useState([]);
+  const [companyTypeOptions, setCompanyTypeOptions] = useState([]);
+  const [contactTypeOptions, setContactTypeOptions] = useState([]);
+  const [serviceOptions, setServiceOptions] = useState([]);
+  const [functionsOptions, setFunctionsOptions] = useState([]);
 
-  const [numClientSelected, setNumClientSelected] = useState([])
-  const [firstNameSelected, setFirstNameSelected] = useState([])
-  const [lastNameSelected, setLastNameSelected] = useState([])
-  const [phoneSelected, setPhoneSelected] = useState([])
-  const [emailSelected, setEmailSelected] = useState([])
-  const [citySelected, setCitySelected] = useState([])
-  const [companyNameSelected, setCompanyNameSelected] = useState([])
-  const [contactTypeSelected, setContactTypeSelected] = useState([])
-  const [companyTypeSelected, setCompanyTypeSelected] = useState([])
-  const [serviceSelected, setServiceSelected] = useState([])
-  const [languagesSelected, setLanguagesSelected] = useState([])
-  const [feedbackClientSelected, setFeedbackClientSelected] = useState([])
+  const [numClientSelected, setNumClientSelected] = useState([]);
+  const [firstNameSelected, setFirstNameSelected] = useState([]);
+  const [lastNameSelected, setLastNameSelected] = useState([]);
+  const [phoneSelected, setPhoneSelected] = useState([]);
+  const [emailSelected, setEmailSelected] = useState([]);
+  const [citySelected, setCitySelected] = useState([]);
+  const [companyNameSelected, setCompanyNameSelected] = useState([]);
+  const [contactTypeSelected, setContactTypeSelected] = useState([]);
+  const [companyTypeSelected, setCompanyTypeSelected] = useState([]);
+  const [serviceSelected, setServiceSelected] = useState([]);
+  const [functionsSelected, setFunctionsSelected] = useState([]);
+  const [feedbackClientSelected, setFeedbackClientSelected] = useState([]);
 
-  const [dataClient, setDataClient] = useState([])
+  const [dataClient, setDataClient] = useState([]);
 
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   // *** Navigation ***
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // *** Get informations from data ***
   useEffect(() => {
@@ -48,41 +48,45 @@ const PageClientEdit = () => {
       axios
         .get(`http://localhost:4040/clients/form`)
         .then((res) => setOptions(res.data))
-    }
-    getOptions()
-  }, [])
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    getOptions();
+  }, []);
 
   //*****  Decompose les infos du GET de la BDD ****
   useEffect(() => {
-    console.log('options', options)
-    setCompanyNameOptions(options.companyName)
-    setCompanyTypeOptions(options.companyType)
-    setContactTypeOptions(options.contactType)
-    setServiceOptions(options.service)
-    setLanguagesOptions(options.languages)
-  }, [options])
+    console.log("options", options);
+    setFunctionsOptions(options.fonction);
+    setCompanyNameOptions(options.companyName);
+    setCompanyTypeOptions(options.companyType);
+    setContactTypeOptions(options.contactType);
+    setServiceOptions(options.service);
+  }, [options]);
 
   //**************** Décomposition des données existantes d'un client *********/
   useEffect(() => {
     const dataClientFunc = () => {
       axios.get(`http://localhost:4040/clients/form/${id}`).then((res) => {
-        setDataClient(res.data)
-        setNumClientSelected(res.data.numClient)
-        setFirstNameSelected(res.data.firstname)
-        setLastNameSelected(res.data.lastname)
-        setPhoneSelected(res.data.phone)
-        setEmailSelected(res.data.email)
-        setCitySelected(res.data.city)
-        setCompanyNameSelected(res.data.companyName)
-        setContactTypeSelected(res.data.contactType)
-        setCompanyTypeSelected(res.data.companyType)
-        setServiceSelected(res.data.service)
-        setLanguagesSelected(res.data.languages)
-        setFeedbackClientSelected(res.data.feedbackClient)
-      })
-    }
-    dataClientFunc()
-  }, [])
+        console.log("form id", res.data);
+        setDataClient(res.data);
+        setNumClientSelected(res.data.numClient);
+        setFirstNameSelected(res.data.firstname);
+        setLastNameSelected(res.data.lastname);
+        setPhoneSelected(res.data.phone);
+        setEmailSelected(res.data.email);
+        setCitySelected(res.data.city);
+        setCompanyNameSelected(res.data.companyName);
+        setContactTypeSelected(res.data.contactType);
+        setCompanyTypeSelected(res.data.companyType);
+        setServiceSelected(res.data.service);
+        setFeedbackClientSelected(res.data.feedbackClient);
+        setFunctionsSelected(res.data.fonction);
+      });
+    };
+    dataClientFunc();
+  }, []);
 
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
   const handleCreate = async (
@@ -95,339 +99,327 @@ const PageClientEdit = () => {
     option,
     setOption
   ) => {
-    let newDataPoulet = []
+    let newDataPoulet = [];
     for (let i = 0; i < inputValue.length; i++) {
-      let temp = []
+      let temp = [];
       // If the Value is New
-      if (Object.keys(inputValue[i]).includes('__isNew__')) {
+      if (Object.keys(inputValue[i]).includes("__isNew__")) {
         const newValue = {
           value: inputValue[i].value,
           table: table,
           column: column,
-        }
+        };
         temp = await axios
-          .post('http://localhost:4040/clients/test', newValue)
+          .post("http://localhost:4040/clients/test", newValue)
           .then((res) => {
-            setOption([...option, res.data])
-            return res.data
+            setOption([...option, res.data]);
+            return res.data;
           })
           .catch(function (error) {
-            console.log(error)
-          })
-        if (multiple === 'solo') {
-          newDataPoulet = [temp]
+            console.log(error);
+          });
+        if (multiple === "solo") {
+          newDataPoulet = [temp];
         } else {
-          newDataPoulet = [...newDataPoulet, temp]
+          newDataPoulet = [...newDataPoulet, temp];
         }
-        temp = []
+        temp = [];
         // If the Value Is in DATABASE
       } else {
-        if (multiple === 'solo') {
+        if (multiple === "solo") {
           const goodOpt = option.filter(
             (el) => el.value === inputValue[i].value
-          )
-          newDataPoulet = goodOpt
+          );
+          newDataPoulet = goodOpt;
         } else {
           const goodOpt2 = option.filter(
             (el) => el.value === inputValue[i].value
-          )
-          newDataPoulet.push(...goodOpt2)
+          );
+          newDataPoulet.push(...goodOpt2);
         }
       }
     }
 
-    set(newDataPoulet)
-  }
+    set(newDataPoulet);
+  };
 
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
   const onSubmit = async (data) => {
-    if (
-      languagesSelected.length !== 0 &&
-      companyTypeSelected.length !== 0 &&
-      contactTypeSelected.length !== 0 &&
-      serviceSelected.length !== 0
-    ) {
-      setError(false)
-      let langDatas = []
-      let ctcDatas = []
-      let servDatas = []
-      let compDatas = []
-      let cieDatas = []
+    setError(false);
+    let ctcDatas = [];
+    let servDatas = [];
+    let compDatas = [];
+    let cieDatas = [];
+    let fctDatas = [];
 
-      companyNameSelected.forEach((cie) => cie.id && cieDatas.push(cie.id))
-      companyTypeSelected.forEach((comp) => comp.id && compDatas.push(comp.id))
-      languagesSelected.forEach((lang) => lang.id && langDatas.push(lang.id))
-      contactTypeSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id))
-      serviceSelected.forEach((serv) => serv.id && servDatas.push(serv.id))
+    companyNameSelected.forEach((cie) => cie.id && cieDatas.push(cie.id));
+    companyTypeSelected.forEach((comp) => comp.id && compDatas.push(comp.id));
+    contactTypeSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
+    serviceSelected.forEach((serv) => serv.id && servDatas.push(serv.id));
+    functionsSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
 
-      let companyType_id = { companyType_id: [...compDatas] }
-      let languages_id = { languages_id: [...langDatas] }
-      let contactType_id = { contactType_id: [...ctcDatas] }
-      let service_id = { service_id: [...servDatas] }
-      let company_id = { company_id: [...cieDatas] }
+    let companyType_id = { companyType_id: [...compDatas] };
+    let contactType_id = { contactType_id: [...ctcDatas] };
+    let service_id = { service_id: [...servDatas] };
+    let company_id = { company_id: [...cieDatas] };
+    let fonction_id = { fonction_id: [...fctDatas] };
 
-      let datas = {
-        numClients: data.numClient,
-        firstname: data.firstname,
-        lastname: data.lastname,
-        email: data.email,
-        city: data.city,
-        phone: data.phone,
-        ...company_id,
-        ...companyType_id,
-        ...languages_id,
-        ...contactType_id,
-        ...service_id,
-      }
-      console.log('datas', datas)
-      axios
-        .put(`http://localhost:4040/clients/form/${id}`, datas)
-        .then(function (res) {
-          navigate('/clients')
-        })
-    } else {
-      setError(true)
-      console.log('Form error')
-      data.preventDefault()
-    }
-  }
+    let datas = {
+      numClients: data.numClient,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      city: data.city,
+      phone: data.phone,
+      ...company_id,
+      ...companyType_id,
+      ...contactType_id,
+      ...service_id,
+      ...fonction_id,
+    };
+    console.log("datas", datas);
+    await axios
+      .put(`http://localhost:4040/clients/form/${id}`, datas)
+      .catch(navigate("/clients"));
+    navigate("/clients");
+  };
 
   return (
-    <div className='tabContainerForm'>
-      {' '}
-      <div className='pageForm'>
+    <div className="tabContainerForm">
+      {" "}
+      <div className="pageForm">
         <FontAwesomeIcon
           icon={faCircleXmark}
-          size='xl'
-          className='circle'
+          size="xl"
+          className="circle"
           onClick={() => navigate(-1)}
         />
         <form
-          className='pageFormInside'
-          autoComplete='off'
+          className="pageFormInside"
+          autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className='columns'>
-            <div id='idWrapper' className='columnsDiv'>
-              <h1 id='client'>CLIENT</h1>
-              <div id='clientNumber'>
-                <label for='number'>N°</label>
+          <div className="columns">
+            <div id="idWrapper" className="columnsDiv">
+              <h1 id="client">CLIENT</h1>
+              <div id="clientNumber">
+                <label for="number">N°</label>
                 <input
-                  id='number'
-                  name='number'
-                  type='key'
-                  {...register('numClient')}
+                  id="number"
+                  name="number"
+                  type="key"
+                  {...register("numClient")}
                   value={numClientSelected}
                   onChange={(e) => setNumClientSelected(e.target.value)}
                 ></input>
               </div>
             </div>
-            <div className='columnsDiv'>
-              <label for='firstName'>FirstName</label>
+            <div className="columnsDiv">
+              <label for="firstName">FirstName</label>
               <input
-                id='firstName'
-                name='firstName'
-                type='text'
-                autocomplete='off'
-                {...register('firstname')}
+                id="firstName"
+                name="firstName"
+                type="text"
+                autocomplete="off"
+                {...register("firstname")}
                 value={firstNameSelected}
                 onChange={(e) => setFirstNameSelected(e.target.value)}
               ></input>
             </div>
-            <div className='columnsDiv'>
-              <label for='lastName'>LastName</label>
+            <div className="columnsDiv">
+              <label for="lastName">LastName</label>
               <input
-                id='lastName'
-                name='lastName'
-                type='text'
-                autocomplete='off'
-                {...register('lastname')}
+                id="lastName"
+                name="lastName"
+                type="text"
+                autocomplete="off"
+                {...register("lastname")}
                 value={lastNameSelected}
                 onChange={(e) => setLastNameSelected(e.target.value)}
               ></input>
             </div>
 
-            <div className='columnsDiv'>
-              <label for='email'>Email</label>
+            <div className="columnsDiv">
+              <label for="email">Email</label>
               <input
-                id='email'
-                name='email'
-                type='email'
-                role='presentation'
-                {...register('email')}
+                id="email"
+                name="email"
+                type="email"
+                role="presentation"
+                {...register("email")}
                 value={emailSelected}
                 onChange={(e) => setEmailSelected(e.target.value)}
               ></input>
             </div>
-            <div className='columnsDiv'>
-              <label for='city'>City</label>
+            <div className="columnsDiv">
+              <label for="phone">Phone</label>
               <input
-                id='city'
-                name='city'
-                type='text'
-                role='presentation'
-                {...register('city')}
+                id="phone"
+                name="phone"
+                type="tell"
+                role="presentation"
+                autoComplete="off"
+                {...register("phone")}
+                value={phoneSelected}
+                onChange={(e) => setPhoneSelected(e.target.value)}
+              ></input>
+            </div>
+            <div className="columnsDiv">
+              <label for="city">City</label>
+              <input
+                id="city"
+                name="city"
+                type="text"
+                role="presentation"
+                {...register("city")}
                 value={citySelected}
                 onChange={(e) => setCitySelected(e.target.value)}
               ></input>
             </div>
           </div>
-          <div className='columns'>
-            <div className='columnsDiv'>
-              <label for='phone'>Phone</label>
-              <input
-                id='phone'
-                name='phone'
-                type='tell'
-                role='presentation'
-                autoComplete='off'
-                {...register('phone')}
-                value={phoneSelected}
-                onChange={(e) => setPhoneSelected(e.target.value)}
-              ></input>
-            </div>
-            <div className='columnsDiv'>
-              <label for='businessName'>Business Name</label>
+          <div className="columns">
+            <div className="columnsDiv">
+              <label for="company">Company</label>
               <CreatableSelect
                 value={companyNameSelected}
                 options={companyNameOptions}
-                className='basic-multi-select'
-                classNamePrefix='select'
+                className="basic-multi-select"
+                classNamePrefix="select"
                 onChange={(e) => {
-                  setCompanyNameSelected([e])
+                  setCompanyNameSelected([e]);
                   handleCreate(
                     [e],
-                    'company',
-                    'companyName',
+                    "company",
+                    "companyName",
                     setCompanyNameSelected,
                     companyNameSelected,
-                    'solo',
+                    "solo",
                     companyNameOptions,
                     setCompanyNameOptions
-                  )
+                  );
                 }}
               />
             </div>
-            <div className='columnsSelect'>
-              <label for='kindOfBusiness'>Kind Of Business</label>
+
+            <div className="columnsSelect">
+              <label for="functions">Functions</label>
               <CreatableSelect
-                value={companyTypeSelected}
-                options={companyTypeOptions}
-                className='basic-multi-select'
-                classNamePrefix='select'
+                value={functionsSelected}
+                closeMenuOnSelect={false}
+                options={functionsOptions}
+                isMulti
+                className="basic-multi-select"
+                classNamePrefix="select"
                 onChange={(e) => {
-                  setCompanyTypeSelected([e])
+                  setFunctionsSelected(e);
                   handleCreate(
-                    [e],
-                    'companytype',
-                    'companyTypeName',
-                    setCompanyTypeSelected,
-                    companyTypeSelected,
-                    'solo',
-                    companyTypeOptions,
-                    setCompanyTypeOptions
-                  )
+                    e,
+                    "functions",
+                    "functionsName",
+                    setFunctionsSelected,
+                    functionsOptions,
+                    "multiple",
+                    functionsOptions,
+                    setFunctionsOptions
+                  );
                 }}
               />
             </div>
-
-            {/* <div className="columns"> */}
-
-            <div className='columnsSelect'>
-              <label for='contacts'>Favorite Contact</label>
+            <div className="columnsSelect">
+              <label for="contacts">Favorite Contact</label>
               <CreatableSelect
                 value={contactTypeSelected}
                 closeMenuOnSelect={false}
                 options={contactTypeOptions}
                 isMulti
-                className='basic-multi-select'
-                classNamePrefix='select'
+                className="basic-multi-select"
+                classNamePrefix="select"
                 onChange={(e) => {
-                  setContactTypeSelected(e)
+                  setContactTypeSelected(e);
                   handleCreate(
                     e,
-                    'contacttype',
-                    'contactTypeName',
+                    "contacttype",
+                    "contactTypeName",
                     setContactTypeSelected,
                     contactTypeOptions,
-                    'multiple',
+                    "multiple",
                     contactTypeOptions,
                     setContactTypeOptions
-                  )
+                  );
                 }}
               />
             </div>
-          </div>
-          <div className='columns'>
-            <div className='columnsSelect'>
-              <label for='services'>Desired Services</label>
+            <div className="columnsSelect">
+              <label for="kindOfBusiness">Kind Of Business</label>
               <CreatableSelect
+                menuPlacement="top"
+                value={companyTypeSelected}
+                options={companyTypeOptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={(e) => {
+                  setCompanyTypeSelected([e]);
+                  handleCreate(
+                    [e],
+                    "companytype",
+                    "companyTypeName",
+                    setCompanyTypeSelected,
+                    companyTypeSelected,
+                    "solo",
+                    companyTypeOptions,
+                    setCompanyTypeOptions
+                  );
+                }}
+              />
+            </div>
+            <div className="columnsSelect">
+              <label for="services">Desired Services</label>
+              <CreatableSelect
+                menuPlacement="top"
                 value={serviceSelected}
                 closeMenuOnSelect={false}
                 options={serviceOptions}
                 isMulti
-                className='basic-multi-select'
-                classNamePrefix='select'
+                className="basic-multi-select"
+                classNamePrefix="select"
                 onChange={(e) => {
-                  setServiceSelected(e)
+                  setServiceSelected(e);
                   handleCreate(
                     e,
-                    'service',
-                    'serviceName',
+                    "service",
+                    "serviceName",
                     setServiceSelected,
                     serviceSelected,
-                    'multiple',
+                    "multiple",
                     serviceOptions,
                     setServiceOptions
-                  )
+                  );
                 }}
               />
             </div>
-            <div className='columnsSelect'>
-              <label for='languages'>Languages</label>
-              <CreatableSelect
-                value={languagesSelected}
-                closeMenuOnSelect={false}
-                options={languagesOptions}
-                isMulti
-                className='basic-multi-select'
-                classNamePrefix='select'
-                onChange={(e) => {
-                  setLanguagesSelected(e)
-                  handleCreate(
-                    e,
-                    'languages',
-                    'languagesName',
-                    setLanguagesSelected,
-                    languagesSelected,
-                    'multiple',
-                    languagesOptions,
-                    setLanguagesOptions
-                  )
-                }}
-              />
-            </div>
-            <div className='columnsDiv'>
-              <label htmlFor='feedback'>Comment</label>
+          </div>
+          <div className="columns">
+            <div className="columnsDiv">
+              <label htmlFor="feedback">Comment</label>
               <textarea
-                id='feedback'
-                name='feedback'
-                rows='10'
-                cols='60'
-                role='presentation'
-                {...register('feedbackClient')}
+                id="feedback"
+                name="feedback"
+                rows="20"
+                cols="60"
+                role="presentation"
+                {...register("feedbackClient")}
                 value={feedbackClientSelected}
                 onChange={(e) => setFeedbackClientSelected(e.target.value)}
               ></textarea>
             </div>
           </div>
-          <div className='checkOrTrash'>
-            <button className='buttonAddForm'> Add </button>
-            <FontAwesomeIcon icon={faTrashCan} size='lg' className='trashCan' />
+          <div className="checkOrTrash">
+            <button className="buttonAddForm"> Add </button>
+            <FontAwesomeIcon icon={faTrashCan} size="lg" className="trashCan" />
           </div>
         </form>
       </div>
     </div>
-  )
-}
-export default PageClientEdit
+  );
+};
+export default PageClientEdit;
