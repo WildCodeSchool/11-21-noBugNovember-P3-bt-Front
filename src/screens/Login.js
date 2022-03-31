@@ -14,13 +14,13 @@ const Login = () => {
   const [isOut, setIsOut] = useState(false)
   console.log(errorConnect, isOut)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setErrorConnect(false)
     setIsOut(false)
     console.log(email, password)
     console.log(sha256(password).toString())
-    axios
+    await axios
       .post('http://localhost:4040/auth/login', {
         email: email,
         password: sha256(password).toString(),
@@ -29,7 +29,8 @@ const Login = () => {
         console.log('ress poulet :', res)
         localStorage.setItem('token', res.headers['x-access-token'])
         console.log('token', localStorage.getItem('token'))
-        navigate('/clients')
+        console.log('voyage')
+        navigate('/projects')
       })
       .catch((err) => {
         if (err.response) {
@@ -70,6 +71,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
           </label>
+
           <div className='loginBtnWrapper'>
             <button id='loginBtn'>ENTER</button>
           </div>
