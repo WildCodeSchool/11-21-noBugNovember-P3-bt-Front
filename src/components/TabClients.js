@@ -1,8 +1,10 @@
-import 'ag-grid-community/dist/styles/ag-grid.css'
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
+import React, { useState, useEffect, useRef } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import axios from 'axios'
-import React, { useState, useEffect, useRef } from 'react'
+
+import 'ag-grid-community/dist/styles/ag-grid.css'
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
+
 import './styles/TabClients.css'
 
 const TabClients = ({ setClientSelection }) => {
@@ -14,6 +16,8 @@ const TabClients = ({ setClientSelection }) => {
       setClients(response.data)
     })
   }, [])
+
+  console.log(clients)
 
   const defaultColDef = {
     resizable: true,
@@ -62,8 +66,8 @@ const TabClients = ({ setClientSelection }) => {
       headerName: 'Company',
     },
     { field: 'city', sortable: true, filter: true },
-    { field: 'languages', sortable: true, filter: true },
     { field: 'service', sortable: true, filter: true },
+    { field: 'fonction', sortable: true, filter: true, headerName: 'Function' },
     { field: 'feedbackClient', headerName: 'Comment' },
     {
       field: 'numProject',
@@ -83,7 +87,7 @@ const TabClients = ({ setClientSelection }) => {
     <div
       className='ag-theme-alpine tableau'
       style={{
-        height: 600,
+        height: '74vh',
         fontFamily: 'var(--fontBody)',
       }}
     >
