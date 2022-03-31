@@ -3,8 +3,9 @@ import './styles/Creation.css'
 import BTHTLogo from '../assets/BTHT-Blue_edited.webp'
 import { useState } from 'react'
 import axios from 'axios'
-import { TiTimes } from 'react-icons/ti'
+import { ImCross } from 'react-icons/im'
 import { useNavigate } from 'react-router-dom'
+import sha256 from 'crypto-js/sha256'
 
 const Creation = () => {
   const navigate = useNavigate()
@@ -21,8 +22,8 @@ const Creation = () => {
     axios
       .post('http://localhost:4040/creation', {
         email: newSignUp.email,
-        password: newSignUp.password,
-        forgetPassword: newSignUp.forgetPassword,
+        password: sha256(newSignUp.password).toString(),
+        forgetPassword: sha256(newSignUp.forgetPassword).toString(),
       })
       .then(function (response) {
         console.log(response)
@@ -37,11 +38,6 @@ const Creation = () => {
       <div className='loginContainer'>
         <img src={BTHTLogo} alt='logo_BTHT' id='loginLogo' />
         <form className='loginWrapper'>
-          <TiTimes
-            size='100px'
-            className='circle'
-            onClick={() => navigate(-1)}
-          />
           <span className='loginTitle'>Username</span>
           <label className='loginLabel'>
             <input
@@ -56,6 +52,9 @@ const Creation = () => {
               }}
             ></input>
           </label>
+          <div className='cross'>
+            <ImCross onClick={() => navigate(-1)} />
+          </div>
           <span className='loginTitle'>Password</span>
           <label className='loginLabel'>
             <input

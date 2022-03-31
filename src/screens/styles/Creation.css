@@ -117,9 +117,8 @@
   margin-left: 299px;
 }
 
-.circle {
+.cross {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
+  margin-left: 359px;
+  margin-bottom: 403px;
 }

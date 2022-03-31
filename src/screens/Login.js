@@ -17,10 +17,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setErrorConnect(false)
+    setIsOut(false)
     console.log(email, password)
+    console.log(sha256(password).toString())
     axios
       .post('http://localhost:4040/auth/login', {
-        username: email,
+        email: email,
         password: sha256(password).toString(),
       })
       .then((res) => {
