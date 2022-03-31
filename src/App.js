@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import './components/styles/Header.css'
@@ -19,15 +19,33 @@ import Project from './screens/Project'
 import ProjectExpert from './screens/ProjectExpert'
 import Creation from './screens/Creation'
 import Protected from './screens/Protected'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
   const [expert, setExpert] = useState([])
   const [idExpert, setIdExpert] = useState()
   const [maxiExpert, setMaxiExpert] = useState(false)
-  return (
+  const [auth, setAuth] = useState(false)
+  let navigate = useNavigate()
+
+  useEffect(() => {
+    console.log('coucou')
+    if (localStorage.getItem('token') !== null) {
+      setAuth(true)
+      navigate('/projects')
+    } else {
+      setAuth(false)
+    }
+  }, [localStorage.getItem('token')])
+  // useEffect(() => {}, [auth])
+  return auth ? (
     <div className='App'>
       <Header />
       <Navbar />
+      {/* <Protected>
+        <Header />
+        <Navbar />
+      </Protected> */}
       <Routes>
         <Route
           path='/clients'
@@ -47,8 +65,10 @@ function App() {
         />
         <Route path='/pageExpert' element={<PageExpert />} />
         <Route path='/pageExpertEdit/:id' element={<PageExpertEdit />} />
+        <Route path='/creation' element={<Creation />} />
         <Route path='/pageClient' element={<PageClient />} />
         <Route path='/pageClientEdit/:id' element={<PageClientEdit />} />
+
         <Route path='/pageProject' element={<PageProject />} />
         <Route
           path='/projectexpert/:id'
@@ -88,6 +108,13 @@ function App() {
         />
       </Routes>
     </div>
+  ) : (
+    <>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/creation' element={<Creation />} />
+      </Routes>
+    </>
   )
 }
 
