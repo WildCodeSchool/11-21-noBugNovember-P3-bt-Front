@@ -14,7 +14,7 @@ const MidiExpert = (props) => {
     props.setMaxiExpert(true)
     props.setIdExpert(id)
   }
-  console.log(props.experts)
+
   return (
     <div className='midiExpertContainer'>
       {props.experts.map((expert) => (

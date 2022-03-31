@@ -77,7 +77,7 @@ const FilterExpert = (props) => {
     axios
       .get(`http://localhost:4040/filter${filters}`)
       .then((res) => res.data)
-      .then((res) => console.log('experts', res) || props.setExperts(res))
+      .then((res) => props.setExperts(res))
   }, [filters])
 
   console.log('filters', filters)
@@ -146,7 +146,7 @@ const FilterExpert = (props) => {
               <Select
                 sx={{ width: 150, maxHeight: 40 }}
                 labelId='price'
-                multiple
+                // multiple
                 value={filPrice}
                 onChange={(e) => setFilPrice(e.target.value)}
               >
