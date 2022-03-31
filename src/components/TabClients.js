@@ -66,7 +66,6 @@ const TabClients = ({ setClientSelection }) => {
       headerName: "Company",
     },
     { field: "city", sortable: true, filter: true },
-    { field: "languages", sortable: true, filter: true },
     { field: "service", sortable: true, filter: true },
     { field: "fonction", sortable: true, filter: true, headerName: "Function" },
     { field: "feedbackClient", headerName: "Comment" },

@@ -4,7 +4,6 @@ import CreatableSelect from "react-select/creatable";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -21,7 +20,6 @@ const PageClientEdit = () => {
   const [companyTypeOptions, setCompanyTypeOptions] = useState([]);
   const [contactTypeOptions, setContactTypeOptions] = useState([]);
   const [serviceOptions, setServiceOptions] = useState([]);
-  const [languagesOptions, setLanguagesOptions] = useState([]);
   const [functionsOptions, setFunctionsOptions] = useState([]);
 
   const [numClientSelected, setNumClientSelected] = useState([]);
@@ -34,7 +32,6 @@ const PageClientEdit = () => {
   const [contactTypeSelected, setContactTypeSelected] = useState([]);
   const [companyTypeSelected, setCompanyTypeSelected] = useState([]);
   const [serviceSelected, setServiceSelected] = useState([]);
-  const [languagesSelected, setLanguagesSelected] = useState([]);
   const [functionsSelected, setFunctionsSelected] = useState([]);
   const [feedbackClientSelected, setFeedbackClientSelected] = useState([]);
 
@@ -50,7 +47,10 @@ const PageClientEdit = () => {
     const getOptions = () => {
       axios
         .get(`http://localhost:4040/clients/form`)
-        .then((res) => setOptions(res.data));
+        .then((res) => setOptions(res.data))
+        .catch(function (error) {
+          console.log(error);
+        });
     };
     getOptions();
   }, []);
@@ -63,13 +63,13 @@ const PageClientEdit = () => {
     setCompanyTypeOptions(options.companyType);
     setContactTypeOptions(options.contactType);
     setServiceOptions(options.service);
-    setLanguagesOptions(options.languages);
   }, [options]);
 
   //**************** Décomposition des données existantes d'un client *********/
   useEffect(() => {
     const dataClientFunc = () => {
       axios.get(`http://localhost:4040/clients/form/${id}`).then((res) => {
+        console.log("form id", res.data);
         setDataClient(res.data);
         setNumClientSelected(res.data.numClient);
         setFirstNameSelected(res.data.firstname);
@@ -81,7 +81,6 @@ const PageClientEdit = () => {
         setContactTypeSelected(res.data.contactType);
         setCompanyTypeSelected(res.data.companyType);
         setServiceSelected(res.data.service);
-        setLanguagesSelected(res.data.languages);
         setFeedbackClientSelected(res.data.feedbackClient);
         setFunctionsSelected(res.data.fonction);
       });
@@ -147,13 +146,11 @@ const PageClientEdit = () => {
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
   const onSubmit = async (data) => {
     if (
-      languagesSelected.length !== 0 &&
       companyTypeSelected.length !== 0 &&
       contactTypeSelected.length !== 0 &&
       serviceSelected.length !== 0
     ) {
       setError(false);
-      let langDatas = [];
       let ctcDatas = [];
       let servDatas = [];
       let compDatas = [];
@@ -162,13 +159,11 @@ const PageClientEdit = () => {
 
       companyNameSelected.forEach((cie) => cie.id && cieDatas.push(cie.id));
       companyTypeSelected.forEach((comp) => comp.id && compDatas.push(comp.id));
-      languagesSelected.forEach((lang) => lang.id && langDatas.push(lang.id));
       contactTypeSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
       serviceSelected.forEach((serv) => serv.id && servDatas.push(serv.id));
       functionsSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
 
       let companyType_id = { companyType_id: [...compDatas] };
-      let languages_id = { languages_id: [...langDatas] };
       let contactType_id = { contactType_id: [...ctcDatas] };
       let service_id = { service_id: [...servDatas] };
       let company_id = { company_id: [...cieDatas] };
@@ -183,7 +178,6 @@ const PageClientEdit = () => {
         phone: data.phone,
         ...company_id,
         ...companyType_id,
-        ...languages_id,
         ...contactType_id,
         ...service_id,
         ...fonction_id,
@@ -418,30 +412,6 @@ const PageClientEdit = () => {
             {/* <div className="columns"> */}
           </div>
           <div className="columns">
-            {/* <div className="columnsSelect">
-              <label for="languages">Languages</label>
-              <CreatableSelect
-                value={languagesSelected}
-                closeMenuOnSelect={false}
-                options={languagesOptions}
-                isMulti
-                className="basic-multi-select"
-                classNamePrefix="select"
-                onChange={(e) => {
-                  setLanguagesSelected(e);
-                  handleCreate(
-                    e,
-                    "languages",
-                    "languagesName",
-                    setLanguagesSelected,
-                    languagesSelected,
-                    "multiple",
-                    languagesOptions,
-                    setLanguagesOptions
-                  );
-                }}
-              />
-            </div> */}
             <div className="columnsDiv">
               <label htmlFor="feedback">Comment</label>
               <textarea

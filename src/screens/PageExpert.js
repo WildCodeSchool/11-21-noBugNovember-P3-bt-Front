@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const PageExpert = () => {
@@ -47,7 +47,6 @@ const PageExpert = () => {
   const [specSelected, setSpecSelected] = useState([]);
   const [error, setError] = useState(false);
 
-  const [optionHasChanged, setOptionHasChanged] = useState([]);
   const [newOptions, setNewOptions] = useState([]);
 
   useEffect(() => {
@@ -56,7 +55,10 @@ const PageExpert = () => {
         .get("http://localhost:4040/experts/form")
         .then(
           (res) => console.log("test bdd", res.data) || setOptions(res.data)
-        );
+        )
+        .catch(function (error) {
+          console.log(error);
+        });
     };
     getOptions();
   }, [newOptions]);
@@ -82,7 +84,6 @@ const PageExpert = () => {
   /* ******************* START FUNCTION WHEN WE CREATE OPTION **************   */
 
   const handleCreate = (inputValue, table, column, set, selected, multiple) => {
-    console.log("inputValue", inputValue);
     for (let i = 0; i < inputValue.length; i++) {
       // If the Value is New
       if (Object.keys(inputValue[i]).includes("__isNew__")) {
@@ -116,13 +117,9 @@ const PageExpert = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("langSelected", yoeSelected);
-  }, [yoeSelected]);
-
   /* ******************* START FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (
       yoeSelected.length !== 0 &&
       cieSelected.length !== 0 &&
@@ -170,7 +167,6 @@ const PageExpert = () => {
       let contactType_id = { contactType_id: [...ctcDatas] };
       let projects_id = { projects_id: [...pjtDatas] };
       let company_id = { company_id: [...cieDatas] };
-      // let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let kindOfExpert_id = { kindOfExpert_id: [...koeDatas] };
       let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] };
       let jobtitle_id = { jobtitle_id: [...jobDatas] };
@@ -199,14 +195,12 @@ const PageExpert = () => {
         ...specialty_id,
       };
 
-      console.log("datas", datas);
-      axios.post("http://localhost:4040/experts/", datas);
-
+      await axios
+        .post("http://localhost:4040/experts/", datas)
+        .catch(navigate("/experts"));
       navigate("/experts");
-      console.log("lang submit", langSelected);
     } else {
       setError(true);
-      console.log("Form error", yoeSelected);
       data.preventDefault();
     }
   };

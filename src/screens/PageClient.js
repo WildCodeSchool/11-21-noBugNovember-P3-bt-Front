@@ -3,7 +3,6 @@ import "./styles/PageForm.css";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -13,16 +12,13 @@ const PageClient = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [options, setOptions] = useState([]);
-  const [projectsOptions, setProjectsOptions] = useState([]);
   const [functionsOptions, setFunctionsOptions] = useState([]);
   // const [countryOptions, setCountryOptions] = useState([])
   const [favcOptions, setFavcOptions] = useState([]); // Favc = Favorite Contact
   const [kobOptions, setKobOptions] = useState([]); // Kob = Kind Of Business
   const [dsOptions, setDsOptions] = useState([]); // Ds = Desired Serviced
   const [companyNameOptions, setCompanyNameOptions] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const [projectsSelected, setProjectsSelected] = useState([]);
   const [functionsSelected, setFunctionsSelected] = useState([]);
   const [favcSelected, setFavcSelected] = useState([]); // Favc = Favorite Contact
   const [kobSelected, setKobSelected] = useState([]); // Kob = Kind Of Business
@@ -35,7 +31,10 @@ const PageClient = () => {
         .get("http://localhost:4040/clients/form")
         .then(
           (res) => console.log("res.data", res.data) || setOptions(res.data)
-        );
+        )
+        .catch(function (error) {
+          console.log(error);
+        });
     };
     getOptions();
   }, []);
@@ -49,7 +48,6 @@ const PageClient = () => {
   }, [options]);
 
   const onSubmit = (data) => {
-    console.log("submit datas", data);
     let functionsDatas = [];
     let favoriteCDatas = [];
     let kindOfBDatas = [];
@@ -77,12 +75,12 @@ const PageClient = () => {
       ...company_id,
     };
 
-    console.log("post datas", datas);
-    axios.post("http://localhost:4040/clients/", datas);
+    axios
+      .post("http://localhost:4040/clients/", datas)
+      .catch(navigate("/clients"));
   };
 
   const handleCreate = (inputValue, table, column, set, selected, multiple) => {
-    console.log("inputValue", inputValue);
     for (let i = 0; i < inputValue.length; i++) {
       // If the Value is New
       if (Object.keys(inputValue[i]).includes("__isNew__")) {
@@ -281,7 +279,7 @@ const PageClient = () => {
               />
             </div>
             <div className="columnsSelect">
-              <label for="services">Desired Service</label>
+              <label for="services">Desired Services</label>
               <CreatableSelect
                 menuPlacement="top"
                 closeMenuOnSelect={false}

@@ -24,13 +24,6 @@ const TabExperts = ({ setExpertSelection }) => {
       .then((res) => setExperts(res));
   }, []);
 
-  // const onButtonClick = e => {
-  //       const selectedNodes = gridRef.current.api.getSelectedNodes()
-  //       const selectedData = selectedNodes.map( node => node.data )
-  //       const selectedDataStringPresentation = selectedData.map( node => `${node.make} ${node.model}`).join(', ')
-  //       alert(`Selected nodes: ${selectedDataStringPresentation}`)
-  //   }
-
   const [columnDefs] = useState([
     {
       field: "numExpert",

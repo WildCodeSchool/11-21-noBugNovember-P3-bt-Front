@@ -70,7 +70,10 @@ const PageExpertEdit = () => {
     const getOptions = () => {
       axios
         .get(`http://localhost:4040/experts/form`)
-        .then((res) => setOptions(res.data));
+        .then((res) => setOptions(res.data))
+        .catch(function (error) {
+          console.log(error);
+        });
     };
     getOptions();
   }, [newOptions]);
