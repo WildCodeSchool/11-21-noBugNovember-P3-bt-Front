@@ -91,7 +91,6 @@ const TabClients = ({ setClientSelection }) => {
         fontFamily: "var(--fontBody)",
       }}
     >
-      {/* <button onClick={onButtonClick}>Get selected rows</button> */}
       <AgGridReact
         ref={gridRef}
         className="txtTableau"

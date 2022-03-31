@@ -13,7 +13,6 @@ const PageClient = () => {
   const { register, handleSubmit } = useForm();
   const [options, setOptions] = useState([]);
   const [functionsOptions, setFunctionsOptions] = useState([]);
-  // const [countryOptions, setCountryOptions] = useState([])
   const [favcOptions, setFavcOptions] = useState([]); // Favc = Favorite Contact
   const [kobOptions, setKobOptions] = useState([]); // Kob = Kind Of Business
   const [dsOptions, setDsOptions] = useState([]); // Ds = Desired Serviced
@@ -47,7 +46,7 @@ const PageClient = () => {
     setCompanyNameOptions(options.companyName);
   }, [options]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     let functionsDatas = [];
     let favoriteCDatas = [];
     let kindOfBDatas = [];
@@ -75,9 +74,10 @@ const PageClient = () => {
       ...company_id,
     };
 
-    axios
+    await axios
       .post("http://localhost:4040/clients/", datas)
       .catch(navigate("/clients"));
+    navigate("/clients");
   };
 
   const handleCreate = (inputValue, table, column, set, selected, multiple) => {

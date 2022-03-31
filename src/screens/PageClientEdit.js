@@ -145,54 +145,43 @@ const PageClientEdit = () => {
 
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
   const onSubmit = async (data) => {
-    if (
-      companyTypeSelected.length !== 0 &&
-      contactTypeSelected.length !== 0 &&
-      serviceSelected.length !== 0
-    ) {
-      setError(false);
-      let ctcDatas = [];
-      let servDatas = [];
-      let compDatas = [];
-      let cieDatas = [];
-      let fctDatas = [];
+    setError(false);
+    let ctcDatas = [];
+    let servDatas = [];
+    let compDatas = [];
+    let cieDatas = [];
+    let fctDatas = [];
 
-      companyNameSelected.forEach((cie) => cie.id && cieDatas.push(cie.id));
-      companyTypeSelected.forEach((comp) => comp.id && compDatas.push(comp.id));
-      contactTypeSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
-      serviceSelected.forEach((serv) => serv.id && servDatas.push(serv.id));
-      functionsSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
+    companyNameSelected.forEach((cie) => cie.id && cieDatas.push(cie.id));
+    companyTypeSelected.forEach((comp) => comp.id && compDatas.push(comp.id));
+    contactTypeSelected.forEach((ctc) => ctc.id && ctcDatas.push(ctc.id));
+    serviceSelected.forEach((serv) => serv.id && servDatas.push(serv.id));
+    functionsSelected.forEach((fct) => fct.id && fctDatas.push(fct.id));
 
-      let companyType_id = { companyType_id: [...compDatas] };
-      let contactType_id = { contactType_id: [...ctcDatas] };
-      let service_id = { service_id: [...servDatas] };
-      let company_id = { company_id: [...cieDatas] };
-      let fonction_id = { fonction_id: [...fctDatas] };
+    let companyType_id = { companyType_id: [...compDatas] };
+    let contactType_id = { contactType_id: [...ctcDatas] };
+    let service_id = { service_id: [...servDatas] };
+    let company_id = { company_id: [...cieDatas] };
+    let fonction_id = { fonction_id: [...fctDatas] };
 
-      let datas = {
-        numClients: data.numClient,
-        firstname: data.firstname,
-        lastname: data.lastname,
-        email: data.email,
-        city: data.city,
-        phone: data.phone,
-        ...company_id,
-        ...companyType_id,
-        ...contactType_id,
-        ...service_id,
-        ...fonction_id,
-      };
-      console.log("datas", datas);
-      axios
-        .put(`http://localhost:4040/clients/form/${id}`, datas)
-        .then(function (res) {
-          navigate("/clients");
-        });
-    } else {
-      setError(true);
-      console.log("Form error");
-      data.preventDefault();
-    }
+    let datas = {
+      numClients: data.numClient,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      city: data.city,
+      phone: data.phone,
+      ...company_id,
+      ...companyType_id,
+      ...contactType_id,
+      ...service_id,
+      ...fonction_id,
+    };
+    console.log("datas", datas);
+    await axios
+      .put(`http://localhost:4040/clients/form/${id}`, datas)
+      .catch(navigate("/clients"));
+    navigate("/clients");
   };
 
   return (
@@ -408,8 +397,6 @@ const PageClientEdit = () => {
                 }}
               />
             </div>
-
-            {/* <div className="columns"> */}
           </div>
           <div className="columns">
             <div className="columnsDiv">

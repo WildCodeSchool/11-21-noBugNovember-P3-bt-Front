@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
-import axios from "axios";
-
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-
+import { AgGridReact } from "ag-grid-react";
+import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles/TabExperts.css";
 
 const TabExperts = ({ setExpertSelection }) => {
@@ -167,7 +165,6 @@ const TabExperts = ({ setExpertSelection }) => {
         boxShadow: "0px 0px 15px 0px rgb(0 0 0 / 50%)",
       }}
     >
-      {/* <button onClick={onButtonClick}>Get selected rows</button> */}
       <AgGridReact
         ref={gridRef}
         defaultColDef={defaultColDef}

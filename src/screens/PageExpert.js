@@ -236,7 +236,7 @@ const PageExpert = () => {
               </div>
             </div>
             <div className="columnsDiv">
-              <label htmlFor="firstName">FirstName</label>
+              <label htmlFor="firstName">First Name</label>
               <input
                 id="firstName"
                 name="firstName"
@@ -247,7 +247,7 @@ const PageExpert = () => {
               ></input>
             </div>
             <div className="columnsDiv">
-              <label htmlFor="lastName">LastName</label>
+              <label htmlFor="lastName">Last Name</label>
               <input
                 autocomplete="off"
                 id="lastName"

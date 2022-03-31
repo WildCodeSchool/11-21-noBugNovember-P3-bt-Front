@@ -1,13 +1,12 @@
-import './styles/PageForm.css'
-
+import axios from 'axios'
 import CreatableSelect from 'react-select/creatable'
-import { useState, useEffect } from 'react'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Select from 'react-select'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import Select from 'react-select'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios'
+import { useState, useEffect } from 'react'
+import './styles/PageForm.css'
 
 const PageProject = () => {
   const navigate = useNavigate()
@@ -186,7 +185,7 @@ const PageProject = () => {
       let linkedinKeywords_id = { linkedinKeywords_id: [...linDatas] }
       let practice_id = { practice_id: [...praDatas] }
       let projectType_id = { projectType_id: [...ptDatas] }
-      let exampleCompany_id = { exampleCompany_id: [...ecieDatas] }
+      let exampleCompany_id = { exampleCompany_id: [...rcieDatas] }
       let service_id = { service_id: [...seDatas] }
       let expertiseLevel_id = { expertiseLevel_id: [...yoeDatas] }
 
@@ -217,8 +216,7 @@ const PageProject = () => {
         ...expertiseLevel_id,
       }
 
-      console.log('datas', datas)
-      axios.post('http://localhost:4040/projects/', datas)
+      await axios.post('http://localhost:4040/projects/', datas)
 
       navigate('/projects')
     } else {
@@ -284,6 +282,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='serviceOptions'>Service</label>
               <CreatableSelect
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={serviceOptions}
                 isMulti
@@ -319,6 +318,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='status'>Status</label>
               <Select
+                menuPlacement='top'
                 options={statusOptions}
                 className='basic-multi-select'
                 classNamePrefix={
@@ -331,6 +331,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='projectType'>Project Type</label>
               <CreatableSelect
+                menuPlacement='top'
                 options={projectTypeOptions}
                 className='basic-multi-select'
                 classNamePrefix={
@@ -416,6 +417,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='practice'>Practice</label>
               <Select
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={practiceOptions}
                 isMulti
@@ -428,6 +430,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='Industry'>Industry</label>
               <CreatableSelect
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={industryOptions}
                 isMulti
@@ -452,6 +455,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='rCompaniesOptions'>Companies Examples</label>
               <CreatableSelect
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={rCompaniesOptions}
                 isMulti
@@ -476,6 +480,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='eCompaniesOptions'>Excluded Companies</label>
               <CreatableSelect
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={eCompaniesOptions}
                 isMulti
@@ -500,6 +505,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='jobTitle'>Job Title</label>
               <CreatableSelect
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={jobTitleOptions}
                 isMulti
@@ -574,6 +580,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='geoExpertise'>Geo Expertise</label>
               <CreatableSelect
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={geoExpertiseOptions}
                 isMulti
@@ -599,6 +606,7 @@ const PageProject = () => {
             <div className='columnsSelect'>
               <label htmlFor='languages'>Languages</label>
               <CreatableSelect
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={languagesOptions}
                 isMulti
@@ -623,6 +631,7 @@ const PageProject = () => {
             <div className='columnsDiv'>
               <label htmlFor='keywords'>Linkedin Keywords</label>
               <CreatableSelect
+                menuPlacement='top'
                 closeMenuOnSelect={false}
                 options={linkedinOptions}
                 isMulti
@@ -659,7 +668,6 @@ const PageProject = () => {
           </div>
           <div className='checkOrTrash'>
             <button className='buttonAddForm'> Add </button>
-            <FontAwesomeIcon icon={faTrashCan} size='lg' className='trashCan' />
           </div>
         </form>
       </div>

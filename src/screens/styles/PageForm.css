@@ -147,6 +147,7 @@
   padding-bottom: 0.3em;
   height: auto;
   width: auto;
+  border: 1px solid var(--firstColor);
 }
 
 .checkOrTrashAnswer {
@@ -157,6 +158,19 @@
 }
 
 .inputAnswer {
-  margin-top: 0em !important;
+  margin-top: 0.2em !important;
   margin-bottom: 0.5em;
+  text-align: left;
+}
+
+#answerForm {
+  flex-direction: column;
+  width: 20vw;
+}
+
+#answerForm input {
+  width: 20vw;
+  height: 2rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
 }

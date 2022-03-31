@@ -1,13 +1,12 @@
-import "./styles/PageForm.css";
-
+import axios from "axios";
 import CreatableSelect from "react-select/creatable";
-import { useState, useEffect } from "react";
+import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Select from "react-select";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import Select from "react-select";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import "./styles/PageForm.css";
 
 const PageExpertEdit = () => {
   const { id } = useParams();
@@ -193,7 +192,7 @@ const PageExpertEdit = () => {
 
   /* ******************* END FUNCTION WHEN WE SUBMIT THE FORMULARE **************   */
   const onSubmit = async (data) => {
-    console.log("data prob", data);
+    console.log(cieSelected);
     if (
       yoeSelected.length !== 0 &&
       cieSelected.length !== 0 &&
@@ -203,11 +202,11 @@ const PageExpertEdit = () => {
     ) {
       setError(false);
       // champs select donnée unique
-      const company_id = cieSelected.id;
-      const jobTitle_id = jobSelected.id;
-      const kindOfExpert_id = koeSelected.id;
+      const company_id = cieSelected[0].id;
+      const jobTitle_id = jobSelected[0].id;
+      const kindOfExpert_id = koeSelected[0].id;
       const practice_id = practiceSelected.id;
-      const expertiseLevel_id = yoeSelected.id;
+      const expertiseLevel_id = yoeSelected[0].id;
 
       // champs select données multiples
       let geoDatas = [];

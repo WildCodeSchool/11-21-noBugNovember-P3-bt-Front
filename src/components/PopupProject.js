@@ -14,11 +14,20 @@ const PopupProject = (props) => {
   return (
     <div className='popupProject'>
       <p>
-        Confirm you want to add {props.expert.lastname} {props.expert.firstname}{' '}
-        to {props.project.numProject}
+        Do you really want to add {props.expert.lastname}{' '}
+        {props.expert.firstname} to {props.project.numProject} ?
       </p>
-      <button onClick={onSubmit}>Confirm</button>
-      <button onClick={() => props.setPopupProject(false)}>Cancel</button>
+      <div className='buttonAjoutContainer'>
+        <button className='smallButton' onClick={onSubmit}>
+          Yes
+        </button>
+        <button
+          className='smallButton'
+          onClick={() => props.setPopupProject(false)}
+        >
+          No
+        </button>
+      </div>
     </div>
   )
 }
