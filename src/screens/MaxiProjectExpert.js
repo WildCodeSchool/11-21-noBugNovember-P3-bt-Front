@@ -58,6 +58,7 @@ const MaxiProjectExpert = (props) => {
       >
         <MaxiExpert
           idExpert={props.idExpert}
+          setIdExpert={props.setIdExpert}
           maxiExpert={props.maxiExpert}
           setMaxiExpert={props.setMaxiExpert}
           expert={props.expert}
@@ -72,6 +73,7 @@ const MaxiProjectExpert = (props) => {
             answerEdit={answerEdit}
             idExpert={props.idExpert}
             idProject={id}
+            setIdExpert={props.setIdExpert}
           />
         )}
       </div>

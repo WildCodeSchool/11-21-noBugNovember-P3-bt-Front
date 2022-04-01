@@ -41,6 +41,7 @@ const ProjectExpert = (props) => {
       >
         <MaxiExpert
           idExpert={props.idExpert}
+          setIdExpert={props.setIdExpert}
           maxiExpert={props.maxiExpert}
           setMaxiExpert={props.setMaxiExpert}
           setPopupProject={setPopupProject}
