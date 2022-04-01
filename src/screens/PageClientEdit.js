@@ -185,6 +185,17 @@ const PageClientEdit = () => {
       .catch(navigate("/clients"));
   };
 
+  // ******************** DELETE CLIENTS *******************
+
+  const onDelete = () => {
+    axios
+      .delete(`http://localhost:4040/clients/form/${id}`)
+      .then(function (res) {
+        navigate("/clients");
+      })
+      .catch(navigate("/clients"));
+  };
+
   return (
     <div className="tabContainerForm">
       {" "}
@@ -416,7 +427,12 @@ const PageClientEdit = () => {
           </div>
           <div className="checkOrTrash">
             <button className="buttonAddForm"> Add </button>
-            <FontAwesomeIcon icon={faTrashCan} size="lg" className="trashCan" />
+            <FontAwesomeIcon
+              onClick={() => onDelete()}
+              icon={faTrashCan}
+              size="lg"
+              className="trashCan"
+            />
           </div>
         </form>
       </div>
