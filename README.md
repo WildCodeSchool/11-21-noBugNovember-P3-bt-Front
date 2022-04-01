@@ -4,7 +4,12 @@
 
 This application allows you to manage and optimize your business. 
 
-You can add/edit/delete clients, projects, experts.
+You can add/edit/delete clients, projects, experts. 
+
+Add new data in client/project/expert form drop-down menus : 
+  - Client : Company, Function, Favorite Contact, Kind Of Business, Desired Services, 
+  - Project : Service, Project Type, Type, Industry, Companies Examples, Excluded Companies, Job Title, Function, Years of Experience, Geo Expertise,   Languages, Linkedin Keywords. 
+  - Expert : Fonction, Contact Preferences, Type, Geo Expertise, Job Title, Industries, Company, Past Companies, HCP Type, Sector, Specialty, Years of Experience, Languages. 
 
 Find and connect the best experts suited to your clients' projects. 
 
@@ -13,7 +18,10 @@ Follow the progress of the projects.
 Get a global overview of your main figures for monitoring the company
 
 
-👀 (lien vidéo)
+## Demo 👀 : 
+
+https://youtu.be/exopeDKRprI
+
 
 ## Built With: 
 
@@ -28,7 +36,7 @@ Get a global overview of your main figures for monitoring the company
 
 ## Getting Started 🚀 : 
 
-:one: Install the backend 🔗 -> 11-21-noBugNovember-P3-bt-Back 
+:one: Install the backend 🔗 -> https://github.com/WildCodeSchool/11-21-noBugNovember-P3-bt-Back
 
 :two: Clone the repo 
 
