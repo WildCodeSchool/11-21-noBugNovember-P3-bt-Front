@@ -13,7 +13,7 @@ Follow the progress of the projects.
 Get a global overview of your main figures for monitoring the company
 
 
-👀 (lien vidéo)
+👀 https://youtu.be/exopeDKRprI
 
 ## Built With: 
 
