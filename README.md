@@ -7,7 +7,7 @@ This application allows you to manage and optimize your business.
 You can add/edit/delete clients, projects, experts. 
 
 Add new data in client/project/expert form drop-down menus : 
-  - Client : Company, Function, Favorite Contact, Kind Of Business, Desired Services, 
+  - Client : Company, Function, Favorite Contact, Kind Of Business, Desired Services. 
   - Project : Service, Project Type, Type, Industry, Companies Examples, Excluded Companies, Job Title, Function, Years of Experience, Geo Expertise,   Languages, Linkedin Keywords. 
   - Expert : Fonction, Contact Preferences, Type, Geo Expertise, Job Title, Industries, Company, Past Companies, HCP Type, Sector, Specialty, Years of Experience, Languages. 
 
@@ -15,7 +15,7 @@ Find and connect the best experts suited to your clients' projects.
 
 Follow the progress of the projects. 
 
-Get a global overview of your main figures for monitoring the company
+Get a global overview of your main figures for monitoring the company.
 
 
 ## Demo 👀 : 
@@ -107,24 +107,24 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting).
 
 ### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size).
 
 ### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app).
 
 ### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration).
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment).
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify).
