@@ -1,0 +1,46 @@
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 8vh;
+  background-color: white;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+#headerLogo {
+  height: 7vh;
+  margin: 0 1vh;
+}
+
+.headerStatsContainer,
+.headerStats {
+  display: flex;
+  flex-direction: row;
+
+  /* align-items: center; */
+}
+
+.headerStats {
+  align-items: center;
+  text-align: left;
+  width: 80vw;
+  justify-content: space-evenly;
+  font-size: 1em;
+  /* align-content: stretch; */
+}
+
+#headerGraphLogo {
+  height: 3vh;
+  margin: 0 2vh;
+}
+
+.statItem {
+  margin: 0 1vh;
+  color: var(--firstColor);
+  font-family: var(--fontWeight);
+  /* width: 18ch; */
+  /* font-weight: 300 !important; */
+}

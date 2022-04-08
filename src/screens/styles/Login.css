@@ -1,0 +1,118 @@
+.loginPage {
+  display: flex;
+  flex-direction: row;
+  min-width: 400px;
+  min-height: 100vh;
+  background-color: white;
+}
+
+.loginBackground {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  min-width: 50px;
+  background: rgb(139, 189, 217);
+  background: linear-gradient(
+    90deg,
+    rgba(139, 189, 217, 1) 0%,
+    rgba(126, 173, 213, 1) 100%
+  );
+}
+
+.backgroundRight {
+  transform: rotate(180deg);
+}
+
+.loginContainer {
+  width: 100%;
+  min-width: 700px;
+  max-width: 1100px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#loginLogo {
+  width: 40%;
+  height: auto;
+  margin-bottom: 15%;
+}
+
+.loginWrapper1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #25318d;
+  border-radius: 10px / 10px;
+  padding: 2vh 5%;
+  height: 38vh;
+  width: 60%;
+}
+
+.loginInput {
+  padding-left: 10px;
+  height: 5vh;
+  width: 100%;
+  border: 1px solid #25318d;
+  border-radius: 10px / 10px;
+  align-self: center;
+  background-color: #eff1fc;
+}
+
+#userName,
+#password {
+  padding-left: 10px;
+  height: 5vh;
+  width: 100%;
+  border: 1px solid #25318d;
+  border-radius: 10px / 10px;
+  align-self: center;
+  background-color: #eff1fc;
+}
+
+.loginBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+#loginBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 3em;
+  border-radius: 15px / 15px;
+  border: none;
+  background-color: #25318d;
+  color: white;
+  cursor: pointer;
+}
+
+.loginTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 4vh;
+  font-family: 'Roboto', sans-serif;
+  color: #25318d;
+}
+
+#loginBtn2 {
+  display: flex;
+  justify-content: center;
+  padding: 1.5em 3em;
+  border-radius: 15px / 15px;
+  border: none;
+  background-color: #25318d;
+  color: white;
+  cursor: pointer;
+  width: 15px;
+  height: 3vh;
+  font-size: 0.5rem;
+  align-items: center;
+  margin-left: 299px;
+}

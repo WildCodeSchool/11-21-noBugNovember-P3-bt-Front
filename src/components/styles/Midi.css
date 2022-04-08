@@ -1,0 +1,167 @@
+/* MidiProject */
+.cardContainer {
+  position: relative;
+  z-index: 0;
+}
+
+.card {
+  width: 600px;
+  background-color: var(--cardBgColor) !important;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.background2 {
+  background-color: var(--cardBgColor2);
+}
+
+.headerCardBorder {
+  width: 100%;
+  height: 1px;
+  background-color: var(--firstColor);
+  top: 115px;
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.groupMidMax li {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#groupMidi div {
+  max-width: 300px;
+}
+
+.fieldName {
+  text-align: left;
+  font-weight: bold;
+  width: 100%;
+}
+
+.fieldContent {
+  text-align: right;
+  width: 100%;
+}
+
+.buttonCardContainer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.buttonCard {
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  padding: 1em 1em 1em;
+  margin-bottom: 2wh;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  color: var(--firstColor);
+}
+
+.buttonMidiProject:hover {
+  text-decoration: none;
+}
+
+.buttonMidiProject:active {
+  position: relative;
+  top: 1px;
+}
+
+/* MidiExpert */
+.midiExpertContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.midiExpertCard {
+  background-color: var(--cardBgColor);
+  border-radius: 1%;
+  width: 16em;
+  height: auto;
+  margin: 0 10px 20px 10px;
+  padding: 10px;
+}
+
+.midiExpertCard:hover {
+  cursor: pointer;
+}
+
+.separation {
+  height: 1px;
+  background-color: var(--firstColor);
+  margin: 5px 0 10px 0;
+}
+
+.infoExpert {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.part2 > li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.part1 > li,
+.part2 > li {
+  padding: 3px;
+}
+
+.checkExpert {
+  background-color: var(--inputColor);
+}
+
+/* MaxiExpert */
+
+#maxiCard {
+  padding-bottom: 24px;
+}
+
+.answerCard {
+  height: auto;
+}
+
+/* AnswerExpert */
+
+.dragDropZone {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Container */
+.column {
+  width: 18em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.columnHeader {
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: var(--firstColor);
+  color: var(--secondColor);
+  width: 16rem;
+  margin-bottom: 1em;
+  border-radius: 5px;
+}

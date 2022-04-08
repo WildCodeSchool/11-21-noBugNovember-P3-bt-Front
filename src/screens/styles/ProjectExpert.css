@@ -1,0 +1,78 @@
+.projectExpertContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr repeat(2, 2fr);
+  grid-column-gap: 25px;
+  grid-row-gap: 20px;
+  margin-left: 100px;
+  width: 90vw;
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.gridMidiProject {
+  grid-area: 2 / 1 / 4 / 2;
+}
+
+.gridMidiExpert {
+  grid-area: 2 / 2 / 4 / 4;
+}
+
+.gridMaxiExpert {
+  grid-area: 2 / 2 / 4 / 4;
+}
+
+.centerPopupProject {
+  display: block;
+  position: fixed;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--firstColor);
+  background-color: var(--secondColor);
+}
+
+.maxiProjectExpertContainer {
+  margin-left: 100px;
+  margin-top: 5px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 0px;
+}
+
+.gridMaxiProject {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.gridSmallAnswer {
+  grid-area: 1 / 2 / 2 / 6;
+}
+
+.gridBigAnswer {
+  grid-area: 1 / 2 / 2 / 6;
+}
+
+.answerEdit {
+  display: block;
+  position: fixed;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.maxiButton {
+  margin-bottom: 0;
+  background-color: var(--firstColor);
+  color: var(--secondColor);
+}

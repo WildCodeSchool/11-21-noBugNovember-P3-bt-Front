@@ -1,0 +1,12 @@
+.adminHome {
+  margin: auto;
+}
+.voirPlusContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.trait {
+  border-bottom: 1px solid white;
+  width: 20vw;
+}

@@ -1,0 +1,42 @@
+.groupCards {
+  /* justify-content: space-around; */
+  /* column-count: 3; */
+}
+/* .cardProjectContainer {
+  width: 200px;
+  max-height: 200px;
+  /* text-align: center; */
+/* padding: 1em; */
+/* margin-left: 12em;
+  margin-bottom: 3em; */
+/* } */
+
+.pProject {
+  font-size: 85%;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.projectGroup li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectGroup div {
+  max-width: 9em;
+}
+.projectTitle {
+  text-align: left;
+  font-weight: bold;
+}
+.projectTitle2 {
+  text-align: right;
+}
+
+.cardProject {
+  margin: 0 10px 20px 10px;
+  width: 16em;
+  height: 16em;
+}
